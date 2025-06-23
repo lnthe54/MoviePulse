@@ -20,6 +20,11 @@
 		994215972E09A8EB00DAA702 /* Rx+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9942158C2E09A8EB00DAA702 /* Rx+Extension.swift */; };
 		994215982E09A8EB00DAA702 /* ViewModelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 994215902E09A8EB00DAA702 /* ViewModelType.swift */; };
 		994215992E09A8EB00DAA702 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9942158E2E09A8EB00DAA702 /* UIView+Extension.swift */; };
+		9942159E2E09AAAF00DAA702 /* OnboardingNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9942159D2E09AAAA00DAA702 /* OnboardingNavigator.swift */; };
+		994215A02E09AB0000DAA702 /* OnboardingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9942159F2E09AAF600DAA702 /* OnboardingViewModel.swift */; };
+		994215A32E09AB3700DAA702 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 994215A12E09AB3700DAA702 /* OnboardingViewController.swift */; };
+		994215A42E09AB3700DAA702 /* OnboardingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 994215A22E09AB3700DAA702 /* OnboardingViewController.xib */; };
+		994215A72E09ABE000DAA702 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 994215A62E09ABDE00DAA702 /* BaseViewController.swift */; };
 		997FBC8F2E09A05D0065979E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 997FBC852E09A05D0065979E /* AppDelegate.swift */; };
 		997FBC922E09A05D0065979E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 997FBC862E09A05D0065979E /* Assets.xcassets */; };
 		997FBC942E09A05D0065979E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 997FBC892E09A05D0065979E /* LaunchScreen.storyboard */; };
@@ -43,6 +48,11 @@
 		9942158E2E09A8EB00DAA702 /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		9942158F2E09A8EB00DAA702 /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
 		994215902E09A8EB00DAA702 /* ViewModelType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelType.swift; sourceTree = "<group>"; };
+		9942159D2E09AAAA00DAA702 /* OnboardingNavigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingNavigator.swift; sourceTree = "<group>"; };
+		9942159F2E09AAF600DAA702 /* OnboardingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewModel.swift; sourceTree = "<group>"; };
+		994215A12E09AB3700DAA702 /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
+		994215A22E09AB3700DAA702 /* OnboardingViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OnboardingViewController.xib; sourceTree = "<group>"; };
+		994215A62E09ABDE00DAA702 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		997FBC5D2E099F260065979E /* MoviePulse.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MoviePulse.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		997FBC852E09A05D0065979E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		997FBC862E09A05D0065979E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -89,6 +99,42 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		9942159A2E09A9C800DAA702 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				994215A52E09ABC100DAA702 /* Core */,
+				9942159B2E09AA5300DAA702 /* Sences */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		9942159B2E09AA5300DAA702 /* Sences */ = {
+			isa = PBXGroup;
+			children = (
+				9942159C2E09AA6600DAA702 /* Onboarding */,
+			);
+			path = Sences;
+			sourceTree = "<group>";
+		};
+		9942159C2E09AA6600DAA702 /* Onboarding */ = {
+			isa = PBXGroup;
+			children = (
+				9942159F2E09AAF600DAA702 /* OnboardingViewModel.swift */,
+				9942159D2E09AAAA00DAA702 /* OnboardingNavigator.swift */,
+				994215A12E09AB3700DAA702 /* OnboardingViewController.swift */,
+				994215A22E09AB3700DAA702 /* OnboardingViewController.xib */,
+			);
+			path = Onboarding;
+			sourceTree = "<group>";
+		};
+		994215A52E09ABC100DAA702 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				994215A62E09ABDE00DAA702 /* BaseViewController.swift */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
 		997FBC542E099F260065979E = {
 			isa = PBXGroup;
 			children = (
@@ -110,6 +156,7 @@
 		997FBC8E2E09A05D0065979E /* MoviePulse */ = {
 			isa = PBXGroup;
 			children = (
+				9942159A2E09A9C800DAA702 /* App */,
 				997FBC972E09A0A30065979E /* SupportFiles */,
 				997FBC962E09A09A0065979E /* Framworks */,
 				997FBC852E09A05D0065979E /* AppDelegate.swift */,
@@ -216,6 +263,7 @@
 			files = (
 				997FBC922E09A05D0065979E /* Assets.xcassets in Resources */,
 				997FBC942E09A05D0065979E /* LaunchScreen.storyboard in Resources */,
+				994215A42E09AB3700DAA702 /* OnboardingViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -271,8 +319,12 @@
 				997FBC8F2E09A05D0065979E /* AppDelegate.swift in Sources */,
 				994215832E09A76100DAA702 /* APIResponse.swift in Sources */,
 				994215842E09A76100DAA702 /* APIConfiguration.swift in Sources */,
+				994215A32E09AB3700DAA702 /* OnboardingViewController.swift in Sources */,
+				994215A02E09AB0000DAA702 /* OnboardingViewModel.swift in Sources */,
+				994215A72E09ABE000DAA702 /* BaseViewController.swift in Sources */,
 				994215862E09A76100DAA702 /* APIClient.swift in Sources */,
 				994215922E09A8EB00DAA702 /* UIColor+Extension.swift in Sources */,
+				9942159E2E09AAAF00DAA702 /* OnboardingNavigator.swift in Sources */,
 				994215932E09A8EB00DAA702 /* UIViewController+Extension.swift in Sources */,
 				994215942E09A8EB00DAA702 /* Encodable.swift in Sources */,
 				994215952E09A8EB00DAA702 /* NSObject+Extension.swift in Sources */,
