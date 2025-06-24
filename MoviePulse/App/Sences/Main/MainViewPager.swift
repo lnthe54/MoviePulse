@@ -49,7 +49,9 @@ class MainViewPager: UIPageViewController {
 extension MainViewPager {
     func createHomeTab() {
         homeNavigationController = UINavigationController()
-        let viewController = UIViewController()
+        let navigator = DefaultHomeNavigator(navigationController: homeNavigationController)
+        let viewModel = HomeViewModel()
+        let viewController = HomeViewController(navigator: navigator, viewModel: viewModel)
         homeNavigationController.pushViewController(viewController, animated: true)
     }
     

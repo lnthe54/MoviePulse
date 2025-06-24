@@ -47,6 +47,41 @@ extension APIConfiguration {
     }
 }
 
+extension APIConfiguration {
+    func getCommonParams(page: Int = 0, categoryID: Int = 0) -> APIRequestParams {
+        var params: [String: Any] = [
+            "api_key": Constants.Network.API_KEY,
+            "language": "en-US"
+        ]
+        
+        if page != 0 {
+            params["page"] = page
+        }
+        
+        if categoryID != 0 {
+            params["with_genres"] = categoryID
+        }
+        
+        return .query(params)
+    }
+    
+    func getParams(formQuery query: String) -> [String: Any] {
+        if let url = URL(string: query),
+           let components = URLComponents(url: url, resolvingAgainstBaseURL: false),
+           let queryItems = components.queryItems {
+            
+            var params: [String: String] = queryItems.reduce(into: [:]) { result, item in
+                if item.name != "page" {
+                    result[item.name] = item.value ?? ""
+                }
+            }
+            return params
+        } else {
+            return [:]
+        }
+    }
+}
+
 enum HTTPHeaderField: String {
     case authentication = "Authorization"
     case contentType = "Content-Type"
