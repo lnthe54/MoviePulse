@@ -17,12 +17,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 extension AppDelegate {
     func getViewController() -> UIViewController {
-        let viewController = OnboardingViewController()
-        let navigationController = UINavigationController(rootViewController: viewController)
-        navigationController.setNavigationBarHidden(true, animated: false)
-        
-        viewController.navigator = DefaultOnboardingNavigator(navigationController: navigationController)
-        viewController.viewModel = OnboardingViewModel()
-        return navigationController
+        if UserDataDefault.shared.getIsFirstInstallApp() {
+            // Onboarding
+            let viewController = OnboardingViewController()
+            let navigationController = UINavigationController(rootViewController: viewController)
+            navigationController.setNavigationBarHidden(true, animated: false)
+            
+            viewController.navigator = DefaultOnboardingNavigator(navigationController: navigationController)
+            viewController.viewModel = OnboardingViewModel()
+            return navigationController
+        } else {
+            // Home
+            let viewController = MainViewController()
+            let navigationController = UINavigationController(rootViewController: viewController)
+            navigationController.setNavigationBarHidden(true, animated: false)
+            return navigationController
+        }
     }
 }

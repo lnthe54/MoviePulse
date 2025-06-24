@@ -1,7 +1,7 @@
 import UIKit
 
 protocol OnboardingNavigator {
-    
+    func gotoMainViewController()
 }
 
 class DefaultOnboardingNavigator: OnboardingNavigator {
@@ -9,6 +9,11 @@ class DefaultOnboardingNavigator: OnboardingNavigator {
     
     init(navigationController: UINavigationController) {
         self.navigationController = navigationController
+    }
+    
+    func gotoMainViewController() {
+        let viewController = MainViewController()
+        navigationController.pushViewController(viewController, animated: true)
     }
 }
 

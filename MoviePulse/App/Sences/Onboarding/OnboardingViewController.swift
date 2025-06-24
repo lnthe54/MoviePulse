@@ -84,6 +84,7 @@ class OnboardingViewController: BaseViewController {
                 guard let self else { return }
                 
                 if currentIndex >= (onboardings.count - 1) {
+                    navigator.gotoMainViewController()
                     return
                 }
                 currentIndex += 1
@@ -95,8 +96,9 @@ class OnboardingViewController: BaseViewController {
         skipButton.setTitleColor(.pimaryColor, for: .normal)
         skipButton.titleLabel?.font = .outfitFont(ofSize: 16, weight: .semiBold)
         skipButton.rx.tap
-            .bind {
-                
+            .bind { [weak self] in
+                guard let self else { return }
+                navigator.gotoMainViewController()
             }
             .disposed(by: disposeBag)
         
