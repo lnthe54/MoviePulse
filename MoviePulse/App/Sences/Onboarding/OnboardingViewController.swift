@@ -19,6 +19,9 @@ class OnboardingViewController: BaseViewController {
     @IBOutlet private weak var contentLabel: UILabel!
     @IBOutlet private weak var continueButton: UIButton!
     @IBOutlet private weak var skipButton: UIButton!
+    @IBOutlet private weak var onboardingView1: UIView!
+    @IBOutlet private weak var onboardingView2: UIView!
+    @IBOutlet private weak var onboardingView3: UIView!
     
     init() {
         super.init(nibName: Self.className, bundle: nil)
@@ -96,6 +99,10 @@ class OnboardingViewController: BaseViewController {
                 
             }
             .disposed(by: disposeBag)
+        
+        onboardingView1.backgroundColor = .systemGray5
+        onboardingView2.backgroundColor = .systemGray5
+        onboardingView3.backgroundColor = .systemGray5
     }
     
     // MARK: - Private functions
@@ -105,5 +112,24 @@ class OnboardingViewController: BaseViewController {
         backgroundImageView.image = UIImage(named: "onboarding_\(onboardings[currentIndex].id)")
         let buttonTitle: String = currentIndex == (onboardings.count - 1) ? "Start" : "Continues"
         continueButton.setTitle(buttonTitle, for: .normal)
+        selectedIndicator()
+    }
+    
+    private func selectedIndicator() {
+        switch currentIndex {
+        case 0:
+            onboardingView1.backgroundColor = .pimaryColor
+            onboardingView2.backgroundColor = .systemGray5
+            onboardingView3.backgroundColor = .systemGray5
+        case 1:
+            onboardingView2.backgroundColor = .pimaryColor
+            onboardingView1.backgroundColor = .systemGray5
+            onboardingView3.backgroundColor = .systemGray5
+        case 2:
+            onboardingView3.backgroundColor = .pimaryColor
+            onboardingView1.backgroundColor = .systemGray5
+            onboardingView2.backgroundColor = .systemGray5
+        default: break
+        }
     }
 }
