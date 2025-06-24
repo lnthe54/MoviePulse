@@ -28,6 +28,11 @@
 		997FBC8F2E09A05D0065979E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 997FBC852E09A05D0065979E /* AppDelegate.swift */; };
 		997FBC922E09A05D0065979E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 997FBC862E09A05D0065979E /* Assets.xcassets */; };
 		997FBC942E09A05D0065979E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 997FBC892E09A05D0065979E /* LaunchScreen.storyboard */; };
+		B64976642E0A485D00B5A738 /* Outfit-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B64976602E0A485D00B5A738 /* Outfit-Light.ttf */; };
+		B64976652E0A485D00B5A738 /* Outfit-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B64976612E0A485D00B5A738 /* Outfit-Medium.ttf */; };
+		B64976662E0A485D00B5A738 /* Outfit-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B64976622E0A485D00B5A738 /* Outfit-Regular.ttf */; };
+		B64976672E0A485D00B5A738 /* Outfit-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B64976632E0A485D00B5A738 /* Outfit-SemiBold.ttf */; };
+		B64976692E0A48D500B5A738 /* UIFont+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B64976682E0A48CE00B5A738 /* UIFont+Extension.swift */; };
 		D9632ADD155F4F54C1D8CF29 /* Pods_MoviePulse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 82CD434E65B60866758DB3F7 /* Pods_MoviePulse.framework */; };
 /* End PBXBuildFile section */
 
@@ -58,6 +63,11 @@
 		997FBC862E09A05D0065979E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		997FBC872E09A05D0065979E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		997FBC882E09A05D0065979E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		B64976602E0A485D00B5A738 /* Outfit-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Outfit-Light.ttf"; sourceTree = "<group>"; };
+		B64976612E0A485D00B5A738 /* Outfit-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Outfit-Medium.ttf"; sourceTree = "<group>"; };
+		B64976622E0A485D00B5A738 /* Outfit-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Outfit-Regular.ttf"; sourceTree = "<group>"; };
+		B64976632E0A485D00B5A738 /* Outfit-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Outfit-SemiBold.ttf"; sourceTree = "<group>"; };
+		B64976682E0A48CE00B5A738 /* UIFont+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -130,6 +140,7 @@
 		994215A52E09ABC100DAA702 /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				B64976682E0A48CE00B5A738 /* UIFont+Extension.swift */,
 				994215A62E09ABDE00DAA702 /* BaseViewController.swift */,
 			);
 			path = Core;
@@ -176,11 +187,23 @@
 		997FBC972E09A0A30065979E /* SupportFiles */ = {
 			isa = PBXGroup;
 			children = (
+				B649765F2E0A484400B5A738 /* Fonts */,
 				997FBC862E09A05D0065979E /* Assets.xcassets */,
 				997FBC872E09A05D0065979E /* Info.plist */,
 				997FBC892E09A05D0065979E /* LaunchScreen.storyboard */,
 			);
 			path = SupportFiles;
+			sourceTree = "<group>";
+		};
+		B649765F2E0A484400B5A738 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				B64976602E0A485D00B5A738 /* Outfit-Light.ttf */,
+				B64976612E0A485D00B5A738 /* Outfit-Medium.ttf */,
+				B64976622E0A485D00B5A738 /* Outfit-Regular.ttf */,
+				B64976632E0A485D00B5A738 /* Outfit-SemiBold.ttf */,
+			);
+			path = Fonts;
 			sourceTree = "<group>";
 		};
 		E4B917826BD6211015042518 /* Frameworks */ = {
@@ -261,6 +284,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B64976642E0A485D00B5A738 /* Outfit-Light.ttf in Resources */,
+				B64976652E0A485D00B5A738 /* Outfit-Medium.ttf in Resources */,
+				B64976662E0A485D00B5A738 /* Outfit-Regular.ttf in Resources */,
+				B64976672E0A485D00B5A738 /* Outfit-SemiBold.ttf in Resources */,
 				997FBC922E09A05D0065979E /* Assets.xcassets in Resources */,
 				997FBC942E09A05D0065979E /* LaunchScreen.storyboard in Resources */,
 				994215A42E09AB3700DAA702 /* OnboardingViewController.xib in Resources */,
@@ -317,6 +344,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				997FBC8F2E09A05D0065979E /* AppDelegate.swift in Sources */,
+				B64976692E0A48D500B5A738 /* UIFont+Extension.swift in Sources */,
 				994215832E09A76100DAA702 /* APIResponse.swift in Sources */,
 				994215842E09A76100DAA702 /* APIConfiguration.swift in Sources */,
 				994215A32E09AB3700DAA702 /* OnboardingViewController.swift in Sources */,

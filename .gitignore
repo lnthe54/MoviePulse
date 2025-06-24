@@ -17,5 +17,6 @@ DerivedData/
 *.dSYM
 .build/
 Pods/
+Podfile.lock
 *.xcworkspace
 iOSInjectionProject/
