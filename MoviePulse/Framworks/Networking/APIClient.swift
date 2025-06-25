@@ -39,7 +39,51 @@ class APIClient {
         return performRequest(session: authenticatedSession, urlConvertible: urlConvertible)
     }
     
+    static func encryptRequest<T: Codable>(_ urlConvertible: URLRequestConvertible) -> Observable<T> {
+        return performEncryptRequest(session: unauthenticatedSession, urlConvertible: urlConvertible)
+    }
+    
     private static func performRequest<T: Codable>(session: Session, urlConvertible: URLRequestConvertible) -> Observable<T> {
+        return Observable.create { observer in
+            session.request(urlConvertible)
+                .responseData { response in
+                    let statusCode = response.response?.statusCode ?? -1
+                    
+                    switch response.result {
+                    case .success(let data):
+                        do {
+                            let apiResponse = try JSONDecoder().decode(APIResponse<T>.self, from: data)
+                            
+                            if !apiResponse.result {
+                                observer.onError(APIError.server(
+                                    message: apiResponse.message,
+                                    code: apiResponse.code
+                                ))
+                                return
+                            }
+                            
+                            guard let data = apiResponse.data else {
+                                observer.onError(APIError.noContent)
+                                return
+                            }
+                            
+                            observer.onNext(data)
+                            observer.onCompleted()
+                        } catch {
+                            let mappedError = mapStatusCodeToAPIError(statusCode) ?? APIError.decodingError(error)
+                            observer.onError(mappedError)
+                        }
+                        
+                    case .failure(let error):
+                        let mappedError = mapStatusCodeToAPIError(statusCode) ?? APIError.unknown(error)
+                        observer.onError(mappedError)
+                    }
+                }
+            return Disposables.create()
+        }
+    }
+    
+    private static func performEncryptRequest<T: Codable>(session: Session, urlConvertible: URLRequestConvertible) -> Observable<T> {
         return Observable.create { observer in
             session.request(urlConvertible)
                 .responseData { response in

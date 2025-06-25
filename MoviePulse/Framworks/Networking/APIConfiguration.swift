@@ -9,7 +9,7 @@ protocol APIConfiguration: URLRequestConvertible {
 
 extension APIConfiguration {
     func asURLRequest() throws -> URLRequest {
-        var urlComponents = URLComponents(string: hostURL + "/" + path)
+        var urlComponents = URLComponents(string: hostURL + path)
         
         // Handle query parameters
         switch requestParams {
@@ -24,7 +24,7 @@ extension APIConfiguration {
         }
         
         guard let finalURL = urlComponents?.url else {
-            throw AFError.invalidURL(url: hostURL + "/" + path)
+            throw AFError.invalidURL(url: hostURL + path)
         }
         
         var urlRequest = URLRequest(url: finalURL)
@@ -70,7 +70,7 @@ extension APIConfiguration {
            let components = URLComponents(url: url, resolvingAgainstBaseURL: false),
            let queryItems = components.queryItems {
             
-            var params: [String: String] = queryItems.reduce(into: [:]) { result, item in
+            let params: [String: String] = queryItems.reduce(into: [:]) { result, item in
                 if item.name != "page" {
                     result[item.name] = item.value ?? ""
                 }

@@ -35,7 +35,7 @@ class MainViewController: BaseViewController {
     
     override func setupViews() {
         containerView.backgroundColor = UIColor(hexString: "#FAF7FE")
-        
+        setupMainViewPager()
         tabbarView.backgroundColor = .white
         
         homeView.rx.tapGesture().when(.recognized)
@@ -97,5 +97,13 @@ class MainViewController: BaseViewController {
     ) {
         icon.image = UIImage(named: isActive ? activeImage : inactiveImage)
         lineView.backgroundColor = isActive ? .pimaryColor : .clear
+    }
+    
+    private func setupMainViewPager() {
+        mainViewPager = MainViewPager()
+        mainViewPager.view.frame = containerView.bounds
+        addChild(mainViewPager)
+        containerView.addSubview(mainViewPager.view)
+        mainViewPager.didMove(toParent: self)
     }
 }

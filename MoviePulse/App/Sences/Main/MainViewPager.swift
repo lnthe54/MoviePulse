@@ -50,7 +50,7 @@ extension MainViewPager {
     func createHomeTab() {
         homeNavigationController = UINavigationController()
         let navigator = DefaultHomeNavigator(navigationController: homeNavigationController)
-        let viewModel = HomeViewModel()
+        let viewModel = HomeViewModel(movieService: MovieClient())
         let viewController = HomeViewController(navigator: navigator, viewModel: viewModel)
         homeNavigationController.pushViewController(viewController, animated: true)
     }

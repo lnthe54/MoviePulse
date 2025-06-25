@@ -31,6 +31,12 @@ class HomeViewController: BaseViewController {
             getDataTrigger: getDataTrigger.asObservable()
         )
         let output = viewModel.transform(input: input)
+        
+        output.getDataEvent
+            .driveNext { [weak self] homeDataObject in
+                guard let self else { return }
+            }
+            .disposed(by: disposeBag)
     }
     
     override func setupViews() {
