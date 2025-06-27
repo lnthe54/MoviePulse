@@ -9,6 +9,7 @@ class ItemHorizontalCell: UICollectionViewCell {
     
     // MARK: - IBOutlets
     @IBOutlet private weak var posterImageView: UIImageView!
+    @IBOutlet private weak var nameLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -19,6 +20,8 @@ class ItemHorizontalCell: UICollectionViewCell {
     private func setupViews() {
         posterImageView.corner(8)
         posterImageView.contentMode = .scaleAspectFill
+        nameLabel.font = .outfitFont(ofSize: 14, weight: .semiBold)
+        nameLabel.textColor = .blackColor
     }
     
     func bindData(_ infoObject: InfoObject) {
@@ -27,5 +30,6 @@ class ItemHorizontalCell: UICollectionViewCell {
             placeholder: UIImage(named: "ic_loading"),
             options: [.transition(ImageTransition.fade(1))]
         )
+        nameLabel.text = infoObject.name
     }
 }

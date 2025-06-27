@@ -22,6 +22,12 @@
                             <constraint firstAttribute="height" constant="247" id="Afj-W6-Pwd"/>
                         </constraints>
                     </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fdN-dw-3m6">
+                        <rect key="frame" x="0.0" y="253" width="179" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
             </view>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
@@ -29,8 +35,12 @@
                 <constraint firstItem="jNV-jd-AaC" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="B9Q-lW-qpb"/>
                 <constraint firstAttribute="trailing" secondItem="jNV-jd-AaC" secondAttribute="trailing" id="Hgk-Kb-YMd"/>
                 <constraint firstItem="jNV-jd-AaC" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="StI-fL-P8M"/>
+                <constraint firstAttribute="trailing" secondItem="fdN-dw-3m6" secondAttribute="trailing" id="T1l-fj-nsh"/>
+                <constraint firstItem="fdN-dw-3m6" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="a1Y-kD-4Sx"/>
+                <constraint firstItem="fdN-dw-3m6" firstAttribute="top" secondItem="jNV-jd-AaC" secondAttribute="bottom" constant="6" id="dJr-2V-oFS"/>
             </constraints>
             <connections>
+                <outlet property="nameLabel" destination="fdN-dw-3m6" id="2o0-Ja-WBI"/>
                 <outlet property="posterImageView" destination="jNV-jd-AaC" id="MZq-sW-CW7"/>
             </connections>
             <point key="canvasLocation" x="131" y="-11"/>

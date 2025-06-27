@@ -29,4 +29,8 @@ extension UIColor {
     static var pimaryColor: UIColor {
         return UIColor(hexString: "#7017E8") ?? .clear
     }
+    
+    static var blackColor: UIColor {
+        return UIColor(hexString: "#191A1E") ?? .black
+    }
 }

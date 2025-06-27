@@ -57,6 +57,9 @@ class HomeViewController: BaseViewController {
     override func setupViews() {
         view.backgroundColor = UIColor(hexString: "#FAF7FE")
         
+        collectionView.register(TitleHeaderSection.nib(),
+                                forSupplementaryViewOfKind: "Header",
+                                withReuseIdentifier: TitleHeaderSection.className)
         collectionView.register(ItemHorizontalCell.nib(), forCellWithReuseIdentifier: ItemHorizontalCell.className)
         collectionView.backgroundColor = .clear
         collectionView.showsHorizontalScrollIndicator = false
@@ -93,6 +96,27 @@ extension HomeViewController {
     }
     
     // MARK: - Bind Cell
+    func collectionView(_ collectionView: UICollectionView,
+                        viewForSupplementaryElementOfKind kind: String,
+                        at indexPath: IndexPath) -> UICollectionReusableView {
+        if kind == "Header" {
+            switch getSections()[indexPath.section] {
+            case .populars:
+                return titleHeaderSection(
+                    collectionView,
+                    viewForSupplementaryElementOfKind: kind,
+                    indexPath: indexPath,
+                    title: "Movies that raise your heart",
+                    isShowSeeMore: homeDataObject.movies.count > Constant.maxDisplayItems
+                )
+            default:
+                return UICollectionReusableView()
+            }
+        } else {
+            return UICollectionReusableView()
+        }
+    }
+    
     private func itemHorizontalCell(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> ItemHorizontalCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ItemHorizontalCell.className, for: indexPath) as! ItemHorizontalCell
         cell.bindData(homeDataObject.movies[indexPath.row])
