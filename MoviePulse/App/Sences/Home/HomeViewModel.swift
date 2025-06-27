@@ -15,7 +15,7 @@ class HomeViewModel: ViewModelType {
         let error = ErrorTracker()
         
         let popularMoviesTrigger = input.getDataTrigger
-            .flatMap(weak: self) { (self, _) in
+            .flatMapLatest(weak: self) { (self, _) in
                 self.movieService
                     .getMoviePopular(at: 1, categoryId: 0)
                     .trackError(error)
@@ -23,7 +23,7 @@ class HomeViewModel: ViewModelType {
             }
         
         let categoriesTrigger = input.getDataTrigger
-            .flatMap(weak: self) { (self, _) in
+            .flatMapLatest(weak: self) { (self, _) in
                 self.movieService
                     .getMovieCategories()
                     .trackError(error)
@@ -31,11 +31,8 @@ class HomeViewModel: ViewModelType {
             }
         
         let getAllDataEvent = Observable.zip(popularMoviesTrigger, categoriesTrigger)
-            .map { (popularInfo, categoryInfo) in
-                return HomeDataObject(
-                    movies: Utils.transformToInfoObject(movies: popularInfo.results),
-                    categories: categoryInfo.genres
-                )
+            .map {
+                HomeDataObject(movies: Utils.transformToInfoObject(movies: $0.results), categories: $1.genres)
             }
         
         return Output(
@@ -59,7 +56,7 @@ extension HomeViewModel {
 }
 
 struct HomeDataObject {
-    let movies: [InforObject]
+    let movies: [InfoObject]
     
     let categories: [CategoryObject]
 }

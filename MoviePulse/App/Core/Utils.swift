@@ -73,9 +73,9 @@ struct Utils {
     /**
      Convert Movieobject > InforObject
      */
-    static func transformToInfoObject(movies: [MovieObject]) -> [InforObject] {
+    static func transformToInfoObject(movies: [MovieObject]) -> [InfoObject] {
         return movies.map { movie in
-            return InforObject(
+            return InfoObject(
                 id: movie.id,
                 name: movie.title,
                 path: movie.poster_path,
@@ -91,9 +91,9 @@ struct Utils {
     /**
      Convert TVShowObject > InforObject
      */
-    static func transformToInfoObject(tvShows: [TVShowObject]) -> [InforObject] {
+    static func transformToInfoObject(tvShows: [TVShowObject]) -> [InfoObject] {
         return tvShows.map { tvShow in
-            return InforObject(
+            return InfoObject(
                 id: tvShow.id,
                 name: tvShow.name,
                 path: tvShow.poster_path,
@@ -109,9 +109,9 @@ struct Utils {
     /**
      Convert ActorInfo > InfoObject
      */
-    static func transformToInfoObject(actors: [ActorInfo]) -> [InforObject] {
+    static func transformToInfoObject(actors: [ActorInfo]) -> [InfoObject] {
         return actors.map { actor in
-            return InforObject(
+            return InfoObject(
                 id: actor.id,
                 name: actor.name,
                 path: actor.profile_path,
@@ -124,7 +124,7 @@ struct Utils {
         }
     }
     
-    static func transformToInfoObject(casts: [CastInfo]) -> [InforObject] {
+    static func transformToInfoObject(casts: [CastInfo]) -> [InfoObject] {
         return casts.map { $0.transformToInfoObject() }
     }
   

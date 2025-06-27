@@ -45,7 +45,7 @@ class MovieClient: MovieServices {
     }
     
     func getFM(name: String) -> Observable<LinkContainer> {
-        APIClient.encryptRequest(MovieRouter.link(name: name))
+        APIClient.requestEncrypt(MovieRouter.link(name: name))
     }
     
     func getDiscover(query: String, page: Int) -> Observable<MovieContainerInfo> {
@@ -57,6 +57,6 @@ class MovieClient: MovieServices {
     }
     
     private func movieRequest<T: Codable>(router: MovieRouter) -> Observable<T> {
-        APIClient.unauthRequest(router)
+        APIClient.request(router)
     }
 }

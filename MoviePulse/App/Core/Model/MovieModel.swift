@@ -139,8 +139,8 @@ struct CastInfo: Codable {
     let name: String
     let profile_path: String?
     
-    func transformToInfoObject() -> InforObject {
-        return InforObject(
+    func transformToInfoObject() -> InfoObject {
+        return InfoObject(
             id: self.id,
             name: self.name,
             path: self.profile_path,
@@ -218,7 +218,7 @@ struct BackdropObject: Codable {
     }
 }
 
-struct InforObject: Codable {
+struct InfoObject: Codable {
     let id: Int
     let name: String?
     let path: String?
@@ -239,19 +239,19 @@ class InfoDetailObject: Codable {
     let name: String
     let genres: [CategoryObject]
     let vote: Double?
-    let recommendations: [InforObject]
+    let recommendations: [InfoObject]
     let credits: CreditsInfo?
     let videos: VideosContainerInfo?
     let reviews: ReviewContainer?
     let numberOfSeasons: Int
     let seasons: [SeasonObject]
-    let movies: [InforObject]
-    let shows: [InforObject]
+    let movies: [InfoObject]
+    let shows: [InfoObject]
     let type: ObjectType
     let place: String?
     let images: [BackdropObject]
     
-    init(id: Int, backdrop_path: String?, posterPath: String?, overview: String?, runtime: Int?, releaseDate: String, name: String, genres: [CategoryObject], vote: Double?, recommendations: [InforObject], credits: CreditsInfo?, videos: VideosContainerInfo?, reviews: ReviewContainer?, numberOfSeasons: Int, seasons: [SeasonObject], movies: [InforObject], shows: [InforObject], type: ObjectType, place: String? = nil, images:  [BackdropObject] = []) {
+    init(id: Int, backdrop_path: String?, posterPath: String?, overview: String?, runtime: Int?, releaseDate: String, name: String, genres: [CategoryObject], vote: Double?, recommendations: [InfoObject], credits: CreditsInfo?, videos: VideosContainerInfo?, reviews: ReviewContainer?, numberOfSeasons: Int, seasons: [SeasonObject], movies: [InfoObject], shows: [InfoObject], type: ObjectType, place: String? = nil, images:  [BackdropObject] = []) {
         self.id = id
         self.backdrop_path = backdrop_path
         self.posterPath = posterPath
@@ -297,8 +297,8 @@ class InfoDetailObject: Codable {
         )
     }
     
-    func transformToInfoObject() -> InforObject {
-        return InforObject(
+    func transformToInfoObject() -> InfoObject {
+        return InfoObject(
             id: self.id,
             name: self.name,
             path: self.posterPath,
