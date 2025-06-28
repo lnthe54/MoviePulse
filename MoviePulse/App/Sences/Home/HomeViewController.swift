@@ -41,6 +41,12 @@ class HomeViewController: BaseViewController {
         getDataTrigger.onNext(())
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        NotificationCenter.default.post(name: .showTabBar, object: nil)
+    }
+    
     override func bindViewModel() {
         let input = HomeViewModel.Input(
             getDataTrigger: getDataTrigger.asObservable()
@@ -113,19 +119,25 @@ extension HomeViewController {
         return sections
     }
     
+    private func getNumberOfRows<T>(list: [T]) -> Int {
+        return min(list.count, Constant.maxDisplayItems)
+    }
+    
     // MARK: - Bind Cell
     func collectionView(_ collectionView: UICollectionView,
                         viewForSupplementaryElementOfKind kind: String,
                         at indexPath: IndexPath) -> UICollectionReusableView {
         if kind == "Header" {
-            switch getSections()[indexPath.section] {
+            let sectionType = getSections()[indexPath.section]
+            switch sectionType {
             case .populars:
                 return titleHeaderSection(
                     collectionView,
                     viewForSupplementaryElementOfKind: kind,
                     indexPath: indexPath,
                     title: "Movies that raise your heart",
-                    isShowSeeMore: homeDataObject.movies.count > Constant.maxDisplayItems
+                    isShowSeeMore: homeDataObject.movies.count > Constant.maxDisplayItems,
+                    sectionType: sectionType
                 )
             case .category:
                 return titleHeaderSection(
@@ -133,7 +145,8 @@ extension HomeViewController {
                     viewForSupplementaryElementOfKind: kind,
                     indexPath: indexPath,
                     title: "Explore moives by genres",
-                    isShowSeeMore: false
+                    isShowSeeMore: homeDataObject.categories.count > Constant.maxDisplayItems,
+                    sectionType: sectionType
                 )
             default:
                 return UICollectionReusableView()
@@ -177,9 +190,9 @@ extension HomeViewController: UICollectionViewDataSource {
         case .pulse, .favorite:
             return 1
         case .populars:
-            return homeDataObject.movies.count > Constant.maxDisplayItems ? Constant.maxDisplayItems : homeDataObject.movies.count
+            return getNumberOfRows(list: homeDataObject.movies)
         case .category:
-            return homeDataObject.categories.count
+            return getNumberOfRows(list: homeDataObject.categories)
         }
     }
     
@@ -208,5 +221,16 @@ extension HomeViewController: UICollectionViewDataSource {
 }
 
 extension HomeViewController: UICollectionViewDelegate {
-    
+    override func didToSeeMore(sectionType: Any) {
+        guard let sectionType = sectionType as? HomeSectionType else {
+            return
+        }
+        
+        switch sectionType {
+        case .category:
+            navigator.gotoCategoryViewController(categories: homeDataObject.categories)
+        default:
+            break
+        }
+    }
 }

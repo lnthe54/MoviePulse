@@ -55,7 +55,7 @@ class AppLayout {
         return section
     }
     
-    static func categorySection() -> NSCollectionLayoutSection {
+    static func categorySection(isShowHeader: Bool = true) -> NSCollectionLayoutSection {
         let itemSize = NSCollectionLayoutSize(
             widthDimension: .estimated(80),
             heightDimension: .absolute(40)
@@ -77,16 +77,19 @@ class AppLayout {
         section.contentInsets = NSDirectionalEdgeInsets(top: 16, leading: 16, bottom: 16, trailing: 16)
         section.interGroupSpacing = 4
         
-        section.boundarySupplementaryItems = [
-            .init(
-                layoutSize: .init(
-                    widthDimension: .fractionalWidth(1),
-                    heightDimension: .absolute(30)
-                ),
-                elementKind: "Header",
-                alignment: .top
-            )
-        ]
+        if isShowHeader {
+            section.boundarySupplementaryItems = [
+                .init(
+                    layoutSize: .init(
+                        widthDimension: .fractionalWidth(1),
+                        heightDimension: .absolute(30)
+                    ),
+                    elementKind: "Header",
+                    alignment: .top
+                )
+            ]
+        }
+        
         return section
     }
     

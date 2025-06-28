@@ -30,6 +30,20 @@ class MainViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(hideTabbar),
+            name: .hideTabBar,
+            object: nil
+        )
+        
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(showTabbar),
+            name: .showTabBar,
+            object: nil
+        )
+        
         UserDataDefault.shared.setIsFirstInstallApp(true)
     }
     
@@ -105,5 +119,17 @@ class MainViewController: BaseViewController {
         addChild(mainViewPager)
         containerView.addSubview(mainViewPager.view)
         mainViewPager.didMove(toParent: self)
+    }
+}
+
+extension MainViewController {
+    @objc
+    private func hideTabbar() {
+        tabbarView.isHidden = true
+    }
+    
+    @objc
+    private func showTabbar() {
+        tabbarView.isHidden = false
     }
 }
