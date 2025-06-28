@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="23504" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23506"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="CategoryCell" customModule="MoviePulse" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="239" height="50"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="239" height="50"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="c1E-WB-jRz">
+                        <rect key="frame" x="0.0" y="0.0" width="239" height="50"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dvh-XE-BBk">
+                                <rect key="frame" x="8" y="14.666666666666664" width="223" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="dvh-XE-BBk" firstAttribute="centerY" secondItem="c1E-WB-jRz" secondAttribute="centerY" id="4UU-l0-Udq"/>
+                            <constraint firstItem="dvh-XE-BBk" firstAttribute="leading" secondItem="c1E-WB-jRz" secondAttribute="leading" constant="8" id="Bg0-iv-8mI"/>
+                            <constraint firstAttribute="trailing" secondItem="dvh-XE-BBk" secondAttribute="trailing" constant="8" id="XXv-cn-KK1"/>
+                            <constraint firstItem="dvh-XE-BBk" firstAttribute="centerX" secondItem="c1E-WB-jRz" secondAttribute="centerX" id="bNr-Xs-LY3"/>
+                        </constraints>
+                    </view>
+                </subviews>
+            </view>
+            <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="c1E-WB-jRz" secondAttribute="bottom" id="3LY-Ts-GyF"/>
+                <constraint firstItem="c1E-WB-jRz" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="GSE-0R-fDG"/>
+                <constraint firstItem="c1E-WB-jRz" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="bhm-2i-546"/>
+                <constraint firstAttribute="trailing" secondItem="c1E-WB-jRz" secondAttribute="trailing" id="u1x-Rf-296"/>
+            </constraints>
+            <size key="customSize" width="239" height="50"/>
+            <connections>
+                <outlet property="categoryLabel" destination="dvh-XE-BBk" id="CB5-uF-iMo"/>
+            </connections>
+            <point key="canvasLocation" x="-14.503816793893129" y="-11.267605633802818"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

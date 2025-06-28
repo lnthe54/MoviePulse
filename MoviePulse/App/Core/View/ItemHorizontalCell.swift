@@ -10,6 +10,8 @@ class ItemHorizontalCell: UICollectionViewCell {
     // MARK: - IBOutlets
     @IBOutlet private weak var posterImageView: UIImageView!
     @IBOutlet private weak var nameLabel: UILabel!
+    @IBOutlet private weak var rateView: UIView!
+    @IBOutlet private weak var rateLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -22,6 +24,10 @@ class ItemHorizontalCell: UICollectionViewCell {
         posterImageView.contentMode = .scaleAspectFill
         nameLabel.font = .outfitFont(ofSize: 14, weight: .semiBold)
         nameLabel.textColor = .blackColor
+        rateView.backgroundColor = .pimaryColor
+        rateView.corner(rateView.frame.height / 2)
+        rateLabel.textColor = .white
+        rateLabel.font = .outfitFont(ofSize: 12)
     }
     
     func bindData(_ infoObject: InfoObject) {
@@ -31,5 +37,6 @@ class ItemHorizontalCell: UICollectionViewCell {
             options: [.transition(ImageTransition.fade(1))]
         )
         nameLabel.text = infoObject.name
+        rateLabel.text = String(Int(infoObject.vote ?? 0.0))
     }
 }
