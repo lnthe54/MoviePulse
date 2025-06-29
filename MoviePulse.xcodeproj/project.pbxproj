@@ -39,6 +39,8 @@
 		9989FF0F2E0FDA31007B667C /* CategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9989FF0D2E0FDA31007B667C /* CategoryViewController.swift */; };
 		9989FF102E0FDA31007B667C /* CategoryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9989FF0E2E0FDA31007B667C /* CategoryViewController.xib */; };
 		9989FF132E0FDB58007B667C /* Notification+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9989FF122E0FDB53007B667C /* Notification+Extension.swift */; };
+		9989FF172E112499007B667C /* PulseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9989FF152E112499007B667C /* PulseCell.swift */; };
+		9989FF182E112499007B667C /* PulseCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9989FF162E112499007B667C /* PulseCell.xib */; };
 		99A5FBC22E0AF3C200AA8D59 /* HomeNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99A5FBC12E0AF3BE00AA8D59 /* HomeNavigator.swift */; };
 		99A5FBC42E0B0B0600AA8D59 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99A5FBC32E0B0B0300AA8D59 /* HomeViewModel.swift */; };
 		99A5FBC72E0B0B5400AA8D59 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99A5FBC52E0B0B5400AA8D59 /* HomeViewController.swift */; };
@@ -112,6 +114,8 @@
 		9989FF0D2E0FDA31007B667C /* CategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewController.swift; sourceTree = "<group>"; };
 		9989FF0E2E0FDA31007B667C /* CategoryViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CategoryViewController.xib; sourceTree = "<group>"; };
 		9989FF122E0FDB53007B667C /* Notification+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Notification+Extension.swift"; sourceTree = "<group>"; };
+		9989FF152E112499007B667C /* PulseCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PulseCell.swift; sourceTree = "<group>"; };
+		9989FF162E112499007B667C /* PulseCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PulseCell.xib; sourceTree = "<group>"; };
 		99A5FBC12E0AF3BE00AA8D59 /* HomeNavigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeNavigator.swift; sourceTree = "<group>"; };
 		99A5FBC32E0B0B0300AA8D59 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		99A5FBC52E0B0B5400AA8D59 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
@@ -329,9 +333,19 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		9989FF142E112481007B667C /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				9989FF152E112499007B667C /* PulseCell.swift */,
+				9989FF162E112499007B667C /* PulseCell.xib */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
 		99A5FBC02E0AF3B700AA8D59 /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				9989FF142E112481007B667C /* Cell */,
 				99A5FBC32E0B0B0300AA8D59 /* HomeViewModel.swift */,
 				99A5FBC12E0AF3BE00AA8D59 /* HomeNavigator.swift */,
 				99A5FBC52E0B0B5400AA8D59 /* HomeViewController.swift */,
@@ -485,6 +499,7 @@
 				9989FEFF2E0F9E3B007B667C /* SingleCell.xib in Resources */,
 				B64976662E0A485D00B5A738 /* Outfit-Regular.ttf in Resources */,
 				B649766F2E0A78E300B5A738 /* MainViewController.xib in Resources */,
+				9989FF182E112499007B667C /* PulseCell.xib in Resources */,
 				B64976672E0A485D00B5A738 /* Outfit-SemiBold.ttf in Resources */,
 				9989FF102E0FDA31007B667C /* CategoryViewController.xib in Resources */,
 				997FBC922E09A05D0065979E /* Assets.xcassets in Resources */,
@@ -562,6 +577,7 @@
 				99A5FBE72E0C55EE00AA8D59 /* LinkModel.swift in Sources */,
 				994215A02E09AB0000DAA702 /* OnboardingViewModel.swift in Sources */,
 				994215A72E09ABE000DAA702 /* BaseViewController.swift in Sources */,
+				9989FF172E112499007B667C /* PulseCell.swift in Sources */,
 				99A5FBC22E0AF3C200AA8D59 /* HomeNavigator.swift in Sources */,
 				9989FF132E0FDB58007B667C /* Notification+Extension.swift in Sources */,
 				994215862E09A76100DAA702 /* APIClient.swift in Sources */,
