@@ -79,6 +79,10 @@
 		B64976892E1226DD00B5A738 /* ListItemViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B64976872E1226DD00B5A738 /* ListItemViewController.xib */; };
 		B649768B2E122B1B00B5A738 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B649768A2E122B1900B5A738 /* LoadingView.swift */; };
 		B649768D2E122BA400B5A738 /* loading.json in Resources */ = {isa = PBXBuildFile; fileRef = B649768C2E122BA400B5A738 /* loading.json */; };
+		B64976902E12313500B5A738 /* DetailItemNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B649768F2E12313100B5A738 /* DetailItemNavigator.swift */; };
+		B64976922E12316F00B5A738 /* DetailItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B64976912E12316A00B5A738 /* DetailItemViewModel.swift */; };
+		B64976952E1231C900B5A738 /* DetailItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B64976932E1231C900B5A738 /* DetailItemViewController.swift */; };
+		B64976962E1231C900B5A738 /* DetailItemViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B64976942E1231C900B5A738 /* DetailItemViewController.xib */; };
 		D9632ADD155F4F54C1D8CF29 /* Pods_MoviePulse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 82CD434E65B60866758DB3F7 /* Pods_MoviePulse.framework */; };
 /* End PBXBuildFile section */
 
@@ -160,6 +164,10 @@
 		B64976872E1226DD00B5A738 /* ListItemViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ListItemViewController.xib; sourceTree = "<group>"; };
 		B649768A2E122B1900B5A738 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		B649768C2E122BA400B5A738 /* loading.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = loading.json; sourceTree = "<group>"; };
+		B649768F2E12313100B5A738 /* DetailItemNavigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailItemNavigator.swift; sourceTree = "<group>"; };
+		B64976912E12316A00B5A738 /* DetailItemViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailItemViewModel.swift; sourceTree = "<group>"; };
+		B64976932E1231C900B5A738 /* DetailItemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailItemViewController.swift; sourceTree = "<group>"; };
+		B64976942E1231C900B5A738 /* DetailItemViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailItemViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -216,6 +224,7 @@
 		9942159B2E09AA5300DAA702 /* Sences */ = {
 			isa = PBXGroup;
 			children = (
+				B649768E2E12312400B5A738 /* DetailItem */,
 				B64976812E12265000B5A738 /* ListItem */,
 				9989FF002E0FD72E007B667C /* Category */,
 				99A5FBC02E0AF3B700AA8D59 /* Home */,
@@ -440,6 +449,17 @@
 			path = ListItem;
 			sourceTree = "<group>";
 		};
+		B649768E2E12312400B5A738 /* DetailItem */ = {
+			isa = PBXGroup;
+			children = (
+				B64976912E12316A00B5A738 /* DetailItemViewModel.swift */,
+				B649768F2E12313100B5A738 /* DetailItemNavigator.swift */,
+				B64976932E1231C900B5A738 /* DetailItemViewController.swift */,
+				B64976942E1231C900B5A738 /* DetailItemViewController.xib */,
+			);
+			path = DetailItem;
+			sourceTree = "<group>";
+		};
 		E4B917826BD6211015042518 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -525,6 +545,7 @@
 				9989FEFF2E0F9E3B007B667C /* SingleCell.xib in Resources */,
 				B64976662E0A485D00B5A738 /* Outfit-Regular.ttf in Resources */,
 				B649766F2E0A78E300B5A738 /* MainViewController.xib in Resources */,
+				B64976962E1231C900B5A738 /* DetailItemViewController.xib in Resources */,
 				9989FF182E112499007B667C /* PulseCell.xib in Resources */,
 				B649768D2E122BA400B5A738 /* loading.json in Resources */,
 				B64976892E1226DD00B5A738 /* ListItemViewController.xib in Resources */,
@@ -606,6 +627,8 @@
 				99A5FBE72E0C55EE00AA8D59 /* LinkModel.swift in Sources */,
 				994215A02E09AB0000DAA702 /* OnboardingViewModel.swift in Sources */,
 				B64976832E12266500B5A738 /* ListItemNavigator.swift in Sources */,
+				B64976922E12316F00B5A738 /* DetailItemViewModel.swift in Sources */,
+				B64976902E12313500B5A738 /* DetailItemNavigator.swift in Sources */,
 				994215A72E09ABE000DAA702 /* BaseViewController.swift in Sources */,
 				9989FF172E112499007B667C /* PulseCell.swift in Sources */,
 				99A5FBC22E0AF3C200AA8D59 /* HomeNavigator.swift in Sources */,
@@ -636,6 +659,7 @@
 				B649767A2E0E342A00B5A738 /* Array+Extension.swift in Sources */,
 				99A5FBC42E0B0B0600AA8D59 /* HomeViewModel.swift in Sources */,
 				994215992E09A8EB00DAA702 /* UIView+Extension.swift in Sources */,
+				B64976952E1231C900B5A738 /* DetailItemViewController.swift in Sources */,
 				99A5FBE52E0C558F00AA8D59 /* ProjectModel.swift in Sources */,
 				99A5FBE92E0C565900AA8D59 /* CategoryModel.swift in Sources */,
 				994215872E09A76100DAA702 /* NetworkLogger.swift in Sources */,

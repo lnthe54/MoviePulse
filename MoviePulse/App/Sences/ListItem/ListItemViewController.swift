@@ -16,6 +16,7 @@ class ListItemViewController: BaseViewController {
     private var items: [InfoObject] = []
     
     private let getDataTrigger = PublishSubject<ListParameters>()
+    private let gotoDetailItemTrigger = PublishSubject<InfoObject>()
     
     // MARK: - IBOutlets
     @IBOutlet private weak var topConstraint: NSLayoutConstraint!
@@ -50,7 +51,8 @@ class ListItemViewController: BaseViewController {
     
     override func bindViewModel() {
         let input = ListItemViewModel.Input(
-            getDataTrigger: getDataTrigger.asObservable()
+            getDataTrigger: getDataTrigger.asObservable(),
+            gotoDetailItemTrigger: gotoDetailItemTrigger.asObservable()
         )
         let output = viewModel.transform(input: input)
         
@@ -85,6 +87,12 @@ class ListItemViewController: BaseViewController {
                 
                 self.items = items
                 collectionView.reloadData()
+            }
+            .disposed(by: disposeBag)
+        
+        output.gotoDetailItemEvent
+            .driveNext { [weak self] infoDetailObject in
+                self?.navigator.gotoDetailItemViewController(infoDetailObject: infoDetailObject)
             }
             .disposed(by: disposeBag)
     }
@@ -173,7 +181,7 @@ extension ListItemViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         switch getSections()[indexPath.section] {
         case .list:
-            break
+            gotoDetailItemTrigger.onNext(items[indexPath.row])
         }
     }
 }

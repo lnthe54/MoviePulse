@@ -3,6 +3,7 @@ import UIKit
 protocol HomeNavigator {
     func gotoCategoryViewController(categories: [CategoryObject])
     func gotoListItemViewController(sectionType: ListSectionType)
+    func gotoDetailItemViewController(infoDetailObject: InfoDetailObject)
 }
 
 class DefaultHomeNavigator: HomeNavigator {
@@ -26,6 +27,17 @@ class DefaultHomeNavigator: HomeNavigator {
             navigator: navigator,
             viewModel: viewModel,
             sectionType: sectionType
+        )
+        navigationController.pushViewController(viewController, animated: true)
+    }
+    
+    func gotoDetailItemViewController(infoDetailObject: InfoDetailObject) {
+        let navigator = DefaultDetailItemNavigator(navigationController: navigationController)
+        let viewModel = DetailItemViewModel(movieServices: MovieClient())
+        let viewController = DetailItemViewController(
+            navigator: navigator,
+            viewModel: viewModel,
+            infoDetailObject: infoDetailObject
         )
         navigationController.pushViewController(viewController, animated: true)
     }

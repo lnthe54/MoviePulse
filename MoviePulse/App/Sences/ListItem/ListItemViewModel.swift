@@ -34,10 +34,20 @@ class ListItemViewModel: ViewModelType {
                 )
             }
         
+        let gotoDetailItemEvent = input.gotoDetailItemTrigger
+            .flatMapLatest(weak: self) { (self, infoObject) in
+                self.getDetailItem(
+                    withloading: loading,
+                    error: error,
+                    infoObject: infoObject
+                )
+            }
+        
         return Output(
             loadingEvent: loading.asDriver(),
             errorEvent: error.asDriver(),
-            getDataEvent: getDataEvent.asDriverOnErrorJustComplete()
+            getDataEvent: getDataEvent.asDriverOnErrorJustComplete(),
+            gotoDetailItemEvent: gotoDetailItemEvent.asDriverOnErrorJustComplete()
         )
     }
 }
@@ -60,17 +70,36 @@ extension ListItemViewModel {
                 return Observable.just([])
             }
         }
+    
+    private func getDetailItem(
+        withloading loading: ActivityIndicator,
+        error: ErrorTracker,
+        infoObject: InfoObject
+    ) -> Observable<InfoDetailObject> {
+        switch infoObject.type {
+        case .movie:
+            return self.movieServices
+                .getMovieDetail(infoObject.id)
+                .trackError(error)
+                .trackActivity(loading)
+                .map { $0.transformToInfoDetailObject() }
+        default:
+            return Observable.just(InfoDetailObject.empty())
+        }
+    }
 }
 
 extension ListItemViewModel {
     struct Input {
         let getDataTrigger: Observable<ListParameters>
+        let gotoDetailItemTrigger: Observable<InfoObject>
     }
     
     struct Output {
         let loadingEvent: Driver<Bool>
         let errorEvent: Driver<Error>
         let getDataEvent: Driver<[InfoObject]>
+        let gotoDetailItemEvent: Driver<InfoDetailObject>
     }
 }
 

@@ -18,6 +18,7 @@ class HomeViewController: BaseViewController {
     private var homeDataObject: HomeDataObject = HomeDataObject(movies: [], categories: [])
     
     private let getDataTrigger = PublishSubject<Void>()
+    private let gotoDetailItemTrigger = PublishSubject<InfoObject>()
     
     // MARK: - IBOutlets
     @IBOutlet private weak var collectionView: UICollectionView!
@@ -50,7 +51,8 @@ class HomeViewController: BaseViewController {
     
     override func bindViewModel() {
         let input = HomeViewModel.Input(
-            getDataTrigger: getDataTrigger.asObservable()
+            getDataTrigger: getDataTrigger.asObservable(),
+            gotoDetailItemTrigger: gotoDetailItemTrigger.asObservable()
         )
         let output = viewModel.transform(input: input)
         
@@ -76,6 +78,12 @@ class HomeViewController: BaseViewController {
                 
                 self.homeDataObject = homeDataObject
                 collectionView.reloadData()
+            }
+            .disposed(by: disposeBag)
+        
+        output.gotoDetailItemEvent
+            .driveNext { [weak self] infoDetailObject in
+                self?.navigator.gotoDetailItemViewController(infoDetailObject: infoDetailObject)
             }
             .disposed(by: disposeBag)
     }
@@ -250,6 +258,14 @@ extension HomeViewController: UICollectionViewDataSource {
 }
 
 extension HomeViewController: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        switch getSections()[indexPath.section] {
+        case .populars:
+            gotoDetailItemTrigger.onNext(homeDataObject.movies[indexPath.row])
+        default: break
+        }
+    }
+    
     override func didToSeeMore(sectionType: Any) {
         guard let sectionType = sectionType as? HomeSectionType else {
             return

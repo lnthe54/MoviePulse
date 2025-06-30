@@ -35,10 +35,20 @@ class HomeViewModel: ViewModelType {
                 HomeDataObject(movies: Utils.transformToInfoObject(movies: $0.results), categories: $1.genres)
             }
         
+        let gotoDetailItemEvent = input.gotoDetailItemTrigger
+            .flatMapLatest(weak: self) { (self, infoObject) in
+                self.movieService
+                    .getMovieDetail(infoObject.id)
+                    .trackError(error)
+                    .trackActivity(loading)
+            }
+            .map { $0.transformToInfoDetailObject() }
+        
         return Output(
             loadingEvent: loading.asDriver(),
             errorEvent: error.asDriver(),
-            getDataEvent: getAllDataEvent.asDriverOnErrorJustComplete()
+            getDataEvent: getAllDataEvent.asDriverOnErrorJustComplete(),
+            gotoDetailItemEvent: gotoDetailItemEvent.asDriverOnErrorJustComplete()
         )
     }
 }
@@ -46,12 +56,14 @@ class HomeViewModel: ViewModelType {
 extension HomeViewModel {
     struct Input {
         let getDataTrigger: Observable<Void>
+        let gotoDetailItemTrigger: Observable<InfoObject>
     }
     
     struct Output {
         let loadingEvent: Driver<Bool>
         let errorEvent: Driver<Error>
         let getDataEvent: Driver<HomeDataObject>
+        let gotoDetailItemEvent: Driver<InfoDetailObject>
     }
 }
 
