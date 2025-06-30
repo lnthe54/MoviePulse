@@ -4,6 +4,8 @@ import RxSwift
 import RxCocoa
 
 enum DetailItemSectionType {
+    case info
+    case overview
     case related
 }
 
@@ -101,7 +103,9 @@ class DetailItemViewController: BaseViewController {
         collectionView.register(TitleHeaderSection.nib(),
                                 forSupplementaryViewOfKind: "Header",
                                 withReuseIdentifier: TitleHeaderSection.className)
+        collectionView.register(InfoDetailItemCell.nib(), forCellWithReuseIdentifier: InfoDetailItemCell.className)
         collectionView.register(ItemHorizontalCell.nib(), forCellWithReuseIdentifier: ItemHorizontalCell.className)
+        collectionView.register(OverviewDetailItemCell.nib(), forCellWithReuseIdentifier: OverviewDetailItemCell.className)
         collectionView.backgroundColor = .clear
         collectionView.showsHorizontalScrollIndicator = false
         collectionView.showsVerticalScrollIndicator = false
@@ -119,6 +123,10 @@ extension DetailItemViewController {
             let section = self.getSections()[sectionIndex]
             
             switch section {
+            case .info:
+                return AppLayout.fixedSection(height: 164)
+            case .overview:
+                return AppLayout.fixedSection(height: 300)
             case .related:
                 return AppLayout.horizontalSection()
             }
@@ -129,6 +137,12 @@ extension DetailItemViewController {
     
     private func getSections() -> [DetailItemSectionType] {
         var sections: [DetailItemSectionType] = []
+        
+        sections.append(.info)
+        
+        if infoDetailObject.overview?.isNotEmpty ?? false {
+            sections.append(.overview)
+        }
         
         if infoDetailObject.recommendations.isNotEmpty {
             sections.append(.related)
@@ -145,6 +159,8 @@ extension DetailItemViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         switch getSections()[section] {
+        case .info, .overview:
+            return 1
         case .related:
             return infoDetailObject.recommendations.count > Constant.maxDisplayItems ? Constant.maxDisplayItems : infoDetailObject.recommendations.count
         }
@@ -152,6 +168,10 @@ extension DetailItemViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         switch getSections()[indexPath.section] {
+        case .info:
+            return infoCell(collectionView, cellForItemAt: indexPath)
+        case .overview:
+            return overViewCell(collectionView, cellForItemAt: indexPath)
         case .related:
             return itemCell(collectionView, cellForItemAt: indexPath)
         }
@@ -180,6 +200,18 @@ extension DetailItemViewController: UICollectionViewDataSource {
         }
     }
     
+    private func infoCell(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> InfoDetailItemCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: InfoDetailItemCell.className, for: indexPath) as! InfoDetailItemCell
+        cell.bindData(infoDetailObject)
+        return cell
+    }
+    
+    private func overViewCell(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> OverviewDetailItemCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: OverviewDetailItemCell.className, for: indexPath) as! OverviewDetailItemCell
+        cell.bindData(overView: infoDetailObject.overview ?? "")
+        return cell
+    }
+    
     private func itemCell(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> ItemHorizontalCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ItemHorizontalCell.className, for: indexPath) as! ItemHorizontalCell
         cell.bindData(infoDetailObject.recommendations[indexPath.row])
@@ -192,6 +224,7 @@ extension DetailItemViewController: UICollectionViewDelegate {
         switch getSections()[indexPath.section] {
         case .related:
             gotoDetailItemTrigger.onNext(infoDetailObject.recommendations[indexPath.row])
+        default: break
         }
     }
     
@@ -203,6 +236,7 @@ extension DetailItemViewController: UICollectionViewDelegate {
         switch sectionType {
         case .related:
             navigator.gotoListItemViewController(sectionType: .others(title: "Related movies", items: infoDetailObject.recommendations))
+        default: break
         }
     }
 }
