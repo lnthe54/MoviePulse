@@ -7,6 +7,7 @@ enum DetailItemSectionType {
     case info
     case pulseTest
     case community
+    case genres
     case overview
     case photo
     case related
@@ -112,6 +113,7 @@ class DetailItemViewController: BaseViewController {
         collectionView.register(ImageCell.nib(), forCellWithReuseIdentifier: ImageCell.className)
         collectionView.register(PulseTestCell.nib(), forCellWithReuseIdentifier: PulseTestCell.className)
         collectionView.register(CommunityCell.nib(), forCellWithReuseIdentifier: CommunityCell.className)
+        collectionView.register(GenresCell.nib(), forCellWithReuseIdentifier: GenresCell.className)
         collectionView.backgroundColor = .clear
         collectionView.showsHorizontalScrollIndicator = false
         collectionView.showsVerticalScrollIndicator = false
@@ -135,6 +137,8 @@ extension DetailItemViewController {
                 return AppLayout.fixedSection(height: 146)
             case .community:
                 return AppLayout.fixedSection(height: 120)
+            case .genres:
+                return AppLayout.fixedSection(height: 112)
             case .overview:
                 return AppLayout.fixedSection(height: 300)
             case .photo:
@@ -155,6 +159,10 @@ extension DetailItemViewController {
         sections.append(.pulseTest)
         
         sections.append(.community)
+        
+        if infoDetailObject.genres.isNotEmpty {
+            sections.append(.genres)
+        }
         
         if infoDetailObject.overview?.isNotEmpty ?? false {
             sections.append(.overview)
@@ -179,7 +187,7 @@ extension DetailItemViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         switch getSections()[section] {
-        case .info, .pulseTest, .community, .overview:
+        case .info, .pulseTest, .community, .genres, .overview:
             return 1
         case .photo:
             return infoDetailObject.images.count > Constant.maxDisplayItems ? Constant.maxDisplayItems : infoDetailObject.images.count
@@ -196,6 +204,8 @@ extension DetailItemViewController: UICollectionViewDataSource {
             return pulseTestCell(collectionView, cellForItemAt: indexPath)
         case .community:
             return communityCell(collectionView, cellForItemAt: indexPath)
+        case .genres:
+            return genresCell(collectionView, cellForItemAt: indexPath)
         case .overview:
             return overViewCell(collectionView, cellForItemAt: indexPath)
         case .photo:
@@ -270,9 +280,16 @@ extension DetailItemViewController: UICollectionViewDataSource {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CommunityCell.className, for: indexPath) as! CommunityCell
         return cell
     }
+    
+    private func genresCell(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> GenresCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: GenresCell.className, for: indexPath) as! GenresCell
+        cell.delegate = self
+        cell.bindData(categories: infoDetailObject.genres)
+        return cell
+    }
 }
 
-extension DetailItemViewController: UICollectionViewDelegate {
+extension DetailItemViewController: UICollectionViewDelegate, GenresCellDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         switch getSections()[indexPath.section] {
         case .related:
@@ -293,5 +310,9 @@ extension DetailItemViewController: UICollectionViewDelegate {
             navigator.gotoListItemViewController(sectionType: .others(title: "Related movies", items: infoDetailObject.recommendations))
         default: break
         }
+    }
+    
+    func didSelectCategory(item: CategoryObject) {
+        navigator.gotoListItemViewController(sectionType: .category(categoryObject: item))
     }
 }

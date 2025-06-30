@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="23504" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23506"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="GenresCell" customModule="MoviePulse" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="374" height="112"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="374" height="112"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cAS-AG-jUP">
+                        <rect key="frame" x="0.0" y="0.0" width="374" height="112"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bon-3M-dUM">
+                                <rect key="frame" x="12" y="12" width="350" height="36"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="tRW-c3-tCx">
+                                <rect key="frame" x="12" y="56" width="350" height="44"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="HMP-XB-vUW"/>
+                                </constraints>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="3dG-fa-C97">
+                                    <size key="itemSize" width="128" height="128"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                            </collectionView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemIndigoColor"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="tRW-c3-tCx" secondAttribute="bottom" constant="12" id="01o-86-jas"/>
+                            <constraint firstAttribute="trailing" secondItem="tRW-c3-tCx" secondAttribute="trailing" constant="12" id="CKI-MJ-If4"/>
+                            <constraint firstItem="tRW-c3-tCx" firstAttribute="top" secondItem="bon-3M-dUM" secondAttribute="bottom" constant="8" id="MjT-y5-T30"/>
+                            <constraint firstItem="bon-3M-dUM" firstAttribute="leading" secondItem="cAS-AG-jUP" secondAttribute="leading" constant="12" id="Tkf-rB-tzk"/>
+                            <constraint firstItem="bon-3M-dUM" firstAttribute="top" secondItem="cAS-AG-jUP" secondAttribute="top" constant="12" id="e4A-zo-Kop"/>
+                            <constraint firstAttribute="trailing" secondItem="bon-3M-dUM" secondAttribute="trailing" constant="12" id="pLS-CB-glh"/>
+                            <constraint firstItem="tRW-c3-tCx" firstAttribute="leading" secondItem="cAS-AG-jUP" secondAttribute="leading" constant="12" id="ss0-8v-xFq"/>
+                        </constraints>
+                    </view>
+                </subviews>
+            </view>
+            <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <constraints>
+                <constraint firstItem="cAS-AG-jUP" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="CXk-HB-sif"/>
+                <constraint firstAttribute="trailing" secondItem="cAS-AG-jUP" secondAttribute="trailing" id="Htk-qi-npz"/>
+                <constraint firstItem="cAS-AG-jUP" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="edz-4N-EpM"/>
+                <constraint firstAttribute="bottom" secondItem="cAS-AG-jUP" secondAttribute="bottom" id="m8G-er-8mM"/>
+            </constraints>
+            <size key="customSize" width="374" height="152"/>
+            <connections>
+                <outlet property="collectionView" destination="tRW-c3-tCx" id="xGb-yf-bpJ"/>
+                <outlet property="containerView" destination="cAS-AG-jUP" id="t76-av-cjc"/>
+                <outlet property="titleLabel" destination="bon-3M-dUM" id="NhX-MK-LZp"/>
+            </connections>
+            <point key="canvasLocation" x="13.740458015267174" y="4.9295774647887329"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemIndigoColor">
+            <color red="0.34509803919999998" green="0.33725490200000002" blue="0.83921568629999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
+</document>

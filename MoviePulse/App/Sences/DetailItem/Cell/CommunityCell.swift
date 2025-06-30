@@ -22,7 +22,7 @@ class CommunityCell: UICollectionViewCell {
         containerView.corner(8)
         
         titleLabel.text = "Compare with community"
-        titleLabel.font = .outfitFont(ofSize: 14, weight: .semiBold)
+        titleLabel.font = .outfitFont(ofSize: 16, weight: .semiBold)
         titleLabel.textColor = .blackColor
         
         subContainerView.backgroundColor = UIColor(hexString: "#FAF7FE")

@@ -12,6 +12,7 @@ class CategoryCell: UICollectionViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         
+        self.corner(4)
         categoryLabel.textColor = .blackColor
         categoryLabel.font = .outfitFont(ofSize: 14, weight: .medium)
     }
