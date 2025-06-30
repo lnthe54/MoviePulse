@@ -3,12 +3,15 @@ import RxCocoa
 
 enum ListSectionType {
     case popular
+    case category(categoryObject: CategoryObject)
     case others(title: String, items: [InfoObject])
     
     var title: String {
         switch self {
         case .popular:
             return ""
+        case .category(let category):
+            return category.name
         case .others(let title, _):
             return title
         }
@@ -71,11 +74,17 @@ extension ListItemViewModel {
         ) -> Observable<[InfoObject]> {
             switch sectionType {
             case .popular:
-                return self.movieServices
+                return movieServices
                     .getMoviePopular(at: page, categoryId: 0)
                     .trackError(error)
                     .trackActivity(loading)
-                    .map { return Utils.transformToInfoObject(movies: $0.results) }
+                    .map { Utils.transformToInfoObject(movies: $0.results) }
+            case .category(let category):
+                return movieServices
+                    .getMovies(by: category.id, page: page)
+                    .trackError(error)
+                    .trackActivity(loading)
+                    .map { Utils.transformToInfoObject(movies: $0.results) }
             case .others(_, let items):
                 return Observable.just(items)
             }
@@ -88,7 +97,7 @@ extension ListItemViewModel {
     ) -> Observable<InfoDetailObject> {
         switch infoObject.type {
         case .movie:
-            return self.movieServices
+            return movieServices
                 .getMovieDetail(infoObject.id)
                 .trackError(error)
                 .trackActivity(loading)

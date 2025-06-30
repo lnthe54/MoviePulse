@@ -37,10 +37,6 @@ class CategoryViewController: BaseViewController {
         NotificationCenter.default.post(name: .hideTabBar, object: true)
     }
     
-    override func bindViewModel() {
-        
-    }
-    
     override func setupViews() {
         setupHeader(withType: .detail(title: "All genres"))
         topConstraint.constant = Constants.HEIGHT_NAV
@@ -75,5 +71,7 @@ extension CategoryViewController: UICollectionViewDataSource {
 }
 
 extension CategoryViewController: UICollectionViewDelegate {
-    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        navigator.gotoListItemViewController(sectionType: .category(categoryObject: categories[indexPath.row]))
+    }
 }

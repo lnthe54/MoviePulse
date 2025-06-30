@@ -262,6 +262,8 @@ extension HomeViewController: UICollectionViewDelegate {
         switch getSections()[indexPath.section] {
         case .populars:
             gotoDetailItemTrigger.onNext(homeDataObject.movies[indexPath.row])
+        case .category:
+            navigator.gotoListItemViewController(sectionType: .category(categoryObject: homeDataObject.categories[indexPath.row]))
         default: break
         }
     }

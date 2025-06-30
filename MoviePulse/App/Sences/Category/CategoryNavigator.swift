@@ -2,6 +2,7 @@ import UIKit
 
 protocol CategoryNavigator {
     func popViewController()
+    func gotoListItemViewController(sectionType: ListSectionType)
 }
 
 class DefaultCategoryNavigator: CategoryNavigator {
@@ -13,6 +14,17 @@ class DefaultCategoryNavigator: CategoryNavigator {
     
     func popViewController() {
         navigationController.popViewController(animated: true)
+    }
+    
+    func gotoListItemViewController(sectionType: ListSectionType) {
+        let navigator = DefaultListItemNavigator(navigationController: navigationController)
+        let viewModel = ListItemViewModel(movieServices: MovieClient())
+        let viewController = ListItemViewController(
+            navigator: navigator,
+            viewModel: viewModel,
+            sectionType: sectionType
+        )
+        navigationController.pushViewController(viewController, animated: true)
     }
 }
 
