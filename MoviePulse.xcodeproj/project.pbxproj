@@ -89,6 +89,12 @@
 		B649769F2E12608300B5A738 /* InfoDetailItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B649769D2E12608300B5A738 /* InfoDetailItemCell.xib */; };
 		B64976A22E12636E00B5A738 /* OverviewDetailItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B64976A02E12636E00B5A738 /* OverviewDetailItemCell.swift */; };
 		B64976A32E12636E00B5A738 /* OverviewDetailItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B64976A12E12636E00B5A738 /* OverviewDetailItemCell.xib */; };
+		B64976A62E127C6700B5A738 /* ImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B64976A42E127C6700B5A738 /* ImageCell.swift */; };
+		B64976A72E127C6700B5A738 /* ImageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B64976A52E127C6700B5A738 /* ImageCell.xib */; };
+		B64976AE2E12807700B5A738 /* ImagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B64976AB2E12807700B5A738 /* ImagesViewController.swift */; };
+		B64976AF2E12807700B5A738 /* ImageDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B64976A82E12807700B5A738 /* ImageDetailCell.swift */; };
+		B64976B02E12807700B5A738 /* ImageDetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B64976A92E12807700B5A738 /* ImageDetailCell.xib */; };
+		B64976B12E12807700B5A738 /* ImagesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B64976AC2E12807700B5A738 /* ImagesViewController.xib */; };
 		D9632ADD155F4F54C1D8CF29 /* Pods_MoviePulse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 82CD434E65B60866758DB3F7 /* Pods_MoviePulse.framework */; };
 /* End PBXBuildFile section */
 
@@ -180,6 +186,12 @@
 		B649769D2E12608300B5A738 /* InfoDetailItemCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = InfoDetailItemCell.xib; sourceTree = "<group>"; };
 		B64976A02E12636E00B5A738 /* OverviewDetailItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverviewDetailItemCell.swift; sourceTree = "<group>"; };
 		B64976A12E12636E00B5A738 /* OverviewDetailItemCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OverviewDetailItemCell.xib; sourceTree = "<group>"; };
+		B64976A42E127C6700B5A738 /* ImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCell.swift; sourceTree = "<group>"; };
+		B64976A52E127C6700B5A738 /* ImageCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ImageCell.xib; sourceTree = "<group>"; };
+		B64976A82E12807700B5A738 /* ImageDetailCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDetailCell.swift; sourceTree = "<group>"; };
+		B64976A92E12807700B5A738 /* ImageDetailCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ImageDetailCell.xib; sourceTree = "<group>"; };
+		B64976AB2E12807700B5A738 /* ImagesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagesViewController.swift; sourceTree = "<group>"; };
+		B64976AC2E12807700B5A738 /* ImagesViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ImagesViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -236,6 +248,7 @@
 		9942159B2E09AA5300DAA702 /* Sences */ = {
 			isa = PBXGroup;
 			children = (
+				B64976AD2E12807700B5A738 /* Images */,
 				B649768E2E12312400B5A738 /* DetailItem */,
 				B64976812E12265000B5A738 /* ListItem */,
 				9989FF002E0FD72E007B667C /* Category */,
@@ -482,8 +495,29 @@
 				B649769D2E12608300B5A738 /* InfoDetailItemCell.xib */,
 				B64976A02E12636E00B5A738 /* OverviewDetailItemCell.swift */,
 				B64976A12E12636E00B5A738 /* OverviewDetailItemCell.xib */,
+				B64976A42E127C6700B5A738 /* ImageCell.swift */,
+				B64976A52E127C6700B5A738 /* ImageCell.xib */,
 			);
 			path = Cell;
+			sourceTree = "<group>";
+		};
+		B64976AA2E12807700B5A738 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				B64976A82E12807700B5A738 /* ImageDetailCell.swift */,
+				B64976A92E12807700B5A738 /* ImageDetailCell.xib */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		B64976AD2E12807700B5A738 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				B64976AA2E12807700B5A738 /* Cell */,
+				B64976AB2E12807700B5A738 /* ImagesViewController.swift */,
+				B64976AC2E12807700B5A738 /* ImagesViewController.xib */,
+			);
+			path = Images;
 			sourceTree = "<group>";
 		};
 		E4B917826BD6211015042518 /* Frameworks */ = {
@@ -581,6 +615,9 @@
 				997FBC922E09A05D0065979E /* Assets.xcassets in Resources */,
 				9989FEFB2E0F9B40007B667C /* CategoryCell.xib in Resources */,
 				B64976A32E12636E00B5A738 /* OverviewDetailItemCell.xib in Resources */,
+				B64976A72E127C6700B5A738 /* ImageCell.xib in Resources */,
+				B64976B02E12807700B5A738 /* ImageDetailCell.xib in Resources */,
+				B64976B12E12807700B5A738 /* ImagesViewController.xib in Resources */,
 				997FBC942E09A05D0065979E /* LaunchScreen.storyboard in Resources */,
 				B64976802E0E418600B5A738 /* TitleHeaderSection.xib in Resources */,
 				994215A42E09AB3700DAA702 /* OnboardingViewController.xib in Resources */,
@@ -652,6 +689,7 @@
 				994215A32E09AB3700DAA702 /* OnboardingViewController.swift in Sources */,
 				B64976882E1226DD00B5A738 /* ListItemViewController.swift in Sources */,
 				99A5FBDF2E0C553C00AA8D59 /* TVShowModel.swift in Sources */,
+				B64976A62E127C6700B5A738 /* ImageCell.swift in Sources */,
 				99A5FBE72E0C55EE00AA8D59 /* LinkModel.swift in Sources */,
 				994215A02E09AB0000DAA702 /* OnboardingViewModel.swift in Sources */,
 				B64976832E12266500B5A738 /* ListItemNavigator.swift in Sources */,
@@ -695,6 +733,8 @@
 				99A5FBE92E0C565900AA8D59 /* CategoryModel.swift in Sources */,
 				994215872E09A76100DAA702 /* NetworkLogger.swift in Sources */,
 				994215882E09A76100DAA702 /* AuthInterceptor.swift in Sources */,
+				B64976AE2E12807700B5A738 /* ImagesViewController.swift in Sources */,
+				B64976AF2E12807700B5A738 /* ImageDetailCell.swift in Sources */,
 				B649769E2E12608300B5A738 /* InfoDetailItemCell.swift in Sources */,
 				B649766E2E0A78E300B5A738 /* MainViewController.swift in Sources */,
 				99A5FBCD2E0B0E8D00AA8D59 /* Constants.swift in Sources */,

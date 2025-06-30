@@ -6,6 +6,7 @@ import RxCocoa
 enum DetailItemSectionType {
     case info
     case overview
+    case photo
     case related
 }
 
@@ -106,6 +107,7 @@ class DetailItemViewController: BaseViewController {
         collectionView.register(InfoDetailItemCell.nib(), forCellWithReuseIdentifier: InfoDetailItemCell.className)
         collectionView.register(ItemHorizontalCell.nib(), forCellWithReuseIdentifier: ItemHorizontalCell.className)
         collectionView.register(OverviewDetailItemCell.nib(), forCellWithReuseIdentifier: OverviewDetailItemCell.className)
+        collectionView.register(ImageCell.nib(), forCellWithReuseIdentifier: ImageCell.className)
         collectionView.backgroundColor = .clear
         collectionView.showsHorizontalScrollIndicator = false
         collectionView.showsVerticalScrollIndicator = false
@@ -127,6 +129,8 @@ extension DetailItemViewController {
                 return AppLayout.fixedSection(height: 164)
             case .overview:
                 return AppLayout.fixedSection(height: 300)
+            case .photo:
+                return AppLayout.gallerySection()
             case .related:
                 return AppLayout.horizontalSection()
             }
@@ -142,6 +146,10 @@ extension DetailItemViewController {
         
         if infoDetailObject.overview?.isNotEmpty ?? false {
             sections.append(.overview)
+        }
+        
+        if infoDetailObject.images.isNotEmpty {
+            sections.append(.photo)
         }
         
         if infoDetailObject.recommendations.isNotEmpty {
@@ -161,6 +169,8 @@ extension DetailItemViewController: UICollectionViewDataSource {
         switch getSections()[section] {
         case .info, .overview:
             return 1
+        case .photo:
+            return infoDetailObject.images.count > Constant.maxDisplayItems ? Constant.maxDisplayItems : infoDetailObject.images.count
         case .related:
             return infoDetailObject.recommendations.count > Constant.maxDisplayItems ? Constant.maxDisplayItems : infoDetailObject.recommendations.count
         }
@@ -172,6 +182,8 @@ extension DetailItemViewController: UICollectionViewDataSource {
             return infoCell(collectionView, cellForItemAt: indexPath)
         case .overview:
             return overViewCell(collectionView, cellForItemAt: indexPath)
+        case .photo:
+            return photoCell(collectionView, cellForItemAt: indexPath)
         case .related:
             return itemCell(collectionView, cellForItemAt: indexPath)
         }
@@ -190,6 +202,15 @@ extension DetailItemViewController: UICollectionViewDataSource {
                     indexPath: indexPath,
                     title: infoDetailObject.type == .movie ? "Related movies" : "Related tv shows",
                     isShowSeeMore: infoDetailObject.recommendations.count > Constant.maxDisplayItems,
+                    sectionType: sectionType
+                )
+            case .photo:
+                return titleHeaderSection(
+                    collectionView,
+                    viewForSupplementaryElementOfKind: kind,
+                    indexPath: indexPath,
+                    title: "Gallery",
+                    isShowSeeMore: false,
                     sectionType: sectionType
                 )
             default:
@@ -212,6 +233,12 @@ extension DetailItemViewController: UICollectionViewDataSource {
         return cell
     }
     
+    private func photoCell(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> ImageCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ImageCell.className, for: indexPath) as! ImageCell
+        cell.bindData(path: infoDetailObject.images[indexPath.row].filePath)
+        return cell
+    }
+    
     private func itemCell(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> ItemHorizontalCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ItemHorizontalCell.className, for: indexPath) as! ItemHorizontalCell
         cell.bindData(infoDetailObject.recommendations[indexPath.row])
@@ -224,6 +251,8 @@ extension DetailItemViewController: UICollectionViewDelegate {
         switch getSections()[indexPath.section] {
         case .related:
             gotoDetailItemTrigger.onNext(infoDetailObject.recommendations[indexPath.row])
+        case .photo:
+            navigator.gotoImagesViewController(images: infoDetailObject.images, selectedIndex: indexPath.row)
         default: break
         }
     }

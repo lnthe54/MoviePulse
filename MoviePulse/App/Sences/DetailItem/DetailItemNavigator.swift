@@ -4,6 +4,7 @@ protocol DetailItemNavigator {
    func popViewController()
     func gotoDetailItemViewController(infoDetailObject: InfoDetailObject)
     func gotoListItemViewController(sectionType: ListSectionType)
+    func gotoImagesViewController(images: [BackdropObject], selectedIndex: Int)
 }
 
 class DefaultDetailItemNavigator: DetailItemNavigator {
@@ -37,6 +38,12 @@ class DefaultDetailItemNavigator: DetailItemNavigator {
             sectionType: sectionType
         )
         navigationController.pushViewController(viewController, animated: true)
+    }
+    
+    func gotoImagesViewController(images: [BackdropObject], selectedIndex: Int) {
+        let viewController = ImagesViewController(images: images, selectedIndex: selectedIndex)
+        viewController.modalPresentationStyle = .fullScreen
+        navigationController.present(viewController, animated: true)
     }
 }
 

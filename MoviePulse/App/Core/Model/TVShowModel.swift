@@ -111,7 +111,8 @@ struct TVShowDetailInfo: Codable {
             seasons: self.seasons,
             movies: [],
             shows: [],
-            type: .tv
+            type: .tv,
+            images: images.backdrops
         )
     }
 }
