@@ -82,7 +82,7 @@ extension BaseViewController: BaseHeaderViewDelegate {
     }
     
     @objc func actionShare() {
-        
+        showPopupShareApp()
     }
     
     @objc func didToFinish(name: String) {
@@ -94,3 +94,20 @@ extension BaseViewController: BaseHeaderViewDelegate {
     }
 }
 
+extension BaseViewController {
+    func showPopupShareApp() {
+        if let urlStr = NSURL(string: Constants.Config.URL_SHARE_APP) {
+            let objectsToShare = [urlStr]
+            let activityVC = UIActivityViewController(activityItems: objectsToShare, applicationActivities: nil)
+            
+            if UIDevice.current.userInterfaceIdiom == .pad {
+                if let popup = activityVC.popoverPresentationController {
+                    popup.sourceView = self.view
+                    popup.sourceRect = CGRect(x: self.view.frame.size.width / 2, y: self.view.frame.size.height / 4, width: 0, height: 0)
+                }
+            }
+            
+            self.present(activityVC, animated: true, completion: nil)
+        }
+    }
+}

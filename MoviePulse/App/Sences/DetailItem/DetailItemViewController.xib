@@ -10,6 +10,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DetailItemViewController" customModule="MoviePulse" customModuleProvider="target">
             <connections>
+                <outlet property="collectionView" destination="p7z-Og-Scr" id="SgA-L0-gOW"/>
                 <outlet property="posterImageView" destination="6fM-oX-yJx" id="iMn-J1-mB6"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -25,10 +26,24 @@
                         <constraint firstAttribute="width" secondItem="6fM-oX-yJx" secondAttribute="height" multiplier="3:4" id="N5J-dm-BWo"/>
                     </constraints>
                 </imageView>
+                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="p7z-Og-Scr">
+                    <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="dn8-PG-Pd5">
+                        <size key="itemSize" width="128" height="128"/>
+                        <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                        <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                        <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                    </collectionViewFlowLayout>
+                </collectionView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
+                <constraint firstAttribute="bottom" secondItem="p7z-Og-Scr" secondAttribute="bottom" id="48f-Ss-fqI"/>
+                <constraint firstItem="p7z-Og-Scr" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="Ch5-Ny-lkg"/>
+                <constraint firstItem="p7z-Og-Scr" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="J7b-xT-2CJ"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="p7z-Og-Scr" secondAttribute="trailing" id="ger-P1-B0Z"/>
                 <constraint firstItem="6fM-oX-yJx" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="ixT-5v-cQm"/>
                 <constraint firstItem="6fM-oX-yJx" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="nw1-Ce-GSX"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="6fM-oX-yJx" secondAttribute="trailing" id="wcw-Ap-FF1"/>

@@ -8,6 +8,7 @@ protocol BaseHeaderViewDelegate: NSObjectProtocol {
     func actionSearch()
     func actionBack()
     func actionClose()
+    func actionShare()
 }
 
 class BaseHeaderView: UIView {
@@ -25,6 +26,7 @@ class BaseHeaderView: UIView {
     @IBOutlet private weak var detailView: UIView!
     @IBOutlet private weak var detailTitle: UILabel!
     @IBOutlet private weak var backView: UIView!
+    @IBOutlet private weak var shareView: UIView!
 
     // MARK: - Property
     private static let nibName: String = "BaseHeaderView"
@@ -109,6 +111,11 @@ class BaseHeaderView: UIView {
     private func didToBack() {
         delegate?.actionBack()
     }
+    
+    @objc
+    private func didToShare() {
+        
+    }
 }
 
 extension BaseHeaderView {
@@ -126,8 +133,8 @@ extension BaseHeaderView {
             singleView.isHidden = true
             multiView.isHidden = false
             detailView.isHidden = true
-        case .detail(let title):
-            setupDetailView(title: title)
+        case .detail(let title, let isShowShare):
+            setupDetailView(title: title, isShowShare: isShowShare)
             singleView.isHidden = true
             multiView.isHidden = true
             detailView.isHidden = false
@@ -159,7 +166,7 @@ extension BaseHeaderView {
         }
     }
     
-    private func setupDetailView(title: String) {
+    private func setupDetailView(title: String, isShowShare: Bool) {
         detailTitle.text = title
         detailTitle.textColor = UIColor(hexString: "#252934")
         detailTitle.font = .outfitFont(ofSize: 20, weight: .semiBold)
@@ -168,13 +175,23 @@ extension BaseHeaderView {
         let tapToBackView = UITapGestureRecognizer(target: self, action: #selector(didToBack))
         backView.isUserInteractionEnabled = true
         backView.addGestureRecognizer(tapToBackView)
+        
+        if isShowShare {
+            shareView.isHidden = false
+            shareView.backgroundColor = UIColor(hexString: "#E7D9FB")
+            let tapToShare = UITapGestureRecognizer(target: self, action: #selector(didToShare))
+            shareView.isUserInteractionEnabled = true
+            shareView.addGestureRecognizer(tapToShare)
+        } else {
+            shareView.isHidden = true
+        }
     }
 }
 
 enum HeaderViewType {
     case single(title: String)
     case multi(title: String, titleColor: UIColor? = UIColor(hexString: "#060606"), rightContents: [RightContentType] = [])
-    case detail(title: String)
+    case detail(title: String, isShowShare: Bool = false)
 }
 
 enum RightContentType {

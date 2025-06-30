@@ -3,6 +3,16 @@ import RxCocoa
 
 enum ListSectionType {
     case popular
+    case others(title: String, items: [InfoObject])
+    
+    var title: String {
+        switch self {
+        case .popular:
+            return ""
+        case .others(let title, _):
+            return title
+        }
+    }
 }
 
 struct ListParameters {
@@ -66,8 +76,8 @@ extension ListItemViewModel {
                     .trackError(error)
                     .trackActivity(loading)
                     .map { return Utils.transformToInfoObject(movies: $0.results) }
-            default:
-                return Observable.just([])
+            case .others(_, let items):
+                return Observable.just(items)
             }
         }
     

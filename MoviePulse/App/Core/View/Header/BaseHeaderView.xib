@@ -118,11 +118,32 @@
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qLO-vW-V71">
+                                    <rect key="frame" x="348" y="5" width="46" height="46"/>
+                                    <subviews>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_share" translatesAutoresizingMaskIntoConstraints="NO" id="UNM-dV-Ucx">
+                                            <rect key="frame" x="11" y="11" width="24" height="24"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="24" id="DT2-nV-Qv2"/>
+                                                <constraint firstAttribute="height" constant="24" id="snb-lY-Ttn"/>
+                                            </constraints>
+                                        </imageView>
+                                    </subviews>
+                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                    <constraints>
+                                        <constraint firstItem="UNM-dV-Ucx" firstAttribute="centerY" secondItem="qLO-vW-V71" secondAttribute="centerY" id="G9m-mw-0GR"/>
+                                        <constraint firstAttribute="width" constant="46" id="HH9-p4-lA8"/>
+                                        <constraint firstAttribute="height" constant="46" id="YQg-Ua-EzO"/>
+                                        <constraint firstItem="UNM-dV-Ucx" firstAttribute="centerX" secondItem="qLO-vW-V71" secondAttribute="centerX" id="kpd-Hq-Va9"/>
+                                    </constraints>
+                                </view>
                             </subviews>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
                                 <constraint firstItem="57H-hQ-I0M" firstAttribute="leading" secondItem="QeV-xE-MMc" secondAttribute="leading" constant="16" id="1dA-N7-DVG"/>
+                                <constraint firstAttribute="trailing" secondItem="qLO-vW-V71" secondAttribute="trailing" constant="20" id="IHH-2n-rl9"/>
                                 <constraint firstItem="57H-hQ-I0M" firstAttribute="centerY" secondItem="QeV-xE-MMc" secondAttribute="centerY" id="UNh-OB-BXS"/>
+                                <constraint firstItem="qLO-vW-V71" firstAttribute="centerY" secondItem="57H-hQ-I0M" secondAttribute="centerY" id="X6j-lC-ee9"/>
                                 <constraint firstItem="bfG-Sf-nGb" firstAttribute="centerX" secondItem="QeV-xE-MMc" secondAttribute="centerX" id="kDm-sk-QB9"/>
                                 <constraint firstAttribute="height" constant="56" id="psA-v5-hri"/>
                                 <constraint firstItem="57H-hQ-I0M" firstAttribute="centerY" secondItem="bfG-Sf-nGb" secondAttribute="centerY" id="uIz-B1-pgf"/>
@@ -183,6 +204,7 @@
                 <outlet property="saveView" destination="QKs-Tx-Nwr" id="w73-l8-A5O"/>
                 <outlet property="searchButton" destination="99g-0s-3XH" id="u9x-ON-iit"/>
                 <outlet property="searchView" destination="oZX-rg-jO2" id="2Co-hP-NZY"/>
+                <outlet property="shareView" destination="qLO-vW-V71" id="E9R-7A-LmM"/>
                 <outlet property="singleLabel" destination="PJ5-3g-RGR" id="51d-Cl-MT8"/>
                 <outlet property="singleView" destination="Pan-qG-tzR" id="6Ap-pT-gqh"/>
                 <outlet property="titleLabel" destination="BoR-zc-Rlc" id="XxQ-nZ-0Nx"/>
@@ -194,6 +216,7 @@
         <image name="ic_arrow_left" width="24" height="24"/>
         <image name="ic_save" width="24" height="24"/>
         <image name="ic_search_header" width="24" height="24"/>
+        <image name="ic_share" width="24" height="24"/>
         <image name="xmark" catalog="system" width="128" height="113"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

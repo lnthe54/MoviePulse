@@ -98,7 +98,7 @@ class ListItemViewController: BaseViewController {
     }
     
     override func setupViews() {
-        setupHeader(withType: .detail(title: ""))
+        setupHeader(withType: .detail(title: sectionType.title))
         topConstraint.constant = Constants.HEIGHT_NAV
         
         collectionView.register(ItemHorizontalCell.nib(), forCellWithReuseIdentifier: ItemHorizontalCell.className)
