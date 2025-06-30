@@ -3,6 +3,7 @@ import RxSwift
 import RxCocoa
 
 enum HomeSectionType {
+    case feel
     case start
     case pulse
     case favorite
@@ -98,6 +99,7 @@ class HomeViewController: BaseViewController {
         collectionView.register(ItemHorizontalCell.nib(), forCellWithReuseIdentifier: ItemHorizontalCell.className)
         collectionView.register(CategoryCell.nib(), forCellWithReuseIdentifier: CategoryCell.className)
         collectionView.register(PulseCell.nib(), forCellWithReuseIdentifier: PulseCell.className)
+        collectionView.register(FeelCell.nib(), forCellWithReuseIdentifier: FeelCell.className)
         collectionView.backgroundColor = .clear
         collectionView.showsHorizontalScrollIndicator = false
         collectionView.showsVerticalScrollIndicator = false
@@ -115,6 +117,8 @@ extension HomeViewController {
             let section = self.getSections()[sectionIndex]
             
             switch section {
+            case .feel:
+                return AppLayout.fixedSection(height: 188)
             case .start:
                 return AppLayout.fixedSection(height: 270)
             case .pulse, .favorite:
@@ -131,6 +135,8 @@ extension HomeViewController {
     
     private func getSections() -> [HomeSectionType] {
         var sections: [HomeSectionType] = []
+        
+        sections.append(.feel)
         
         sections.append(.start)
         
@@ -213,6 +219,12 @@ extension HomeViewController {
         cell.bindData(homeDataObject.categories[indexPath.row])
         return cell
     }
+    
+    private func feelCell(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> FeelCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FeelCell.className, for: indexPath) as! FeelCell
+        
+        return cell
+    }
 }
 
 extension HomeViewController: UICollectionViewDataSource {
@@ -222,7 +234,7 @@ extension HomeViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         switch getSections()[section] {
-        case .start, .pulse, .favorite:
+        case .feel, .start, .pulse, .favorite:
             return 1
         case .populars:
             return getNumberOfRows(list: homeDataObject.movies)
@@ -233,6 +245,8 @@ extension HomeViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         switch getSections()[indexPath.section] {
+        case .feel:
+            return feelCell(collectionView, cellForItemAt: indexPath)
         case .start:
             return startPulseCell(collectionView, cellForItemAt: indexPath)
         case .pulse:

@@ -20,4 +20,8 @@ class CategoryCell: UICollectionViewCell {
     func bindData(_ data: CategoryObject) {
         categoryLabel.text = data.name
     }
+    
+    func bindText(_ text: String) {
+        categoryLabel.text = text
+    }
 }

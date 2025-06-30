@@ -47,6 +47,8 @@
 		9994AC252E12D7FB0084901B /* CommunityCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9994AC232E12D7FB0084901B /* CommunityCell.xib */; };
 		9994AC282E12DA810084901B /* GenresCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9994AC272E12DA810084901B /* GenresCell.xib */; };
 		9994AC292E12DA810084901B /* GenresCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9994AC262E12DA810084901B /* GenresCell.swift */; };
+		9994AC2C2E12EDEA0084901B /* FeelCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9994AC2B2E12EDEA0084901B /* FeelCell.xib */; };
+		9994AC2D2E12EDEA0084901B /* FeelCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9994AC2A2E12EDEA0084901B /* FeelCell.swift */; };
 		99A5FBC22E0AF3C200AA8D59 /* HomeNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99A5FBC12E0AF3BE00AA8D59 /* HomeNavigator.swift */; };
 		99A5FBC42E0B0B0600AA8D59 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99A5FBC32E0B0B0300AA8D59 /* HomeViewModel.swift */; };
 		99A5FBC72E0B0B5400AA8D59 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99A5FBC52E0B0B5400AA8D59 /* HomeViewController.swift */; };
@@ -150,6 +152,8 @@
 		9994AC232E12D7FB0084901B /* CommunityCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CommunityCell.xib; sourceTree = "<group>"; };
 		9994AC262E12DA810084901B /* GenresCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenresCell.swift; sourceTree = "<group>"; };
 		9994AC272E12DA810084901B /* GenresCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GenresCell.xib; sourceTree = "<group>"; };
+		9994AC2A2E12EDEA0084901B /* FeelCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeelCell.swift; sourceTree = "<group>"; };
+		9994AC2B2E12EDEA0084901B /* FeelCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FeelCell.xib; sourceTree = "<group>"; };
 		99A5FBC12E0AF3BE00AA8D59 /* HomeNavigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeNavigator.swift; sourceTree = "<group>"; };
 		99A5FBC32E0B0B0300AA8D59 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		99A5FBC52E0B0B5400AA8D59 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
@@ -399,6 +403,8 @@
 			children = (
 				9989FF152E112499007B667C /* PulseCell.swift */,
 				9989FF162E112499007B667C /* PulseCell.xib */,
+				9994AC2A2E12EDEA0084901B /* FeelCell.swift */,
+				9994AC2B2E12EDEA0084901B /* FeelCell.xib */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -641,6 +647,7 @@
 				997FBC942E09A05D0065979E /* LaunchScreen.storyboard in Resources */,
 				B64976802E0E418600B5A738 /* TitleHeaderSection.xib in Resources */,
 				994215A42E09AB3700DAA702 /* OnboardingViewController.xib in Resources */,
+				9994AC2C2E12EDEA0084901B /* FeelCell.xib in Resources */,
 				9994AC282E12DA810084901B /* GenresCell.xib in Resources */,
 				99A5FBC82E0B0B5400AA8D59 /* HomeViewController.xib in Resources */,
 			);
@@ -700,6 +707,7 @@
 				9989FF0F2E0FDA31007B667C /* CategoryViewController.swift in Sources */,
 				9989FEFE2E0F9E3B007B667C /* SingleCell.swift in Sources */,
 				997FBC8F2E09A05D0065979E /* AppDelegate.swift in Sources */,
+				9994AC2D2E12EDEA0084901B /* FeelCell.swift in Sources */,
 				9989FF0B2E0FD8D1007B667C /* Then.swift in Sources */,
 				B64976692E0A48D500B5A738 /* UIFont+Extension.swift in Sources */,
 				9989FF082E0FD830007B667C /* BaseHeaderView.swift in Sources */,

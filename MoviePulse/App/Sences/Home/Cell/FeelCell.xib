@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="23504" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23506"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="FeelCell" customModule="MoviePulse" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="358" height="159"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="358" height="159"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eTY-wB-wbF">
+                        <rect key="frame" x="0.0" y="0.0" width="358" height="159"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_person_question" translatesAutoresizingMaskIntoConstraints="NO" id="Oia-M3-CTU">
+                                <rect key="frame" x="12" y="12" width="48" height="48"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="48" id="NlU-ZE-Bky"/>
+                                    <constraint firstAttribute="height" constant="48" id="zuJ-ae-BqQ"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YBf-g8-B64">
+                                <rect key="frame" x="72" y="12" width="274" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MTc-Zd-Ctk">
+                                <rect key="frame" x="72" y="39" width="274" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="8qC-9p-YVw">
+                                <rect key="frame" x="0.0" y="72" width="358" height="75"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Ml4-GR-WYM">
+                                    <size key="itemSize" width="128" height="128"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                            </collectionView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemIndigoColor"/>
+                        <constraints>
+                            <constraint firstItem="8qC-9p-YVw" firstAttribute="top" secondItem="Oia-M3-CTU" secondAttribute="bottom" constant="12" id="0SS-LG-P4S"/>
+                            <constraint firstItem="Oia-M3-CTU" firstAttribute="leading" secondItem="eTY-wB-wbF" secondAttribute="leading" constant="12" id="1Fl-VV-DDq"/>
+                            <constraint firstItem="8qC-9p-YVw" firstAttribute="leading" secondItem="eTY-wB-wbF" secondAttribute="leading" id="25w-fc-HXB"/>
+                            <constraint firstAttribute="bottom" secondItem="8qC-9p-YVw" secondAttribute="bottom" constant="12" id="Mtr-pB-7QR"/>
+                            <constraint firstItem="YBf-g8-B64" firstAttribute="leading" secondItem="Oia-M3-CTU" secondAttribute="trailing" constant="12" id="QMQ-yS-uq9"/>
+                            <constraint firstItem="Oia-M3-CTU" firstAttribute="top" secondItem="eTY-wB-wbF" secondAttribute="top" constant="12" id="cbr-UK-Vr6"/>
+                            <constraint firstItem="MTc-Zd-Ctk" firstAttribute="trailing" secondItem="YBf-g8-B64" secondAttribute="trailing" id="iXH-OZ-5cT"/>
+                            <constraint firstAttribute="trailing" secondItem="YBf-g8-B64" secondAttribute="trailing" constant="12" id="kZp-Lu-kbU"/>
+                            <constraint firstItem="YBf-g8-B64" firstAttribute="top" secondItem="Oia-M3-CTU" secondAttribute="top" id="mdb-Ke-fLn"/>
+                            <constraint firstAttribute="trailing" secondItem="8qC-9p-YVw" secondAttribute="trailing" id="o3j-rO-YXL"/>
+                            <constraint firstItem="MTc-Zd-Ctk" firstAttribute="leading" secondItem="YBf-g8-B64" secondAttribute="leading" id="rbQ-in-Yli"/>
+                            <constraint firstItem="MTc-Zd-Ctk" firstAttribute="top" secondItem="YBf-g8-B64" secondAttribute="bottom" constant="6" id="xNo-MF-SKT"/>
+                        </constraints>
+                    </view>
+                </subviews>
+            </view>
+            <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="eTY-wB-wbF" secondAttribute="bottom" id="Imp-Q0-elY"/>
+                <constraint firstAttribute="trailing" secondItem="eTY-wB-wbF" secondAttribute="trailing" id="UBv-Rc-BcE"/>
+                <constraint firstItem="eTY-wB-wbF" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="nsV-ED-vll"/>
+                <constraint firstItem="eTY-wB-wbF" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="tg1-Hd-Ew0"/>
+            </constraints>
+            <size key="customSize" width="358" height="159"/>
+            <connections>
+                <outlet property="collectionView" destination="8qC-9p-YVw" id="EwC-Hg-LR2"/>
+                <outlet property="containerView" destination="eTY-wB-wbF" id="vsX-YT-Uta"/>
+                <outlet property="contentLabel" destination="MTc-Zd-Ctk" id="chp-DD-zni"/>
+                <outlet property="titleLabel" destination="YBf-g8-B64" id="jgz-ud-853"/>
+            </connections>
+            <point key="canvasLocation" x="-105.34351145038167" y="27.112676056338028"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="ic_person_question" width="48" height="48"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemIndigoColor">
+            <color red="0.34509803919999998" green="0.33725490200000002" blue="0.83921568629999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
+</document>
