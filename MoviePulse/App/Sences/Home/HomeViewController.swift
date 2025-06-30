@@ -54,6 +54,22 @@ class HomeViewController: BaseViewController {
         )
         let output = viewModel.transform(input: input)
         
+        output.loadingEvent
+            .driveNext { isLoading in
+                if isLoading {
+                    LoadingView.shared.startLoading()
+                } else {
+                    LoadingView.shared.endLoading()
+                }
+            }
+            .disposed(by: disposeBag)
+        
+        output.errorEvent
+            .driveNext { _ in
+                // Do something
+            }
+            .disposed(by: disposeBag)
+        
         output.getDataEvent
             .driveNext { [weak self] homeDataObject in
                 guard let self else { return }
@@ -240,6 +256,8 @@ extension HomeViewController: UICollectionViewDelegate {
         }
         
         switch sectionType {
+        case .populars:
+            navigator.gotoListItemViewController(sectionType: .popular)
         case .category:
             navigator.gotoCategoryViewController(categories: homeDataObject.categories)
         default:

@@ -73,6 +73,12 @@
 		B649767C2E0E35AA00B5A738 /* AppLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = B649767B2E0E35A800B5A738 /* AppLayout.swift */; };
 		B649767F2E0E418600B5A738 /* TitleHeaderSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = B649767D2E0E418600B5A738 /* TitleHeaderSection.swift */; };
 		B64976802E0E418600B5A738 /* TitleHeaderSection.xib in Resources */ = {isa = PBXBuildFile; fileRef = B649767E2E0E418600B5A738 /* TitleHeaderSection.xib */; };
+		B64976832E12266500B5A738 /* ListItemNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B64976822E12265E00B5A738 /* ListItemNavigator.swift */; };
+		B64976852E12269A00B5A738 /* ListItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B64976842E12269500B5A738 /* ListItemViewModel.swift */; };
+		B64976882E1226DD00B5A738 /* ListItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B64976862E1226DD00B5A738 /* ListItemViewController.swift */; };
+		B64976892E1226DD00B5A738 /* ListItemViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B64976872E1226DD00B5A738 /* ListItemViewController.xib */; };
+		B649768B2E122B1B00B5A738 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B649768A2E122B1900B5A738 /* LoadingView.swift */; };
+		B649768D2E122BA400B5A738 /* loading.json in Resources */ = {isa = PBXBuildFile; fileRef = B649768C2E122BA400B5A738 /* loading.json */; };
 		D9632ADD155F4F54C1D8CF29 /* Pods_MoviePulse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 82CD434E65B60866758DB3F7 /* Pods_MoviePulse.framework */; };
 /* End PBXBuildFile section */
 
@@ -148,6 +154,12 @@
 		B649767B2E0E35A800B5A738 /* AppLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppLayout.swift; sourceTree = "<group>"; };
 		B649767D2E0E418600B5A738 /* TitleHeaderSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleHeaderSection.swift; sourceTree = "<group>"; };
 		B649767E2E0E418600B5A738 /* TitleHeaderSection.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TitleHeaderSection.xib; sourceTree = "<group>"; };
+		B64976822E12265E00B5A738 /* ListItemNavigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListItemNavigator.swift; sourceTree = "<group>"; };
+		B64976842E12269500B5A738 /* ListItemViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListItemViewModel.swift; sourceTree = "<group>"; };
+		B64976862E1226DD00B5A738 /* ListItemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListItemViewController.swift; sourceTree = "<group>"; };
+		B64976872E1226DD00B5A738 /* ListItemViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ListItemViewController.xib; sourceTree = "<group>"; };
+		B649768A2E122B1900B5A738 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
+		B649768C2E122BA400B5A738 /* loading.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = loading.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -204,6 +216,7 @@
 		9942159B2E09AA5300DAA702 /* Sences */ = {
 			isa = PBXGroup;
 			children = (
+				B64976812E12265000B5A738 /* ListItem */,
 				9989FF002E0FD72E007B667C /* Category */,
 				99A5FBC02E0AF3B700AA8D59 /* Home */,
 				B649766B2E0A78CD00B5A738 /* Main */,
@@ -226,6 +239,7 @@
 		994215A52E09ABC100DAA702 /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				B649768A2E122B1900B5A738 /* LoadingView.swift */,
 				B649767B2E0E35A800B5A738 /* AppLayout.swift */,
 				994215A62E09ABDE00DAA702 /* BaseViewController.swift */,
 				B64976682E0A48CE00B5A738 /* UIFont+Extension.swift */,
@@ -282,6 +296,7 @@
 		997FBC972E09A0A30065979E /* SupportFiles */ = {
 			isa = PBXGroup;
 			children = (
+				B649768C2E122BA400B5A738 /* loading.json */,
 				B649765F2E0A484400B5A738 /* Fonts */,
 				997FBC862E09A05D0065979E /* Assets.xcassets */,
 				997FBC872E09A05D0065979E /* Info.plist */,
@@ -414,6 +429,17 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		B64976812E12265000B5A738 /* ListItem */ = {
+			isa = PBXGroup;
+			children = (
+				B64976842E12269500B5A738 /* ListItemViewModel.swift */,
+				B64976822E12265E00B5A738 /* ListItemNavigator.swift */,
+				B64976862E1226DD00B5A738 /* ListItemViewController.swift */,
+				B64976872E1226DD00B5A738 /* ListItemViewController.xib */,
+			);
+			path = ListItem;
+			sourceTree = "<group>";
+		};
 		E4B917826BD6211015042518 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -500,6 +526,8 @@
 				B64976662E0A485D00B5A738 /* Outfit-Regular.ttf in Resources */,
 				B649766F2E0A78E300B5A738 /* MainViewController.xib in Resources */,
 				9989FF182E112499007B667C /* PulseCell.xib in Resources */,
+				B649768D2E122BA400B5A738 /* loading.json in Resources */,
+				B64976892E1226DD00B5A738 /* ListItemViewController.xib in Resources */,
 				B64976672E0A485D00B5A738 /* Outfit-SemiBold.ttf in Resources */,
 				9989FF102E0FDA31007B667C /* CategoryViewController.xib in Resources */,
 				997FBC922E09A05D0065979E /* Assets.xcassets in Resources */,
@@ -573,9 +601,11 @@
 				994215842E09A76100DAA702 /* APIConfiguration.swift in Sources */,
 				99A5FBCB2E0B0DFF00AA8D59 /* MovieRouter.swift in Sources */,
 				994215A32E09AB3700DAA702 /* OnboardingViewController.swift in Sources */,
+				B64976882E1226DD00B5A738 /* ListItemViewController.swift in Sources */,
 				99A5FBDF2E0C553C00AA8D59 /* TVShowModel.swift in Sources */,
 				99A5FBE72E0C55EE00AA8D59 /* LinkModel.swift in Sources */,
 				994215A02E09AB0000DAA702 /* OnboardingViewModel.swift in Sources */,
+				B64976832E12266500B5A738 /* ListItemNavigator.swift in Sources */,
 				994215A72E09ABE000DAA702 /* BaseViewController.swift in Sources */,
 				9989FF172E112499007B667C /* PulseCell.swift in Sources */,
 				99A5FBC22E0AF3C200AA8D59 /* HomeNavigator.swift in Sources */,
@@ -592,6 +622,8 @@
 				994215932E09A8EB00DAA702 /* UIViewController+Extension.swift in Sources */,
 				994215942E09A8EB00DAA702 /* Encodable.swift in Sources */,
 				B64976772E0E31C000B5A738 /* ItemHorizontalCell.swift in Sources */,
+				B64976852E12269A00B5A738 /* ListItemViewModel.swift in Sources */,
+				B649768B2E122B1B00B5A738 /* LoadingView.swift in Sources */,
 				994215952E09A8EB00DAA702 /* NSObject+Extension.swift in Sources */,
 				99A5FBDD2E0C54FA00AA8D59 /* Utils.swift in Sources */,
 				9989FEFA2E0F9B40007B667C /* CategoryCell.swift in Sources */,

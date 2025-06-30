@@ -2,6 +2,7 @@ import UIKit
 
 protocol HomeNavigator {
     func gotoCategoryViewController(categories: [CategoryObject])
+    func gotoListItemViewController(sectionType: ListSectionType)
 }
 
 class DefaultHomeNavigator: HomeNavigator {
@@ -15,6 +16,17 @@ class DefaultHomeNavigator: HomeNavigator {
         let navigator = DefaultCategoryNavigator(navigationController: navigationController)
         let viewModel = CategoryViewModel()
         let viewController = CategoryViewController(navigator: navigator, viewModel: viewModel, categories: categories)
+        navigationController.pushViewController(viewController, animated: true)
+    }
+    
+    func gotoListItemViewController(sectionType: ListSectionType) {
+        let navigator = DefaultListItemNavigator(navigationController: navigationController)
+        let viewModel = ListItemViewModel(movieServices: MovieClient())
+        let viewController = ListItemViewController(
+            navigator: navigator,
+            viewModel: viewModel,
+            sectionType: sectionType
+        )
         navigationController.pushViewController(viewController, animated: true)
     }
 }

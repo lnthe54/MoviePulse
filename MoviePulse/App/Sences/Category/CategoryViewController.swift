@@ -42,7 +42,6 @@ class CategoryViewController: BaseViewController {
     }
     
     override func setupViews() {
-        view.backgroundColor = UIColor(hexString: "#FAF7FE")
         setupHeader(withType: .detail(title: "All genres"))
         topConstraint.constant = Constants.HEIGHT_NAV
         

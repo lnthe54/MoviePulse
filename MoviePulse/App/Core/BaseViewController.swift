@@ -11,6 +11,7 @@ class BaseViewController: UIViewController {
         super.viewDidLoad()
         
         navigationController?.setNavigationBarHidden(true, animated: true)
+        view.backgroundColor = UIColor(hexString: "#FAF7FE")
         bindViewModel()
         setupViews()
     }
