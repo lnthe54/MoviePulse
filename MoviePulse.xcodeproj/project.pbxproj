@@ -41,6 +41,10 @@
 		9989FF132E0FDB58007B667C /* Notification+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9989FF122E0FDB53007B667C /* Notification+Extension.swift */; };
 		9989FF172E112499007B667C /* PulseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9989FF152E112499007B667C /* PulseCell.swift */; };
 		9989FF182E112499007B667C /* PulseCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9989FF162E112499007B667C /* PulseCell.xib */; };
+		9994AC202E12D5050084901B /* PulseTestCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9994AC1E2E12D5050084901B /* PulseTestCell.swift */; };
+		9994AC212E12D5050084901B /* PulseTestCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9994AC1F2E12D5050084901B /* PulseTestCell.xib */; };
+		9994AC242E12D7FB0084901B /* CommunityCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9994AC222E12D7FB0084901B /* CommunityCell.swift */; };
+		9994AC252E12D7FB0084901B /* CommunityCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9994AC232E12D7FB0084901B /* CommunityCell.xib */; };
 		99A5FBC22E0AF3C200AA8D59 /* HomeNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99A5FBC12E0AF3BE00AA8D59 /* HomeNavigator.swift */; };
 		99A5FBC42E0B0B0600AA8D59 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99A5FBC32E0B0B0300AA8D59 /* HomeViewModel.swift */; };
 		99A5FBC72E0B0B5400AA8D59 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99A5FBC52E0B0B5400AA8D59 /* HomeViewController.swift */; };
@@ -138,6 +142,10 @@
 		9989FF122E0FDB53007B667C /* Notification+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Notification+Extension.swift"; sourceTree = "<group>"; };
 		9989FF152E112499007B667C /* PulseCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PulseCell.swift; sourceTree = "<group>"; };
 		9989FF162E112499007B667C /* PulseCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PulseCell.xib; sourceTree = "<group>"; };
+		9994AC1E2E12D5050084901B /* PulseTestCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PulseTestCell.swift; sourceTree = "<group>"; };
+		9994AC1F2E12D5050084901B /* PulseTestCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PulseTestCell.xib; sourceTree = "<group>"; };
+		9994AC222E12D7FB0084901B /* CommunityCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityCell.swift; sourceTree = "<group>"; };
+		9994AC232E12D7FB0084901B /* CommunityCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CommunityCell.xib; sourceTree = "<group>"; };
 		99A5FBC12E0AF3BE00AA8D59 /* HomeNavigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeNavigator.swift; sourceTree = "<group>"; };
 		99A5FBC32E0B0B0300AA8D59 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		99A5FBC52E0B0B5400AA8D59 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
@@ -497,6 +505,10 @@
 				B64976A12E12636E00B5A738 /* OverviewDetailItemCell.xib */,
 				B64976A42E127C6700B5A738 /* ImageCell.swift */,
 				B64976A52E127C6700B5A738 /* ImageCell.xib */,
+				9994AC1E2E12D5050084901B /* PulseTestCell.swift */,
+				9994AC1F2E12D5050084901B /* PulseTestCell.xib */,
+				9994AC222E12D7FB0084901B /* CommunityCell.swift */,
+				9994AC232E12D7FB0084901B /* CommunityCell.xib */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -601,6 +613,7 @@
 				B64976642E0A485D00B5A738 /* Outfit-Light.ttf in Resources */,
 				B649769F2E12608300B5A738 /* InfoDetailItemCell.xib in Resources */,
 				B64976652E0A485D00B5A738 /* Outfit-Medium.ttf in Resources */,
+				9994AC252E12D7FB0084901B /* CommunityCell.xib in Resources */,
 				9989FF092E0FD830007B667C /* BaseHeaderView.xib in Resources */,
 				B64976782E0E31C000B5A738 /* ItemHorizontalCell.xib in Resources */,
 				9989FEFF2E0F9E3B007B667C /* SingleCell.xib in Resources */,
@@ -612,6 +625,7 @@
 				B64976892E1226DD00B5A738 /* ListItemViewController.xib in Resources */,
 				B64976672E0A485D00B5A738 /* Outfit-SemiBold.ttf in Resources */,
 				9989FF102E0FDA31007B667C /* CategoryViewController.xib in Resources */,
+				9994AC212E12D5050084901B /* PulseTestCell.xib in Resources */,
 				997FBC922E09A05D0065979E /* Assets.xcassets in Resources */,
 				9989FEFB2E0F9B40007B667C /* CategoryCell.xib in Resources */,
 				B64976A32E12636E00B5A738 /* OverviewDetailItemCell.xib in Resources */,
@@ -702,6 +716,7 @@
 				994215862E09A76100DAA702 /* APIClient.swift in Sources */,
 				99A5FBDB2E0C54C000AA8D59 /* MovieModel.swift in Sources */,
 				99A5FBD82E0C549000AA8D59 /* MovieClient.swift in Sources */,
+				9994AC202E12D5050084901B /* PulseTestCell.swift in Sources */,
 				994215922E09A8EB00DAA702 /* UIColor+Extension.swift in Sources */,
 				99A5FBEB2E0C574000AA8D59 /* Date+Extension.swift in Sources */,
 				B64976A22E12636E00B5A738 /* OverviewDetailItemCell.swift in Sources */,
@@ -732,6 +747,7 @@
 				99A5FBE52E0C558F00AA8D59 /* ProjectModel.swift in Sources */,
 				99A5FBE92E0C565900AA8D59 /* CategoryModel.swift in Sources */,
 				994215872E09A76100DAA702 /* NetworkLogger.swift in Sources */,
+				9994AC242E12D7FB0084901B /* CommunityCell.swift in Sources */,
 				994215882E09A76100DAA702 /* AuthInterceptor.swift in Sources */,
 				B64976AE2E12807700B5A738 /* ImagesViewController.swift in Sources */,
 				B64976AF2E12807700B5A738 /* ImageDetailCell.swift in Sources */,

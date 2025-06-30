@@ -5,6 +5,8 @@ import RxCocoa
 
 enum DetailItemSectionType {
     case info
+    case pulseTest
+    case community
     case overview
     case photo
     case related
@@ -108,6 +110,8 @@ class DetailItemViewController: BaseViewController {
         collectionView.register(ItemHorizontalCell.nib(), forCellWithReuseIdentifier: ItemHorizontalCell.className)
         collectionView.register(OverviewDetailItemCell.nib(), forCellWithReuseIdentifier: OverviewDetailItemCell.className)
         collectionView.register(ImageCell.nib(), forCellWithReuseIdentifier: ImageCell.className)
+        collectionView.register(PulseTestCell.nib(), forCellWithReuseIdentifier: PulseTestCell.className)
+        collectionView.register(CommunityCell.nib(), forCellWithReuseIdentifier: CommunityCell.className)
         collectionView.backgroundColor = .clear
         collectionView.showsHorizontalScrollIndicator = false
         collectionView.showsVerticalScrollIndicator = false
@@ -127,6 +131,10 @@ extension DetailItemViewController {
             switch section {
             case .info:
                 return AppLayout.fixedSection(height: 164)
+            case .pulseTest:
+                return AppLayout.fixedSection(height: 146)
+            case .community:
+                return AppLayout.fixedSection(height: 120)
             case .overview:
                 return AppLayout.fixedSection(height: 300)
             case .photo:
@@ -143,6 +151,10 @@ extension DetailItemViewController {
         var sections: [DetailItemSectionType] = []
         
         sections.append(.info)
+        
+        sections.append(.pulseTest)
+        
+        sections.append(.community)
         
         if infoDetailObject.overview?.isNotEmpty ?? false {
             sections.append(.overview)
@@ -167,7 +179,7 @@ extension DetailItemViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         switch getSections()[section] {
-        case .info, .overview:
+        case .info, .pulseTest, .community, .overview:
             return 1
         case .photo:
             return infoDetailObject.images.count > Constant.maxDisplayItems ? Constant.maxDisplayItems : infoDetailObject.images.count
@@ -180,6 +192,10 @@ extension DetailItemViewController: UICollectionViewDataSource {
         switch getSections()[indexPath.section] {
         case .info:
             return infoCell(collectionView, cellForItemAt: indexPath)
+        case .pulseTest:
+            return pulseTestCell(collectionView, cellForItemAt: indexPath)
+        case .community:
+            return communityCell(collectionView, cellForItemAt: indexPath)
         case .overview:
             return overViewCell(collectionView, cellForItemAt: indexPath)
         case .photo:
@@ -242,6 +258,16 @@ extension DetailItemViewController: UICollectionViewDataSource {
     private func itemCell(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> ItemHorizontalCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ItemHorizontalCell.className, for: indexPath) as! ItemHorizontalCell
         cell.bindData(infoDetailObject.recommendations[indexPath.row])
+        return cell
+    }
+    
+    private func pulseTestCell(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> PulseTestCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PulseTestCell.className, for: indexPath) as! PulseTestCell
+        return cell
+    }
+    
+    private func communityCell(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> CommunityCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CommunityCell.className, for: indexPath) as! CommunityCell
         return cell
     }
 }
