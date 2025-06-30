@@ -83,6 +83,8 @@
 		B64976922E12316F00B5A738 /* DetailItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B64976912E12316A00B5A738 /* DetailItemViewModel.swift */; };
 		B64976952E1231C900B5A738 /* DetailItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B64976932E1231C900B5A738 /* DetailItemViewController.swift */; };
 		B64976962E1231C900B5A738 /* DetailItemViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B64976942E1231C900B5A738 /* DetailItemViewController.xib */; };
+		B64976982E12473800B5A738 /* TVShowRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B64976972E12473400B5A738 /* TVShowRouter.swift */; };
+		B649769A2E1247DB00B5A738 /* TVShowClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = B64976992E1247D800B5A738 /* TVShowClient.swift */; };
 		D9632ADD155F4F54C1D8CF29 /* Pods_MoviePulse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 82CD434E65B60866758DB3F7 /* Pods_MoviePulse.framework */; };
 /* End PBXBuildFile section */
 
@@ -168,6 +170,8 @@
 		B64976912E12316A00B5A738 /* DetailItemViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailItemViewModel.swift; sourceTree = "<group>"; };
 		B64976932E1231C900B5A738 /* DetailItemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailItemViewController.swift; sourceTree = "<group>"; };
 		B64976942E1231C900B5A738 /* DetailItemViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailItemViewController.xib; sourceTree = "<group>"; };
+		B64976972E12473400B5A738 /* TVShowRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVShowRouter.swift; sourceTree = "<group>"; };
+		B64976992E1247D800B5A738 /* TVShowClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVShowClient.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -381,6 +385,7 @@
 		99A5FBC92E0B0DF200AA8D59 /* Router */ = {
 			isa = PBXGroup;
 			children = (
+				B64976972E12473400B5A738 /* TVShowRouter.swift */,
 				99A5FBCA2E0B0DFD00AA8D59 /* MovieRouter.swift */,
 			);
 			path = Router;
@@ -389,6 +394,7 @@
 		99A5FBD62E0C548300AA8D59 /* Client */ = {
 			isa = PBXGroup;
 			children = (
+				B64976992E1247D800B5A738 /* TVShowClient.swift */,
 				99A5FBD72E0C548D00AA8D59 /* MovieClient.swift */,
 			);
 			path = Client;
@@ -646,6 +652,7 @@
 				994215942E09A8EB00DAA702 /* Encodable.swift in Sources */,
 				B64976772E0E31C000B5A738 /* ItemHorizontalCell.swift in Sources */,
 				B64976852E12269A00B5A738 /* ListItemViewModel.swift in Sources */,
+				B649769A2E1247DB00B5A738 /* TVShowClient.swift in Sources */,
 				B649768B2E122B1B00B5A738 /* LoadingView.swift in Sources */,
 				994215952E09A8EB00DAA702 /* NSObject+Extension.swift in Sources */,
 				99A5FBDD2E0C54FA00AA8D59 /* Utils.swift in Sources */,
@@ -656,6 +663,7 @@
 				B649767C2E0E35AA00B5A738 /* AppLayout.swift in Sources */,
 				994215982E09A8EB00DAA702 /* ViewModelType.swift in Sources */,
 				99A5FBE32E0C557E00AA8D59 /* ImageModel.swift in Sources */,
+				B64976982E12473800B5A738 /* TVShowRouter.swift in Sources */,
 				B649767A2E0E342A00B5A738 /* Array+Extension.swift in Sources */,
 				99A5FBC42E0B0B0600AA8D59 /* HomeViewModel.swift in Sources */,
 				994215992E09A8EB00DAA702 /* UIView+Extension.swift in Sources */,

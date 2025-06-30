@@ -25,10 +25,7 @@ enum MovieRouter: APIConfiguration {
     }
     
     var method: HTTPMethod {
-        switch self {
-        default:
-            return .get
-        }
+        return .get
     }
     
     var path: String {
