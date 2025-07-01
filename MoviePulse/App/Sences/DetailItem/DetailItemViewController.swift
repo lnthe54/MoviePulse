@@ -11,6 +11,7 @@ enum DetailItemSectionType {
     case overview
     case photo
     case related
+    case review
 }
 
 class DetailItemViewController: BaseViewController {
@@ -19,6 +20,7 @@ class DetailItemViewController: BaseViewController {
     private var navigator: DetailItemNavigator
     private var viewModel: DetailItemViewModel
     private var infoDetailObject: InfoDetailObject
+    private var reviews: [ReviewObject] = []
     
     private let gotoDetailItemTrigger = PublishSubject<InfoObject>()
     
@@ -104,6 +106,8 @@ class DetailItemViewController: BaseViewController {
             options: [.transition(ImageTransition.fade(1))]
         )
         
+        reviews = infoDetailObject.reviews?.results ?? []
+        
         collectionView.register(TitleHeaderSection.nib(),
                                 forSupplementaryViewOfKind: "Header",
                                 withReuseIdentifier: TitleHeaderSection.className)
@@ -114,6 +118,7 @@ class DetailItemViewController: BaseViewController {
         collectionView.register(PulseTestCell.nib(), forCellWithReuseIdentifier: PulseTestCell.className)
         collectionView.register(CommunityCell.nib(), forCellWithReuseIdentifier: CommunityCell.className)
         collectionView.register(GenresCell.nib(), forCellWithReuseIdentifier: GenresCell.className)
+        collectionView.register(ReviewCell.nib(), forCellWithReuseIdentifier: ReviewCell.className)
         collectionView.backgroundColor = .clear
         collectionView.showsHorizontalScrollIndicator = false
         collectionView.showsVerticalScrollIndicator = false
@@ -145,6 +150,8 @@ extension DetailItemViewController {
                 return AppLayout.gallerySection()
             case .related:
                 return AppLayout.horizontalSection()
+            case .review:
+                return AppLayout.horizontalSection(width: 258, height: 156)
             }
         }
         
@@ -176,6 +183,10 @@ extension DetailItemViewController {
             sections.append(.related)
         }
         
+        if reviews.isNotEmpty {
+            sections.append(.review)
+        }
+        
         return sections
     }
 }
@@ -193,6 +204,8 @@ extension DetailItemViewController: UICollectionViewDataSource {
             return infoDetailObject.images.count > Constant.maxDisplayItems ? Constant.maxDisplayItems : infoDetailObject.images.count
         case .related:
             return infoDetailObject.recommendations.count > Constant.maxDisplayItems ? Constant.maxDisplayItems : infoDetailObject.recommendations.count
+        case .review:
+            return reviews.count > Constant.maxDisplayItems ? Constant.maxDisplayItems : reviews.count
         }
     }
     
@@ -212,6 +225,8 @@ extension DetailItemViewController: UICollectionViewDataSource {
             return photoCell(collectionView, cellForItemAt: indexPath)
         case .related:
             return itemCell(collectionView, cellForItemAt: indexPath)
+        case .review:
+            return reviewCell(collectionView, cellForItemAt: indexPath)
         }
     }
     
@@ -237,6 +252,15 @@ extension DetailItemViewController: UICollectionViewDataSource {
                     indexPath: indexPath,
                     title: "Gallery",
                     isShowSeeMore: false,
+                    sectionType: sectionType
+                )
+            case .review:
+                return titleHeaderSection(
+                    collectionView,
+                    viewForSupplementaryElementOfKind: kind,
+                    indexPath: indexPath,
+                    title: "Ratings & reviews",
+                    isShowSeeMore: reviews.count > Constant.maxDisplayItems,
                     sectionType: sectionType
                 )
             default:
@@ -285,6 +309,12 @@ extension DetailItemViewController: UICollectionViewDataSource {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: GenresCell.className, for: indexPath) as! GenresCell
         cell.delegate = self
         cell.bindData(categories: infoDetailObject.genres)
+        return cell
+    }
+    
+    private func reviewCell(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> ReviewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ReviewCell.className, for: indexPath) as! ReviewCell
+        cell.bindData(review: reviews[indexPath.row])
         return cell
     }
 }
