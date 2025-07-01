@@ -31,6 +31,9 @@ class HomeViewModel: ViewModelType {
             }
         
         let getAllDataEvent = Observable.zip(popularMoviesTrigger, categoriesTrigger)
+            .doOnNext { (_, category) in
+                CodableManager.shared.saveMovieCategories(category.genres)
+            }
             .map {
                 HomeDataObject(movies: Utils.transformToInfoObject(movies: $0.results), categories: $1.genres)
             }

@@ -80,7 +80,7 @@ struct Utils {
                 name: movie.title,
                 path: movie.poster_path,
                 releaseDate: movie.releaseDate(),
-                category: movie.getCategory(),
+                categories: movie.getCategory(),
                 vote: movie.vote_average,
                 department: nil,
                 type: .movie
@@ -98,7 +98,7 @@ struct Utils {
                 name: tvShow.name,
                 path: tvShow.poster_path,
                 releaseDate: tvShow.releaseDate(),
-                category: tvShow.getCategory(),
+                categories: tvShow.getCategory(),
                 vote: tvShow.vote_average,
                 department: nil,
                 type: .tv
@@ -116,7 +116,7 @@ struct Utils {
                 name: actor.name,
                 path: actor.profile_path,
                 releaseDate: nil,
-                category: nil,
+                categories: [],
                 vote: 0,
                 department: actor.known_for_department,
                 type: .actor

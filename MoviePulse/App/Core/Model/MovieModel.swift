@@ -32,12 +32,10 @@ extension MovieObject {
         String(self.release_date?.prefix(4) ?? "")
     }
     
-    func getCategory() -> String? {
-        return nil
-//        return CodableManager.shared.getMovieCategories()
-//            .filter { genre_ids.contains($0.id) }
-//            .map { $0.name }
-//            .joined(separator: ", ")
+    func getCategory() -> [String] {
+        return CodableManager.shared.getMovieCategories()
+            .filter { genre_ids.contains($0.id) }
+            .map { $0.name }
     }
 }
 
@@ -146,7 +144,7 @@ struct CastInfo: Codable {
             name: self.name,
             path: self.profile_path,
             releaseDate: "",
-            category: "",
+            categories: [],
             vote: 0,
             department: "",
             type: .actor
@@ -224,7 +222,7 @@ struct InfoObject: Codable {
     let name: String?
     let path: String?
     let releaseDate: String?
-    let category: String?
+    let categories: [String]
     let vote: Double?
     let department: String?
     let type: ObjectType?
@@ -304,7 +302,7 @@ class InfoDetailObject: Codable {
             name: self.name,
             path: self.posterPath,
             releaseDate: self.releaseDate,
-            category: "",
+            categories: [],
             vote: self.vote,
             department: nil,
             type: self.type

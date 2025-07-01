@@ -85,7 +85,6 @@ class ListItemViewController: BaseViewController {
                     page += 1
                 }
                 
-                self.items = items
                 collectionView.reloadData()
             }
             .disposed(by: disposeBag)
@@ -172,9 +171,6 @@ extension ListItemViewController: UICollectionViewDelegate {
             if indexPath.row == items.count - 1 {
                 getDataTrigger.onNext(ListParameters(sectionType: sectionType, page: page))
             }
-            
-        default:
-            break
         }
     }
     

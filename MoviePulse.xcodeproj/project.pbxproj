@@ -105,6 +105,11 @@
 		B64976B12E12807700B5A738 /* ImagesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B64976AC2E12807700B5A738 /* ImagesViewController.xib */; };
 		B64976B42E13880C00B5A738 /* ReviewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B64976B32E13880C00B5A738 /* ReviewCell.xib */; };
 		B64976B52E13880C00B5A738 /* ReviewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B64976B22E13880C00B5A738 /* ReviewCell.swift */; };
+		B64976B82E13B40A00B5A738 /* TagCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B64976B72E13B40A00B5A738 /* TagCell.xib */; };
+		B64976B92E13B40A00B5A738 /* TagCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B64976B62E13B40A00B5A738 /* TagCell.swift */; };
+		B64976BB2E13B6B600B5A738 /* CodableManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B64976BA2E13B6B500B5A738 /* CodableManager.swift */; };
+		B64976BE2E13C31500B5A738 /* RateCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B64976BD2E13C31500B5A738 /* RateCell.xib */; };
+		B64976BF2E13C31500B5A738 /* RateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B64976BC2E13C31500B5A738 /* RateCell.swift */; };
 		D9632ADD155F4F54C1D8CF29 /* Pods_MoviePulse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 82CD434E65B60866758DB3F7 /* Pods_MoviePulse.framework */; };
 /* End PBXBuildFile section */
 
@@ -212,6 +217,11 @@
 		B64976AC2E12807700B5A738 /* ImagesViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ImagesViewController.xib; sourceTree = "<group>"; };
 		B64976B22E13880C00B5A738 /* ReviewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewCell.swift; sourceTree = "<group>"; };
 		B64976B32E13880C00B5A738 /* ReviewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReviewCell.xib; sourceTree = "<group>"; };
+		B64976B62E13B40A00B5A738 /* TagCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagCell.swift; sourceTree = "<group>"; };
+		B64976B72E13B40A00B5A738 /* TagCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TagCell.xib; sourceTree = "<group>"; };
+		B64976BA2E13B6B500B5A738 /* CodableManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodableManager.swift; sourceTree = "<group>"; };
+		B64976BC2E13C31500B5A738 /* RateCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RateCell.swift; sourceTree = "<group>"; };
+		B64976BD2E13C31500B5A738 /* RateCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RateCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -293,6 +303,7 @@
 		994215A52E09ABC100DAA702 /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				B64976BA2E13B6B500B5A738 /* CodableManager.swift */,
 				B649768A2E122B1900B5A738 /* LoadingView.swift */,
 				B649767B2E0E35A800B5A738 /* AppLayout.swift */,
 				994215A62E09ABDE00DAA702 /* BaseViewController.swift */,
@@ -390,6 +401,10 @@
 				9989FEF92E0F9B40007B667C /* CategoryCell.xib */,
 				9989FEFC2E0F9E3B007B667C /* SingleCell.swift */,
 				9989FEFD2E0F9E3B007B667C /* SingleCell.xib */,
+				B64976B62E13B40A00B5A738 /* TagCell.swift */,
+				B64976B72E13B40A00B5A738 /* TagCell.xib */,
+				B64976BC2E13C31500B5A738 /* RateCell.swift */,
+				B64976BD2E13C31500B5A738 /* RateCell.xib */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -634,6 +649,7 @@
 				9994AC252E12D7FB0084901B /* CommunityCell.xib in Resources */,
 				9989FF092E0FD830007B667C /* BaseHeaderView.xib in Resources */,
 				B64976782E0E31C000B5A738 /* ItemHorizontalCell.xib in Resources */,
+				B64976B82E13B40A00B5A738 /* TagCell.xib in Resources */,
 				9989FEFF2E0F9E3B007B667C /* SingleCell.xib in Resources */,
 				B64976662E0A485D00B5A738 /* Outfit-Regular.ttf in Resources */,
 				B649766F2E0A78E300B5A738 /* MainViewController.xib in Resources */,
@@ -641,6 +657,7 @@
 				9989FF182E112499007B667C /* PulseCell.xib in Resources */,
 				B649768D2E122BA400B5A738 /* loading.json in Resources */,
 				B64976892E1226DD00B5A738 /* ListItemViewController.xib in Resources */,
+				B64976BE2E13C31500B5A738 /* RateCell.xib in Resources */,
 				B64976B42E13880C00B5A738 /* ReviewCell.xib in Resources */,
 				B64976672E0A485D00B5A738 /* Outfit-SemiBold.ttf in Resources */,
 				9989FF102E0FDA31007B667C /* CategoryViewController.xib in Resources */,
@@ -737,6 +754,8 @@
 				9989FF132E0FDB58007B667C /* Notification+Extension.swift in Sources */,
 				994215862E09A76100DAA702 /* APIClient.swift in Sources */,
 				99A5FBDB2E0C54C000AA8D59 /* MovieModel.swift in Sources */,
+				B64976BB2E13B6B600B5A738 /* CodableManager.swift in Sources */,
+				B64976BF2E13C31500B5A738 /* RateCell.swift in Sources */,
 				99A5FBD82E0C549000AA8D59 /* MovieClient.swift in Sources */,
 				9994AC202E12D5050084901B /* PulseTestCell.swift in Sources */,
 				994215922E09A8EB00DAA702 /* UIColor+Extension.swift in Sources */,
@@ -751,6 +770,7 @@
 				994215942E09A8EB00DAA702 /* Encodable.swift in Sources */,
 				B64976772E0E31C000B5A738 /* ItemHorizontalCell.swift in Sources */,
 				B64976852E12269A00B5A738 /* ListItemViewModel.swift in Sources */,
+				B64976B92E13B40A00B5A738 /* TagCell.swift in Sources */,
 				B649769A2E1247DB00B5A738 /* TVShowClient.swift in Sources */,
 				B64976B52E13880C00B5A738 /* ReviewCell.swift in Sources */,
 				B649768B2E122B1B00B5A738 /* LoadingView.swift in Sources */,

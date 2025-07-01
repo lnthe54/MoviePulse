@@ -13,12 +13,10 @@ class TVShowObject: Codable {
     let first_air_date: String?
     var isSelect: Bool?
     
-    func getCategory() -> String? {
-        return nil
-//        return CodableManager.shared.getTVCategories()
-//            .filter { genre_ids.contains($0.id) }
-//            .map { $0.name }
-//            .joined(separator: ", ")
+    func getCategory() -> [String] {
+        return CodableManager.shared.getTVCategories()
+            .filter { genre_ids.contains($0.id) }
+            .map { $0.name }
     }
 }
 

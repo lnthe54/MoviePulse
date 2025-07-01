@@ -118,6 +118,31 @@ class AppLayout {
 
         return section
     }
+    
+    static func tagHorizontalSection() -> NSCollectionLayoutSection {
+        let itemSize = NSCollectionLayoutSize(
+            widthDimension: .estimated(47),
+            heightDimension: .absolute(20)
+        )
+        
+        let item = NSCollectionLayoutItem(layoutSize: itemSize)
+        
+        let groupSize = NSCollectionLayoutSize(
+            widthDimension: .fractionalWidth(1.0),
+            heightDimension: .absolute(20)
+        )
+        let group = NSCollectionLayoutGroup.horizontal(
+            layoutSize: groupSize,
+            subitems: [item, item]
+        )
+        group.interItemSpacing = .fixed(2)
+        
+        let section = NSCollectionLayoutSection(group: group)
+        section.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0)
+        section.interGroupSpacing = 2
+        
+        return section
+    }
 
     static func itemsSection() -> NSCollectionLayoutSection {
         let itemSize = NSCollectionLayoutSize(
