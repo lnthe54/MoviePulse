@@ -302,10 +302,14 @@ class InfoDetailObject: Codable {
             name: self.name,
             path: self.posterPath,
             releaseDate: self.releaseDate,
-            categories: [],
+            categories: getCategories(),
             vote: self.vote,
             department: nil,
             type: self.type
         )
+    }
+    
+    private func getCategories() -> [String] {
+        return genres.map { $0.name }
     }
 }

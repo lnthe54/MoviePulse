@@ -4,6 +4,7 @@ protocol HomeNavigator {
     func gotoCategoryViewController(categories: [CategoryObject])
     func gotoListItemViewController(sectionType: ListSectionType)
     func gotoDetailItemViewController(infoDetailObject: InfoDetailObject)
+    func gotoFavoriteViewController()
 }
 
 class DefaultHomeNavigator: HomeNavigator {
@@ -39,6 +40,13 @@ class DefaultHomeNavigator: HomeNavigator {
             viewModel: viewModel,
             infoDetailObject: infoDetailObject
         )
+        navigationController.pushViewController(viewController, animated: true)
+    }
+    
+    func gotoFavoriteViewController() {
+        let navigator = DefaultFavoriteNavigator(navigationController: navigationController)
+        let viewModel = FavoriteViewModel(movieServices: MovieClient())
+        let viewController = FavoriteViewController(navigator: navigator, viewModel: viewModel)
         navigationController.pushViewController(viewController, animated: true)
     }
 }

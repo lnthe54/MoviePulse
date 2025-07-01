@@ -274,6 +274,8 @@ extension HomeViewController: UICollectionViewDataSource {
 extension HomeViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         switch getSections()[indexPath.section] {
+        case .favorite:
+            navigator.gotoFavoriteViewController()
         case .populars:
             gotoDetailItemTrigger.onNext(homeDataObject.movies[indexPath.row])
         case .category:
