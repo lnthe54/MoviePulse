@@ -8,7 +8,7 @@ class ItemHorizontalCell: UICollectionViewCell {
     }
     
     // MARK: - Properties
-    private var categories: [String] = []
+    private var categories: [TagType] = []
     
     // MARK: - IBOutlets
     @IBOutlet private weak var posterImageView: UIImageView!
@@ -43,8 +43,8 @@ class ItemHorizontalCell: UICollectionViewCell {
             options: [.transition(ImageTransition.fade(1))]
         )
         nameLabel.text = infoObject.name
-        categories = infoObject.categories
-        categories.insert(String(Int(infoObject.vote ?? 0.0)), at: 0)
+        categories = infoObject.categories.map { .tag(content: $0) }
+        categories.insert(.rate(rate: Int(infoObject.vote ?? 0.0)), at: 0)
         collectionView.reloadData()
     }
 }
@@ -55,13 +55,16 @@ extension ItemHorizontalCell: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        if indexPath.row == 0 {
+        let tag = categories[indexPath.row]
+        switch tag {
+        case .rate(let rate):
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: RateCell.className, for: indexPath) as! RateCell
-            cell.bindData(text: categories[indexPath.row])
+            cell.bindData(rate: rate)
             return cell
-        } else {
+            
+        default:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TagCell.className, for: indexPath) as! TagCell
-            cell.bindData(text: categories[indexPath.row])
+            cell.bindData(tag: categories[indexPath.row])
             cell.corner(cell.frame.height / 2)
             return cell
         }

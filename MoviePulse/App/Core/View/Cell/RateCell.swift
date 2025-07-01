@@ -19,7 +19,7 @@ class RateCell: UICollectionViewCell {
         rateLabel.font = .outfitFont(ofSize: 12)
     }
 
-    func bindData(text: String) {
-        rateLabel.text = text
+    func bindData(rate: Int) {
+        rateLabel.text = String(rate)
     }
 }

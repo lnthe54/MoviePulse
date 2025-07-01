@@ -23,7 +23,29 @@ class TagCell: UICollectionViewCell {
         nameLabel.textColor = UIColor(hexString: "#8435F3")
     }
 
-    func bindData(text: String) {
-        nameLabel.text = text
+    func bindData(tag: TagType) {
+        switch tag {
+        case .tag(let content):
+            containerView.backgroundColor = UIColor(hexString: "#E7D9FB")
+            nameLabel.textColor = UIColor(hexString: "#8435F3")
+            nameLabel.text = content
+        case .time(let time):
+            containerView.backgroundColor = UIColor(hexString: "#E7D9FB")
+            nameLabel.textColor = UIColor(hexString: "#8435F3")
+            nameLabel.text = time.toHourMinute()
+        case .release(let date):
+            containerView.backgroundColor = .blackColor
+            nameLabel.textColor = .white
+            nameLabel.text = date
+        default:
+            break
+        }
     }
+}
+
+enum TagType {
+    case tag(content: String)
+    case rate(rate: Int)
+    case release(date: String)
+    case time(time: Int)
 }
