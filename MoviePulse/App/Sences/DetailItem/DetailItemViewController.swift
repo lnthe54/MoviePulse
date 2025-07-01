@@ -138,7 +138,7 @@ extension DetailItemViewController {
             
             switch section {
             case .info:
-                return AppLayout.fixedSection(height: 164)
+                return AppLayout.fixedSection(height: 180)
             case .pulseTest:
                 return AppLayout.fixedSection(height: 146)
             case .community:
@@ -189,6 +189,45 @@ extension DetailItemViewController {
         }
         
         return sections
+    }
+    
+    private func addToFavorites() {
+        var favorites = CodableManager.shared.getListFavorite()
+        favorites.append(infoDetailObject)
+        CodableManager.shared.saveListFarotie(favorites)
+    }
+    
+    private func removeToFavorites() {
+        var favorites = CodableManager.shared.getListFavorite()
+        let filters = favorites.filter { $0.id != infoDetailObject.id }
+        favorites = filters
+        
+        CodableManager.shared.saveListFarotie(favorites)
+    }
+    
+    func showSuccessAlert(title: String, message: String) {
+        let alert = SuccessAlertView(title: title, message: message)
+        alert.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(alert)
+        
+        NSLayoutConstraint.activate([
+            alert.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 100),
+            alert.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            alert.widthAnchor.constraint(equalToConstant: 179)
+        ])
+        
+        alert.alpha = 0
+        UIView.animate(withDuration: 0.3, animations: {
+            alert.alpha = 1
+        }) { _ in
+            DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                UIView.animate(withDuration: 0.3, animations: {
+                    alert.alpha = 0
+                }) { _ in
+                    alert.removeFromSuperview()
+                }
+            }
+        }
     }
 }
 
@@ -274,6 +313,14 @@ extension DetailItemViewController: UICollectionViewDataSource {
     
     private func infoCell(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> InfoDetailItemCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: InfoDetailItemCell.className, for: indexPath) as! InfoDetailItemCell
+        cell.onTapFavorite = { [weak self] isFavorite in
+            guard let self else { return }
+            
+            if isFavorite {
+                showSuccessAlert(title: "Nice choice!", message: "It’s now in your favorites")
+            }
+            isFavorite ? addToFavorites() : removeToFavorites()
+        }
         cell.bindData(infoDetailObject)
         return cell
     }
