@@ -34,7 +34,7 @@
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ped-zk-BbT">
-                    <rect key="frame" x="0.0" y="770" width="393" height="82"/>
+                    <rect key="frame" x="0.0" y="782" width="393" height="70"/>
                     <subviews>
                         <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="32" translatesAutoresizingMaskIntoConstraints="NO" id="p0r-lc-Msz">
                             <rect key="frame" x="116.66666666666669" y="0.0" width="160" height="48"/>
@@ -50,7 +50,7 @@
                                             </constraints>
                                         </view>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="mYH-ue-dyz">
-                                            <rect key="frame" x="4" y="12" width="24" height="24"/>
+                                            <rect key="frame" x="4" y="18" width="24" height="24"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="24" id="ZRC-HS-58x"/>
                                                 <constraint firstAttribute="width" constant="24" id="kbi-Sf-sAn"/>
@@ -64,7 +64,7 @@
                                         <constraint firstItem="mYH-ue-dyz" firstAttribute="centerX" secondItem="IyM-3c-NG3" secondAttribute="centerX" id="TqT-XQ-Wqa"/>
                                         <constraint firstAttribute="trailing" secondItem="87O-m6-Q6z" secondAttribute="trailing" id="Za4-Yx-rDB"/>
                                         <constraint firstAttribute="width" constant="32" id="ofV-OI-hgi"/>
-                                        <constraint firstItem="mYH-ue-dyz" firstAttribute="centerY" secondItem="IyM-3c-NG3" secondAttribute="centerY" id="peW-KY-Dft"/>
+                                        <constraint firstItem="mYH-ue-dyz" firstAttribute="centerY" secondItem="IyM-3c-NG3" secondAttribute="centerY" constant="6" id="peW-KY-Dft"/>
                                     </constraints>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Swb-qz-lrc">
@@ -78,7 +78,7 @@
                                             </constraints>
                                         </view>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="fgK-Lc-dmB">
-                                            <rect key="frame" x="4" y="12" width="24" height="24"/>
+                                            <rect key="frame" x="4" y="18" width="24" height="24"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="24" id="S8M-TL-wCk"/>
                                                 <constraint firstAttribute="width" constant="24" id="UaK-Nk-fzA"/>
@@ -92,7 +92,7 @@
                                         <constraint firstItem="vzh-XQ-krW" firstAttribute="leading" secondItem="Swb-qz-lrc" secondAttribute="leading" id="BDB-i9-zpD"/>
                                         <constraint firstItem="fgK-Lc-dmB" firstAttribute="centerX" secondItem="Swb-qz-lrc" secondAttribute="centerX" id="Byk-Ex-1ZL"/>
                                         <constraint firstAttribute="width" constant="32" id="GIa-J0-o3p"/>
-                                        <constraint firstItem="fgK-Lc-dmB" firstAttribute="centerY" secondItem="Swb-qz-lrc" secondAttribute="centerY" id="OLV-3n-aj4"/>
+                                        <constraint firstItem="fgK-Lc-dmB" firstAttribute="centerY" secondItem="Swb-qz-lrc" secondAttribute="centerY" constant="6" id="OLV-3n-aj4"/>
                                     </constraints>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8iw-hX-QuF">
@@ -106,7 +106,7 @@
                                             </constraints>
                                         </view>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="cpL-ya-iX1">
-                                            <rect key="frame" x="4" y="12" width="24" height="24"/>
+                                            <rect key="frame" x="4" y="18" width="24" height="24"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="24" id="3Fo-aa-6Ad"/>
                                                 <constraint firstAttribute="width" constant="24" id="HNb-lL-iho"/>
@@ -115,7 +115,7 @@
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <constraints>
-                                        <constraint firstItem="cpL-ya-iX1" firstAttribute="centerY" secondItem="8iw-hX-QuF" secondAttribute="centerY" id="7xM-1n-Dj1"/>
+                                        <constraint firstItem="cpL-ya-iX1" firstAttribute="centerY" secondItem="8iw-hX-QuF" secondAttribute="centerY" constant="6" id="7xM-1n-Dj1"/>
                                         <constraint firstAttribute="trailing" secondItem="72p-qY-pPc" secondAttribute="trailing" id="9FH-LX-MVk"/>
                                         <constraint firstItem="72p-qY-pPc" firstAttribute="leading" secondItem="8iw-hX-QuF" secondAttribute="leading" id="FaR-2b-xV2"/>
                                         <constraint firstItem="72p-qY-pPc" firstAttribute="top" secondItem="8iw-hX-QuF" secondAttribute="top" id="Sn9-Ly-mis"/>
@@ -133,7 +133,7 @@
                     <constraints>
                         <constraint firstItem="p0r-lc-Msz" firstAttribute="centerX" secondItem="Ped-zk-BbT" secondAttribute="centerX" id="0Fg-26-ZNQ"/>
                         <constraint firstItem="p0r-lc-Msz" firstAttribute="top" secondItem="Ped-zk-BbT" secondAttribute="top" id="6wP-1m-P7j"/>
-                        <constraint firstAttribute="height" constant="82" id="PVc-Sc-0ws"/>
+                        <constraint firstAttribute="height" constant="70" id="PVc-Sc-0ws"/>
                     </constraints>
                 </view>
             </subviews>

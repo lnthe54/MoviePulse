@@ -21,6 +21,7 @@ class DetailItemViewController: BaseViewController {
     private var viewModel: DetailItemViewModel
     private var infoDetailObject: InfoDetailObject
     private var reviews: [ReviewObject] = []
+    private var isPosterHidden = false
     
     private let gotoDetailItemTrigger = PublishSubject<InfoObject>()
     
@@ -124,7 +125,7 @@ class DetailItemViewController: BaseViewController {
         collectionView.showsVerticalScrollIndicator = false
         collectionView.dataSource = self
         collectionView.delegate = self
-        collectionView.contentInset = UIEdgeInsets(top: 200, left: 0, bottom: 0, right: 0)
+        collectionView.contentInset = UIEdgeInsets(top: posterImageView.frame.height - 120, left: 0, bottom: 0, right: 0)
         configureCompositionalLayout()
     }
 }
@@ -344,5 +345,19 @@ extension DetailItemViewController: UICollectionViewDelegate, GenresCellDelegate
     
     func didSelectCategory(item: CategoryObject) {
         navigator.gotoListItemViewController(sectionType: .category(categoryObject: item))
+    }
+}
+
+extension DetailItemViewController {
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let shouldHidePoster = scrollView.contentOffset.y > 0
+
+        if shouldHidePoster != isPosterHidden {
+            isPosterHidden = shouldHidePoster
+            UIView.animate(withDuration: 0.25) {
+                self.posterImageView.alpha = shouldHidePoster ? 0 : 1
+            }
+        }
     }
 }
