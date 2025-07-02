@@ -11,6 +11,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="HomeViewController" customModule="MoviePulse" customModuleProvider="target">
             <connections>
                 <outlet property="collectionView" destination="u2D-BP-n24" id="Tcp-bv-vL8"/>
+                <outlet property="topConstraint" destination="URg-a2-DaB" id="e9u-M5-Ym5"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>

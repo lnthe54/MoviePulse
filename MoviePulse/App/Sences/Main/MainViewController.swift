@@ -56,6 +56,7 @@ class MainViewController: BaseViewController {
             .subscribe(onNext: { [weak self] _ in
                 guard let self else { return }
                 
+                mainViewPager.moveToScreen(at: .home)
                 handleTap(isActiveHome: true)
             })
             .disposed(by: disposeBag)
@@ -64,6 +65,7 @@ class MainViewController: BaseViewController {
             .subscribe(onNext: { [weak self] _ in
                 guard let self else { return }
                 
+                mainViewPager.moveToScreen(at: .discover)
                 handleTap(isActiveDiscover: true)
             })
             .disposed(by: disposeBag)

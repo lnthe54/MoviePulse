@@ -22,6 +22,7 @@ class HomeViewController: BaseViewController {
     private let gotoDetailItemTrigger = PublishSubject<InfoObject>()
     
     // MARK: - IBOutlets
+    @IBOutlet private weak var topConstraint: NSLayoutConstraint!
     @IBOutlet private weak var collectionView: UICollectionView!
     
     private enum Constant {
@@ -92,6 +93,8 @@ class HomeViewController: BaseViewController {
     override func setupViews() {
         view.backgroundColor = UIColor(hexString: "#FAF7FE")
         
+        topConstraint.constant = Constants.HEIGHT_NAV
+        setupHeader(withType: .multi(title: "Hello"))
         collectionView.register(TitleHeaderSection.nib(),
                                 forSupplementaryViewOfKind: "Header",
                                 withReuseIdentifier: TitleHeaderSection.className)

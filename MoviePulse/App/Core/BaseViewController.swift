@@ -69,10 +69,6 @@ extension BaseViewController: BaseHeaderViewDelegate {
         }
     }
     
-    @objc func actionFavorite() {
-        // Do something
-    }
-    
     @objc func actionSearch() {
         // Do something
     }

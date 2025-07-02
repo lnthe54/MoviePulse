@@ -4,7 +4,6 @@ import RxSwift
 import RxGesture
 
 protocol BaseHeaderViewDelegate: NSObjectProtocol {
-    func actionFavorite()
     func actionSearch()
     func actionBack()
     func actionClose()
@@ -18,10 +17,7 @@ class BaseHeaderView: UIView {
     @IBOutlet private weak var singleView: UIView!
     @IBOutlet private weak var multiView: UIView!
     @IBOutlet private weak var rightContentView: UIView!
-    @IBOutlet private weak var saveView: UIView!
-    @IBOutlet private weak var saveButton: UIButton!
     @IBOutlet private weak var searchView: UIView!
-    @IBOutlet private weak var searchButton: UIButton!
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var singleLabel: UILabel!
     @IBOutlet private weak var detailView: UIView!
@@ -97,10 +93,6 @@ class BaseHeaderView: UIView {
     }
     
     // MARK: - IBActions
-    @IBAction func didToFavorite() {
-        delegate?.actionFavorite()
-    }
-    
     @IBAction func didToSearch() {
         delegate?.actionSearch()
     }
@@ -135,8 +127,8 @@ extension BaseHeaderView {
             singleView.isHidden = false
             multiView.isHidden = true
             detailView.isHidden = true
-        case .multi(let title, let titleColor, let buttons):
-            setupMultiView(title: title, titleColor: titleColor, buttons: buttons)
+        case .multi(let title, let buttons):
+            setupMultiView(title: title, buttons: buttons)
             singleView.isHidden = true
             multiView.isHidden = false
             detailView.isHidden = true
@@ -154,23 +146,13 @@ extension BaseHeaderView {
 //        singleLabel.font = .harmonyFont(ofSize: 16, weight: .bold)
     }
     
-    private func setupMultiView(title: String, titleColor: UIColor?, buttons: [RightContentType]) {
+    private func setupMultiView(title: String, buttons: [RightContentType]) {
         titleLabel.text = title
-        titleLabel.textColor = titleColor
-//        titleLabel.font = .harmonyFont(ofSize: 32, weight: .bold)
+        titleLabel.textColor = UIColor(hexString: "#252934")
+        titleLabel.font = .outfitFont(ofSize: 20, weight: .semiBold)
         
-        searchView.corner(8)
-        searchView.backgroundColor = UIColor(hexString: "#252934")
-        saveView.corner(8)
-        saveView.backgroundColor = UIColor(hexString: "#252934")
-        
-        if buttons.isEmpty {
-            searchView.isHidden = true
-            saveView.isHidden = true
-        } else {
-            searchView.isHidden = !buttons.contains(where: { $0 == .search })
-            saveView.isHidden = !buttons.contains(where: { $0 == .save })
-        }
+        searchView.corner(4)
+        searchView.backgroundColor = .pimaryColor
     }
     
     private func setupDetailView(title: String, buttons: [RightContentType]) {
@@ -205,7 +187,7 @@ extension BaseHeaderView {
 
 enum HeaderViewType {
     case single(title: String)
-    case multi(title: String, titleColor: UIColor? = UIColor(hexString: "#060606"), rightContents: [RightContentType] = [])
+    case multi(title: String, rightContents: [RightContentType] = [])
     case detail(title: String, rightContents: [RightContentType] = [])
 }
 
