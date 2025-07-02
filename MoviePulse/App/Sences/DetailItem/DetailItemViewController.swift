@@ -99,7 +99,7 @@ class DetailItemViewController: BaseViewController {
     }
     
     override func setupViews() {
-        setupHeader(withType: .detail(title: "", isShowShare: true))
+        setupHeader(withType: .detail(title: "", rightContents: [.share]))
         
         posterImageView.kf.setImage(
             with: URL(string: Utils.getPosterPath(infoDetailObject.posterPath ?? "", size: .w780)),

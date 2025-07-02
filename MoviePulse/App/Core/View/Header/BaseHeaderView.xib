@@ -118,32 +118,56 @@
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qLO-vW-V71">
-                                    <rect key="frame" x="348" y="5" width="46" height="46"/>
+                                <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WtJ-Ir-lEh">
+                                    <rect key="frame" x="306" y="5" width="92" height="46"/>
                                     <subviews>
-                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_share" translatesAutoresizingMaskIntoConstraints="NO" id="UNM-dV-Ucx">
-                                            <rect key="frame" x="11" y="11" width="24" height="24"/>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qLO-vW-V71">
+                                            <rect key="frame" x="0.0" y="0.0" width="46" height="46"/>
+                                            <subviews>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_share" translatesAutoresizingMaskIntoConstraints="NO" id="UNM-dV-Ucx">
+                                                    <rect key="frame" x="11" y="11" width="24" height="24"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="24" id="DT2-nV-Qv2"/>
+                                                        <constraint firstAttribute="height" constant="24" id="snb-lY-Ttn"/>
+                                                    </constraints>
+                                                </imageView>
+                                            </subviews>
+                                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                             <constraints>
-                                                <constraint firstAttribute="width" constant="24" id="DT2-nV-Qv2"/>
-                                                <constraint firstAttribute="height" constant="24" id="snb-lY-Ttn"/>
+                                                <constraint firstItem="UNM-dV-Ucx" firstAttribute="centerY" secondItem="qLO-vW-V71" secondAttribute="centerY" id="G9m-mw-0GR"/>
+                                                <constraint firstAttribute="width" constant="46" id="HH9-p4-lA8"/>
+                                                <constraint firstAttribute="height" constant="46" id="YQg-Ua-EzO"/>
+                                                <constraint firstItem="UNM-dV-Ucx" firstAttribute="centerX" secondItem="qLO-vW-V71" secondAttribute="centerX" id="kpd-Hq-Va9"/>
                                             </constraints>
-                                        </imageView>
+                                        </view>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="68s-js-muU">
+                                            <rect key="frame" x="46" y="0.0" width="46" height="46"/>
+                                            <subviews>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_delete" translatesAutoresizingMaskIntoConstraints="NO" id="sN2-WQ-BuE">
+                                                    <rect key="frame" x="11" y="11" width="24" height="24"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="24" id="Du8-sp-sbQ"/>
+                                                        <constraint firstAttribute="width" constant="24" id="sDv-me-4Ly"/>
+                                                    </constraints>
+                                                </imageView>
+                                            </subviews>
+                                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                            <constraints>
+                                                <constraint firstItem="sN2-WQ-BuE" firstAttribute="centerY" secondItem="68s-js-muU" secondAttribute="centerY" id="3Is-Qu-jfx"/>
+                                                <constraint firstItem="sN2-WQ-BuE" firstAttribute="centerX" secondItem="68s-js-muU" secondAttribute="centerX" id="IgV-Om-2Js"/>
+                                                <constraint firstAttribute="width" constant="46" id="tba-yu-9X0"/>
+                                                <constraint firstAttribute="height" constant="46" id="wzb-IZ-nd1"/>
+                                            </constraints>
+                                        </view>
                                     </subviews>
-                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                    <constraints>
-                                        <constraint firstItem="UNM-dV-Ucx" firstAttribute="centerY" secondItem="qLO-vW-V71" secondAttribute="centerY" id="G9m-mw-0GR"/>
-                                        <constraint firstAttribute="width" constant="46" id="HH9-p4-lA8"/>
-                                        <constraint firstAttribute="height" constant="46" id="YQg-Ua-EzO"/>
-                                        <constraint firstItem="UNM-dV-Ucx" firstAttribute="centerX" secondItem="qLO-vW-V71" secondAttribute="centerX" id="kpd-Hq-Va9"/>
-                                    </constraints>
-                                </view>
+                                </stackView>
                             </subviews>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
                                 <constraint firstItem="57H-hQ-I0M" firstAttribute="leading" secondItem="QeV-xE-MMc" secondAttribute="leading" constant="16" id="1dA-N7-DVG"/>
-                                <constraint firstAttribute="trailing" secondItem="qLO-vW-V71" secondAttribute="trailing" constant="20" id="IHH-2n-rl9"/>
+                                <constraint firstItem="WtJ-Ir-lEh" firstAttribute="centerY" secondItem="QeV-xE-MMc" secondAttribute="centerY" id="2Zh-PT-imm"/>
+                                <constraint firstAttribute="trailing" secondItem="WtJ-Ir-lEh" secondAttribute="trailing" constant="16" id="O41-ie-zSU"/>
                                 <constraint firstItem="57H-hQ-I0M" firstAttribute="centerY" secondItem="QeV-xE-MMc" secondAttribute="centerY" id="UNh-OB-BXS"/>
-                                <constraint firstItem="qLO-vW-V71" firstAttribute="centerY" secondItem="57H-hQ-I0M" secondAttribute="centerY" id="X6j-lC-ee9"/>
                                 <constraint firstItem="bfG-Sf-nGb" firstAttribute="centerX" secondItem="QeV-xE-MMc" secondAttribute="centerX" id="kDm-sk-QB9"/>
                                 <constraint firstAttribute="height" constant="56" id="psA-v5-hri"/>
                                 <constraint firstItem="57H-hQ-I0M" firstAttribute="centerY" secondItem="bfG-Sf-nGb" secondAttribute="centerY" id="uIz-B1-pgf"/>
@@ -196,6 +220,7 @@
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
                 <outlet property="backView" destination="57H-hQ-I0M" id="BiG-S3-ukC"/>
+                <outlet property="delView" destination="68s-js-muU" id="eNx-Lc-pgF"/>
                 <outlet property="detailTitle" destination="bfG-Sf-nGb" id="yqX-Vg-oxQ"/>
                 <outlet property="detailView" destination="QeV-xE-MMc" id="kE7-Kd-Z7o"/>
                 <outlet property="multiView" destination="HPZ-5R-dNt" id="nE5-GF-f8V"/>
@@ -214,6 +239,7 @@
     </objects>
     <resources>
         <image name="ic_arrow_left" width="24" height="24"/>
+        <image name="ic_delete" width="24" height="24"/>
         <image name="ic_save" width="24" height="24"/>
         <image name="ic_search_header" width="24" height="24"/>
         <image name="ic_share" width="24" height="24"/>

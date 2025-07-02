@@ -63,6 +63,10 @@ class FavoriteViewController: BaseViewController {
                 guard let self else { return }
                 
                 self.items = items.map { $0.transformToInfoObject() }
+                
+                let buttons: [RightContentType] = items.isEmpty ? [] : [.delete]
+                setupHeader(withType: .detail(title: "Favorites", rightContents: buttons))
+                
                 collectionView.reloadData()
             }
             .disposed(by: disposeBag)
@@ -92,7 +96,6 @@ class FavoriteViewController: BaseViewController {
     
     override func setupViews() {
         topConstraint.constant = Constants.HEIGHT_NAV
-        setupHeader(withType: .detail(title: "Favorites", isShowShare: false))
         
         movieView.rx.tapGesture().when(.recognized)
             .subscribe(onNext: { [weak self] _ in

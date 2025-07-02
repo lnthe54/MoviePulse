@@ -9,6 +9,7 @@ protocol BaseHeaderViewDelegate: NSObjectProtocol {
     func actionBack()
     func actionClose()
     func actionShare()
+    func actionDelete()
 }
 
 class BaseHeaderView: UIView {
@@ -27,6 +28,7 @@ class BaseHeaderView: UIView {
     @IBOutlet private weak var detailTitle: UILabel!
     @IBOutlet private weak var backView: UIView!
     @IBOutlet private weak var shareView: UIView!
+    @IBOutlet private weak var delView: UIView!
 
     // MARK: - Property
     private static let nibName: String = "BaseHeaderView"
@@ -114,7 +116,12 @@ class BaseHeaderView: UIView {
     
     @objc
     private func didToShare() {
-        
+        delegate?.actionShare()
+    }
+    
+    @objc
+    private func didToDelete() {
+        delegate?.actionDelete()
     }
 }
 
@@ -133,8 +140,8 @@ extension BaseHeaderView {
             singleView.isHidden = true
             multiView.isHidden = false
             detailView.isHidden = true
-        case .detail(let title, let isShowShare):
-            setupDetailView(title: title, isShowShare: isShowShare)
+        case .detail(let title, let buttons):
+            setupDetailView(title: title, buttons: buttons)
             singleView.isHidden = true
             multiView.isHidden = true
             detailView.isHidden = false
@@ -166,7 +173,7 @@ extension BaseHeaderView {
         }
     }
     
-    private func setupDetailView(title: String, isShowShare: Bool) {
+    private func setupDetailView(title: String, buttons: [RightContentType]) {
         detailTitle.text = title
         detailTitle.textColor = UIColor(hexString: "#252934")
         detailTitle.font = .outfitFont(ofSize: 20, weight: .semiBold)
@@ -176,14 +183,22 @@ extension BaseHeaderView {
         backView.isUserInteractionEnabled = true
         backView.addGestureRecognizer(tapToBackView)
         
-        if isShowShare {
-            shareView.isHidden = false
-            shareView.backgroundColor = UIColor(hexString: "#E7D9FB")
-            let tapToShare = UITapGestureRecognizer(target: self, action: #selector(didToShare))
-            shareView.isUserInteractionEnabled = true
-            shareView.addGestureRecognizer(tapToShare)
-        } else {
+        shareView.backgroundColor = UIColor(hexString: "#E7D9FB")
+        let tapToShare = UITapGestureRecognizer(target: self, action: #selector(didToShare))
+        shareView.isUserInteractionEnabled = true
+        shareView.addGestureRecognizer(tapToShare)
+        
+        delView.backgroundColor = UIColor(hexString: "#E7D9FB")
+        let tapToDelete = UITapGestureRecognizer(target: self, action: #selector(didToDelete))
+        delView.isUserInteractionEnabled = true
+        delView.addGestureRecognizer(tapToDelete)
+        
+        if buttons.isEmpty {
             shareView.isHidden = true
+            delView.isHidden = true
+        } else {
+            shareView.isHidden = !buttons.contains(where: { $0 == .share })
+            delView.isHidden = !buttons.contains(where: { $0 == .delete })
         }
     }
 }
@@ -191,7 +206,7 @@ extension BaseHeaderView {
 enum HeaderViewType {
     case single(title: String)
     case multi(title: String, titleColor: UIColor? = UIColor(hexString: "#060606"), rightContents: [RightContentType] = [])
-    case detail(title: String, isShowShare: Bool = false)
+    case detail(title: String, rightContents: [RightContentType] = [])
 }
 
 enum RightContentType {

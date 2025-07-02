@@ -92,6 +92,10 @@ extension BaseViewController: BaseHeaderViewDelegate {
     @objc func actionClose() {
         
     }
+    
+    @objc func actionDelete() {
+        
+    }
 }
 
 extension BaseViewController {
