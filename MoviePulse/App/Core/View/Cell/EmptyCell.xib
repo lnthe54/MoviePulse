@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="23504" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23506"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="EmptyCell" customModule="MoviePulse" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="327" height="432"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="327" height="432"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_empty" translatesAutoresizingMaskIntoConstraints="NO" id="ABz-z2-cV1">
+                        <rect key="frame" x="47" y="24" width="233" height="233"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="233" id="ef8-ng-bj2"/>
+                            <constraint firstAttribute="width" constant="233" id="xaN-3N-Eab"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uav-8E-Pmc">
+                        <rect key="frame" x="24" y="269" width="279" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YYQ-DP-eF6">
+                        <rect key="frame" x="24" y="302" width="279" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6s3-k8-eGs">
+                        <rect key="frame" x="97" y="339" width="133" height="40"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="40" id="ag1-ES-2T6"/>
+                            <constraint firstAttribute="width" constant="133" id="jOb-nh-pYz"/>
+                        </constraints>
+                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                        <state key="normal" title="Button"/>
+                    </button>
+                </subviews>
+            </view>
+            <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <constraints>
+                <constraint firstItem="YYQ-DP-eF6" firstAttribute="leading" secondItem="uav-8E-Pmc" secondAttribute="leading" id="6m8-AZ-F1j"/>
+                <constraint firstItem="YYQ-DP-eF6" firstAttribute="top" secondItem="uav-8E-Pmc" secondAttribute="bottom" constant="12" id="EkS-Y3-Ufa"/>
+                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="6s3-k8-eGs" secondAttribute="bottom" constant="24" id="Qv9-od-Kk2"/>
+                <constraint firstItem="6s3-k8-eGs" firstAttribute="top" secondItem="YYQ-DP-eF6" secondAttribute="bottom" constant="16" id="SzU-Yz-xNw"/>
+                <constraint firstItem="uav-8E-Pmc" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="24" id="WnE-cB-5Ib"/>
+                <constraint firstItem="YYQ-DP-eF6" firstAttribute="trailing" secondItem="uav-8E-Pmc" secondAttribute="trailing" id="ZNq-3x-rnY"/>
+                <constraint firstItem="uav-8E-Pmc" firstAttribute="top" secondItem="ABz-z2-cV1" secondAttribute="bottom" constant="12" id="bN3-WR-bBY"/>
+                <constraint firstItem="6s3-k8-eGs" firstAttribute="centerX" secondItem="ZTg-uK-7eu" secondAttribute="centerX" id="e3I-OT-6C8"/>
+                <constraint firstAttribute="trailing" secondItem="uav-8E-Pmc" secondAttribute="trailing" constant="24" id="f5N-nL-1v0"/>
+                <constraint firstItem="ABz-z2-cV1" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="24" id="fCe-43-BGC"/>
+                <constraint firstItem="ABz-z2-cV1" firstAttribute="centerX" secondItem="ZTg-uK-7eu" secondAttribute="centerX" id="gzd-wK-2NW"/>
+            </constraints>
+            <size key="customSize" width="327" height="432"/>
+            <connections>
+                <outlet property="contentLabel" destination="YYQ-DP-eF6" id="OrN-25-oWd"/>
+                <outlet property="discoverButton" destination="6s3-k8-eGs" id="6wN-Px-MS6"/>
+                <outlet property="titleLabel" destination="uav-8E-Pmc" id="JFJ-gk-HLB"/>
+            </connections>
+            <point key="canvasLocation" x="-81.679389312977094" y="123.23943661971832"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="ic_empty" width="233.33332824707031" height="233"/>
+    </resources>
+</document>

@@ -5,6 +5,7 @@ import RxGesture
 
 enum FavoriteSectionType {
     case list
+    case empty
 }
 
 class FavoriteViewController: BaseViewController {
@@ -115,6 +116,7 @@ class FavoriteViewController: BaseViewController {
         didToMoviesTab()
         
         collectionView.register(ItemHorizontalCell.nib(), forCellWithReuseIdentifier: ItemHorizontalCell.className)
+        collectionView.register(EmptyCell.nib(), forCellWithReuseIdentifier: EmptyCell.className)
         collectionView.backgroundColor = .clear
         collectionView.showsVerticalScrollIndicator = false
         collectionView.showsHorizontalScrollIndicator = false
@@ -161,6 +163,8 @@ extension FavoriteViewController {
             switch section {
             case .list:
                 return AppLayout.itemsSection()
+            case .empty:
+                return AppLayout.fixedSection(height: 300)
             }
         }
         
@@ -170,7 +174,11 @@ extension FavoriteViewController {
     private func getSections() -> [FavoriteSectionType] {
         var sections: [FavoriteSectionType] = []
         
-        sections.append(.list)
+        if items.isEmpty {
+            sections.append(.empty)
+        } else {
+            sections.append(.list)
+        }
         
         return sections
     }
@@ -185,6 +193,8 @@ extension FavoriteViewController: UICollectionViewDataSource {
         switch getSections()[section] {
         case .list:
             return items.count
+        case .empty:
+            return 1
         }
     }
     
@@ -192,12 +202,20 @@ extension FavoriteViewController: UICollectionViewDataSource {
         switch getSections()[indexPath.section] {
         case .list:
             return itemCell(collectionView, cellForItemAt: indexPath)
+        case .empty:
+            return emptyCell(collectionView, cellForItemAt: indexPath)
         }
     }
     
     private func itemCell(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> ItemHorizontalCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ItemHorizontalCell.className, for: indexPath) as! ItemHorizontalCell
         cell.bindData(items[indexPath.row])
+        return cell
+    }
+    
+    private func emptyCell(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> EmptyCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: EmptyCell.className, for: indexPath) as! EmptyCell
+        cell.bindData(title: "Nothing here", message: "Discover exciting movies and start measuring your reactions!")
         return cell
     }
 }
@@ -207,6 +225,7 @@ extension FavoriteViewController: UICollectionViewDelegate {
         switch getSections()[indexPath.section] {
         case .list:
             gotoDetailItemTrigger.onNext(items[indexPath.row])
+        default: break
         }
     }
 }
