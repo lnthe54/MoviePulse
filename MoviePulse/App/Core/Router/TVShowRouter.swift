@@ -22,6 +22,8 @@ enum TVShowRouter: APIConfiguration {
     
     case category
     
+    case trending(page: Int)
+    
     var hostURL: String {
         switch self {
         case .link(_, _, _):
@@ -39,31 +41,34 @@ enum TVShowRouter: APIConfiguration {
     var path: String {
         switch self {
         case .popular:
-            return "tv/popular"
+            return "/tv/popular"
             
         case .topRate:
-            return "tv/top_rated"
+            return "/tv/top_rated"
             
         case .onAir:
-            return "tv/on_the_air"
+            return "/tv/on_the_air"
             
         case .lastest:
-            return "tv/airing_today"
+            return "/tv/airing_today"
             
         case .withCategory, .other:
-            return "discover/tv"
+            return "/discover/tv"
             
         case .detail(let id):
-            return "tv/\(id)"
+            return "/tv/\(id)"
             
         case .seasons(let idTVShow, let index):
-            return "tv/\(idTVShow)/season/\(index)"
+            return "/tv/\(idTVShow)/season/\(index)"
             
         case .link(_, _, _):
             return "/encrypt/series"
             
         case .category:
             return "/genre/tv/list"
+            
+        case .trending:
+            return "/trending/tv/day"
         }
     }
     
@@ -116,6 +121,9 @@ enum TVShowRouter: APIConfiguration {
             
         case .category:
             return getCommonParams()
+            
+        case .trending(let page):
+            return getCommonParams(page: page)
         }
     }
 }

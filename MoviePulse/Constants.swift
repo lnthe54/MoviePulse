@@ -3,7 +3,7 @@ import UIKit
 struct Constants {
     
     static let HEIGHT_NAV: CGFloat = 56
-    static let BOTTOM_TABBAR: CGFloat = 104
+    static let BOTTOM_TABBAR: CGFloat = 100
     static let feels: [String] = ["Excited", "Nostagic", "Tense", "Scared", "Calm", "Emotional", "Melancholic", "Neutral"]
     
     // MARK: - ENCRYPT

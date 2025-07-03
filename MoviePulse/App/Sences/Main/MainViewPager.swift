@@ -58,7 +58,10 @@ extension MainViewPager {
     func createDiscoverTab() {
         discoverNavigationController = UINavigationController()
         let navigator = DefaultDiscoverNavigator(navigationController: discoverNavigationController)
-        let viewModel = DiscoverViewModel()
+        let viewModel = DiscoverViewModel(
+            movieServices: MovieClient(),
+            tvShowServices: TVShowClient()
+        )
         let viewController = DiscoverViewController(navigator: navigator, viewModel: viewModel)
         discoverNavigationController.pushViewController(viewController, animated: true)
     }

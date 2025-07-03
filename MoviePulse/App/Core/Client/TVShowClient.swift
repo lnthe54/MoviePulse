@@ -11,6 +11,7 @@ protocol TVShowServices {
     func getSeasons(idTVShow: Int, index: Any) -> Observable<SeasonInfo>
     func getFM(tvName: String, seasonName: String, episcode: Int) -> Observable<LinkContainer>
     func getDiscover(query: String, page: Int) -> Observable<TVShowContainerInfo>
+    func getTrending(page: Int) -> Observable<TVShowContainerInfo>
 }
 
 class TVShowClient: TVShowServices {
@@ -52,5 +53,9 @@ class TVShowClient: TVShowServices {
     
     func getDiscover(query: String, page: Int) -> Observable<TVShowContainerInfo> {
         APIClient.request(TVShowRouter.other(query: query, page: page))
+    }
+    
+    func getTrending(page: Int) -> Observable<TVShowContainerInfo> {
+        APIClient.request(TVShowRouter.trending(page: page))
     }
 }

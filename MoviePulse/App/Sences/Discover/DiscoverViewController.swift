@@ -2,12 +2,20 @@ import UIKit
 import RxSwift
 import RxCocoa
 
+enum DiscoverSectionType {
+    case popular
+    case trending
+}
+
 class DiscoverViewController: BaseViewController {
 
     // MARK: - Properties
     private var navigator: DiscoverNavigator
     private var viewModel: DiscoverViewModel
     private var tabType: ObjectType = .movie
+    private var discoverData: DiscoverData = .init()
+    
+    private let getDataTrigger = PublishSubject<ObjectType>()
     
     init(navigator: DiscoverNavigator, viewModel: DiscoverViewModel) {
         self.navigator = navigator
@@ -17,6 +25,10 @@ class DiscoverViewController: BaseViewController {
     
     @MainActor required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    private enum Constant {
+        static let numberOfDisplay: Int = 10
     }
     
     // MARK: - IBOutlets
@@ -32,6 +44,7 @@ class DiscoverViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        getDataTrigger.onNext(.movie)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -41,8 +54,35 @@ class DiscoverViewController: BaseViewController {
     }
     
     override func bindViewModel() {
-        let input = DiscoverViewModel.Input()
+        let input = DiscoverViewModel.Input(
+            getDataTrigger: getDataTrigger.asObservable()
+        )
         let output = viewModel.transform(input: input)
+        
+        output.loadingEvent
+            .driveNext { isLoading in
+                if isLoading {
+                    LoadingView.shared.startLoading()
+                } else {
+                    LoadingView.shared.endLoading()
+                }
+            }
+            .disposed(by: disposeBag)
+        
+        output.errorEvent
+            .driveNext { _ in
+                // Do something
+            }
+            .disposed(by: disposeBag)
+        
+        output.getDataEvent
+            .driveNext { [weak self] discoverData in
+                guard let self else { return }
+                
+                self.discoverData = discoverData
+                self.collectionView.reloadData()
+            }
+            .disposed(by: disposeBag)
     }
     
     override func setupViews() {
@@ -70,12 +110,17 @@ class DiscoverViewController: BaseViewController {
         // Default
         didToMoviesTab()
         
+        collectionView.register(TitleHeaderSection.nib(),
+                                forSupplementaryViewOfKind: "Header",
+                                withReuseIdentifier: TitleHeaderSection.className)
+        collectionView.register(ItemHorizontalCell.nib(), forCellWithReuseIdentifier: ItemHorizontalCell.className)
         collectionView.backgroundColor = .clear
         collectionView.showsVerticalScrollIndicator = false
         collectionView.showsHorizontalScrollIndicator = false
-//        collectionView.delegate = self
-//        collectionView.dataSource = self
-//        configureCompositionalLayout()
+        collectionView.delegate = self
+        collectionView.dataSource = self
+        collectionView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: Constants.BOTTOM_TABBAR, right: 0)
+        configureCompositionalLayout()
     }
 }
 
@@ -89,7 +134,7 @@ extension DiscoverViewController {
         tvShowLabel.textColor = UIColor(hexString: "#697081")
         tvShowLabel.font = .outfitFont(ofSize: 14, weight: .light)
         tvIndicatorView.isHidden = true
-//        getDataTrigger.onNext(tabType)
+        getDataTrigger.onNext(tabType)
     }
     
     private func didToTVShowsTab() {
@@ -101,6 +146,105 @@ extension DiscoverViewController {
         movieIndicatorView.isHidden = true
         movieLabel.textColor = UIColor(hexString: "#697081")
         movieLabel.font = .outfitFont(ofSize: 14, weight: .light)
-//        getDataTrigger.onNext(tabType)
+        getDataTrigger.onNext(tabType)
     }
+    
+    private func configureCompositionalLayout() {
+        let layout = UICollectionViewCompositionalLayout { [weak self] (sectionIndex, _) in
+            guard let self = self else { return AppLayout.defaultSection() }
+            let section = self.getSections()[sectionIndex]
+            
+            switch section {
+            case .popular, .trending:
+                return AppLayout.horizontalSection()
+            }
+        }
+        
+        collectionView.setCollectionViewLayout(layout, animated: true)
+    }
+    
+    private func getSections() -> [DiscoverSectionType] {
+        var sections: [DiscoverSectionType] = []
+        
+        if discoverData.populars.isNotEmpty {
+            sections.append(.popular)
+        }
+        
+        if discoverData.trendings.isNotEmpty {
+            sections.append(.trending)
+        }
+        
+        return sections
+    }
+    
+    // MARK: - Bind Cell
+    func collectionView(_ collectionView: UICollectionView,
+                        viewForSupplementaryElementOfKind kind: String,
+                        at indexPath: IndexPath) -> UICollectionReusableView {
+        if kind == "Header" {
+            let sectionType = getSections()[indexPath.section]
+            switch sectionType {
+            case .popular:
+                return titleHeaderSection(
+                    collectionView,
+                    viewForSupplementaryElementOfKind: kind,
+                    indexPath: indexPath,
+                    title: "Most popular povies",
+                    isShowSeeMore: discoverData.populars.count > Constant.numberOfDisplay,
+                    sectionType: sectionType
+                )
+            case .trending:
+                return titleHeaderSection(
+                    collectionView,
+                    viewForSupplementaryElementOfKind: kind,
+                    indexPath: indexPath,
+                    title: "Trending TV shows",
+                    isShowSeeMore: discoverData.trendings.count > Constant.numberOfDisplay,
+                    sectionType: sectionType
+                )
+            default:
+                return UICollectionReusableView()
+            }
+        } else {
+            return UICollectionReusableView()
+        }
+    }
+    
+    private func itemHorizontalCell(
+        _ collectionView: UICollectionView,
+        cellForItemAt indexPath: IndexPath,
+        bindItems items: [InfoObject]
+    ) -> ItemHorizontalCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ItemHorizontalCell.className, for: indexPath) as! ItemHorizontalCell
+        cell.bindData(items[indexPath.row])
+        return cell
+    }
+}
+
+extension DiscoverViewController: UICollectionViewDataSource {
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return getSections().count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        switch getSections()[section] {
+        case .popular:
+            return discoverData.populars.count > Constant.numberOfDisplay ? Constant.numberOfDisplay : discoverData.populars.count
+        case .trending:
+            return discoverData.trendings.count > Constant.numberOfDisplay ? Constant.numberOfDisplay : discoverData.trendings.count
+        }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        switch getSections()[indexPath.section] {
+        case .popular:
+            return itemHorizontalCell(collectionView, cellForItemAt: indexPath, bindItems: discoverData.populars)
+        case .trending:
+            return itemHorizontalCell(collectionView, cellForItemAt: indexPath, bindItems: discoverData.trendings)
+        }
+    }
+}
+
+extension DiscoverViewController: UICollectionViewDelegate {
+    
 }
