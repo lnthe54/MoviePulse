@@ -267,13 +267,19 @@ extension DiscoverViewController: UICollectionViewDataSource {
 
 extension DiscoverViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        var infoObject: InfoObject?
+        
         switch getSections()[indexPath.section] {
         case .popular:
-            gotoDetailItemTrigger.onNext(discoverData.populars[indexPath.row])
+            infoObject = discoverData.populars[indexPath.row]
         case .trending:
-            gotoDetailItemTrigger.onNext(discoverData.trendings[indexPath.row])
+            infoObject = discoverData.trendings[indexPath.row]
         case .onAir:
-            gotoDetailItemTrigger.onNext(discoverData.onAirs[indexPath.row])
+            infoObject = discoverData.onAirs[indexPath.row]
+        }
+        
+        if let infoObject {
+            gotoDetailItemTrigger.onNext(infoObject)
         }
     }
 }
