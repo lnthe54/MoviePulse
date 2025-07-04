@@ -100,9 +100,9 @@ extension DiscoverViewModel {
         return Observable.zip(getTrendingsTrigger, getOnAirTodayTrigger, getCategoriesTrigger)
             .map { (trending, onAir, category) in
                 let trendings = Utils.transformToInfoObject(tvShows: trending.results)
-                let onAirInfo = Utils.transformToInfoObject(tvShows: onAir.results)
+                let onAirs = Utils.transformToInfoObject(tvShows: onAir.results)
                 let categories = category.genres
-                return DiscoverData(trendings: trendings, categories: categories)
+                return DiscoverData(trendings: trendings, onAirs: onAirs, categories: categories)
             }
     }
     
@@ -149,15 +149,19 @@ struct DiscoverData {
     
     let trendings: [InfoObject]
     
+    let onAirs: [InfoObject]
+
     let categories: [CategoryObject]
     
     init(
         populars: [InfoObject] = [],
         trendings: [InfoObject] = [],
+        onAirs: [InfoObject] = [],
         categories: [CategoryObject] = []
     ) {
         self.populars = populars
         self.trendings = trendings
+        self.onAirs = onAirs
         self.categories = categories
     }
 }

@@ -5,6 +5,7 @@ import RxCocoa
 enum DiscoverSectionType {
     case popular
     case trending
+    case onAir
 }
 
 class DiscoverViewController: BaseViewController {
@@ -163,7 +164,7 @@ extension DiscoverViewController {
             let section = self.getSections()[sectionIndex]
             
             switch section {
-            case .popular, .trending:
+            case .popular, .trending, .onAir:
                 return AppLayout.horizontalSection()
             }
         }
@@ -180,6 +181,10 @@ extension DiscoverViewController {
         
         if discoverData.trendings.isNotEmpty {
             sections.append(.trending)
+        }
+        
+        if discoverData.onAirs.isNotEmpty {
+            sections.append(.onAir)
         }
         
         return sections
@@ -208,6 +213,15 @@ extension DiscoverViewController {
                     indexPath: indexPath,
                     title: "Trending TV shows",
                     isShowSeeMore: discoverData.trendings.count > Constant.numberOfDisplay,
+                    sectionType: sectionType
+                )
+            case .onAir:
+                return titleHeaderSection(
+                    collectionView,
+                    viewForSupplementaryElementOfKind: kind,
+                    indexPath: indexPath,
+                    title: "Shows On The Air",
+                    isShowSeeMore: discoverData.onAirs.count > Constant.numberOfDisplay,
                     sectionType: sectionType
                 )
             default:
@@ -240,6 +254,8 @@ extension DiscoverViewController: UICollectionViewDataSource {
             return discoverData.populars.count > Constant.numberOfDisplay ? Constant.numberOfDisplay : discoverData.populars.count
         case .trending:
             return discoverData.trendings.count > Constant.numberOfDisplay ? Constant.numberOfDisplay : discoverData.trendings.count
+        case .onAir:
+            return discoverData.onAirs.count > Constant.numberOfDisplay ? Constant.numberOfDisplay : discoverData.onAirs.count
         }
     }
     
@@ -249,6 +265,8 @@ extension DiscoverViewController: UICollectionViewDataSource {
             return itemHorizontalCell(collectionView, cellForItemAt: indexPath, bindItems: discoverData.populars)
         case .trending:
             return itemHorizontalCell(collectionView, cellForItemAt: indexPath, bindItems: discoverData.trendings)
+        case .onAir:
+            return itemHorizontalCell(collectionView, cellForItemAt: indexPath, bindItems: discoverData.onAirs)
         }
     }
 }
@@ -260,6 +278,8 @@ extension DiscoverViewController: UICollectionViewDelegate {
             gotoDetailItemTrigger.onNext(discoverData.populars[indexPath.row])
         case .trending:
             gotoDetailItemTrigger.onNext(discoverData.trendings[indexPath.row])
+        case .onAir:
+            gotoDetailItemTrigger.onNext(discoverData.onAirs[indexPath.row])
         }
     }
 }
