@@ -16,6 +16,7 @@ class DiscoverViewController: BaseViewController {
     private var discoverData: DiscoverData = .init()
     
     private let getDataTrigger = PublishSubject<ObjectType>()
+    private let gotoDetailItemTrigger = PublishSubject<InfoObject>()
     
     init(navigator: DiscoverNavigator, viewModel: DiscoverViewModel) {
         self.navigator = navigator
@@ -55,7 +56,8 @@ class DiscoverViewController: BaseViewController {
     
     override func bindViewModel() {
         let input = DiscoverViewModel.Input(
-            getDataTrigger: getDataTrigger.asObservable()
+            getDataTrigger: getDataTrigger.asObservable(),
+            gotoDetailItemTrigger: gotoDetailItemTrigger.asObservable()
         )
         let output = viewModel.transform(input: input)
         
@@ -81,6 +83,12 @@ class DiscoverViewController: BaseViewController {
                 
                 self.discoverData = discoverData
                 self.collectionView.reloadData()
+            }
+            .disposed(by: disposeBag)
+        
+        output.gotoDetailItemEvent
+            .driveNext { [weak self] infoDetailObject in
+                self?.navigator.gotoDetailItemViewController(infoDetailObject: infoDetailObject)
             }
             .disposed(by: disposeBag)
     }
@@ -246,5 +254,12 @@ extension DiscoverViewController: UICollectionViewDataSource {
 }
 
 extension DiscoverViewController: UICollectionViewDelegate {
-    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        switch getSections()[indexPath.section] {
+        case .popular:
+            gotoDetailItemTrigger.onNext(discoverData.populars[indexPath.row])
+        case .trending:
+            gotoDetailItemTrigger.onNext(discoverData.trendings[indexPath.row])
+        }
+    }
 }
