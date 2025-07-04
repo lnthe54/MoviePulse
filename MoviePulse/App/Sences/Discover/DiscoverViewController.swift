@@ -194,42 +194,36 @@ extension DiscoverViewController {
     func collectionView(_ collectionView: UICollectionView,
                         viewForSupplementaryElementOfKind kind: String,
                         at indexPath: IndexPath) -> UICollectionReusableView {
-        if kind == "Header" {
-            let sectionType = getSections()[indexPath.section]
-            switch sectionType {
-            case .popular:
-                return titleHeaderSection(
-                    collectionView,
-                    viewForSupplementaryElementOfKind: kind,
-                    indexPath: indexPath,
-                    title: "Most popular povies",
-                    isShowSeeMore: discoverData.populars.count > Constant.numberOfDisplay,
-                    sectionType: sectionType
-                )
-            case .trending:
-                return titleHeaderSection(
-                    collectionView,
-                    viewForSupplementaryElementOfKind: kind,
-                    indexPath: indexPath,
-                    title: "Trending TV shows",
-                    isShowSeeMore: discoverData.trendings.count > Constant.numberOfDisplay,
-                    sectionType: sectionType
-                )
-            case .onAir:
-                return titleHeaderSection(
-                    collectionView,
-                    viewForSupplementaryElementOfKind: kind,
-                    indexPath: indexPath,
-                    title: "Shows On The Air",
-                    isShowSeeMore: discoverData.onAirs.count > Constant.numberOfDisplay,
-                    sectionType: sectionType
-                )
-            default:
-                return UICollectionReusableView()
-            }
-        } else {
+        
+        guard kind == "Header" else {
             return UICollectionReusableView()
         }
+
+        let sectionType = getSections()[indexPath.section]
+        
+        let (title, items): (String, [Any]) = {
+            switch sectionType {
+            case .popular:
+                return ("Most popular movies", discoverData.populars)
+            case .trending:
+                return ("Trending TV shows", discoverData.trendings)
+            case .onAir:
+                return ("Shows On The Air", discoverData.onAirs)
+            default:
+                return ("", [])
+            }
+        }()
+        
+        guard !title.isEmpty else { return UICollectionReusableView() }
+
+        return titleHeaderSection(
+            collectionView,
+            viewForSupplementaryElementOfKind: kind,
+            indexPath: indexPath,
+            title: title,
+            isShowSeeMore: items.count > Constant.numberOfDisplay,
+            sectionType: sectionType
+        )
     }
     
     private func itemHorizontalCell(
