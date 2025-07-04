@@ -58,18 +58,12 @@ extension DiscoverViewModel {
             .trackError(error)
             .trackActivity(loading)
         
-        let getNowPlayingTrigger = movieServices
-            .getMovieNowPlaying(at: 1)
-            .trackError(error)
-            .trackActivity(loading)
-        
-        return Observable.zip(getPopularsTrigger, getTopRatesTrigger, getNowPlayingTrigger)
-            .map { (popular, topRate, now) in
+        return Observable.zip(getPopularsTrigger, getTopRatesTrigger)
+            .map { (popular, topRate) in
                 let populars = Utils.transformToInfoObject(movies: popular.results)
-                let toprateInfo = Utils.transformToInfoObject(movies: topRate.results)
-                let nowInfo = Utils.transformToInfoObject(movies: now.results)
+                let topRates = Utils.transformToInfoObject(movies: topRate.results)
                 let categories = CodableManager.shared.getMovieCategories()
-                return DiscoverData(populars: populars , categories: categories)
+                return DiscoverData(populars: populars, topRates: topRates, categories: categories)
             }
     }
     
@@ -84,7 +78,7 @@ extension DiscoverViewModel {
             .trackError(error)
             .trackActivity(loading)
         
-        let getPopularsTrigger = tvShowServices
+        let getTopratesTrigger = tvShowServices
             .getTVShowsPopular(page: 1)
             .trackError(error)
             .trackActivity(loading)
@@ -97,12 +91,13 @@ extension DiscoverViewModel {
                 CodableManager.shared.saveTVCategories(categoryInfo.genres)
             }
         
-        return Observable.zip(getTrendingsTrigger, getOnAirTodayTrigger, getCategoriesTrigger)
-            .map { (trending, onAir, category) in
+        return Observable.zip(getTrendingsTrigger, getOnAirTodayTrigger, getTopratesTrigger, getCategoriesTrigger)
+            .map { (trending, onAir, toprate, category) in
                 let trendings = Utils.transformToInfoObject(tvShows: trending.results)
                 let onAirs = Utils.transformToInfoObject(tvShows: onAir.results)
+                let topRates = Utils.transformToInfoObject(tvShows: toprate.results)
                 let categories = category.genres
-                return DiscoverData(trendings: trendings, onAirs: onAirs, categories: categories)
+                return DiscoverData(trendings: trendings, onAirs: onAirs, topRates: topRates, categories: categories)
             }
     }
     
@@ -150,6 +145,8 @@ struct DiscoverData {
     let trendings: [InfoObject]
     
     let onAirs: [InfoObject]
+    
+    let topRates: [InfoObject]
 
     let categories: [CategoryObject]
     
@@ -157,11 +154,13 @@ struct DiscoverData {
         populars: [InfoObject] = [],
         trendings: [InfoObject] = [],
         onAirs: [InfoObject] = [],
+        topRates: [InfoObject] = [],
         categories: [CategoryObject] = []
     ) {
         self.populars = populars
         self.trendings = trendings
         self.onAirs = onAirs
+        self.topRates = topRates
         self.categories = categories
     }
 }

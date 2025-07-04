@@ -6,6 +6,7 @@ enum DiscoverSectionType {
     case popular
     case trending
     case onAir
+    case topRate
 }
 
 class DiscoverViewController: BaseViewController {
@@ -164,7 +165,7 @@ extension DiscoverViewController {
             let section = self.getSections()[sectionIndex]
             
             switch section {
-            case .popular, .trending, .onAir:
+            case .popular, .trending, .onAir, .topRate:
                 return AppLayout.horizontalSection()
             }
         }
@@ -185,6 +186,10 @@ extension DiscoverViewController {
         
         if discoverData.onAirs.isNotEmpty {
             sections.append(.onAir)
+        }
+        
+        if discoverData.topRates.isNotEmpty {
+            sections.append(.topRate)
         }
         
         return sections
@@ -250,6 +255,8 @@ extension DiscoverViewController: UICollectionViewDataSource {
             return discoverData.trendings.count > Constant.numberOfDisplay ? Constant.numberOfDisplay : discoverData.trendings.count
         case .onAir:
             return discoverData.onAirs.count > Constant.numberOfDisplay ? Constant.numberOfDisplay : discoverData.onAirs.count
+        case .topRate:
+            return discoverData.topRates.count > Constant.numberOfDisplay ? Constant.numberOfDisplay : discoverData.topRates.count
         }
     }
     
@@ -261,6 +268,8 @@ extension DiscoverViewController: UICollectionViewDataSource {
             return itemHorizontalCell(collectionView, cellForItemAt: indexPath, bindItems: discoverData.trendings)
         case .onAir:
             return itemHorizontalCell(collectionView, cellForItemAt: indexPath, bindItems: discoverData.onAirs)
+        case .topRate:
+            return itemHorizontalCell(collectionView, cellForItemAt: indexPath, bindItems: discoverData.topRates)
         }
     }
 }
@@ -276,6 +285,10 @@ extension DiscoverViewController: UICollectionViewDelegate {
             infoObject = discoverData.trendings[indexPath.row]
         case .onAir:
             infoObject = discoverData.onAirs[indexPath.row]
+        case .topRate:
+            infoObject = discoverData.topRates[indexPath.row]
+        default:
+            break
         }
         
         if let infoObject {
