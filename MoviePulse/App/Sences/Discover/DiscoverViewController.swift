@@ -7,6 +7,7 @@ enum DiscoverSectionType {
     case trending
     case onAir
     case topRate
+    case category
 }
 
 class DiscoverViewController: BaseViewController {
@@ -124,6 +125,7 @@ class DiscoverViewController: BaseViewController {
                                 forSupplementaryViewOfKind: "Header",
                                 withReuseIdentifier: TitleHeaderSection.className)
         collectionView.register(ItemHorizontalCell.nib(), forCellWithReuseIdentifier: ItemHorizontalCell.className)
+        collectionView.register(CategoryHorizontalCell.nib(), forCellWithReuseIdentifier: CategoryHorizontalCell.className)
         collectionView.backgroundColor = .clear
         collectionView.showsVerticalScrollIndicator = false
         collectionView.showsHorizontalScrollIndicator = false
@@ -165,8 +167,12 @@ extension DiscoverViewController {
             let section = self.getSections()[sectionIndex]
             
             switch section {
-            case .popular, .trending, .onAir, .topRate:
+            case .popular, .trending, .onAir:
                 return AppLayout.horizontalSection()
+            case .topRate:
+                return AppLayout.horizontalSection(isShowHeader: false)
+            case .category:
+                return AppLayout.fixedSection(height: 208)
             }
         }
         
@@ -175,6 +181,10 @@ extension DiscoverViewController {
     
     private func getSections() -> [DiscoverSectionType] {
         var sections: [DiscoverSectionType] = []
+        
+        if tabType == .tv && discoverData.categories.isNotEmpty {
+            sections.append(.category)
+        }
         
         if discoverData.populars.isNotEmpty {
             sections.append(.popular)
@@ -190,6 +200,10 @@ extension DiscoverViewController {
         
         if discoverData.topRates.isNotEmpty {
             sections.append(.topRate)
+        }
+        
+        if tabType == .movie && discoverData.categories.isNotEmpty {
+            sections.append(.category)
         }
         
         return sections
@@ -240,6 +254,12 @@ extension DiscoverViewController {
         cell.bindData(items[indexPath.row])
         return cell
     }
+    
+    private func categoryHorizontalCell(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> CategoryHorizontalCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CategoryHorizontalCell.className, for: indexPath) as! CategoryHorizontalCell
+        cell.bindCategories(discoverData.categories, withBackgroundColor: tabType == .movie ? .pimaryColor : (UIColor(hexString: "#FF7300") ?? .clear))
+        return cell
+    }
 }
 
 extension DiscoverViewController: UICollectionViewDataSource {
@@ -257,6 +277,8 @@ extension DiscoverViewController: UICollectionViewDataSource {
             return discoverData.onAirs.count > Constant.numberOfDisplay ? Constant.numberOfDisplay : discoverData.onAirs.count
         case .topRate:
             return discoverData.topRates.count > Constant.numberOfDisplay ? Constant.numberOfDisplay : discoverData.topRates.count
+        case .category:
+            return 1
         }
     }
     
@@ -270,6 +292,8 @@ extension DiscoverViewController: UICollectionViewDataSource {
             return itemHorizontalCell(collectionView, cellForItemAt: indexPath, bindItems: discoverData.onAirs)
         case .topRate:
             return itemHorizontalCell(collectionView, cellForItemAt: indexPath, bindItems: discoverData.topRates)
+        case .category:
+            return categoryHorizontalCell(collectionView, cellForItemAt: indexPath)
         }
     }
 }

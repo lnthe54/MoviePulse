@@ -21,7 +21,7 @@ class AppLayout {
         return section
     }
     
-    static func horizontalSection(width: CGFloat = 179, height: CGFloat = 317) -> NSCollectionLayoutSection {
+    static func horizontalSection(width: CGFloat = 179, height: CGFloat = 317, isShowHeader: Bool = true) -> NSCollectionLayoutSection {
         let itemSize = NSCollectionLayoutSize(
             widthDimension: .fractionalWidth(1),
             heightDimension: .fractionalHeight(1)
@@ -41,16 +41,18 @@ class AppLayout {
         section.contentInsets = NSDirectionalEdgeInsets(top: 10, leading: 16, bottom: 16, trailing: 16)
         section.orthogonalScrollingBehavior = .continuous
         
-        section.boundarySupplementaryItems = [
-            .init(
-                layoutSize: .init(
-                    widthDimension: .fractionalWidth(1),
-                    heightDimension: .absolute(30)
-                ),
-                elementKind: "Header",
-                alignment: .top
-            )
-        ]
+        if isShowHeader {
+            section.boundarySupplementaryItems = [
+                .init(
+                    layoutSize: .init(
+                        widthDimension: .fractionalWidth(1),
+                        heightDimension: .absolute(30)
+                    ),
+                    elementKind: "Header",
+                    alignment: .top
+                )
+            ]
+        }
         
         return section
     }

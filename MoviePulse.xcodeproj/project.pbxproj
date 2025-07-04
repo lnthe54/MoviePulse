@@ -75,6 +75,8 @@
 		B60B7B492E1506E800C69C17 /* DiscoverViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B60B7B482E1506E100C69C17 /* DiscoverViewModel.swift */; };
 		B60B7B4C2E15071F00C69C17 /* DiscoverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B60B7B4A2E15071F00C69C17 /* DiscoverViewController.swift */; };
 		B60B7B4D2E15071F00C69C17 /* DiscoverViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B60B7B4B2E15071F00C69C17 /* DiscoverViewController.xib */; };
+		B60B7B512E17ADE700C69C17 /* CategoryHorizontalCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B60B7B502E17ADE700C69C17 /* CategoryHorizontalCell.xib */; };
+		B60B7B522E17ADE700C69C17 /* CategoryHorizontalCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B60B7B4F2E17ADE700C69C17 /* CategoryHorizontalCell.swift */; };
 		B64976642E0A485D00B5A738 /* Outfit-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B64976602E0A485D00B5A738 /* Outfit-Light.ttf */; };
 		B64976652E0A485D00B5A738 /* Outfit-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B64976612E0A485D00B5A738 /* Outfit-Medium.ttf */; };
 		B64976662E0A485D00B5A738 /* Outfit-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B64976622E0A485D00B5A738 /* Outfit-Regular.ttf */; };
@@ -198,6 +200,8 @@
 		B60B7B482E1506E100C69C17 /* DiscoverViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverViewModel.swift; sourceTree = "<group>"; };
 		B60B7B4A2E15071F00C69C17 /* DiscoverViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverViewController.swift; sourceTree = "<group>"; };
 		B60B7B4B2E15071F00C69C17 /* DiscoverViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DiscoverViewController.xib; sourceTree = "<group>"; };
+		B60B7B4F2E17ADE700C69C17 /* CategoryHorizontalCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryHorizontalCell.swift; sourceTree = "<group>"; };
+		B60B7B502E17ADE700C69C17 /* CategoryHorizontalCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CategoryHorizontalCell.xib; sourceTree = "<group>"; };
 		B64976602E0A485D00B5A738 /* Outfit-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Outfit-Light.ttf"; sourceTree = "<group>"; };
 		B64976612E0A485D00B5A738 /* Outfit-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Outfit-Medium.ttf"; sourceTree = "<group>"; };
 		B64976622E0A485D00B5A738 /* Outfit-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Outfit-Regular.ttf"; sourceTree = "<group>"; };
@@ -431,6 +435,8 @@
 				B64976BD2E13C31500B5A738 /* RateCell.xib */,
 				B64976C02E14D0C800B5A738 /* EmptyCell.swift */,
 				B64976C12E14D0C800B5A738 /* EmptyCell.xib */,
+				B60B7B4F2E17ADE700C69C17 /* CategoryHorizontalCell.swift */,
+				B60B7B502E17ADE700C69C17 /* CategoryHorizontalCell.xib */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -698,6 +704,7 @@
 				9994AC252E12D7FB0084901B /* CommunityCell.xib in Resources */,
 				9989FF092E0FD830007B667C /* BaseHeaderView.xib in Resources */,
 				B64976782E0E31C000B5A738 /* ItemHorizontalCell.xib in Resources */,
+				B60B7B512E17ADE700C69C17 /* CategoryHorizontalCell.xib in Resources */,
 				B64976B82E13B40A00B5A738 /* TagCell.xib in Resources */,
 				9989FEFF2E0F9E3B007B667C /* SingleCell.xib in Resources */,
 				B64976662E0A485D00B5A738 /* Outfit-Regular.ttf in Resources */,
@@ -796,6 +803,7 @@
 				99A5FBCB2E0B0DFF00AA8D59 /* MovieRouter.swift in Sources */,
 				9994AC392E14363F0084901B /* FavoriteViewController.swift in Sources */,
 				994215A32E09AB3700DAA702 /* OnboardingViewController.swift in Sources */,
+				B60B7B522E17ADE700C69C17 /* CategoryHorizontalCell.swift in Sources */,
 				B64976882E1226DD00B5A738 /* ListItemViewController.swift in Sources */,
 				B64976C32E14D0C800B5A738 /* EmptyCell.swift in Sources */,
 				99A5FBDF2E0C553C00AA8D59 /* TVShowModel.swift in Sources */,
