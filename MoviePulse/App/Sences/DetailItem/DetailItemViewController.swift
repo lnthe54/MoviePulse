@@ -391,7 +391,7 @@ extension DetailItemViewController: UICollectionViewDelegate, GenresCellDelegate
     }
     
     func didSelectCategory(item: CategoryObject) {
-        navigator.gotoListItemViewController(sectionType: .category(categoryObject: item))
+        navigator.gotoListItemViewController(sectionType: .category(category: item, objectType: infoDetailObject.type))
     }
 }
 

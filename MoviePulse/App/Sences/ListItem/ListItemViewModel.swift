@@ -3,14 +3,14 @@ import RxCocoa
 
 enum ListSectionType {
     case popular
-    case category(categoryObject: CategoryObject)
+    case category(category: CategoryObject, objectType: ObjectType)
     case others(title: String, items: [InfoObject])
     
     var title: String {
         switch self {
         case .popular:
             return ""
-        case .category(let category):
+        case .category(let category, _):
             return category.name
         case .others(let title, _):
             return title
@@ -28,9 +28,11 @@ class ListItemViewModel: ViewModelType {
     
     // MARK: - Properties
     private var movieServices: MovieServices
+    private var tvShowServices: TVShowServices
     
-    init(movieServices: MovieServices) {
+    init(movieServices: MovieServices, tvShowServices: TVShowServices) {
         self.movieServices = movieServices
+        self.tvShowServices = tvShowServices
     }
     
     func transform(input: Input) -> Output {
@@ -79,12 +81,23 @@ extension ListItemViewModel {
                     .trackError(error)
                     .trackActivity(loading)
                     .map { Utils.transformToInfoObject(movies: $0.results) }
-            case .category(let category):
-                return movieServices
-                    .getMovies(by: category.id, page: page)
-                    .trackError(error)
-                    .trackActivity(loading)
-                    .map { Utils.transformToInfoObject(movies: $0.results) }
+            case .category(let category, let type):
+                switch type {
+                case .movie:
+                    return movieServices
+                        .getMovies(by: category.id, page: page)
+                        .trackError(error)
+                        .trackActivity(loading)
+                        .map { Utils.transformToInfoObject(movies: $0.results) }
+                case .tv:
+                    return tvShowServices
+                        .getTVShowsByCategory(id: category.id, page: page)
+                        .trackError(error)
+                        .trackActivity(loading)
+                        .map { Utils.transformToInfoObject(tvShows: $0.results) }
+                default: return Observable.just([])
+                }
+                
             case .others(_, let items):
                 return Observable.just(items)
             }

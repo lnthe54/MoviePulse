@@ -6,6 +6,7 @@ class CategoryViewController: BaseViewController {
     private var navigator: CategoryNavigator
     private var viewModel: CategoryViewModel
     private var categories: [CategoryObject]
+    private var objectType: ObjectType
     
     // MARK: - IBOutlets
     @IBOutlet private weak var topConstraint: NSLayoutConstraint!
@@ -14,11 +15,13 @@ class CategoryViewController: BaseViewController {
     init(
         navigator: CategoryNavigator,
         viewModel: CategoryViewModel,
-        categories: [CategoryObject]
+        categories: [CategoryObject],
+        objectType: ObjectType
     ) {
         self.navigator = navigator
         self.viewModel = viewModel
         self.categories = categories
+        self.objectType = objectType
         super.init(nibName: Self.className, bundle: nil)
     }
     
@@ -72,6 +75,6 @@ extension CategoryViewController: UICollectionViewDataSource {
 
 extension CategoryViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        navigator.gotoListItemViewController(sectionType: .category(categoryObject: categories[indexPath.row]))
+        navigator.gotoListItemViewController(sectionType: .category(category: categories[indexPath.row], objectType: objectType))
     }
 }

@@ -2,6 +2,8 @@ import UIKit
 
 protocol DiscoverNavigator {
     func gotoDetailItemViewController(infoDetailObject: InfoDetailObject)
+    func gotoListItemViewController(sectionType: ListSectionType)
+    func gotoCategoryViewController(categories: [CategoryObject], objectType: ObjectType)
 }
 
 class DefaultDiscoverNavigator: DiscoverNavigator {
@@ -18,6 +20,29 @@ class DefaultDiscoverNavigator: DiscoverNavigator {
             navigator: navigator,
             viewModel: viewModel,
             infoDetailObject: infoDetailObject
+        )
+        navigationController.pushViewController(viewController, animated: true)
+    }
+    
+    func gotoListItemViewController(sectionType: ListSectionType) {
+        let navigator = DefaultListItemNavigator(navigationController: navigationController)
+        let viewModel = ListItemViewModel(movieServices: MovieClient(), tvShowServices: TVShowClient())
+        let viewController = ListItemViewController(
+            navigator: navigator,
+            viewModel: viewModel,
+            sectionType: sectionType
+        )
+        navigationController.pushViewController(viewController, animated: true)
+    }
+    
+    func gotoCategoryViewController(categories: [CategoryObject], objectType: ObjectType) {
+        let navigator = DefaultCategoryNavigator(navigationController: navigationController)
+        let viewModel = CategoryViewModel()
+        let viewController = CategoryViewController(
+            navigator: navigator,
+            viewModel: viewModel,
+            categories: categories,
+            objectType: objectType
         )
         navigationController.pushViewController(viewController, animated: true)
     }

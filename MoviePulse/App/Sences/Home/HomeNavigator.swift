@@ -17,13 +17,18 @@ class DefaultHomeNavigator: HomeNavigator {
     func gotoCategoryViewController(categories: [CategoryObject]) {
         let navigator = DefaultCategoryNavigator(navigationController: navigationController)
         let viewModel = CategoryViewModel()
-        let viewController = CategoryViewController(navigator: navigator, viewModel: viewModel, categories: categories)
+        let viewController = CategoryViewController(
+            navigator: navigator,
+            viewModel: viewModel,
+            categories: categories,
+            objectType: .movie
+        )
         navigationController.pushViewController(viewController, animated: true)
     }
     
     func gotoListItemViewController(sectionType: ListSectionType) {
         let navigator = DefaultListItemNavigator(navigationController: navigationController)
-        let viewModel = ListItemViewModel(movieServices: MovieClient())
+        let viewModel = ListItemViewModel(movieServices: MovieClient(), tvShowServices: TVShowClient())
         let viewController = ListItemViewController(
             navigator: navigator,
             viewModel: viewModel,

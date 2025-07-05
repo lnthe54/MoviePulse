@@ -57,17 +57,17 @@ class AppLayout {
         return section
     }
     
-    static func categorySection(isShowHeader: Bool = true) -> NSCollectionLayoutSection {
+    static func categorySection(padding: CGFloat = 16, height: CGFloat = 40, isShowHeader: Bool = true) -> NSCollectionLayoutSection {
         let itemSize = NSCollectionLayoutSize(
             widthDimension: .estimated(80),
-            heightDimension: .absolute(40)
+            heightDimension: .absolute(height)
         )
         
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
         
         let groupSize = NSCollectionLayoutSize(
             widthDimension: .fractionalWidth(1.0),
-            heightDimension: .estimated(40)
+            heightDimension: .estimated(height)
         )
         let group = NSCollectionLayoutGroup.horizontal(
             layoutSize: groupSize,
@@ -76,7 +76,7 @@ class AppLayout {
         group.interItemSpacing = .fixed(4)
         
         let section = NSCollectionLayoutSection(group: group)
-        section.contentInsets = NSDirectionalEdgeInsets(top: 16, leading: 16, bottom: 16, trailing: 16)
+        section.contentInsets = NSDirectionalEdgeInsets(top: padding, leading: padding, bottom: padding, trailing: padding)
         section.interGroupSpacing = 4
         
         if isShowHeader {

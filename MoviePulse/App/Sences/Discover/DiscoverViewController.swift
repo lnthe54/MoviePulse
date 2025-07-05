@@ -257,6 +257,7 @@ extension DiscoverViewController {
     
     private func categoryHorizontalCell(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> CategoryHorizontalCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CategoryHorizontalCell.className, for: indexPath) as! CategoryHorizontalCell
+        cell.delegate = self
         cell.bindCategories(discoverData.categories, withBackgroundColor: tabType == .movie ? .pimaryColor : (UIColor(hexString: "#FF7300") ?? .clear))
         return cell
     }
@@ -298,7 +299,7 @@ extension DiscoverViewController: UICollectionViewDataSource {
     }
 }
 
-extension DiscoverViewController: UICollectionViewDelegate {
+extension DiscoverViewController: UICollectionViewDelegate, CategoryHorizontalCellDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         var infoObject: InfoObject?
         
@@ -318,5 +319,13 @@ extension DiscoverViewController: UICollectionViewDelegate {
         if let infoObject {
             gotoDetailItemTrigger.onNext(infoObject)
         }
+    }
+    
+    func didSeeAllCategories() {
+        navigator.gotoCategoryViewController(categories: discoverData.categories, objectType: tabType)
+    }
+    
+    func didSelectedCategory(_ category: CategoryObject) {
+        navigator.gotoListItemViewController(sectionType: .category(category: category, objectType: tabType))
     }
 }

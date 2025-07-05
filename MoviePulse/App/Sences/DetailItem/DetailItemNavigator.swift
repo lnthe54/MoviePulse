@@ -31,7 +31,7 @@ class DefaultDetailItemNavigator: DetailItemNavigator {
     
     func gotoListItemViewController(sectionType: ListSectionType) {
         let navigator = DefaultListItemNavigator(navigationController: navigationController)
-        let viewModel = ListItemViewModel(movieServices: MovieClient())
+        let viewModel = ListItemViewModel(movieServices: MovieClient(), tvShowServices: TVShowClient())
         let viewController = ListItemViewController(
             navigator: navigator,
             viewModel: viewModel,
