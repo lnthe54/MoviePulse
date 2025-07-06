@@ -3,12 +3,15 @@ import RxCocoa
 
 enum ListSectionType {
     case popular
+    case topRate(objectType: ObjectType)
     case category(category: CategoryObject, objectType: ObjectType)
     case others(title: String, items: [InfoObject])
     
     var title: String {
         switch self {
         case .popular:
+            return ""
+        case .topRate:
             return ""
         case .category(let category, _):
             return category.name
@@ -81,6 +84,22 @@ extension ListItemViewModel {
                     .trackError(error)
                     .trackActivity(loading)
                     .map { Utils.transformToInfoObject(movies: $0.results) }
+            case .topRate(let type):
+                switch type {
+                case .movie:
+                    return movieServices
+                        .getMovieTopRate(at: page)
+                        .trackError(error)
+                        .trackActivity(loading)
+                        .map { Utils.transformToInfoObject(movies: $0.results) }
+                case .tv:
+                    return tvShowServices
+                        .getTVShowsTopRate(page: page)
+                        .trackError(error)
+                        .trackActivity(loading)
+                        .map { Utils.transformToInfoObject(tvShows: $0.results) }
+                default: return Observable.just([])
+                }
             case .category(let category, let type):
                 switch type {
                 case .movie:

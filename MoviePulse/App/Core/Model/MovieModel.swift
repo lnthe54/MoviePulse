@@ -226,6 +226,19 @@ struct InfoObject: Codable {
     let vote: Double?
     let department: String?
     let type: ObjectType?
+    
+    static func initSeeAllObject(title: String, path: String) -> InfoObject {
+        return InfoObject(
+            id: 0,
+            name: title,
+            path: path,
+            releaseDate: "",
+            categories: [],
+            vote: 0.0,
+            department: "",
+            type: nil
+        )
+    }
 }
 
 class InfoDetailObject: Codable {

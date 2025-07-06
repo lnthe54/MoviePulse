@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		99169CD62E1A3499005B8947 /* SeeAllCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 99169CD52E1A3499005B8947 /* SeeAllCell.xib */; };
+		99169CD72E1A3499005B8947 /* SeeAllCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99169CD42E1A3499005B8947 /* SeeAllCell.swift */; };
 		994215832E09A76100DAA702 /* APIResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9942157E2E09A76100DAA702 /* APIResponse.swift */; };
 		994215842E09A76100DAA702 /* APIConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9942157D2E09A76100DAA702 /* APIConfiguration.swift */; };
 		994215862E09A76100DAA702 /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9942157C2E09A76100DAA702 /* APIClient.swift */; };
@@ -130,6 +132,8 @@
 		1B9513AA2B0C7F6EE95C7407 /* Pods-MoviePulse.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MoviePulse.debug.xcconfig"; path = "Target Support Files/Pods-MoviePulse/Pods-MoviePulse.debug.xcconfig"; sourceTree = "<group>"; };
 		6FE89CAF7D42BA5C2A8B20C3 /* Pods-MoviePulse.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MoviePulse.release.xcconfig"; path = "Target Support Files/Pods-MoviePulse/Pods-MoviePulse.release.xcconfig"; sourceTree = "<group>"; };
 		82CD434E65B60866758DB3F7 /* Pods_MoviePulse.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MoviePulse.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		99169CD42E1A3499005B8947 /* SeeAllCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeeAllCell.swift; sourceTree = "<group>"; };
+		99169CD52E1A3499005B8947 /* SeeAllCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SeeAllCell.xib; sourceTree = "<group>"; };
 		9942157C2E09A76100DAA702 /* APIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
 		9942157D2E09A76100DAA702 /* APIConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIConfiguration.swift; sourceTree = "<group>"; };
 		9942157E2E09A76100DAA702 /* APIResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIResponse.swift; sourceTree = "<group>"; };
@@ -437,6 +441,8 @@
 				B64976C12E14D0C800B5A738 /* EmptyCell.xib */,
 				B60B7B4F2E17ADE700C69C17 /* CategoryHorizontalCell.swift */,
 				B60B7B502E17ADE700C69C17 /* CategoryHorizontalCell.xib */,
+				99169CD42E1A3499005B8947 /* SeeAllCell.swift */,
+				99169CD52E1A3499005B8947 /* SeeAllCell.xib */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -719,6 +725,7 @@
 				B64976672E0A485D00B5A738 /* Outfit-SemiBold.ttf in Resources */,
 				9989FF102E0FDA31007B667C /* CategoryViewController.xib in Resources */,
 				9994AC212E12D5050084901B /* PulseTestCell.xib in Resources */,
+				99169CD62E1A3499005B8947 /* SeeAllCell.xib in Resources */,
 				997FBC922E09A05D0065979E /* Assets.xcassets in Resources */,
 				9989FEFB2E0F9B40007B667C /* CategoryCell.xib in Resources */,
 				B64976A32E12636E00B5A738 /* OverviewDetailItemCell.xib in Resources */,
@@ -816,6 +823,7 @@
 				994215A72E09ABE000DAA702 /* BaseViewController.swift in Sources */,
 				9989FF172E112499007B667C /* PulseCell.swift in Sources */,
 				99A5FBC22E0AF3C200AA8D59 /* HomeNavigator.swift in Sources */,
+				99169CD72E1A3499005B8947 /* SeeAllCell.swift in Sources */,
 				9989FF132E0FDB58007B667C /* Notification+Extension.swift in Sources */,
 				994215862E09A76100DAA702 /* APIClient.swift in Sources */,
 				99A5FBDB2E0C54C000AA8D59 /* MovieModel.swift in Sources */,

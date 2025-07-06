@@ -17,6 +17,7 @@ class DiscoverViewController: BaseViewController {
     private var viewModel: DiscoverViewModel
     private var tabType: ObjectType = .movie
     private var discoverData: DiscoverData = .init()
+    private var topRates: [InfoObject] = []
     
     private let getDataTrigger = PublishSubject<ObjectType>()
     private let gotoDetailItemTrigger = PublishSubject<InfoObject>()
@@ -84,7 +85,14 @@ class DiscoverViewController: BaseViewController {
             .driveNext { [weak self] discoverData in
                 guard let self else { return }
                 
+                topRates.removeAll()
                 self.discoverData = discoverData
+                
+                if discoverData.topRates.count > Constant.numberOfDisplay {
+                    topRates.insert(getSeeAllObject(), at: 0)
+                    topRates.append(contentsOf: discoverData.topRates)
+                }
+                
                 self.collectionView.reloadData()
             }
             .disposed(by: disposeBag)
@@ -126,6 +134,7 @@ class DiscoverViewController: BaseViewController {
                                 withReuseIdentifier: TitleHeaderSection.className)
         collectionView.register(ItemHorizontalCell.nib(), forCellWithReuseIdentifier: ItemHorizontalCell.className)
         collectionView.register(CategoryHorizontalCell.nib(), forCellWithReuseIdentifier: CategoryHorizontalCell.className)
+        collectionView.register(SeeAllCell.nib(), forCellWithReuseIdentifier: SeeAllCell.className)
         collectionView.backgroundColor = .clear
         collectionView.showsVerticalScrollIndicator = false
         collectionView.showsHorizontalScrollIndicator = false
@@ -198,7 +207,7 @@ extension DiscoverViewController {
             sections.append(.onAir)
         }
         
-        if discoverData.topRates.isNotEmpty {
+        if topRates.count > 1 {
             sections.append(.topRate)
         }
         
@@ -207,6 +216,12 @@ extension DiscoverViewController {
         }
         
         return sections
+    }
+    
+    private func getSeeAllObject() -> InfoObject {
+        let title: String = tabType == .movie ? "Top movies that raise your heart" : "Tension you can feel"
+        let path: String = tabType == .movie ? "ic_see_all_movie" : "ic_see_all_tv"
+        return .initSeeAllObject(title: title, path: path)
     }
     
     // MARK: - Bind Cell
@@ -261,6 +276,17 @@ extension DiscoverViewController {
         cell.bindCategories(discoverData.categories, withBackgroundColor: tabType == .movie ? .pimaryColor : (UIColor(hexString: "#FF7300") ?? .clear))
         return cell
     }
+    
+    private func seeAllCell(
+        _ collectionView: UICollectionView,
+        cellForItemAtL indexPath: IndexPath,
+        bindData data: InfoObject
+    ) -> SeeAllCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SeeAllCell.className, for: indexPath) as! SeeAllCell
+        cell.delegate = self
+        cell.bindData(data)
+        return cell
+    }
 }
 
 extension DiscoverViewController: UICollectionViewDataSource {
@@ -277,7 +303,7 @@ extension DiscoverViewController: UICollectionViewDataSource {
         case .onAir:
             return discoverData.onAirs.count > Constant.numberOfDisplay ? Constant.numberOfDisplay : discoverData.onAirs.count
         case .topRate:
-            return discoverData.topRates.count > Constant.numberOfDisplay ? Constant.numberOfDisplay : discoverData.topRates.count
+            return topRates.count > Constant.numberOfDisplay ? Constant.numberOfDisplay : topRates.count
         case .category:
             return 1
         }
@@ -292,14 +318,20 @@ extension DiscoverViewController: UICollectionViewDataSource {
         case .onAir:
             return itemHorizontalCell(collectionView, cellForItemAt: indexPath, bindItems: discoverData.onAirs)
         case .topRate:
-            return itemHorizontalCell(collectionView, cellForItemAt: indexPath, bindItems: discoverData.topRates)
+            if topRates.count > Constant.numberOfDisplay
+                && indexPath.row == 0
+            {
+                return seeAllCell(collectionView, cellForItemAtL: indexPath, bindData: topRates[0])
+            } else {
+                return itemHorizontalCell(collectionView, cellForItemAt: indexPath, bindItems: topRates)
+            }
         case .category:
             return categoryHorizontalCell(collectionView, cellForItemAt: indexPath)
         }
     }
 }
 
-extension DiscoverViewController: UICollectionViewDelegate, CategoryHorizontalCellDelegate {
+extension DiscoverViewController: UICollectionViewDelegate, CategoryHorizontalCellDelegate, SeeAllCellDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         var infoObject: InfoObject?
         
@@ -311,7 +343,9 @@ extension DiscoverViewController: UICollectionViewDelegate, CategoryHorizontalCe
         case .onAir:
             infoObject = discoverData.onAirs[indexPath.row]
         case .topRate:
-            infoObject = discoverData.topRates[indexPath.row]
+            let info = topRates[indexPath.row]
+            if info.id == 0 { break }
+            infoObject = info
         default:
             break
         }
@@ -327,5 +361,9 @@ extension DiscoverViewController: UICollectionViewDelegate, CategoryHorizontalCe
     
     func didSelectedCategory(_ category: CategoryObject) {
         navigator.gotoListItemViewController(sectionType: .category(category: category, objectType: tabType))
+    }
+    
+    func didSeeAll() {
+        navigator.gotoListItemViewController(sectionType: .topRate(objectType: tabType))
     }
 }
