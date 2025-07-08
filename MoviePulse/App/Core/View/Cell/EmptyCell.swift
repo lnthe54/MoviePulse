@@ -35,8 +35,9 @@ class EmptyCell: UICollectionViewCell {
         discoverButton.titleLabel?.font = .outfitFont(ofSize: 14, weight: .semiBold)
     }
     
-    func bindData(title: String, message: String) {
+    func bindData(title: String, message: String, isHideButton: Bool = false) {
         titleLabel.text = title
         contentLabel.text = message
+        discoverButton.isHidden = isHideButton
     }
 }

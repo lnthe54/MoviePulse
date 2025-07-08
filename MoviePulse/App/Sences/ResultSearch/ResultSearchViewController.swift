@@ -114,6 +114,7 @@ class ResultSearchViewController: BaseViewController {
         searchTf.textColor = .blackColor
         searchTf.tintColor = .pimaryColor
         searchTf.returnKeyType = .search
+        searchTf.delegate = self
         
         movieView.rx.tapGesture().when(.recognized)
             .subscribe(onNext: { [weak self] _ in
@@ -203,6 +204,26 @@ extension ResultSearchViewController {
     }
 }
 
+extension ResultSearchViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        guard let keySearch = textField.text else {
+            textField.resignFirstResponder()
+            return true
+        }
+        
+        guard !keySearch.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty else {
+            textField.resignFirstResponder()
+            return true
+        }
+        
+        CodableManager.shared.saveKeySearch(keySearch)
+        getDataTrigger.onNext(keySearch)
+        
+        textField.resignFirstResponder()
+        return true
+    }
+}
+
 extension ResultSearchViewController: UICollectionViewDataSource {
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return getSections().count
@@ -235,7 +256,7 @@ extension ResultSearchViewController: UICollectionViewDataSource {
     
     private func emptyCell(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> EmptyCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: EmptyCell.className, for: indexPath) as! EmptyCell
-        cell.bindData(title: "Nothing here", message: "Please try with another keyword")
+        cell.bindData(title: "Nothing here", message: "Please try with another keyword", isHideButton: true)
         return cell
     }
 }
