@@ -5,6 +5,7 @@ protocol HomeNavigator {
     func gotoListItemViewController(sectionType: ListSectionType)
     func gotoDetailItemViewController(infoDetailObject: InfoDetailObject)
     func gotoFavoriteViewController()
+    func gotoSearchViewController()
 }
 
 class DefaultHomeNavigator: HomeNavigator {
@@ -52,6 +53,13 @@ class DefaultHomeNavigator: HomeNavigator {
         let navigator = DefaultFavoriteNavigator(navigationController: navigationController)
         let viewModel = FavoriteViewModel(movieServices: MovieClient())
         let viewController = FavoriteViewController(navigator: navigator, viewModel: viewModel)
+        navigationController.pushViewController(viewController, animated: true)
+    }
+    
+    func gotoSearchViewController() {
+        let navigator = DefaultSearchNavigator(navigationController: navigationController)
+        let viewModel = SearchViewModel()
+        let viewController = SearchViewController(navigator: navigator, viewModel: viewModel)
         navigationController.pushViewController(viewController, animated: true)
     }
 }

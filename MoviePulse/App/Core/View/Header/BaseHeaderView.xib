@@ -59,9 +59,6 @@
                                                     </constraints>
                                                     <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                     <state key="normal" image="ic_search_header"/>
-                                                    <connections>
-                                                        <action selector="didToSearch" destination="iN0-l3-epB" eventType="touchUpInside" id="ZEe-YM-4CI"/>
-                                                    </connections>
                                                 </button>
                                             </subviews>
                                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>

@@ -93,7 +93,8 @@ class BaseHeaderView: UIView {
     }
     
     // MARK: - IBActions
-    @IBAction func didToSearch() {
+    @objc
+    private func didToSearch() {
         delegate?.actionSearch()
     }
     
@@ -153,6 +154,9 @@ extension BaseHeaderView {
         
         searchView.corner(4)
         searchView.backgroundColor = .pimaryColor
+        let tapToSearch = UITapGestureRecognizer(target: self, action: #selector(didToSearch))
+        searchView.isUserInteractionEnabled = true
+        searchView.addGestureRecognizer(tapToSearch)
     }
     
     private func setupDetailView(title: String, buttons: [RightContentType]) {
