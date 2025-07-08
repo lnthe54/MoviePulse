@@ -139,6 +139,8 @@
 		B6BBBCB52E1CCBFF006D1D6F /* SearchClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6BBBCB42E1CCBFC006D1D6F /* SearchClient.swift */; };
 		B6BBBCB82E1CD14A006D1D6F /* RecentHeaderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B6BBBCB72E1CD14A006D1D6F /* RecentHeaderCell.xib */; };
 		B6BBBCB92E1CD14A006D1D6F /* RecentHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6BBBCB62E1CD14A006D1D6F /* RecentHeaderCell.swift */; };
+		B6BBBCBD2E1CEBDC006D1D6F /* SeasonCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B6BBBCBC2E1CEBDC006D1D6F /* SeasonCell.xib */; };
+		B6BBBCBE2E1CEBDC006D1D6F /* SeasonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6BBBCBB2E1CEBDC006D1D6F /* SeasonCell.swift */; };
 		D9632ADD155F4F54C1D8CF29 /* Pods_MoviePulse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 82CD434E65B60866758DB3F7 /* Pods_MoviePulse.framework */; };
 /* End PBXBuildFile section */
 
@@ -280,6 +282,8 @@
 		B6BBBCB42E1CCBFC006D1D6F /* SearchClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchClient.swift; sourceTree = "<group>"; };
 		B6BBBCB62E1CD14A006D1D6F /* RecentHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentHeaderCell.swift; sourceTree = "<group>"; };
 		B6BBBCB72E1CD14A006D1D6F /* RecentHeaderCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RecentHeaderCell.xib; sourceTree = "<group>"; };
+		B6BBBCBB2E1CEBDC006D1D6F /* SeasonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeasonCell.swift; sourceTree = "<group>"; };
+		B6BBBCBC2E1CEBDC006D1D6F /* SeasonCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SeasonCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -473,6 +477,8 @@
 				B60B7B502E17ADE700C69C17 /* CategoryHorizontalCell.xib */,
 				99169CD42E1A3499005B8947 /* SeeAllCell.swift */,
 				99169CD52E1A3499005B8947 /* SeeAllCell.xib */,
+				B6BBBCBB2E1CEBDC006D1D6F /* SeasonCell.swift */,
+				B6BBBCBC2E1CEBDC006D1D6F /* SeasonCell.xib */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -775,6 +781,7 @@
 				B64976652E0A485D00B5A738 /* Outfit-Medium.ttf in Resources */,
 				9994AC252E12D7FB0084901B /* CommunityCell.xib in Resources */,
 				9989FF092E0FD830007B667C /* BaseHeaderView.xib in Resources */,
+				B6BBBCBD2E1CEBDC006D1D6F /* SeasonCell.xib in Resources */,
 				B64976782E0E31C000B5A738 /* ItemHorizontalCell.xib in Resources */,
 				B60B7B512E17ADE700C69C17 /* CategoryHorizontalCell.xib in Resources */,
 				B64976B82E13B40A00B5A738 /* TagCell.xib in Resources */,
@@ -869,6 +876,7 @@
 				9989FEFE2E0F9E3B007B667C /* SingleCell.swift in Sources */,
 				997FBC8F2E09A05D0065979E /* AppDelegate.swift in Sources */,
 				9994AC2D2E12EDEA0084901B /* FeelCell.swift in Sources */,
+				B6BBBCBE2E1CEBDC006D1D6F /* SeasonCell.swift in Sources */,
 				B6BBBC9D2E1CACB7006D1D6F /* SearchNavigator.swift in Sources */,
 				9989FF0B2E0FD8D1007B667C /* Then.swift in Sources */,
 				B60B7B472E1506BC00C69C17 /* DiscoverNavigator.swift in Sources */,

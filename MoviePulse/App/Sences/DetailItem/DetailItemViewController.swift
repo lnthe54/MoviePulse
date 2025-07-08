@@ -12,6 +12,7 @@ enum DetailItemSectionType {
     case photo
     case related
     case review
+    case season
 }
 
 class DetailItemViewController: BaseViewController {
@@ -120,6 +121,7 @@ class DetailItemViewController: BaseViewController {
         collectionView.register(CommunityCell.nib(), forCellWithReuseIdentifier: CommunityCell.className)
         collectionView.register(GenresCell.nib(), forCellWithReuseIdentifier: GenresCell.className)
         collectionView.register(ReviewCell.nib(), forCellWithReuseIdentifier: ReviewCell.className)
+        collectionView.register(SeasonCell.nib(), forCellWithReuseIdentifier: SeasonCell.className)
         collectionView.backgroundColor = .clear
         collectionView.showsHorizontalScrollIndicator = false
         collectionView.showsVerticalScrollIndicator = false
@@ -153,6 +155,8 @@ extension DetailItemViewController {
                 return AppLayout.horizontalSection()
             case .review:
                 return AppLayout.horizontalSection(width: 258, height: 156)
+            case .season:
+                return AppLayout.horizontalSection(width: 320, height: 124)
             }
         }
         
@@ -178,6 +182,10 @@ extension DetailItemViewController {
         
         if infoDetailObject.images.isNotEmpty {
             sections.append(.photo)
+        }
+        
+        if infoDetailObject.seasons.isNotEmpty {
+            sections.append(.season)
         }
         
         if infoDetailObject.recommendations.isNotEmpty {
@@ -246,6 +254,8 @@ extension DetailItemViewController: UICollectionViewDataSource {
             return infoDetailObject.recommendations.count > Constant.maxDisplayItems ? Constant.maxDisplayItems : infoDetailObject.recommendations.count
         case .review:
             return reviews.count > Constant.maxDisplayItems ? Constant.maxDisplayItems : reviews.count
+        case .season:
+            return infoDetailObject.seasons.count > Constant.maxDisplayItems ? Constant.maxDisplayItems : infoDetailObject.seasons.count
         }
     }
     
@@ -267,48 +277,45 @@ extension DetailItemViewController: UICollectionViewDataSource {
             return itemCell(collectionView, cellForItemAt: indexPath)
         case .review:
             return reviewCell(collectionView, cellForItemAt: indexPath)
+        case .season:
+            return seasonCell(collectionView, cellForItemAt: indexPath)
         }
     }
     
     func collectionView(_ collectionView: UICollectionView,
                         viewForSupplementaryElementOfKind kind: String,
                         at indexPath: IndexPath) -> UICollectionReusableView {
-        if kind == "Header" {
-            let sectionType = getSections()[indexPath.section]
-            switch sectionType {
-            case .related:
-                return titleHeaderSection(
-                    collectionView,
-                    viewForSupplementaryElementOfKind: kind,
-                    indexPath: indexPath,
-                    title: infoDetailObject.type == .movie ? "Related movies" : "Related tv shows",
-                    isShowSeeMore: infoDetailObject.recommendations.count > Constant.maxDisplayItems,
-                    sectionType: sectionType
-                )
-            case .photo:
-                return titleHeaderSection(
-                    collectionView,
-                    viewForSupplementaryElementOfKind: kind,
-                    indexPath: indexPath,
-                    title: "Gallery",
-                    isShowSeeMore: false,
-                    sectionType: sectionType
-                )
-            case .review:
-                return titleHeaderSection(
-                    collectionView,
-                    viewForSupplementaryElementOfKind: kind,
-                    indexPath: indexPath,
-                    title: "Ratings & reviews",
-                    isShowSeeMore: reviews.count > Constant.maxDisplayItems,
-                    sectionType: sectionType
-                )
-            default:
-                return UICollectionReusableView()
-            }
-        } else {
+        guard kind == "Header" else {
             return UICollectionReusableView()
         }
+
+        let sectionType = getSections()[indexPath.section]
+        
+        let (title, items): (String, [Any]) = {
+            switch sectionType {
+            case .related:
+                return (infoDetailObject.type == .movie ? "Related movies" : "Related tv shows", infoDetailObject.recommendations)
+            case .photo:
+                return ("Gallery", [])
+            case .review:
+                return ("Ratings & reviews", reviews)
+            case .season:
+                return ("List seasons", infoDetailObject.seasons)
+            default:
+                return ("", [])
+            }
+        }()
+        
+        guard !title.isEmpty else { return UICollectionReusableView() }
+
+        return titleHeaderSection(
+            collectionView,
+            viewForSupplementaryElementOfKind: kind,
+            indexPath: indexPath,
+            title: title,
+            isShowSeeMore: items.count > Constant.maxDisplayItems,
+            sectionType: sectionType
+        )
     }
     
     private func infoCell(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> InfoDetailItemCell {
@@ -363,6 +370,12 @@ extension DetailItemViewController: UICollectionViewDataSource {
     private func reviewCell(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> ReviewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ReviewCell.className, for: indexPath) as! ReviewCell
         cell.bindData(review: reviews[indexPath.row])
+        return cell
+    }
+    
+    private func seasonCell(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> SeasonCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SeasonCell.className, for: indexPath) as! SeasonCell
+        cell.bindData(infoDetailObject.seasons[indexPath.row])
         return cell
     }
 }
