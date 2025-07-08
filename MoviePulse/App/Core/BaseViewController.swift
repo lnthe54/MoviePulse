@@ -1,6 +1,10 @@
 import UIKit
 import RxSwift
 
+protocol BaseNavigator {
+    func popToViewController()
+}
+
 class BaseViewController: UIViewController {
     
     // MARK: - Properties

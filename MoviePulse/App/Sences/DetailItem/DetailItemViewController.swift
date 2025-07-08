@@ -67,7 +67,7 @@ class DetailItemViewController: BaseViewController {
     }
     
     override func actionBack() {
-        navigator.popViewController()
+        navigator.popToViewController()
     }
     
     override func bindViewModel() {
@@ -399,6 +399,8 @@ extension DetailItemViewController: UICollectionViewDelegate, GenresCellDelegate
         switch sectionType {
         case .related:
             navigator.gotoListItemViewController(sectionType: .others(title: "Related movies", items: infoDetailObject.recommendations))
+        case .season:
+            navigator.gotoSeasonViewController(seasons: infoDetailObject.seasons)
         default: break
         }
     }

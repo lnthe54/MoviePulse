@@ -110,6 +110,13 @@ class ResultSearchViewController: BaseViewController {
         searchView.backgroundColor = .white
         searchView.corner(8)
         
+        searchTf.attributedPlaceholder = NSAttributedString(
+            string: "Search any movies or shows",
+            attributes: [
+                .foregroundColor: UIColor(hexString: "#697081") ?? .clear
+            ]
+        )
+        
         searchTf.text = key
         searchTf.textColor = .blackColor
         searchTf.tintColor = .pimaryColor

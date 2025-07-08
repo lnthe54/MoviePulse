@@ -57,7 +57,7 @@ class CategoryViewController: BaseViewController {
     }
     
     override func actionBack() {
-        navigator.popViewController()
+        navigator.popToViewController()
     }
 }
 

@@ -1,7 +1,6 @@
 import UIKit
 
-protocol SearchNavigator {
-    func popToViewController()
+protocol SearchNavigator: BaseNavigator {
     func gotoResultSearchViewController(key: String)
 }
 

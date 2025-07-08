@@ -129,7 +129,7 @@ class FavoriteViewController: BaseViewController {
     }
     
     override func actionBack() {
-        navigator.popViewController()
+        navigator.popToViewController()
     }
 }
 

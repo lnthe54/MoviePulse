@@ -110,7 +110,7 @@ class ListItemViewController: BaseViewController {
     }
     
     override func actionBack() {
-        navigator.popViewController()
+        navigator.popToViewController()
     }
 }
 

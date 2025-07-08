@@ -1,7 +1,6 @@
 import UIKit
 
-protocol FavoriteNavigator {
-    func popViewController()
+protocol FavoriteNavigator: BaseNavigator {
     func gotoDetailItemViewController(infoDetailObject: InfoDetailObject)
 }
 
@@ -12,7 +11,7 @@ class DefaultFavoriteNavigator: FavoriteNavigator {
         self.navigationController = navigationController
     }
     
-    func popViewController() {
+    func popToViewController() {
         navigationController.popViewController(animated: true)
     }
     

@@ -1,7 +1,6 @@
 import UIKit
 
-protocol ListItemNavigator {
-    func popViewController()
+protocol ListItemNavigator: BaseNavigator {
     func gotoDetailItemViewController(infoDetailObject: InfoDetailObject)
 }
 
@@ -12,7 +11,7 @@ class DefaultListItemNavigator: ListItemNavigator {
         self.navigationController = navigationController
     }
     
-    func popViewController() {
+    func popToViewController() {
         navigationController.popViewController(animated: true)
     }
     

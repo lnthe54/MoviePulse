@@ -1,10 +1,10 @@
 import UIKit
 
-protocol DetailItemNavigator {
-   func popViewController()
+protocol DetailItemNavigator: BaseNavigator {
     func gotoDetailItemViewController(infoDetailObject: InfoDetailObject)
     func gotoListItemViewController(sectionType: ListSectionType)
     func gotoImagesViewController(images: [BackdropObject], selectedIndex: Int)
+    func gotoSeasonViewController(seasons: [SeasonObject])
 }
 
 class DefaultDetailItemNavigator: DetailItemNavigator {
@@ -14,7 +14,7 @@ class DefaultDetailItemNavigator: DetailItemNavigator {
         self.navigationController = navigationController
     }
     
-    func popViewController() {
+    func popToViewController() {
         navigationController.popViewController(animated: true)
     }
     
@@ -44,6 +44,17 @@ class DefaultDetailItemNavigator: DetailItemNavigator {
         let viewController = ImagesViewController(images: images, selectedIndex: selectedIndex)
         viewController.modalPresentationStyle = .fullScreen
         navigationController.present(viewController, animated: true)
+    }
+    
+    func gotoSeasonViewController(seasons: [SeasonObject]) {
+        let navigator = DefaultSeasonNavigator(navigationController: navigationController)
+        let viewModel = SeasonViewModel()
+        let viewController = SeasonViewController(
+            navigator: navigator,
+            viewModel: viewModel,
+            seasons: seasons
+        )
+        navigationController.pushViewController(viewController, animated: true)
     }
 }
 

@@ -1,7 +1,6 @@
 import UIKit
 
-protocol CategoryNavigator {
-    func popViewController()
+protocol CategoryNavigator: BaseNavigator {
     func gotoListItemViewController(sectionType: ListSectionType)
 }
 
@@ -12,7 +11,7 @@ class DefaultCategoryNavigator: CategoryNavigator {
         self.navigationController = navigationController
     }
     
-    func popViewController() {
+    func popToViewController() {
         navigationController.popViewController(animated: true)
     }
     

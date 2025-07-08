@@ -47,18 +47,27 @@
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BIz-vE-SKk">
                             <rect key="frame" x="74" y="11" width="303" height="40"/>
                             <subviews>
+                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_search_black" translatesAutoresizingMaskIntoConstraints="NO" id="2zJ-XW-yb4">
+                                    <rect key="frame" x="6" y="8" width="24" height="24"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="24" id="3y7-Kf-pul"/>
+                                        <constraint firstAttribute="height" constant="24" id="hIo-yg-S8E"/>
+                                    </constraints>
+                                </imageView>
                                 <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0Iw-yj-pIZ">
-                                    <rect key="frame" x="6" y="4" width="291" height="32"/>
+                                    <rect key="frame" x="36" y="4" width="261" height="32"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                     <textInputTraits key="textInputTraits"/>
                                 </textField>
                             </subviews>
                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             <constraints>
+                                <constraint firstItem="2zJ-XW-yb4" firstAttribute="leading" secondItem="BIz-vE-SKk" secondAttribute="leading" constant="6" id="1km-Hb-QEE"/>
                                 <constraint firstAttribute="bottom" secondItem="0Iw-yj-pIZ" secondAttribute="bottom" constant="4" id="HkS-E7-sQa"/>
                                 <constraint firstAttribute="trailing" secondItem="0Iw-yj-pIZ" secondAttribute="trailing" constant="6" id="LUw-LO-QVL"/>
-                                <constraint firstItem="0Iw-yj-pIZ" firstAttribute="leading" secondItem="BIz-vE-SKk" secondAttribute="leading" constant="6" id="T8G-ho-ihm"/>
+                                <constraint firstItem="0Iw-yj-pIZ" firstAttribute="leading" secondItem="2zJ-XW-yb4" secondAttribute="trailing" constant="6" id="T8G-ho-ihm"/>
                                 <constraint firstItem="0Iw-yj-pIZ" firstAttribute="top" secondItem="BIz-vE-SKk" secondAttribute="top" constant="4" id="bYq-xO-Hf6"/>
+                                <constraint firstItem="2zJ-XW-yb4" firstAttribute="centerY" secondItem="BIz-vE-SKk" secondAttribute="centerY" id="n7N-pS-Elv"/>
                                 <constraint firstAttribute="height" constant="40" id="qL1-YI-y4C"/>
                             </constraints>
                         </view>
@@ -100,6 +109,7 @@
     </objects>
     <resources>
         <image name="ic_close" width="24" height="24"/>
+        <image name="ic_search_black" width="24" height="24"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
