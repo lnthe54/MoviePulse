@@ -131,6 +131,10 @@
 		B6BBBCA32E1CAD28006D1D6F /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6BBBCA02E1CAD28006D1D6F /* SearchViewController.swift */; };
 		B6BBBCA72E1CB8A8006D1D6F /* RecentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B6BBBCA62E1CB8A8006D1D6F /* RecentCell.xib */; };
 		B6BBBCA82E1CB8A8006D1D6F /* RecentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6BBBCA52E1CB8A8006D1D6F /* RecentCell.swift */; };
+		B6BBBCAB2E1CC43E006D1D6F /* ResultSearchNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6BBBCAA2E1CC438006D1D6F /* ResultSearchNavigator.swift */; };
+		B6BBBCAD2E1CC463006D1D6F /* ResultSearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6BBBCAC2E1CC45F006D1D6F /* ResultSearchViewModel.swift */; };
+		B6BBBCB02E1CC4E0006D1D6F /* ResultSearchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B6BBBCAF2E1CC4E0006D1D6F /* ResultSearchViewController.xib */; };
+		B6BBBCB12E1CC4E0006D1D6F /* ResultSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6BBBCAE2E1CC4E0006D1D6F /* ResultSearchViewController.swift */; };
 		D9632ADD155F4F54C1D8CF29 /* Pods_MoviePulse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 82CD434E65B60866758DB3F7 /* Pods_MoviePulse.framework */; };
 /* End PBXBuildFile section */
 
@@ -264,6 +268,10 @@
 		B6BBBCA12E1CAD28006D1D6F /* SearchViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchViewController.xib; sourceTree = "<group>"; };
 		B6BBBCA52E1CB8A8006D1D6F /* RecentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentCell.swift; sourceTree = "<group>"; };
 		B6BBBCA62E1CB8A8006D1D6F /* RecentCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RecentCell.xib; sourceTree = "<group>"; };
+		B6BBBCAA2E1CC438006D1D6F /* ResultSearchNavigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultSearchNavigator.swift; sourceTree = "<group>"; };
+		B6BBBCAC2E1CC45F006D1D6F /* ResultSearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultSearchViewModel.swift; sourceTree = "<group>"; };
+		B6BBBCAE2E1CC4E0006D1D6F /* ResultSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultSearchViewController.swift; sourceTree = "<group>"; };
+		B6BBBCAF2E1CC4E0006D1D6F /* ResultSearchViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ResultSearchViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -320,6 +328,7 @@
 		9942159B2E09AA5300DAA702 /* Sences */ = {
 			isa = PBXGroup;
 			children = (
+				B6BBBCA92E1CC42E006D1D6F /* ResultSearch */,
 				B6BBBC9B2E1CACAD006D1D6F /* Search */,
 				B60B7B452E1506B200C69C17 /* Discover */,
 				9994AC322E1435640084901B /* Favorite */,
@@ -660,6 +669,17 @@
 			path = Cell;
 			sourceTree = "<group>";
 		};
+		B6BBBCA92E1CC42E006D1D6F /* ResultSearch */ = {
+			isa = PBXGroup;
+			children = (
+				B6BBBCAC2E1CC45F006D1D6F /* ResultSearchViewModel.swift */,
+				B6BBBCAA2E1CC438006D1D6F /* ResultSearchNavigator.swift */,
+				B6BBBCAE2E1CC4E0006D1D6F /* ResultSearchViewController.swift */,
+				B6BBBCAF2E1CC4E0006D1D6F /* ResultSearchViewController.xib */,
+			);
+			path = ResultSearch;
+			sourceTree = "<group>";
+		};
 		E4B917826BD6211015042518 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -771,6 +791,7 @@
 				B64976802E0E418600B5A738 /* TitleHeaderSection.xib in Resources */,
 				994215A42E09AB3700DAA702 /* OnboardingViewController.xib in Resources */,
 				B6BBBCA72E1CB8A8006D1D6F /* RecentCell.xib in Resources */,
+				B6BBBCB02E1CC4E0006D1D6F /* ResultSearchViewController.xib in Resources */,
 				9994AC2C2E12EDEA0084901B /* FeelCell.xib in Resources */,
 				9994AC282E12DA810084901B /* GenresCell.xib in Resources */,
 				99A5FBC82E0B0B5400AA8D59 /* HomeViewController.xib in Resources */,
@@ -867,6 +888,8 @@
 				994215862E09A76100DAA702 /* APIClient.swift in Sources */,
 				99A5FBDB2E0C54C000AA8D59 /* MovieModel.swift in Sources */,
 				B64976BB2E13B6B600B5A738 /* CodableManager.swift in Sources */,
+				B6BBBCAD2E1CC463006D1D6F /* ResultSearchViewModel.swift in Sources */,
+				B6BBBCB12E1CC4E0006D1D6F /* ResultSearchViewController.swift in Sources */,
 				B64976BF2E13C31500B5A738 /* RateCell.swift in Sources */,
 				99A5FBD82E0C549000AA8D59 /* MovieClient.swift in Sources */,
 				9994AC202E12D5050084901B /* PulseTestCell.swift in Sources */,
@@ -912,6 +935,7 @@
 				B64976AE2E12807700B5A738 /* ImagesViewController.swift in Sources */,
 				B64976AF2E12807700B5A738 /* ImageDetailCell.swift in Sources */,
 				B649769E2E12608300B5A738 /* InfoDetailItemCell.swift in Sources */,
+				B6BBBCAB2E1CC43E006D1D6F /* ResultSearchNavigator.swift in Sources */,
 				B649766E2E0A78E300B5A738 /* MainViewController.swift in Sources */,
 				99A5FBCD2E0B0E8D00AA8D59 /* Constants.swift in Sources */,
 			);

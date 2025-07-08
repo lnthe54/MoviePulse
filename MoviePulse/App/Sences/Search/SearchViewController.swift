@@ -177,7 +177,7 @@ extension SearchViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         switch getSections()[indexPath.section] {
         case .recent:
-            break
+            navigator.gotoResultSearchViewController(key: keys[indexPath.row])
         }
     }
 }
@@ -195,6 +195,7 @@ extension SearchViewController: UITextFieldDelegate {
         }
         
         CodableManager.shared.saveKeySearch(keySearch)
+        navigator.gotoResultSearchViewController(key: keySearch)
         
         textField.resignFirstResponder()
         return true
