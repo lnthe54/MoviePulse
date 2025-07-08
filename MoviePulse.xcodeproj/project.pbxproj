@@ -137,6 +137,8 @@
 		B6BBBCB12E1CC4E0006D1D6F /* ResultSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6BBBCAE2E1CC4E0006D1D6F /* ResultSearchViewController.swift */; };
 		B6BBBCB32E1CCB81006D1D6F /* SearchRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6BBBCB22E1CCB7F006D1D6F /* SearchRouter.swift */; };
 		B6BBBCB52E1CCBFF006D1D6F /* SearchClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6BBBCB42E1CCBFC006D1D6F /* SearchClient.swift */; };
+		B6BBBCB82E1CD14A006D1D6F /* RecentHeaderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B6BBBCB72E1CD14A006D1D6F /* RecentHeaderCell.xib */; };
+		B6BBBCB92E1CD14A006D1D6F /* RecentHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6BBBCB62E1CD14A006D1D6F /* RecentHeaderCell.swift */; };
 		D9632ADD155F4F54C1D8CF29 /* Pods_MoviePulse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 82CD434E65B60866758DB3F7 /* Pods_MoviePulse.framework */; };
 /* End PBXBuildFile section */
 
@@ -276,6 +278,8 @@
 		B6BBBCAF2E1CC4E0006D1D6F /* ResultSearchViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ResultSearchViewController.xib; sourceTree = "<group>"; };
 		B6BBBCB22E1CCB7F006D1D6F /* SearchRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchRouter.swift; sourceTree = "<group>"; };
 		B6BBBCB42E1CCBFC006D1D6F /* SearchClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchClient.swift; sourceTree = "<group>"; };
+		B6BBBCB62E1CD14A006D1D6F /* RecentHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentHeaderCell.swift; sourceTree = "<group>"; };
+		B6BBBCB72E1CD14A006D1D6F /* RecentHeaderCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RecentHeaderCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -669,6 +673,8 @@
 		B6BBBCA42E1CB89E006D1D6F /* Cell */ = {
 			isa = PBXGroup;
 			children = (
+				B6BBBCB62E1CD14A006D1D6F /* RecentHeaderCell.swift */,
+				B6BBBCB72E1CD14A006D1D6F /* RecentHeaderCell.xib */,
 				B6BBBCA52E1CB8A8006D1D6F /* RecentCell.swift */,
 				B6BBBCA62E1CB8A8006D1D6F /* RecentCell.xib */,
 			);
@@ -795,6 +801,7 @@
 				B64976B12E12807700B5A738 /* ImagesViewController.xib in Resources */,
 				997FBC942E09A05D0065979E /* LaunchScreen.storyboard in Resources */,
 				B64976802E0E418600B5A738 /* TitleHeaderSection.xib in Resources */,
+				B6BBBCB82E1CD14A006D1D6F /* RecentHeaderCell.xib in Resources */,
 				994215A42E09AB3700DAA702 /* OnboardingViewController.xib in Resources */,
 				B6BBBCA72E1CB8A8006D1D6F /* RecentCell.xib in Resources */,
 				B6BBBCB02E1CC4E0006D1D6F /* ResultSearchViewController.xib in Resources */,
@@ -894,6 +901,7 @@
 				994215862E09A76100DAA702 /* APIClient.swift in Sources */,
 				99A5FBDB2E0C54C000AA8D59 /* MovieModel.swift in Sources */,
 				B64976BB2E13B6B600B5A738 /* CodableManager.swift in Sources */,
+				B6BBBCB92E1CD14A006D1D6F /* RecentHeaderCell.swift in Sources */,
 				B6BBBCAD2E1CC463006D1D6F /* ResultSearchViewModel.swift in Sources */,
 				B6BBBCB12E1CC4E0006D1D6F /* ResultSearchViewController.swift in Sources */,
 				B64976BF2E13C31500B5A738 /* RateCell.swift in Sources */,

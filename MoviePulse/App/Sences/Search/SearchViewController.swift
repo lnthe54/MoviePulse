@@ -69,6 +69,9 @@ class SearchViewController: BaseViewController {
         searchTf.returnKeyType = .search
         searchTf.becomeFirstResponder()
         
+        collectionView.register(RecentHeaderCell.nib(),
+                                forSupplementaryViewOfKind: "Header",
+                                withReuseIdentifier: RecentHeaderCell.className)
         collectionView.register(RecentCell.nib(), forCellWithReuseIdentifier: RecentCell.className)
         collectionView.backgroundColor = .clear
         collectionView.showsHorizontalScrollIndicator = false
@@ -161,6 +164,34 @@ extension SearchViewController: UICollectionViewDataSource {
         case .recent:
             return recentCell(collectionView, cellForItemAt: indexPath)
         }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView,
+                        viewForSupplementaryElementOfKind kind: String,
+                        at indexPath: IndexPath) -> UICollectionReusableView {
+        if kind == "Header" {
+            switch getSections()[indexPath.section] {
+            case .recent:
+                return headerView(collectionView, viewForSupplementaryElementOfKind: kind, indexPath: indexPath)
+            default:
+                return UICollectionReusableView()
+            }
+        } else {
+            return UICollectionReusableView()
+        }
+    }
+    
+    private func headerView(_ collectionView: UICollectionView,
+                            viewForSupplementaryElementOfKind kind: String,
+                            indexPath: IndexPath) -> RecentHeaderCell {
+        let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind,
+                                                                     withReuseIdentifier: RecentHeaderCell.className,
+                                                                     for: indexPath) as! RecentHeaderCell
+        header.didToClear = { [weak self] in
+            CodableManager.shared.saveKeys([])
+            self?.getListKeySearchTrigger.onNext(())
+        }
+        return header
     }
     
     private func recentCell(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> RecentCell {
