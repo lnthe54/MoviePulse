@@ -11,14 +11,16 @@ class CodableManager {
         static let KEY_COLLECT: String = "KEY_COLLECT"
         static let KEY_SEARCH: String = "KEY_SEARCH"
         static let KEY_FAVORITE: String = "LIST_FAVORITE"
+        static let KEY_MOVIE_CATEGORIES: String = "movieCategories"
+        static let KEY_TV_CATEGORIES: String = "tvCategories"
     }
     
     func saveMovieCategories(_ categories: [CategoryObject]) {
-        _ = try? codableFiles.saveAsArray(objects: categories, withFilename: "movieCategories")
+        _ = try? codableFiles.saveAsArray(objects: categories, withFilename: Constants.KEY_MOVIE_CATEGORIES)
     }
     
     func getMovieCategories() -> [CategoryObject] {
-        if let categories = try? codableFiles.loadAsArray(objectType: CategoryObject.self, withFilename: "movieCategories") {
+        if let categories = try? codableFiles.loadAsArray(objectType: CategoryObject.self, withFilename: Constants.KEY_MOVIE_CATEGORIES) {
             return categories
         } else {
             return []
@@ -26,11 +28,11 @@ class CodableManager {
     }
     
     func saveTVCategories(_ categories: [CategoryObject]) {
-        _ = try? codableFiles.saveAsArray(objects: categories, withFilename: "tvCategories")
+        _ = try? codableFiles.saveAsArray(objects: categories, withFilename: Constants.KEY_TV_CATEGORIES)
     }
     
     func getTVCategories() -> [CategoryObject] {
-        if let categories = try? codableFiles.loadAsArray(objectType: CategoryObject.self, withFilename: "tvCategories") {
+        if let categories = try? codableFiles.loadAsArray(objectType: CategoryObject.self, withFilename: Constants.KEY_TV_CATEGORIES) {
             return categories
         } else {
             return []

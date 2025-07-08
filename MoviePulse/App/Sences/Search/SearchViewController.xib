@@ -11,6 +11,9 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SearchViewController" customModule="MoviePulse" customModuleProvider="target">
             <connections>
                 <outlet property="backView" destination="eFH-zQ-96m" id="LdM-Yk-YkK"/>
+                <outlet property="collectionView" destination="oUT-bg-EgF" id="zgB-7L-WJo"/>
+                <outlet property="searchTf" destination="0Iw-yj-pIZ" id="BtB-QW-aRO"/>
+                <outlet property="searchView" destination="BIz-vE-SKk" id="Lps-nk-5Q7"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -41,20 +44,55 @@
                                 <constraint firstItem="xMp-PU-tYe" firstAttribute="centerX" secondItem="eFH-zQ-96m" secondAttribute="centerX" id="tjr-S0-GeA"/>
                             </constraints>
                         </view>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BIz-vE-SKk">
+                            <rect key="frame" x="74" y="11" width="303" height="40"/>
+                            <subviews>
+                                <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0Iw-yj-pIZ">
+                                    <rect key="frame" x="6" y="4" width="291" height="32"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                    <textInputTraits key="textInputTraits"/>
+                                </textField>
+                            </subviews>
+                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            <constraints>
+                                <constraint firstAttribute="bottom" secondItem="0Iw-yj-pIZ" secondAttribute="bottom" constant="4" id="HkS-E7-sQa"/>
+                                <constraint firstAttribute="trailing" secondItem="0Iw-yj-pIZ" secondAttribute="trailing" constant="6" id="LUw-LO-QVL"/>
+                                <constraint firstItem="0Iw-yj-pIZ" firstAttribute="leading" secondItem="BIz-vE-SKk" secondAttribute="leading" constant="6" id="T8G-ho-ihm"/>
+                                <constraint firstItem="0Iw-yj-pIZ" firstAttribute="top" secondItem="BIz-vE-SKk" secondAttribute="top" constant="4" id="bYq-xO-Hf6"/>
+                                <constraint firstAttribute="height" constant="40" id="qL1-YI-y4C"/>
+                            </constraints>
+                        </view>
                     </subviews>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
+                        <constraint firstItem="BIz-vE-SKk" firstAttribute="top" secondItem="fES-K2-cB4" secondAttribute="top" constant="11" id="6Qm-Ev-N0B"/>
                         <constraint firstItem="eFH-zQ-96m" firstAttribute="centerY" secondItem="fES-K2-cB4" secondAttribute="centerY" id="9Dx-ul-SKW"/>
                         <constraint firstAttribute="height" constant="56" id="O18-47-uy6"/>
                         <constraint firstItem="eFH-zQ-96m" firstAttribute="leading" secondItem="fES-K2-cB4" secondAttribute="leading" constant="16" id="fhc-iu-ncF"/>
+                        <constraint firstItem="BIz-vE-SKk" firstAttribute="leading" secondItem="eFH-zQ-96m" secondAttribute="trailing" constant="12" id="l9r-d0-3Eq"/>
+                        <constraint firstAttribute="trailing" secondItem="BIz-vE-SKk" secondAttribute="trailing" constant="16" id="lHK-Oq-VVE"/>
                     </constraints>
                 </view>
+                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="oUT-bg-EgF">
+                    <rect key="frame" x="0.0" y="115" width="393" height="737"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="K3s-ba-hGU">
+                        <size key="itemSize" width="128" height="128"/>
+                        <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                        <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                        <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                    </collectionViewFlowLayout>
+                </collectionView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
+                <constraint firstItem="oUT-bg-EgF" firstAttribute="top" secondItem="fES-K2-cB4" secondAttribute="bottom" id="FBQ-hC-Ejb"/>
+                <constraint firstAttribute="bottom" secondItem="oUT-bg-EgF" secondAttribute="bottom" id="H9F-Ut-LCU"/>
+                <constraint firstItem="oUT-bg-EgF" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="Hmz-ij-bRD"/>
                 <constraint firstItem="fES-K2-cB4" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="Znf-De-fLU"/>
                 <constraint firstItem="fES-K2-cB4" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="c8r-NP-bEd"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="oUT-bg-EgF" secondAttribute="trailing" id="etI-nb-Oib"/>
                 <constraint firstAttribute="trailing" secondItem="fES-K2-cB4" secondAttribute="trailing" id="fsd-vc-odT"/>
             </constraints>
             <point key="canvasLocation" x="131" y="-11"/>
