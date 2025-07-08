@@ -135,6 +135,13 @@ extension SearchViewController {
         
         return sections
     }
+    
+    private func handleRemoveKey(_ key: String) {
+        var keys = CodableManager.shared.getListKeySearch()
+        keys.removeAll(where: { $0 == key})
+        CodableManager.shared.saveKeys(keys)
+        getListKeySearchTrigger.onNext(())
+    }
 }
 
 extension SearchViewController: UICollectionViewDataSource {
@@ -158,6 +165,9 @@ extension SearchViewController: UICollectionViewDataSource {
     
     private func recentCell(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> RecentCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: RecentCell.className, for: indexPath) as! RecentCell
+        cell.didToRemove = { [weak self] key in
+            self?.handleRemoveKey(key)
+        }
         cell.bindData(with: keys[indexPath.row])
         return cell
     }
