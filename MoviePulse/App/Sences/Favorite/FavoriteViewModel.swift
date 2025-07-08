@@ -4,9 +4,14 @@ import RxCocoa
 class FavoriteViewModel: ViewModelType {
     // MARK: - Properties
     private var movieServices: MovieServices
+    private var tvShowServices: TVShowServices
     
-    init(movieServices: MovieServices) {
+    init(
+        movieServices: MovieServices = MovieClient(),
+        tvShowServices: TVShowServices = TVShowClient()
+    ) {
         self.movieServices = movieServices
+        self.tvShowServices = tvShowServices
     }
     
     func transform(input: Input) -> Output {
@@ -47,6 +52,12 @@ extension FavoriteViewModel {
         case .movie:
             return movieServices
                 .getMovieDetail(infoObject.id)
+                .trackError(error)
+                .trackActivity(loading)
+                .map { $0.transformToInfoDetailObject() }
+        case .tv:
+            return tvShowServices
+                .getTVShowDetail(id: infoObject.id)
                 .trackError(error)
                 .trackActivity(loading)
                 .map { $0.transformToInfoDetailObject() }

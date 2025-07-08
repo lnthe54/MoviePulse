@@ -135,6 +135,8 @@
 		B6BBBCAD2E1CC463006D1D6F /* ResultSearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6BBBCAC2E1CC45F006D1D6F /* ResultSearchViewModel.swift */; };
 		B6BBBCB02E1CC4E0006D1D6F /* ResultSearchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B6BBBCAF2E1CC4E0006D1D6F /* ResultSearchViewController.xib */; };
 		B6BBBCB12E1CC4E0006D1D6F /* ResultSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6BBBCAE2E1CC4E0006D1D6F /* ResultSearchViewController.swift */; };
+		B6BBBCB32E1CCB81006D1D6F /* SearchRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6BBBCB22E1CCB7F006D1D6F /* SearchRouter.swift */; };
+		B6BBBCB52E1CCBFF006D1D6F /* SearchClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6BBBCB42E1CCBFC006D1D6F /* SearchClient.swift */; };
 		D9632ADD155F4F54C1D8CF29 /* Pods_MoviePulse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 82CD434E65B60866758DB3F7 /* Pods_MoviePulse.framework */; };
 /* End PBXBuildFile section */
 
@@ -272,6 +274,8 @@
 		B6BBBCAC2E1CC45F006D1D6F /* ResultSearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultSearchViewModel.swift; sourceTree = "<group>"; };
 		B6BBBCAE2E1CC4E0006D1D6F /* ResultSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultSearchViewController.swift; sourceTree = "<group>"; };
 		B6BBBCAF2E1CC4E0006D1D6F /* ResultSearchViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ResultSearchViewController.xib; sourceTree = "<group>"; };
+		B6BBBCB22E1CCB7F006D1D6F /* SearchRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchRouter.swift; sourceTree = "<group>"; };
+		B6BBBCB42E1CCBFC006D1D6F /* SearchClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchClient.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -514,6 +518,7 @@
 		99A5FBC92E0B0DF200AA8D59 /* Router */ = {
 			isa = PBXGroup;
 			children = (
+				B6BBBCB22E1CCB7F006D1D6F /* SearchRouter.swift */,
 				B64976972E12473400B5A738 /* TVShowRouter.swift */,
 				99A5FBCA2E0B0DFD00AA8D59 /* MovieRouter.swift */,
 			);
@@ -523,6 +528,7 @@
 		99A5FBD62E0C548300AA8D59 /* Client */ = {
 			isa = PBXGroup;
 			children = (
+				B6BBBCB42E1CCBFC006D1D6F /* SearchClient.swift */,
 				B64976992E1247D800B5A738 /* TVShowClient.swift */,
 				99A5FBD72E0C548D00AA8D59 /* MovieClient.swift */,
 			);
@@ -915,6 +921,7 @@
 				99A5FBDD2E0C54FA00AA8D59 /* Utils.swift in Sources */,
 				9989FEFA2E0F9B40007B667C /* CategoryCell.swift in Sources */,
 				B649767F2E0E418600B5A738 /* TitleHeaderSection.swift in Sources */,
+				B6BBBCB32E1CCB81006D1D6F /* SearchRouter.swift in Sources */,
 				994215972E09A8EB00DAA702 /* Rx+Extension.swift in Sources */,
 				B64976712E0A78F000B5A738 /* MainViewPager.swift in Sources */,
 				B649767C2E0E35AA00B5A738 /* AppLayout.swift in Sources */,
@@ -935,6 +942,7 @@
 				B64976AE2E12807700B5A738 /* ImagesViewController.swift in Sources */,
 				B64976AF2E12807700B5A738 /* ImageDetailCell.swift in Sources */,
 				B649769E2E12608300B5A738 /* InfoDetailItemCell.swift in Sources */,
+				B6BBBCB52E1CCBFF006D1D6F /* SearchClient.swift in Sources */,
 				B6BBBCAB2E1CC43E006D1D6F /* ResultSearchNavigator.swift in Sources */,
 				B649766E2E0A78E300B5A738 /* MainViewController.swift in Sources */,
 				99A5FBCD2E0B0E8D00AA8D59 /* Constants.swift in Sources */,
