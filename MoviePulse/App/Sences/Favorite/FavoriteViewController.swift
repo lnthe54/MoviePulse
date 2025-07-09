@@ -137,6 +137,10 @@ class FavoriteViewController: BaseViewController {
     override func actionBack() {
         navigator.popToViewController()
     }
+    
+    override func actionDelete() {
+        showDelPopup()
+    }
 }
 
 extension FavoriteViewController {
@@ -190,6 +194,27 @@ extension FavoriteViewController {
         }
         
         return sections
+    }
+    
+    private func showDelPopup() {
+        let popupView = ComponentPopup(
+            titleHeader: "Are you sure you want to delete all these item?",
+            content: "Careful — once done, this can’t be changed.",
+            leftValue: "No, cancel",
+            rightValue: "Confirm"
+        )
+        
+        popupView.onTapRightButton = { [weak self] in
+            self?.handleDelFavorites()
+        }
+        popupView.modalPresentationStyle = .overFullScreen
+        present(popupView, animated: false)
+    }
+    
+    private func handleDelFavorites() {
+        let filters = CodableManager.shared.getListFavorite().filter { $0.type != tabType }
+        CodableManager.shared.saveListFarotie(filters)
+        getDataTrigger.onNext(tabType)
     }
     
     @objc

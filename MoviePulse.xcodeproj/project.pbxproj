@@ -150,6 +150,8 @@
 		B6BBBCDB2E1DFED1006D1D6F /* TrailerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6BBBCD62E1DFED1006D1D6F /* TrailerViewController.swift */; };
 		B6BBBCDC2E1DFED1006D1D6F /* TrailerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6BBBCD22E1DFED1006D1D6F /* TrailerCell.swift */; };
 		B6BBBCDD2E1DFED1006D1D6F /* TrailerNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6BBBCD52E1DFED1006D1D6F /* TrailerNavigator.swift */; };
+		B6BBBCE12E1E4175006D1D6F /* ComponentPopup.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6BBBCDF2E1E4175006D1D6F /* ComponentPopup.swift */; };
+		B6BBBCE22E1E4175006D1D6F /* ComponentPopup.xib in Resources */ = {isa = PBXBuildFile; fileRef = B6BBBCE02E1E4175006D1D6F /* ComponentPopup.xib */; };
 		D9632ADD155F4F54C1D8CF29 /* Pods_MoviePulse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 82CD434E65B60866758DB3F7 /* Pods_MoviePulse.framework */; };
 /* End PBXBuildFile section */
 
@@ -302,6 +304,8 @@
 		B6BBBCD52E1DFED1006D1D6F /* TrailerNavigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrailerNavigator.swift; sourceTree = "<group>"; };
 		B6BBBCD62E1DFED1006D1D6F /* TrailerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrailerViewController.swift; sourceTree = "<group>"; };
 		B6BBBCD72E1DFED1006D1D6F /* TrailerViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TrailerViewController.xib; sourceTree = "<group>"; };
+		B6BBBCDF2E1E4175006D1D6F /* ComponentPopup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComponentPopup.swift; sourceTree = "<group>"; };
+		B6BBBCE02E1E4175006D1D6F /* ComponentPopup.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ComponentPopup.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -614,6 +618,7 @@
 		B64976742E0E31A000B5A738 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				B6BBBCDE2E1E4156006D1D6F /* Popup */,
 				9994AC302E14309F0084901B /* SuccessAlertView.swift */,
 				9989FF0C2E0FD981007B667C /* Cell */,
 				9989FF072E0FD830007B667C /* Header */,
@@ -749,6 +754,15 @@
 			path = Trailer;
 			sourceTree = "<group>";
 		};
+		B6BBBCDE2E1E4156006D1D6F /* Popup */ = {
+			isa = PBXGroup;
+			children = (
+				B6BBBCDF2E1E4175006D1D6F /* ComponentPopup.swift */,
+				B6BBBCE02E1E4175006D1D6F /* ComponentPopup.xib */,
+			);
+			path = Popup;
+			sourceTree = "<group>";
+		};
 		E4B917826BD6211015042518 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -844,6 +858,7 @@
 				9994AC3A2E14363F0084901B /* FavoriteViewController.xib in Resources */,
 				B64976962E1231C900B5A738 /* DetailItemViewController.xib in Resources */,
 				9989FF182E112499007B667C /* PulseCell.xib in Resources */,
+				B6BBBCE22E1E4175006D1D6F /* ComponentPopup.xib in Resources */,
 				B649768D2E122BA400B5A738 /* loading.json in Resources */,
 				B64976892E1226DD00B5A738 /* ListItemViewController.xib in Resources */,
 				B64976BE2E13C31500B5A738 /* RateCell.xib in Resources */,
@@ -969,6 +984,7 @@
 				99A5FBDB2E0C54C000AA8D59 /* MovieModel.swift in Sources */,
 				B64976BB2E13B6B600B5A738 /* CodableManager.swift in Sources */,
 				B6BBBCB92E1CD14A006D1D6F /* RecentHeaderCell.swift in Sources */,
+				B6BBBCE12E1E4175006D1D6F /* ComponentPopup.swift in Sources */,
 				B6BBBCAD2E1CC463006D1D6F /* ResultSearchViewModel.swift in Sources */,
 				B6BBBCB12E1CC4E0006D1D6F /* ResultSearchViewController.swift in Sources */,
 				B64976BF2E13C31500B5A738 /* RateCell.swift in Sources */,
