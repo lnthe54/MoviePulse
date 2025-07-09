@@ -328,6 +328,12 @@ extension DetailItemViewController: UICollectionViewDataSource {
             }
             isFavorite ? addToFavorites() : removeToFavorites()
         }
+        
+        cell.onTapWatch = { [weak self] in
+            guard let self, let trailers = infoDetailObject.videos?.results else { return }
+            navigator.gotoTrailerViewController(trailers: trailers)
+        }
+        
         cell.bindData(infoDetailObject)
         return cell
     }

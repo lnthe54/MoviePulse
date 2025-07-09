@@ -145,6 +145,11 @@
 		B6BBBCC32E1CF47E006D1D6F /* SeasonViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6BBBCC22E1CF479006D1D6F /* SeasonViewModel.swift */; };
 		B6BBBCC62E1CF4B6006D1D6F /* SeasonViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B6BBBCC52E1CF4B6006D1D6F /* SeasonViewController.xib */; };
 		B6BBBCC72E1CF4B6006D1D6F /* SeasonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6BBBCC42E1CF4B6006D1D6F /* SeasonViewController.swift */; };
+		B6BBBCD92E1DFED1006D1D6F /* TrailerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B6BBBCD72E1DFED1006D1D6F /* TrailerViewController.xib */; };
+		B6BBBCDA2E1DFED1006D1D6F /* TrailerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B6BBBCD32E1DFED1006D1D6F /* TrailerCell.xib */; };
+		B6BBBCDB2E1DFED1006D1D6F /* TrailerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6BBBCD62E1DFED1006D1D6F /* TrailerViewController.swift */; };
+		B6BBBCDC2E1DFED1006D1D6F /* TrailerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6BBBCD22E1DFED1006D1D6F /* TrailerCell.swift */; };
+		B6BBBCDD2E1DFED1006D1D6F /* TrailerNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6BBBCD52E1DFED1006D1D6F /* TrailerNavigator.swift */; };
 		D9632ADD155F4F54C1D8CF29 /* Pods_MoviePulse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 82CD434E65B60866758DB3F7 /* Pods_MoviePulse.framework */; };
 /* End PBXBuildFile section */
 
@@ -292,6 +297,11 @@
 		B6BBBCC22E1CF479006D1D6F /* SeasonViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeasonViewModel.swift; sourceTree = "<group>"; };
 		B6BBBCC42E1CF4B6006D1D6F /* SeasonViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeasonViewController.swift; sourceTree = "<group>"; };
 		B6BBBCC52E1CF4B6006D1D6F /* SeasonViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SeasonViewController.xib; sourceTree = "<group>"; };
+		B6BBBCD22E1DFED1006D1D6F /* TrailerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrailerCell.swift; sourceTree = "<group>"; };
+		B6BBBCD32E1DFED1006D1D6F /* TrailerCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TrailerCell.xib; sourceTree = "<group>"; };
+		B6BBBCD52E1DFED1006D1D6F /* TrailerNavigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrailerNavigator.swift; sourceTree = "<group>"; };
+		B6BBBCD62E1DFED1006D1D6F /* TrailerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrailerViewController.swift; sourceTree = "<group>"; };
+		B6BBBCD72E1DFED1006D1D6F /* TrailerViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TrailerViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -348,6 +358,7 @@
 		9942159B2E09AA5300DAA702 /* Sences */ = {
 			isa = PBXGroup;
 			children = (
+				B6BBBCD82E1DFED1006D1D6F /* Trailer */,
 				B6BBBCBF2E1CF34A006D1D6F /* Season */,
 				B6BBBCA92E1CC42E006D1D6F /* ResultSearch */,
 				B6BBBC9B2E1CACAD006D1D6F /* Search */,
@@ -718,6 +729,26 @@
 			path = Season;
 			sourceTree = "<group>";
 		};
+		B6BBBCD42E1DFED1006D1D6F /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				B6BBBCD22E1DFED1006D1D6F /* TrailerCell.swift */,
+				B6BBBCD32E1DFED1006D1D6F /* TrailerCell.xib */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		B6BBBCD82E1DFED1006D1D6F /* Trailer */ = {
+			isa = PBXGroup;
+			children = (
+				B6BBBCD42E1DFED1006D1D6F /* Cell */,
+				B6BBBCD52E1DFED1006D1D6F /* TrailerNavigator.swift */,
+				B6BBBCD62E1DFED1006D1D6F /* TrailerViewController.swift */,
+				B6BBBCD72E1DFED1006D1D6F /* TrailerViewController.xib */,
+			);
+			path = Trailer;
+			sourceTree = "<group>";
+		};
 		E4B917826BD6211015042518 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -796,6 +827,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B6BBBCD92E1DFED1006D1D6F /* TrailerViewController.xib in Resources */,
+				B6BBBCDA2E1DFED1006D1D6F /* TrailerCell.xib in Resources */,
 				B64976642E0A485D00B5A738 /* Outfit-Light.ttf in Resources */,
 				B649769F2E12608300B5A738 /* InfoDetailItemCell.xib in Resources */,
 				B64976652E0A485D00B5A738 /* Outfit-Medium.ttf in Resources */,
@@ -917,6 +950,9 @@
 				B64976C32E14D0C800B5A738 /* EmptyCell.swift in Sources */,
 				99A5FBDF2E0C553C00AA8D59 /* TVShowModel.swift in Sources */,
 				B6BBBCC32E1CF47E006D1D6F /* SeasonViewModel.swift in Sources */,
+				B6BBBCDB2E1DFED1006D1D6F /* TrailerViewController.swift in Sources */,
+				B6BBBCDC2E1DFED1006D1D6F /* TrailerCell.swift in Sources */,
+				B6BBBCDD2E1DFED1006D1D6F /* TrailerNavigator.swift in Sources */,
 				B64976A62E127C6700B5A738 /* ImageCell.swift in Sources */,
 				99A5FBE72E0C55EE00AA8D59 /* LinkModel.swift in Sources */,
 				B6BBBCC72E1CF4B6006D1D6F /* SeasonViewController.swift in Sources */,

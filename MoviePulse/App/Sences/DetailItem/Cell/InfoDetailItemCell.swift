@@ -24,6 +24,7 @@ class InfoDetailItemCell: UICollectionViewCell {
     private var isFavorite: Bool = false
     
     var onTapFavorite: ((Bool) -> Void)?
+    var onTapWatch: (() -> Void)?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -61,6 +62,11 @@ class InfoDetailItemCell: UICollectionViewCell {
         watchLabel.textColor = .white
         watchLabel.font = .outfitFont(ofSize: 14, weight: .semiBold)
         watchLabel.text = "Watch trailer"
+        watchView.rx.tapGesture().when(.recognized)
+            .subscribe(onNext: { [weak self] _ in
+                self?.onTapWatch?()
+            })
+            .disposed(by: disposeBag)
     }
     
     func bindData(_ data: InfoDetailObject) {

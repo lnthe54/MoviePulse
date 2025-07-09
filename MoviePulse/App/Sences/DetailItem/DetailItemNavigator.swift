@@ -5,6 +5,7 @@ protocol DetailItemNavigator: BaseNavigator {
     func gotoListItemViewController(sectionType: ListSectionType)
     func gotoImagesViewController(images: [BackdropObject], selectedIndex: Int)
     func gotoSeasonViewController(seasons: [SeasonObject])
+    func gotoTrailerViewController(trailers: [VideoInfo])
 }
 
 class DefaultDetailItemNavigator: DetailItemNavigator {
@@ -54,6 +55,12 @@ class DefaultDetailItemNavigator: DetailItemNavigator {
             viewModel: viewModel,
             seasons: seasons
         )
+        navigationController.pushViewController(viewController, animated: true)
+    }
+    
+    func gotoTrailerViewController(trailers: [VideoInfo]) {
+        let navigator = DefaultTrailerNavigator(navigationController: navigationController)
+        let viewController = TrailerViewController(navigator: navigator, trailers: trailers)
         navigationController.pushViewController(viewController, animated: true)
     }
 }
