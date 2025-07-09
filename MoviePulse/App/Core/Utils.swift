@@ -159,4 +159,27 @@ struct Utils {
         
         return defaultUrl
     }
+    
+    static func getAvgPluse(withGenre genre: String, voteAvg: Double) -> Int {
+        let baseBPM = Constants.genreBaseBPM[genre] ?? 72
+        let ratingInfluence = Int((voteAvg - 5.0) * 2.5)
+        let noise = Int.random(in: -5...5)
+
+        return baseBPM + ratingInfluence + noise
+    }
+    
+    static func emotionPercentages(for avgPulse: Int) -> [String: Int] {
+        switch avgPulse {
+        case 90...:
+            return ["Tense": 38, "Excited": 30, "Emotional": 20, "Calm": 7, "Neutral": 5]
+        case 80..<90:
+            return ["Excited": 30, "Tense": 28, "Emotional": 20, "Calm": 12, "Neutral": 10]
+        case 70..<80:
+            return ["Calm": 35, "Nostalgic": 25, "Neutral": 20, "Emotional": 15, "Excited": 5]
+        case ..<70:
+            return ["Neutral": 40, "Calm": 30, "Emotional": 20, "Tense": 5, "Excited": 5]
+        default:
+            return ["Neutral": 100]
+        }
+    }
 }

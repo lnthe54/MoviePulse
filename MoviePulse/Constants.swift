@@ -5,6 +5,18 @@ struct Constants {
     static let HEIGHT_NAV: CGFloat = 56
     static let BOTTOM_TABBAR: CGFloat = 100
     static let feels: [String] = ["Excited", "Nostagic", "Tense", "Scared", "Calm", "Emotional", "Melancholic", "Neutral"]
+    static let genreBaseBPM: [String: Int] = [
+        // Movie genres
+        "Action": 78, "Adventure": 75, "Animation": 70, "Comedy": 72,
+        "Crime": 76, "Documentary": 65, "Drama": 70, "Family": 70,
+        "Fantasy": 73, "History": 68, "Horror": 85, "Music": 74,
+        "Mystery": 76, "Romance": 68, "Science Fiction": 77,
+        "TV Movie": 67, "Thriller": 80, "War": 74, "Western": 71,
+        // TV show genres
+        "Action & Adventure": 77, "Kids": 68, "Sci-Fi & Fantasy": 77,
+        "Reality": 73, "News": 66, "Soap": 74, "Talk": 65,
+        "War & Politics": 72
+    ]
     
     // MARK: - ENCRYPT
     struct Encrypt {

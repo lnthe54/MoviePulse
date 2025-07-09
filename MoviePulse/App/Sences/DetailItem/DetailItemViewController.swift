@@ -363,6 +363,7 @@ extension DetailItemViewController: UICollectionViewDataSource {
     
     private func communityCell(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> CommunityCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CommunityCell.className, for: indexPath) as! CommunityCell
+        cell.bindData(genre: infoDetailObject.genres.first?.name ?? "", voteAvg: infoDetailObject.vote ?? 0.0)
         return cell
     }
     
