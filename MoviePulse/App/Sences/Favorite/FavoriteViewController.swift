@@ -42,6 +42,12 @@ class FavoriteViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(reloadData),
+            name: .reloadFavoriteList,
+            object: nil
+        )
         getDataTrigger.onNext(.movie)
     }
     
@@ -184,6 +190,11 @@ extension FavoriteViewController {
         }
         
         return sections
+    }
+    
+    @objc
+    private func reloadData() {
+        getDataTrigger.onNext((tabType))
     }
 }
 

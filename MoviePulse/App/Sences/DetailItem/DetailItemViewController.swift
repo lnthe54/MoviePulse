@@ -327,6 +327,7 @@ extension DetailItemViewController: UICollectionViewDataSource {
                 showSuccessAlert(title: "Nice choice!", message: "It’s now in your favorites")
             }
             isFavorite ? addToFavorites() : removeToFavorites()
+            NotificationCenter.default.post(name: .reloadFavoriteList, object: nil)
         }
         
         cell.onTapWatch = { [weak self] in
