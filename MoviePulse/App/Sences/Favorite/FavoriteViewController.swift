@@ -229,6 +229,9 @@ extension FavoriteViewController: UICollectionViewDataSource {
     
     private func emptyCell(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> EmptyCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: EmptyCell.className, for: indexPath) as! EmptyCell
+        cell.onTapDiscover = {
+            NotificationCenter.default.post(name: .switchToDiscoverTab, object: nil)
+        }
         cell.bindData(title: "Nothing here", message: "Discover exciting movies and start measuring your reactions!")
         return cell
     }

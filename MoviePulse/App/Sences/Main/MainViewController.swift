@@ -44,6 +44,13 @@ class MainViewController: BaseViewController {
             object: nil
         )
         
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(switchToDiscover),
+            name: .switchToDiscoverTab,
+            object: nil
+        )
+        
         UserDataDefault.shared.setIsFirstInstallApp(true)
     }
     
@@ -133,5 +140,11 @@ extension MainViewController {
     @objc
     private func showTabbar() {
         tabbarView.isHidden = false
+    }
+    
+    @objc
+    private func switchToDiscover() {
+        mainViewPager.moveToScreen(at: .discover)
+        handleTap(isActiveDiscover: true)
     }
 }

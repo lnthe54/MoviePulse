@@ -11,6 +11,8 @@ class EmptyCell: UICollectionViewCell {
     @IBOutlet private weak var contentLabel: UILabel!
     @IBOutlet private weak var discoverButton: UIButton!
     
+    var onTapDiscover: (() -> Void)?
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         
@@ -39,5 +41,9 @@ class EmptyCell: UICollectionViewCell {
         titleLabel.text = title
         contentLabel.text = message
         discoverButton.isHidden = isHideButton
+    }
+    
+    @IBAction private func didToDiscover() {
+        onTapDiscover?()
     }
 }
