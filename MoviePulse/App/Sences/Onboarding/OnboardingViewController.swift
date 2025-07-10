@@ -64,12 +64,12 @@ class OnboardingViewController: BaseViewController {
         
         containerView.corner(12)
         
-        titleLabel.textColor = UIColor(hexString: "#191A1E")
+        titleLabel.textColor = .blackColor
         titleLabel.font = .outfitFont(ofSize: 14, weight: .medium)
         titleLabel.textAlignment = .center
         titleLabel.numberOfLines = 0
         
-        contentLabel.textColor = UIColor(hexString: "#191A1E")
+        contentLabel.textColor = .blackColor
         contentLabel.font = .outfitFont(ofSize: 24, weight: .semiBold)
         contentLabel.textAlignment = .center
         contentLabel.numberOfLines = 0

@@ -22,16 +22,17 @@ class SettingCell: UICollectionViewCell {
     }
 
     private func setupViews() {
-        containerView.corner(8)
-        titleLabel.textColor = .white
-        titleLabel.font = .outfitFont(ofSize: 14, weight: .semiBold)
+        containerView.corner(4)
+        containerView.backgroundColor = .white
+        
+        titleLabel.textColor = .blackColor
+        titleLabel.font = .outfitFont(ofSize: 14, weight: .medium)
         
         notificationButton.onTintColor = .pimaryColor
         notificationButton.tintColor = .lightGray
     }
     
     func bindData(type: SettingType) {
-        containerView.backgroundColor = UIColor(hexString: type.backgroundColor)
         titleLabel.text = type.title
         iconImageView.image = UIImage(named: type.icon)
         arrowImageView.isHidden = type == .notification

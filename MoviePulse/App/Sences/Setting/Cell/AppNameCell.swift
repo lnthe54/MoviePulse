@@ -18,10 +18,10 @@ class AppNameCell: UICollectionViewCell {
         containerView.corner(4)
         
         appNameLabel.text = AppInfo.name
-        appNameLabel.textColor = UIColor(hexString: "#191A1E")
+        appNameLabel.textColor = .blackColor
         appNameLabel.font = .outfitFont(ofSize: 16, weight: .semiBold)
         
-        appVersionLabel.text = AppInfo.version
+        appVersionLabel.text = "V" + AppInfo.version
         appVersionLabel.textColor = UIColor(hexString: "#252934")
         appVersionLabel.font = .outfitFont(ofSize: 14, weight: .regular)
     }

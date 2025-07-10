@@ -19,54 +19,39 @@ extension SettingViewModel {
 }
 
 enum SettingType: CaseIterable {
-    case feedback
+    case notification
+    case support
     case share
     case gdpr
-    case notification
-    case ads
+    case terms
     
     var icon: String {
         switch self {
-        case .feedback:
-            return "ic_star"
+        case .notification:
+            return "ic_notification"
+        case .support:
+            return "ic_support"
         case .share:
             return "ic_share"
         case .gdpr:
             return "ic_gdpr"
-        case .notification:
-            return "ic_notification"
-        case .ads:
-            return ""
+        case .terms:
+            return "ic_terms"
         }
     }
     
     var title: String {
         switch self {
-        case .feedback:
-            return "Feedback"
-        case .share:
-            return "Share the app"
-        case .gdpr:
-            return "GDPR permission"
         case .notification:
             return "Notification"
-        case .ads:
-            return ""
-        }
-    }
-    
-    var backgroundColor: String {
-        switch self {
-        case .feedback:
-            return "#F85647"
+        case .support:
+            return "Contact support"
         case .share:
-            return "#50D4CD"
+            return "Share our app"
         case .gdpr:
-            return "#FFAB36"
-        case .notification:
-            return "#79BE27"
-        case .ads:
-            return ""
+            return "GDPR permission"
+        case .terms:
+            return "Terms of Service"
         }
     }
 }

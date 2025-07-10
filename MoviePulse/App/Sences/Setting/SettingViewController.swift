@@ -2,6 +2,7 @@ import UIKit
 
 enum SettingSectionType {
     case appInfo
+    case list
 }
 
 class SettingViewController: BaseViewController {
@@ -9,6 +10,7 @@ class SettingViewController: BaseViewController {
     // MARK: - Properties
     private var navigator: SettingNavigator
     private var viewModel: SettingViewModel
+    private var settings: [SettingType] = []
     
     // MARK: - IBOutlets
     @IBOutlet private weak var topConstraint: NSLayoutConstraint!
@@ -40,6 +42,8 @@ class SettingViewController: BaseViewController {
             name: .permisstionNotificationChange,
             object: nil
         )
+        
+        initSettings()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -53,10 +57,12 @@ class SettingViewController: BaseViewController {
         topConstraint.constant = Constants.HEIGHT_NAV
         
         collectionView.register(AppNameCell.nib(), forCellWithReuseIdentifier: AppNameCell.className)
+        collectionView.register(SettingCell.nib(), forCellWithReuseIdentifier: SettingCell.className)
         collectionView.backgroundColor = .clear
         collectionView.showsHorizontalScrollIndicator = false
         collectionView.showsVerticalScrollIndicator = false
         collectionView.dataSource = self
+        collectionView.delegate = self
         collectionView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: Constants.BOTTOM_TABBAR, right: 0)
         configureCompositionalLayout()
     }
@@ -72,6 +78,18 @@ extension SettingViewController {
         collectionView.reloadData()
     }
     
+    private func initSettings() {
+        settings.append(.notification)
+        
+        settings.append(.support)
+        
+        settings.append(.share)
+        
+        settings.append(.gdpr)
+        
+        settings.append(.terms)
+    }
+    
     private func configureCompositionalLayout() {
         let layout = UICollectionViewCompositionalLayout { [weak self] (sectionIndex, _) in
             guard let self = self else { return AppLayout.defaultSection() }
@@ -80,6 +98,8 @@ extension SettingViewController {
             switch section {
             case .appInfo:
                 return AppLayout.fixedSection(height: 68)
+            case .list:
+                return AppLayout.fixedSection(height: 64)
             }
         }
         
@@ -91,11 +111,21 @@ extension SettingViewController {
         
         sections.append(.appInfo)
         
+        if settings.isNotEmpty {
+            sections.append(.list)
+        }
+        
         return sections
     }
     
     private func appInfoCell(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> AppNameCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: AppNameCell.className, for: indexPath) as! AppNameCell
+        return cell
+    }
+    
+    private func settingCell(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> SettingCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SettingCell.className, for: indexPath) as! SettingCell
+        cell.bindData(type: settings[indexPath.row])
         return cell
     }
 }
@@ -109,6 +139,8 @@ extension SettingViewController: UICollectionViewDataSource {
         switch getSections()[section] {
         case .appInfo:
             return 1
+        case .list:
+            return settings.count
         }
     }
     
@@ -116,6 +148,14 @@ extension SettingViewController: UICollectionViewDataSource {
         switch getSections()[indexPath.section] {
         case .appInfo:
             return appInfoCell(collectionView, cellForItemAt: indexPath)
+        case .list:
+            return settingCell(collectionView, cellForItemAt: indexPath)
         }
+    }
+}
+
+extension SettingViewController: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
     }
 }
