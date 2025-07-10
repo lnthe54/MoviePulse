@@ -159,6 +159,9 @@
 		B6BBBCEF2E1F5AF1006D1D6F /* AppNameCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B6BBBCEE2E1F5AF1006D1D6F /* AppNameCell.xib */; };
 		B6BBBCF02E1F5AF1006D1D6F /* AppNameCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6BBBCED2E1F5AF1006D1D6F /* AppNameCell.swift */; };
 		B6BBBCF22E1F5DF4006D1D6F /* AppInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6BBBCF12E1F5DF2006D1D6F /* AppInfo.swift */; };
+		B6BBBCF52E1F6065006D1D6F /* SettingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B6BBBCF42E1F6065006D1D6F /* SettingCell.xib */; };
+		B6BBBCF62E1F6065006D1D6F /* SettingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6BBBCF32E1F6065006D1D6F /* SettingCell.swift */; };
+		B6BBBCF82E1F60BE006D1D6F /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6BBBCF72E1F60BE006D1D6F /* NotificationManager.swift */; };
 		D9632ADD155F4F54C1D8CF29 /* Pods_MoviePulse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 82CD434E65B60866758DB3F7 /* Pods_MoviePulse.framework */; };
 /* End PBXBuildFile section */
 
@@ -320,6 +323,9 @@
 		B6BBBCED2E1F5AF1006D1D6F /* AppNameCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppNameCell.swift; sourceTree = "<group>"; };
 		B6BBBCEE2E1F5AF1006D1D6F /* AppNameCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AppNameCell.xib; sourceTree = "<group>"; };
 		B6BBBCF12E1F5DF2006D1D6F /* AppInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppInfo.swift; sourceTree = "<group>"; };
+		B6BBBCF32E1F6065006D1D6F /* SettingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingCell.swift; sourceTree = "<group>"; };
+		B6BBBCF42E1F6065006D1D6F /* SettingCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SettingCell.xib; sourceTree = "<group>"; };
+		B6BBBCF72E1F60BE006D1D6F /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -408,6 +414,7 @@
 		994215A52E09ABC100DAA702 /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				B6BBBCF72E1F60BE006D1D6F /* NotificationManager.swift */,
 				B64976BA2E13B6B500B5A738 /* CodableManager.swift */,
 				B649768A2E122B1900B5A738 /* LoadingView.swift */,
 				B649767B2E0E35A800B5A738 /* AppLayout.swift */,
@@ -794,6 +801,8 @@
 		B6BBBCEC2E1F5AC3006D1D6F /* Cell */ = {
 			isa = PBXGroup;
 			children = (
+				B6BBBCF32E1F6065006D1D6F /* SettingCell.swift */,
+				B6BBBCF42E1F6065006D1D6F /* SettingCell.xib */,
 				B6BBBCED2E1F5AF1006D1D6F /* AppNameCell.swift */,
 				B6BBBCEE2E1F5AF1006D1D6F /* AppNameCell.xib */,
 			);
@@ -924,6 +933,7 @@
 				9994AC282E12DA810084901B /* GenresCell.xib in Resources */,
 				99A5FBC82E0B0B5400AA8D59 /* HomeViewController.xib in Resources */,
 				B64976C22E14D0C800B5A738 /* EmptyCell.xib in Resources */,
+				B6BBBCF52E1F6065006D1D6F /* SettingCell.xib in Resources */,
 				B60B7B4D2E15071F00C69C17 /* DiscoverViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1002,6 +1012,7 @@
 				B6BBBCF02E1F5AF1006D1D6F /* AppNameCell.swift in Sources */,
 				B6BBBCA32E1CAD28006D1D6F /* SearchViewController.swift in Sources */,
 				B64976882E1226DD00B5A738 /* ListItemViewController.swift in Sources */,
+				B6BBBCF82E1F60BE006D1D6F /* NotificationManager.swift in Sources */,
 				B64976C32E14D0C800B5A738 /* EmptyCell.swift in Sources */,
 				99A5FBDF2E0C553C00AA8D59 /* TVShowModel.swift in Sources */,
 				B6BBBCC32E1CF47E006D1D6F /* SeasonViewModel.swift in Sources */,
@@ -1067,6 +1078,7 @@
 				994215992E09A8EB00DAA702 /* UIView+Extension.swift in Sources */,
 				B64976952E1231C900B5A738 /* DetailItemViewController.swift in Sources */,
 				B60B7B4C2E15071F00C69C17 /* DiscoverViewController.swift in Sources */,
+				B6BBBCF62E1F6065006D1D6F /* SettingCell.swift in Sources */,
 				99A5FBE52E0C558F00AA8D59 /* ProjectModel.swift in Sources */,
 				99A5FBE92E0C565900AA8D59 /* CategoryModel.swift in Sources */,
 				994215872E09A76100DAA702 /* NetworkLogger.swift in Sources */,

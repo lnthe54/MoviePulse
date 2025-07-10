@@ -27,6 +27,19 @@ class SettingViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(handleWillEnterForeground),
+            name: UIApplication.willEnterForegroundNotification,
+            object: nil
+        )
+
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(reloadView),
+            name: .permisstionNotificationChange,
+            object: nil
+        )
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -50,6 +63,15 @@ class SettingViewController: BaseViewController {
 }
 
 extension SettingViewController {
+    @objc func handleWillEnterForeground() {
+        NotificationManager.shared.syncNotification()
+    }
+    
+    @objc
+    private func reloadView() {
+        collectionView.reloadData()
+    }
+    
     private func configureCompositionalLayout() {
         let layout = UICollectionViewCompositionalLayout { [weak self] (sectionIndex, _) in
             guard let self = self else { return AppLayout.defaultSection() }
