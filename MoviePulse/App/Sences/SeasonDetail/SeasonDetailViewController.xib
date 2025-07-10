@@ -10,6 +10,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SeasonDetailViewController" customModule="MoviePulse" customModuleProvider="target">
             <connections>
+                <outlet property="collectionView" destination="xzb-0Z-7TW" id="pS3-j7-BvP"/>
                 <outlet property="posterImageView" destination="wWS-yR-h62" id="bN6-wc-Qgl"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -25,12 +26,26 @@
                         <constraint firstAttribute="width" secondItem="wWS-yR-h62" secondAttribute="height" multiplier="3:4" id="OnL-HX-mNK"/>
                     </constraints>
                 </imageView>
+                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="xzb-0Z-7TW">
+                    <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="gOf-gf-NJ5">
+                        <size key="itemSize" width="128" height="128"/>
+                        <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                        <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                        <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                    </collectionViewFlowLayout>
+                </collectionView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
                 <constraint firstItem="wWS-yR-h62" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="Gbg-YY-nb6"/>
+                <constraint firstItem="xzb-0Z-7TW" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="J4e-Cc-Kqk"/>
+                <constraint firstItem="xzb-0Z-7TW" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="cTe-H1-Qmv"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="xzb-0Z-7TW" secondAttribute="trailing" id="gdC-KX-m1D"/>
                 <constraint firstItem="wWS-yR-h62" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="meW-oT-v1N"/>
+                <constraint firstAttribute="bottom" secondItem="xzb-0Z-7TW" secondAttribute="bottom" id="nOH-ls-Xwl"/>
                 <constraint firstItem="wWS-yR-h62" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="yn5-mq-MlK"/>
             </constraints>
             <point key="canvasLocation" x="131" y="-11"/>

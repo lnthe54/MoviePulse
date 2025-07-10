@@ -39,13 +39,22 @@ class SeasonCell: UICollectionViewCell {
     }
     
     func bindData(_ data: SeasonObject) {
+        bindData(
+            withPosterPath: data.posterPath ?? "",
+            title: data.name,
+            subTitle: "\(data.episodeCount) episodes",
+            content: data.overview.isEmpty ? "N/a" : data.overview
+        )
+    }
+    
+    func bindData(withPosterPath path: String, title: String, subTitle: String, content: String) {
         posterImageView.kf.setImage(
-            with: URL(string: Utils.getPosterPath(data.posterPath ?? "", size: .w342)),
+            with: URL(string: Utils.getPosterPath(path, size: .w342)),
             placeholder: UIImage(named: "ic_loading"),
             options: [.transition(ImageTransition.fade(1))]
         )
-        seasonLabel.text = data.name
-        episodeLabel.text = "\(data.episodeCount) episodes"
-        overViewLabel.text = data.overview.isEmpty ? "N/a" : data.overview
+        seasonLabel.text = title
+        episodeLabel.text = subTitle
+        overViewLabel.text = content
     }
 }
