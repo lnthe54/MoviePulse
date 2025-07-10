@@ -156,6 +156,9 @@
 		B6BBBCE72E1F50A2006D1D6F /* SettingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6BBBCE62E1F509E006D1D6F /* SettingViewModel.swift */; };
 		B6BBBCEA2E1F50D5006D1D6F /* SettingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B6BBBCE92E1F50D5006D1D6F /* SettingViewController.xib */; };
 		B6BBBCEB2E1F50D5006D1D6F /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6BBBCE82E1F50D5006D1D6F /* SettingViewController.swift */; };
+		B6BBBCEF2E1F5AF1006D1D6F /* AppNameCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B6BBBCEE2E1F5AF1006D1D6F /* AppNameCell.xib */; };
+		B6BBBCF02E1F5AF1006D1D6F /* AppNameCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6BBBCED2E1F5AF1006D1D6F /* AppNameCell.swift */; };
+		B6BBBCF22E1F5DF4006D1D6F /* AppInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6BBBCF12E1F5DF2006D1D6F /* AppInfo.swift */; };
 		D9632ADD155F4F54C1D8CF29 /* Pods_MoviePulse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 82CD434E65B60866758DB3F7 /* Pods_MoviePulse.framework */; };
 /* End PBXBuildFile section */
 
@@ -314,6 +317,9 @@
 		B6BBBCE62E1F509E006D1D6F /* SettingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewModel.swift; sourceTree = "<group>"; };
 		B6BBBCE82E1F50D5006D1D6F /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		B6BBBCE92E1F50D5006D1D6F /* SettingViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SettingViewController.xib; sourceTree = "<group>"; };
+		B6BBBCED2E1F5AF1006D1D6F /* AppNameCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppNameCell.swift; sourceTree = "<group>"; };
+		B6BBBCEE2E1F5AF1006D1D6F /* AppNameCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AppNameCell.xib; sourceTree = "<group>"; };
+		B6BBBCF12E1F5DF2006D1D6F /* AppInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppInfo.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -581,6 +587,7 @@
 		99A5FBD92E0C54A500AA8D59 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				B6BBBCF12E1F5DF2006D1D6F /* AppInfo.swift */,
 				99A5FBE82E0C564D00AA8D59 /* CategoryModel.swift */,
 				99A5FBE62E0C55EC00AA8D59 /* LinkModel.swift */,
 				99A5FBE42E0C558C00AA8D59 /* ProjectModel.swift */,
@@ -775,12 +782,22 @@
 		B6BBBCE32E1F5023006D1D6F /* Setting */ = {
 			isa = PBXGroup;
 			children = (
+				B6BBBCEC2E1F5AC3006D1D6F /* Cell */,
 				B6BBBCE62E1F509E006D1D6F /* SettingViewModel.swift */,
 				B6BBBCE42E1F5029006D1D6F /* SettingNavigator.swift */,
 				B6BBBCE82E1F50D5006D1D6F /* SettingViewController.swift */,
 				B6BBBCE92E1F50D5006D1D6F /* SettingViewController.xib */,
 			);
 			path = Setting;
+			sourceTree = "<group>";
+		};
+		B6BBBCEC2E1F5AC3006D1D6F /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				B6BBBCED2E1F5AF1006D1D6F /* AppNameCell.swift */,
+				B6BBBCEE2E1F5AF1006D1D6F /* AppNameCell.xib */,
+			);
+			path = Cell;
 			sourceTree = "<group>";
 		};
 		E4B917826BD6211015042518 /* Frameworks */ = {
@@ -894,6 +911,7 @@
 				B64976A72E127C6700B5A738 /* ImageCell.xib in Resources */,
 				B64976B02E12807700B5A738 /* ImageDetailCell.xib in Resources */,
 				B6BBBCC62E1CF4B6006D1D6F /* SeasonViewController.xib in Resources */,
+				B6BBBCEF2E1F5AF1006D1D6F /* AppNameCell.xib in Resources */,
 				B64976B12E12807700B5A738 /* ImagesViewController.xib in Resources */,
 				997FBC942E09A05D0065979E /* LaunchScreen.storyboard in Resources */,
 				B6BBBCEA2E1F50D5006D1D6F /* SettingViewController.xib in Resources */,
@@ -981,6 +999,7 @@
 				9994AC392E14363F0084901B /* FavoriteViewController.swift in Sources */,
 				994215A32E09AB3700DAA702 /* OnboardingViewController.swift in Sources */,
 				B60B7B522E17ADE700C69C17 /* CategoryHorizontalCell.swift in Sources */,
+				B6BBBCF02E1F5AF1006D1D6F /* AppNameCell.swift in Sources */,
 				B6BBBCA32E1CAD28006D1D6F /* SearchViewController.swift in Sources */,
 				B64976882E1226DD00B5A738 /* ListItemViewController.swift in Sources */,
 				B64976C32E14D0C800B5A738 /* EmptyCell.swift in Sources */,
@@ -999,6 +1018,7 @@
 				994215A72E09ABE000DAA702 /* BaseViewController.swift in Sources */,
 				9989FF172E112499007B667C /* PulseCell.swift in Sources */,
 				99A5FBC22E0AF3C200AA8D59 /* HomeNavigator.swift in Sources */,
+				B6BBBCF22E1F5DF4006D1D6F /* AppInfo.swift in Sources */,
 				99169CD72E1A3499005B8947 /* SeeAllCell.swift in Sources */,
 				9989FF132E0FDB58007B667C /* Notification+Extension.swift in Sources */,
 				994215862E09A76100DAA702 /* APIClient.swift in Sources */,

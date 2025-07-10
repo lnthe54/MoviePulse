@@ -1,10 +1,18 @@
 import UIKit
 
+enum SettingSectionType {
+    case appInfo
+}
+
 class SettingViewController: BaseViewController {
 
     // MARK: - Properties
     private var navigator: SettingNavigator
     private var viewModel: SettingViewModel
+    
+    // MARK: - IBOutlets
+    @IBOutlet private weak var topConstraint: NSLayoutConstraint!
+    @IBOutlet private weak var collectionView: UICollectionView!
     
     init(navigator: SettingNavigator, viewModel: SettingViewModel) {
         self.navigator = navigator
@@ -19,14 +27,73 @@ class SettingViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        NotificationCenter.default.post(name: .showTabBar, object: nil)
     }
     
     override func setupViews() {
+        setupHeader(withType: .multi(title: "Setting"))
+        topConstraint.constant = Constants.HEIGHT_NAV
         
+        collectionView.register(AppNameCell.nib(), forCellWithReuseIdentifier: AppNameCell.className)
+        collectionView.backgroundColor = .clear
+        collectionView.showsHorizontalScrollIndicator = false
+        collectionView.showsVerticalScrollIndicator = false
+        collectionView.dataSource = self
+        collectionView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: Constants.BOTTOM_TABBAR, right: 0)
+        configureCompositionalLayout()
+    }
+}
+
+extension SettingViewController {
+    private func configureCompositionalLayout() {
+        let layout = UICollectionViewCompositionalLayout { [weak self] (sectionIndex, _) in
+            guard let self = self else { return AppLayout.defaultSection() }
+            let section = self.getSections()[sectionIndex]
+            
+            switch section {
+            case .appInfo:
+                return AppLayout.fixedSection(height: 68)
+            }
+        }
+        
+        collectionView.setCollectionViewLayout(layout, animated: true)
     }
     
-    override func bindViewModel() {
+    private func getSections() -> [SettingSectionType] {
+        var sections: [SettingSectionType] = []
         
+        sections.append(.appInfo)
+        
+        return sections
+    }
+    
+    private func appInfoCell(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> AppNameCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: AppNameCell.className, for: indexPath) as! AppNameCell
+        return cell
+    }
+}
+
+extension SettingViewController: UICollectionViewDataSource {
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return getSections().count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        switch getSections()[section] {
+        case .appInfo:
+            return 1
+        }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        switch getSections()[indexPath.section] {
+        case .appInfo:
+            return appInfoCell(collectionView, cellForItemAt: indexPath)
+        }
     }
 }

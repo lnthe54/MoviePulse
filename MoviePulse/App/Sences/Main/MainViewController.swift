@@ -81,6 +81,7 @@ class MainViewController: BaseViewController {
             .subscribe(onNext: { [weak self] _ in
                 guard let self else { return }
                 
+                mainViewPager.moveToScreen(at: .setting)
                 handleTap(isActiveSetting: true)
             })
             .disposed(by: disposeBag)

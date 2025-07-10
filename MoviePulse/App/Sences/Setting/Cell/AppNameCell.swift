@@ -1,0 +1,28 @@
+import UIKit
+
+class AppNameCell: UICollectionViewCell {
+
+    static func nib() -> UINib {
+        return UINib(nibName: Self.className, bundle: nil)
+    }
+    
+    // MARK: - IBOutlets
+    @IBOutlet private weak var containerView: UIView!
+    @IBOutlet private weak var appNameLabel: UILabel!
+    @IBOutlet private weak var appVersionLabel: UILabel!
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        
+        containerView.backgroundColor = UIColor(hexString: "#E7D9FB")
+        containerView.corner(4)
+        
+        appNameLabel.text = AppInfo.name
+        appNameLabel.textColor = UIColor(hexString: "#191A1E")
+        appNameLabel.font = .outfitFont(ofSize: 16, weight: .semiBold)
+        
+        appVersionLabel.text = AppInfo.version
+        appVersionLabel.textColor = UIColor(hexString: "#252934")
+        appVersionLabel.font = .outfitFont(ofSize: 14, weight: .regular)
+    }
+}
