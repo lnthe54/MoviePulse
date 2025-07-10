@@ -6,6 +6,7 @@ protocol DetailItemNavigator: BaseNavigator {
     func gotoImagesViewController(images: [BackdropObject], selectedIndex: Int)
     func gotoSeasonViewController(seasons: [SeasonObject])
     func gotoTrailerViewController(trailers: [VideoInfo])
+    func gotoSeasonDetailViewController(seasonInfo: SeasonInfo)
 }
 
 class DefaultDetailItemNavigator: DetailItemNavigator {
@@ -61,6 +62,17 @@ class DefaultDetailItemNavigator: DetailItemNavigator {
     func gotoTrailerViewController(trailers: [VideoInfo]) {
         let navigator = DefaultTrailerNavigator(navigationController: navigationController)
         let viewController = TrailerViewController(navigator: navigator, trailers: trailers)
+        navigationController.pushViewController(viewController, animated: true)
+    }
+    
+    func gotoSeasonDetailViewController(seasonInfo: SeasonInfo) {
+        let navigator = DefaultSeasonDetailNavigator(navigationController: navigationController)
+        let viewModel = SeasonDetailViewModel()
+        let viewController = SeasonDetailViewController(
+            navigator: navigator,
+            viewModel: viewModel,
+            seasonInfo: seasonInfo
+        )
         navigationController.pushViewController(viewController, animated: true)
     }
 }

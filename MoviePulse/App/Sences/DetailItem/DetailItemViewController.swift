@@ -23,8 +23,10 @@ class DetailItemViewController: BaseViewController {
     private var infoDetailObject: InfoDetailObject
     private var reviews: [ReviewObject] = []
     private var isPosterHidden = false
+    private var isSpecial: Bool = false
     
     private let gotoDetailItemTrigger = PublishSubject<InfoObject>()
+    private let gotoDetailSeasonTrigger = PublishSubject<RequestSeasonDetail>()
     
     // MARK: - IBOutlets
     @IBOutlet private weak var posterImageView: UIImageView!
@@ -72,7 +74,8 @@ class DetailItemViewController: BaseViewController {
     
     override func bindViewModel() {
         let input = DetailItemViewModel.Input(
-            gotoDetailItemTrigger: gotoDetailItemTrigger.asObservable()
+            gotoDetailItemTrigger: gotoDetailItemTrigger.asObservable(),
+            gotoDetailSeasonTrigger: gotoDetailSeasonTrigger.asObservable()
         )
         let output = viewModel.transform(input: input)
         
@@ -97,6 +100,12 @@ class DetailItemViewController: BaseViewController {
                 self?.navigator.gotoDetailItemViewController(infoDetailObject: infoDetailObject)
             }
             .disposed(by: disposeBag)
+        
+        output.gotoDetailSeasonEvent
+            .driveNext { [weak self] seasonInfo in
+                self?.navigator.gotoSeasonDetailViewController(seasonInfo: seasonInfo)
+            }
+            .disposed(by: disposeBag)
     }
     
     override func setupViews() {
@@ -107,6 +116,9 @@ class DetailItemViewController: BaseViewController {
             placeholder: UIImage(named: "ic_loading"),
             options: [.transition(ImageTransition.fade(1))]
         )
+        
+        let specials = infoDetailObject.seasons.filter({ $0.name.lowercased() == "specials" })
+        isSpecial = specials.isNotEmpty
         
         reviews = infoDetailObject.reviews?.results ?? []
         
@@ -395,6 +407,19 @@ extension DetailItemViewController: UICollectionViewDelegate, GenresCellDelegate
             gotoDetailItemTrigger.onNext(infoDetailObject.recommendations[indexPath.row])
         case .photo:
             navigator.gotoImagesViewController(images: infoDetailObject.images, selectedIndex: indexPath.row)
+        case .season:
+            let selectedSeason = infoDetailObject.seasons[indexPath.row]
+            var value: Any!
+            
+            if selectedSeason.name.lowercased().contains("Specials".lowercased()) {
+                value = "Specials"
+            } else {
+                value = isSpecial ? indexPath.row : (indexPath.row + 1)
+            }
+            
+            let params = RequestSeasonDetail(idTVShow: infoDetailObject.id, index: value!)
+            gotoDetailSeasonTrigger.onNext(params)
+            
         default: break
         }
     }
