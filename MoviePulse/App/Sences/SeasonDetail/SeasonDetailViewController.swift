@@ -2,6 +2,7 @@ import UIKit
 import Kingfisher
 
 enum SeasonDetailSectionType {
+    case search
     case episode
 }
 
@@ -12,6 +13,7 @@ class SeasonDetailViewController: BaseViewController {
     private var viewModel: SeasonDetailViewModel
     private var seasonInfo: SeasonInfo
     private var isPosterHidden = false
+    private var filters: [EpisodeInfo] = []
     
     init(
         navigator: SeasonDetailNavigator,
@@ -66,7 +68,10 @@ class SeasonDetailViewController: BaseViewController {
             options: [.transition(ImageTransition.fade(1))]
         )
         
+        filters = seasonInfo.episodes
+        
         collectionView.register(SeasonCell.nib(), forCellWithReuseIdentifier: SeasonCell.className)
+        collectionView.register(SearchCell.nib(), forCellWithReuseIdentifier: SearchCell.className)
         collectionView.backgroundColor = .clear
         collectionView.showsHorizontalScrollIndicator = false
         collectionView.showsVerticalScrollIndicator = false
@@ -84,6 +89,8 @@ extension SeasonDetailViewController {
             let section = self.getSections()[sectionIndex]
             
             switch section {
+            case .search:
+                return AppLayout.fixedSection(height: 40)
             case .episode:
                 return AppLayout.episodeSection(height: 124)
             }
@@ -95,11 +102,25 @@ extension SeasonDetailViewController {
     private func getSections() -> [SeasonDetailSectionType] {
         var sections: [SeasonDetailSectionType] = []
         
-        if seasonInfo.episodes.isNotEmpty {
-            sections.append(.episode)
-        }
+        sections.append(.search)
+        
+        sections.append(.episode)
         
         return sections
+    }
+    
+    private func handleSearch(_ key: String) {
+        let trimmed = key.trimmingCharacters(in: .whitespacesAndNewlines)
+        if trimmed.isEmpty {
+            filters = seasonInfo.episodes
+        } else {
+            filters = seasonInfo.episodes.filter { $0.name.lowercased().contains(key.lowercased()) }
+        }
+        
+        if let episodeSectionIndex = getSections().firstIndex(of: .episode) {
+            let indexSet = IndexSet(integer: episodeSectionIndex)
+            collectionView.reloadSections(indexSet)
+        }
     }
 }
 
@@ -110,21 +131,33 @@ extension SeasonDetailViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         switch getSections()[section] {
+        case .search:
+            return 1
         case .episode:
-            return seasonInfo.episodes.count
+            return filters.count
         }
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         switch getSections()[indexPath.section] {
+        case .search:
+            return searchCell(collectionView, cellForItemAt: indexPath)
         case .episode:
             return episodeCell(collectionView, cellForItemAt: indexPath)
         }
     }
     
+    private func searchCell(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> SearchCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SearchCell.className, for: indexPath) as! SearchCell
+        cell.onSearching = { [weak self] key in
+            self?.handleSearch(key)
+        }
+        return cell
+    }
+    
     private func episodeCell(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> SeasonCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SeasonCell.className, for: indexPath) as! SeasonCell
-        let episodeInfo = seasonInfo.episodes[indexPath.row]
+        let episodeInfo = filters[indexPath.row]
         cell.bindData(
             withPosterPath: episodeInfo.stillPath ?? "",
             title: episodeInfo.name,

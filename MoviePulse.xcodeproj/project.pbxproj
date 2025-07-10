@@ -168,6 +168,8 @@
 		B6BBBD032E1F98B7006D1D6F /* SeasonDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6BBBD022E1F98B2006D1D6F /* SeasonDetailViewModel.swift */; };
 		B6BBBD062E1F98F3006D1D6F /* SeasonDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B6BBBD052E1F98F3006D1D6F /* SeasonDetailViewController.xib */; };
 		B6BBBD072E1F98F3006D1D6F /* SeasonDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6BBBD042E1F98F3006D1D6F /* SeasonDetailViewController.swift */; };
+		B6BBBD0B2E1FABD9006D1D6F /* SearchCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B6BBBD0A2E1FABD9006D1D6F /* SearchCell.xib */; };
+		B6BBBD0C2E1FABD9006D1D6F /* SearchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6BBBD092E1FABD9006D1D6F /* SearchCell.swift */; };
 		D9632ADD155F4F54C1D8CF29 /* Pods_MoviePulse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 82CD434E65B60866758DB3F7 /* Pods_MoviePulse.framework */; };
 /* End PBXBuildFile section */
 
@@ -338,6 +340,8 @@
 		B6BBBD022E1F98B2006D1D6F /* SeasonDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeasonDetailViewModel.swift; sourceTree = "<group>"; };
 		B6BBBD042E1F98F3006D1D6F /* SeasonDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeasonDetailViewController.swift; sourceTree = "<group>"; };
 		B6BBBD052E1F98F3006D1D6F /* SeasonDetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SeasonDetailViewController.xib; sourceTree = "<group>"; };
+		B6BBBD092E1FABD9006D1D6F /* SearchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCell.swift; sourceTree = "<group>"; };
+		B6BBBD0A2E1FABD9006D1D6F /* SearchCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -835,12 +839,22 @@
 		B6BBBCFF2E1F984A006D1D6F /* SeasonDetail */ = {
 			isa = PBXGroup;
 			children = (
+				B6BBBD082E1FABC3006D1D6F /* Cell */,
 				B6BBBD022E1F98B2006D1D6F /* SeasonDetailViewModel.swift */,
 				B6BBBD002E1F9858006D1D6F /* SeasonDetailNavigator.swift */,
 				B6BBBD042E1F98F3006D1D6F /* SeasonDetailViewController.swift */,
 				B6BBBD052E1F98F3006D1D6F /* SeasonDetailViewController.xib */,
 			);
 			path = SeasonDetail;
+			sourceTree = "<group>";
+		};
+		B6BBBD082E1FABC3006D1D6F /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				B6BBBD092E1FABD9006D1D6F /* SearchCell.swift */,
+				B6BBBD0A2E1FABD9006D1D6F /* SearchCell.xib */,
+			);
+			path = Cell;
 			sourceTree = "<group>";
 		};
 		E4B917826BD6211015042518 /* Frameworks */ = {
@@ -948,6 +962,7 @@
 				9989FF102E0FDA31007B667C /* CategoryViewController.xib in Resources */,
 				9994AC212E12D5050084901B /* PulseTestCell.xib in Resources */,
 				99169CD62E1A3499005B8947 /* SeeAllCell.xib in Resources */,
+				B6BBBD0B2E1FABD9006D1D6F /* SearchCell.xib in Resources */,
 				997FBC922E09A05D0065979E /* Assets.xcassets in Resources */,
 				B6BBBCFD2E1F6DCC006D1D6F /* WebViewViewController.xib in Resources */,
 				9989FEFB2E0F9B40007B667C /* CategoryCell.xib in Resources */,
@@ -1040,6 +1055,7 @@
 				B64976692E0A48D500B5A738 /* UIFont+Extension.swift in Sources */,
 				9989FF082E0FD830007B667C /* BaseHeaderView.swift in Sources */,
 				994215832E09A76100DAA702 /* APIResponse.swift in Sources */,
+				B6BBBD0C2E1FABD9006D1D6F /* SearchCell.swift in Sources */,
 				9989FF042E0FD7BB007B667C /* CategoryViewModel.swift in Sources */,
 				994215842E09A76100DAA702 /* APIConfiguration.swift in Sources */,
 				99A5FBCB2E0B0DFF00AA8D59 /* MovieRouter.swift in Sources */,
