@@ -162,6 +162,8 @@
 		B6BBBCF52E1F6065006D1D6F /* SettingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B6BBBCF42E1F6065006D1D6F /* SettingCell.xib */; };
 		B6BBBCF62E1F6065006D1D6F /* SettingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6BBBCF32E1F6065006D1D6F /* SettingCell.swift */; };
 		B6BBBCF82E1F60BE006D1D6F /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6BBBCF72E1F60BE006D1D6F /* NotificationManager.swift */; };
+		B6BBBCFC2E1F6DCC006D1D6F /* WebViewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6BBBCF92E1F6DCC006D1D6F /* WebViewViewController.swift */; };
+		B6BBBCFD2E1F6DCC006D1D6F /* WebViewViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B6BBBCFA2E1F6DCC006D1D6F /* WebViewViewController.xib */; };
 		D9632ADD155F4F54C1D8CF29 /* Pods_MoviePulse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 82CD434E65B60866758DB3F7 /* Pods_MoviePulse.framework */; };
 /* End PBXBuildFile section */
 
@@ -326,6 +328,8 @@
 		B6BBBCF32E1F6065006D1D6F /* SettingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingCell.swift; sourceTree = "<group>"; };
 		B6BBBCF42E1F6065006D1D6F /* SettingCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SettingCell.xib; sourceTree = "<group>"; };
 		B6BBBCF72E1F60BE006D1D6F /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
+		B6BBBCF92E1F6DCC006D1D6F /* WebViewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewViewController.swift; sourceTree = "<group>"; };
+		B6BBBCFA2E1F6DCC006D1D6F /* WebViewViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WebViewViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -382,6 +386,7 @@
 		9942159B2E09AA5300DAA702 /* Sences */ = {
 			isa = PBXGroup;
 			children = (
+				B6BBBCFB2E1F6DCC006D1D6F /* Webview */,
 				B6BBBCE32E1F5023006D1D6F /* Setting */,
 				B6BBBCD82E1DFED1006D1D6F /* Trailer */,
 				B6BBBCBF2E1CF34A006D1D6F /* Season */,
@@ -809,6 +814,15 @@
 			path = Cell;
 			sourceTree = "<group>";
 		};
+		B6BBBCFB2E1F6DCC006D1D6F /* Webview */ = {
+			isa = PBXGroup;
+			children = (
+				B6BBBCF92E1F6DCC006D1D6F /* WebViewViewController.swift */,
+				B6BBBCFA2E1F6DCC006D1D6F /* WebViewViewController.xib */,
+			);
+			path = Webview;
+			sourceTree = "<group>";
+		};
 		E4B917826BD6211015042518 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -915,6 +929,7 @@
 				9994AC212E12D5050084901B /* PulseTestCell.xib in Resources */,
 				99169CD62E1A3499005B8947 /* SeeAllCell.xib in Resources */,
 				997FBC922E09A05D0065979E /* Assets.xcassets in Resources */,
+				B6BBBCFD2E1F6DCC006D1D6F /* WebViewViewController.xib in Resources */,
 				9989FEFB2E0F9B40007B667C /* CategoryCell.xib in Resources */,
 				B64976A32E12636E00B5A738 /* OverviewDetailItemCell.xib in Resources */,
 				B64976A72E127C6700B5A738 /* ImageCell.xib in Resources */,
@@ -1057,6 +1072,7 @@
 				B64976772E0E31C000B5A738 /* ItemHorizontalCell.swift in Sources */,
 				B64976852E12269A00B5A738 /* ListItemViewModel.swift in Sources */,
 				B64976B92E13B40A00B5A738 /* TagCell.swift in Sources */,
+				B6BBBCFC2E1F6DCC006D1D6F /* WebViewViewController.swift in Sources */,
 				B649769A2E1247DB00B5A738 /* TVShowClient.swift in Sources */,
 				B64976B52E13880C00B5A738 /* ReviewCell.swift in Sources */,
 				B649768B2E122B1B00B5A738 /* LoadingView.swift in Sources */,

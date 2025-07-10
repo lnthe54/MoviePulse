@@ -158,11 +158,14 @@ extension SettingViewController: UICollectionViewDataSource {
 extension SettingViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if getSections()[indexPath.section] == .list {
-            switch settings[indexPath.row] {
+            let type = settings[indexPath.row]
+            switch type {
             case .support:
                 tapToFeedback()
             case .share:
                 showPopupShareApp()
+            case .terms:
+                navigator.gotoWebviewViewController(title: type.title, url: Constants.Config.URL_POLICY)
             default:
                 break
             }
