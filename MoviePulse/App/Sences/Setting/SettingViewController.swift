@@ -1,4 +1,5 @@
 import UIKit
+import MessageUI
 
 enum SettingSectionType {
     case appInfo
@@ -156,6 +157,39 @@ extension SettingViewController: UICollectionViewDataSource {
 
 extension SettingViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
+        if getSections()[indexPath.section] == .list {
+            switch settings[indexPath.row] {
+            case .support:
+                tapToFeedback()
+            case .share:
+                showPopupShareApp()
+            default:
+                break
+            }
+        }
+    }
+}
+
+extension SettingViewController: MFMailComposeViewControllerDelegate {
+    private func tapToFeedback() {
+        if MFMailComposeViewController.canSendMail() {
+            let mail = MFMailComposeViewController()
+            mail.mailComposeDelegate = self
+            mail.setToRecipients([Constants.Config.EMAIL_FEEDBACK])
+            mail.setSubject(Constants.Config.SUBJECT_CONTENT)
+            mail.setMessageBody(Constants.Config.BODY_CONTENT, isHTML: false)
+            
+            present(mail, animated: true)
+        } else if let emailUrl = Utils.createEmailUrl(
+            to: Constants.Config.EMAIL_FEEDBACK,
+            subject: Constants.Config.SUBJECT_CONTENT,
+            body: Constants.Config.BODY_CONTENT
+        ) {
+            Utils.open(with: emailUrl)
+        }
+    }
+    
+    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
+        controller.dismiss(animated: true)
     }
 }
