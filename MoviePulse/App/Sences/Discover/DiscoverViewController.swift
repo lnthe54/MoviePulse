@@ -58,6 +58,10 @@ class DiscoverViewController: BaseViewController {
         NotificationCenter.default.post(name: .showTabBar, object: nil)
     }
     
+    override func actionSearch() {
+        navigator.gotoSearchViewController()
+    }
+    
     override func bindViewModel() {
         let input = DiscoverViewModel.Input(
             getDataTrigger: getDataTrigger.asObservable(),

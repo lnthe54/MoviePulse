@@ -4,6 +4,7 @@ protocol DiscoverNavigator {
     func gotoDetailItemViewController(infoDetailObject: InfoDetailObject)
     func gotoListItemViewController(sectionType: ListSectionType)
     func gotoCategoryViewController(categories: [CategoryObject], objectType: ObjectType)
+    func gotoSearchViewController()
 }
 
 class DefaultDiscoverNavigator: DiscoverNavigator {
@@ -44,6 +45,13 @@ class DefaultDiscoverNavigator: DiscoverNavigator {
             categories: categories,
             objectType: objectType
         )
+        navigationController.pushViewController(viewController, animated: true)
+    }
+    
+    func gotoSearchViewController() {
+        let navigator = DefaultSearchNavigator(navigationController: navigationController)
+        let viewModel = SearchViewModel()
+        let viewController = SearchViewController(navigator: navigator, viewModel: viewModel)
         navigationController.pushViewController(viewController, animated: true)
     }
 }
