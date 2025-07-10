@@ -7,7 +7,10 @@ class DiscoverViewModel: ViewModelType {
     private var movieServices: MovieServices
     private var tvShowServices: TVShowServices
     
-    init(movieServices: MovieServices, tvShowServices: TVShowServices) {
+    init(
+        movieServices: MovieServices = MovieClient(),
+        tvShowServices: TVShowServices = TVShowClient()
+    ) {
         self.movieServices = movieServices
         self.tvShowServices = tvShowServices
     }

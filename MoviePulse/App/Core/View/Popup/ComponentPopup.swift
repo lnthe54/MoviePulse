@@ -70,7 +70,6 @@ class ComponentPopup: BaseViewController {
                 self?.dismissPopup(completion: {
                     self?.onTapLeftButton?()
                 })
-                
             })
             .disposed(by: disposeBag)
         
