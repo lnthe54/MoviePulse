@@ -176,25 +176,10 @@
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TPv-ow-e1D">
-                                    <rect key="frame" x="16" y="16" width="24" height="24"/>
-                                    <constraints>
-                                        <constraint firstAttribute="height" constant="24" id="5Vk-f8-J06"/>
-                                        <constraint firstAttribute="width" constant="24" id="fV2-S0-8Y2"/>
-                                    </constraints>
-                                    <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                    <state key="normal" image="xmark" catalog="system"/>
-                                    <connections>
-                                        <action selector="didToClose" destination="iN0-l3-epB" eventType="touchUpInside" id="nC6-63-G5p"/>
-                                    </connections>
-                                </button>
                             </subviews>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="56" id="4xc-Od-WyZ"/>
-                                <constraint firstItem="TPv-ow-e1D" firstAttribute="leading" secondItem="Pan-qG-tzR" secondAttribute="leading" constant="16" id="7yj-V2-G4U"/>
-                                <constraint firstItem="TPv-ow-e1D" firstAttribute="centerY" secondItem="PJ5-3g-RGR" secondAttribute="centerY" id="xko-EH-vdy"/>
                                 <constraint firstItem="PJ5-3g-RGR" firstAttribute="centerY" secondItem="Pan-qG-tzR" secondAttribute="centerY" id="y4t-s0-gFI"/>
                                 <constraint firstItem="PJ5-3g-RGR" firstAttribute="centerX" secondItem="Pan-qG-tzR" secondAttribute="centerX" id="zlw-2H-q8v"/>
                             </constraints>
@@ -233,7 +218,6 @@
         <image name="ic_search" width="24" height="24"/>
         <image name="ic_search_header" width="24" height="24"/>
         <image name="ic_share" width="24" height="24"/>
-        <image name="xmark" catalog="system" width="128" height="113"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

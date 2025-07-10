@@ -54,7 +54,7 @@ class SettingViewController: BaseViewController {
     }
     
     override func setupViews() {
-        setupHeader(withType: .multi(title: "Setting"))
+        setupHeader(withType: .single(title: "Setting"))
         topConstraint.constant = Constants.HEIGHT_NAV
         
         collectionView.register(AppNameCell.nib(), forCellWithReuseIdentifier: AppNameCell.className)

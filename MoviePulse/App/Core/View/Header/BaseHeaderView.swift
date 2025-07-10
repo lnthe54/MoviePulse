@@ -143,8 +143,8 @@ extension BaseHeaderView {
     
     private func setupSingleView(title: String) {
         singleLabel.text = title
-        singleLabel.textColor = .white
-//        singleLabel.font = .harmonyFont(ofSize: 16, weight: .bold)
+        singleLabel.textColor = UIColor(hexString: "#252934")
+        singleLabel.font = .outfitFont(ofSize: 20, weight: .semiBold)
     }
     
     private func setupMultiView(title: String, buttons: [RightContentType]) {
