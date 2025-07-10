@@ -13,17 +13,22 @@ class SeasonViewController: BaseViewController {
     // MARK: - Properties
     private var navigator: SeasonNavigator
     private var viewModel: SeasonViewModel
+    private var tvShowId: Int
     private var seasons: [SeasonObject]
     private var isSpecial: Bool = false
     private var filters: [SeasonObject] = []
     
+    private let gotoDetailSeasonTrigger = PublishSubject<RequestSeasonDetail>()
+    
     init(
         navigator: SeasonNavigator,
         viewModel: SeasonViewModel,
+        tvShowId: Int,
         seasons: [SeasonObject]
     ) {
         self.navigator = navigator
         self.viewModel = viewModel
+        self.tvShowId = tvShowId
         self.seasons = seasons
         super.init(nibName: Self.className, bundle: nil)
     }
@@ -54,8 +59,32 @@ class SeasonViewController: BaseViewController {
     }
     
     override func bindViewModel() {
-        let input = SeasonViewModel.Input()
+        let input = SeasonViewModel.Input(
+            gotoDetailSeasonTrigger: gotoDetailSeasonTrigger.asObservable()
+        )
         let output = viewModel.transform(input: input)
+        
+        output.loadingEvent
+            .driveNext { isLoading in
+                if isLoading {
+                    LoadingView.shared.startLoading()
+                } else {
+                    LoadingView.shared.endLoading()
+                }
+            }
+            .disposed(by: disposeBag)
+        
+        output.errorEvent
+            .driveNext { _ in
+                // Do something
+            }
+            .disposed(by: disposeBag)
+        
+        output.gotoDetailSeasonEvent
+            .driveNext { [weak self] seasonInfo in
+                self?.navigator.gotoSeasonDetailViewController(seasonInfo: seasonInfo)
+            }
+            .disposed(by: disposeBag)
     }
     
     override func setupViews() {
@@ -179,6 +208,21 @@ extension SeasonViewController: UICollectionViewDataSource {
 
 extension SeasonViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
+        switch getSections()[indexPath.section] {
+        case .list:
+            let selectedSeason = filters[indexPath.row]
+            var value: Any!
+            
+            if selectedSeason.name.lowercased().contains("Specials".lowercased()) {
+                value = "Specials"
+            } else {
+                value = isSpecial ? indexPath.row : (indexPath.row + 1)
+            }
+            
+            let params = RequestSeasonDetail(idTVShow: tvShowId, index: value!)
+            
+            gotoDetailSeasonTrigger.onNext(params)
+        default: break
+        }
     }
 }

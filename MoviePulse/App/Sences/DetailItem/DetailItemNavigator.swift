@@ -4,7 +4,7 @@ protocol DetailItemNavigator: BaseNavigator {
     func gotoDetailItemViewController(infoDetailObject: InfoDetailObject)
     func gotoListItemViewController(sectionType: ListSectionType)
     func gotoImagesViewController(images: [BackdropObject], selectedIndex: Int)
-    func gotoSeasonViewController(seasons: [SeasonObject])
+    func gotoSeasonViewController(tvShowId: Int, seasons: [SeasonObject])
     func gotoTrailerViewController(trailers: [VideoInfo])
     func gotoSeasonDetailViewController(seasonInfo: SeasonInfo)
 }
@@ -48,12 +48,13 @@ class DefaultDetailItemNavigator: DetailItemNavigator {
         navigationController.present(viewController, animated: true)
     }
     
-    func gotoSeasonViewController(seasons: [SeasonObject]) {
+    func gotoSeasonViewController(tvShowId: Int, seasons: [SeasonObject]) {
         let navigator = DefaultSeasonNavigator(navigationController: navigationController)
         let viewModel = SeasonViewModel()
         let viewController = SeasonViewController(
             navigator: navigator,
             viewModel: viewModel,
+            tvShowId: tvShowId,
             seasons: seasons
         )
         navigationController.pushViewController(viewController, animated: true)

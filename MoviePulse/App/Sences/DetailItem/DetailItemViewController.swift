@@ -433,7 +433,7 @@ extension DetailItemViewController: UICollectionViewDelegate, GenresCellDelegate
         case .related:
             navigator.gotoListItemViewController(sectionType: .others(title: "Related movies", items: infoDetailObject.recommendations))
         case .season:
-            navigator.gotoSeasonViewController(seasons: infoDetailObject.seasons)
+            navigator.gotoSeasonViewController(tvShowId: infoDetailObject.id, seasons: infoDetailObject.seasons)
         default: break
         }
     }

@@ -1,7 +1,7 @@
 import UIKit
 
 protocol SeasonNavigator: BaseNavigator {
-    
+    func gotoSeasonDetailViewController(seasonInfo: SeasonInfo)
 }
 
 class DefaultSeasonNavigator: SeasonNavigator {
@@ -13,6 +13,17 @@ class DefaultSeasonNavigator: SeasonNavigator {
     
     func popToViewController() {
         navigationController.popViewController(animated: true)
+    }
+    
+    func gotoSeasonDetailViewController(seasonInfo: SeasonInfo) {
+        let navigator = DefaultSeasonDetailNavigator(navigationController: navigationController)
+        let viewModel = SeasonDetailViewModel()
+        let viewController = SeasonDetailViewController(
+            navigator: navigator,
+            viewModel: viewModel,
+            seasonInfo: seasonInfo
+        )
+        navigationController.pushViewController(viewController, animated: true)
     }
 }
 
