@@ -4,11 +4,6 @@ import RxCocoa
 import RxGesture
 
 class InfoDetailItemCell: UICollectionViewCell {
-
-    static func nib() -> UINib {
-        return UINib(nibName: Self.className, bundle: nil)
-    }
-    
     // MARK: - IBOutlets
     @IBOutlet private weak var containerView: UIView!
     @IBOutlet private weak var nameLabel: UILabel!
@@ -41,12 +36,7 @@ class InfoDetailItemCell: UICollectionViewCell {
         nameLabel.numberOfLines = 0
         nameLabel.textAlignment = .center
         
-        collectionView.register(RateCell.nib(), forCellWithReuseIdentifier: RateCell.className)
-        collectionView.register(TagCell.nib(), forCellWithReuseIdentifier: TagCell.className)
-        collectionView.backgroundColor = .clear
-        collectionView.showsHorizontalScrollIndicator = false
-        collectionView.showsVerticalScrollIndicator = false
-        collectionView.dataSource = self
+        collectionView.configure(withCells: [RateCell.self, TagCell.self], dataSource: self)
         collectionView.setCollectionViewLayout(UICollectionViewCompositionalLayout(section: AppLayout.tagHorizontalSection()), animated: true)
         
         favoriteView.backgroundColor = UIColor(hexString: "#F3EDFD")

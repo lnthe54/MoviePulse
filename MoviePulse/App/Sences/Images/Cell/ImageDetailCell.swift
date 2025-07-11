@@ -2,11 +2,6 @@ import UIKit
 import Kingfisher
 
 class ImageDetailCell: UICollectionViewCell {
-
-    static func nib() -> UINib {
-        return UINib(nibName: Self.className, bundle: nil)
-    }
-    
     // MARK: - IBOutlet
     @IBOutlet private weak var posterImageView: UIImageView!
         

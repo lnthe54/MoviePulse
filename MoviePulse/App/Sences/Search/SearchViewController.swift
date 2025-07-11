@@ -69,15 +69,12 @@ class SearchViewController: BaseViewController {
         searchTf.returnKeyType = .search
         searchTf.becomeFirstResponder()
         
-        collectionView.register(RecentHeaderCell.nib(),
-                                forSupplementaryViewOfKind: "Header",
-                                withReuseIdentifier: RecentHeaderCell.className)
-        collectionView.register(RecentCell.nib(), forCellWithReuseIdentifier: RecentCell.className)
-        collectionView.backgroundColor = .clear
-        collectionView.showsHorizontalScrollIndicator = false
-        collectionView.showsVerticalScrollIndicator = false
-        collectionView.delegate = self
-        collectionView.dataSource = self
+        collectionView.configure(
+            withCells: [RecentCell.self],
+            headers: [RecentHeaderCell.self],
+            delegate: self,
+            dataSource: self
+        )
         configureCompositionalLayout()
     }
     

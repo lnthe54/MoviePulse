@@ -4,11 +4,6 @@ import RxCocoa
 import RxGesture
 
 class SearchCell: UICollectionViewCell {
-
-    static func nib() -> UINib {
-        return UINib(nibName: Self.className, bundle: nil)
-    }
-    
     // MARK: - IBOutlets
     @IBOutlet private weak var searchView: UIView!
     @IBOutlet private weak var searchTf: UITextField!

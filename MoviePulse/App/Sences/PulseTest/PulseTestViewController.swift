@@ -16,6 +16,10 @@ class PulseTestViewController: BaseViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
+    // MARK: - IBOutlets
+    @IBOutlet private weak var topConstraint: NSLayoutConstraint!
+    @IBOutlet private weak var collectionView: UICollectionView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -33,5 +37,13 @@ class PulseTestViewController: BaseViewController {
     
     override func setupViews() {
         setupHeader(withType: .detail(title: "Pulse Test"))
+        
+        topConstraint.constant = Constants.HEIGHT_NAV
+        
+        collectionView.backgroundColor = .clear
+        collectionView.showsVerticalScrollIndicator = false
+        collectionView.showsVerticalScrollIndicator = false
+//        collectionView.delegate = self
+//        collectionView.dataSource = self
     }
 }

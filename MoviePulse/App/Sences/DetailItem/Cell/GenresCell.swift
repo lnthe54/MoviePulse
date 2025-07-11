@@ -5,11 +5,6 @@ protocol GenresCellDelegate: NSObjectProtocol {
 }
 
 class GenresCell: UICollectionViewCell {
-
-    static func nib() -> UINib {
-        return UINib(nibName: Self.className, bundle: nil)
-    }
-    
     // MARK: - IBOutlets
     @IBOutlet private weak var containerView: UIView!
     @IBOutlet private weak var titleLabel: UILabel!
@@ -32,13 +27,8 @@ class GenresCell: UICollectionViewCell {
         titleLabel.text = "List Genres"
         titleLabel.textColor = .white
         titleLabel.font = .outfitFont(ofSize: 16, weight: .semiBold)
-        
-        collectionView.register(CategoryCell.nib(), forCellWithReuseIdentifier: CategoryCell.className)
-        collectionView.backgroundColor = .clear
-        collectionView.showsHorizontalScrollIndicator = false
-        collectionView.showsVerticalScrollIndicator = false
-        collectionView.delegate = self
-        collectionView.dataSource = self
+
+        collectionView.configure(withCells: [CategoryCell.self], delegate: self, dataSource: self)
         collectionView.setCollectionViewLayout(UICollectionViewCompositionalLayout(section: AppLayout.categoryHorizontalSection()), animated: true)
     }
     

@@ -118,13 +118,7 @@ class SeasonViewController: BaseViewController {
         let specials = filters.filter({ $0.name.lowercased() == "specials" })
         isSpecial = specials.isNotEmpty
         
-        collectionView.register(SeasonCell.nib(), forCellWithReuseIdentifier: SeasonCell.className)
-        collectionView.register(EmptyCell.nib(), forCellWithReuseIdentifier: EmptyCell.className)
-        collectionView.backgroundColor = .clear
-        collectionView.showsHorizontalScrollIndicator = false
-        collectionView.showsVerticalScrollIndicator = false
-        collectionView.delegate = self
-        collectionView.dataSource = self
+        collectionView.configure(withCells: [SeasonCell.self, EmptyCell.self], delegate: self, dataSource: self)
         configureCompositionalLayout()
     }
 }

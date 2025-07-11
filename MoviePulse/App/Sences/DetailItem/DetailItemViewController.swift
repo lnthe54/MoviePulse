@@ -122,24 +122,13 @@ class DetailItemViewController: BaseViewController {
         
         reviews = infoDetailObject.reviews?.results ?? []
         
-        collectionView.register(TitleHeaderSection.nib(),
-                                forSupplementaryViewOfKind: "Header",
-                                withReuseIdentifier: TitleHeaderSection.className)
-        collectionView.register(InfoDetailItemCell.nib(), forCellWithReuseIdentifier: InfoDetailItemCell.className)
-        collectionView.register(ItemHorizontalCell.nib(), forCellWithReuseIdentifier: ItemHorizontalCell.className)
-        collectionView.register(OverviewDetailItemCell.nib(), forCellWithReuseIdentifier: OverviewDetailItemCell.className)
-        collectionView.register(ImageCell.nib(), forCellWithReuseIdentifier: ImageCell.className)
-        collectionView.register(PulseTestCell.nib(), forCellWithReuseIdentifier: PulseTestCell.className)
-        collectionView.register(CommunityCell.nib(), forCellWithReuseIdentifier: CommunityCell.className)
-        collectionView.register(GenresCell.nib(), forCellWithReuseIdentifier: GenresCell.className)
-        collectionView.register(ReviewCell.nib(), forCellWithReuseIdentifier: ReviewCell.className)
-        collectionView.register(SeasonCell.nib(), forCellWithReuseIdentifier: SeasonCell.className)
-        collectionView.backgroundColor = .clear
-        collectionView.showsHorizontalScrollIndicator = false
-        collectionView.showsVerticalScrollIndicator = false
-        collectionView.dataSource = self
-        collectionView.delegate = self
-        collectionView.contentInset = UIEdgeInsets(top: posterImageView.frame.height - 120, left: 0, bottom: 0, right: 0)
+        collectionView.configure(
+            withCells: [InfoDetailItemCell.self, ItemHorizontalCell.self, OverviewDetailItemCell.self, ImageCell.self, PulseTestCell.self, CommunityCell.self, GenresCell.self, ReviewCell.self, SeasonCell.self],
+            headers: [TitleHeaderSection.self],
+            delegate: self,
+            dataSource: self,
+            contentInset: UIEdgeInsets(top: posterImageView.frame.height - 120, left: 0, bottom: 0, right: 0)
+        )
         configureCompositionalLayout()
     }
 }

@@ -144,13 +144,11 @@ class ResultSearchViewController: BaseViewController {
         // Default
         didToMoviesTab()
         
-        collectionView.register(ItemHorizontalCell.nib(), forCellWithReuseIdentifier: ItemHorizontalCell.className)
-        collectionView.register(EmptyCell.nib(), forCellWithReuseIdentifier: EmptyCell.className)
-        collectionView.backgroundColor = .clear
-        collectionView.showsVerticalScrollIndicator = false
-        collectionView.showsHorizontalScrollIndicator = false
-        collectionView.delegate = self
-        collectionView.dataSource = self
+        collectionView.configure(
+            withCells: [ItemHorizontalCell.self, EmptyCell.self],
+            delegate: self,
+            dataSource: self
+        )
         configureCompositionalLayout()
     }
 }

@@ -1,11 +1,6 @@
 import UIKit
 
 class EmptyCell: UICollectionViewCell {
-
-    static func nib() -> UINib {
-        return UINib(nibName: Self.className, bundle: nil)
-    }
-    
     // MARK: - IBOutlets
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var contentLabel: UILabel!

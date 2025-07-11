@@ -71,15 +71,12 @@ class SeasonDetailViewController: BaseViewController {
         
         filters = seasonInfo.episodes
         
-        collectionView.register(InfoSeasonDetailCell.nib(), forCellWithReuseIdentifier: InfoSeasonDetailCell.className)
-        collectionView.register(SeasonCell.nib(), forCellWithReuseIdentifier: SeasonCell.className)
-        collectionView.register(SearchCell.nib(), forCellWithReuseIdentifier: SearchCell.className)
-        collectionView.backgroundColor = .clear
-        collectionView.showsHorizontalScrollIndicator = false
-        collectionView.showsVerticalScrollIndicator = false
-        collectionView.dataSource = self
-        collectionView.delegate = self
-        collectionView.contentInset = UIEdgeInsets(top: posterImageView.frame.height - 120, left: 0, bottom: 0, right: 0)
+        collectionView.configure(
+            withCells: [InfoSeasonDetailCell.self, SeasonCell.self, SearchCell.self],
+            delegate: self,
+            dataSource: self,
+            contentInset: UIEdgeInsets(top: posterImageView.frame.height - 120, left: 0, bottom: 0, right: 0)
+        )
         configureCompositionalLayout()
     }
 }

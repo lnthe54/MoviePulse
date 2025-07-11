@@ -8,11 +8,6 @@ protocol TitleHeaderSectionDelegate: NSObjectProtocol {
 }
 
 class TitleHeaderSection: UICollectionReusableView {
-
-    static func nib() -> UINib {
-        return UINib(nibName: TitleHeaderSection.className, bundle: nil)
-    }
-    
     // MARK: - IBOutlets
     @IBOutlet private weak var titleSection: UILabel!
     @IBOutlet private weak var seeMoreButton: UILabel!

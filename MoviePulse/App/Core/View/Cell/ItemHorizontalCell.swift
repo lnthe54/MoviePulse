@@ -2,11 +2,6 @@ import UIKit
 import Kingfisher
 
 class ItemHorizontalCell: UICollectionViewCell {
-
-    static func nib() -> UINib {
-        return UINib(nibName: Self.className, bundle: nil)
-    }
-    
     // MARK: - Properties
     private var categories: [TagType] = []
     
@@ -27,12 +22,7 @@ class ItemHorizontalCell: UICollectionViewCell {
         nameLabel.font = .outfitFont(ofSize: 14, weight: .semiBold)
         nameLabel.textColor = .blackColor
         
-        collectionView.register(TagCell.nib(), forCellWithReuseIdentifier: TagCell.className)
-        collectionView.register(RateCell.nib(), forCellWithReuseIdentifier: RateCell.className)
-        collectionView.backgroundColor = .clear
-        collectionView.showsHorizontalScrollIndicator = false
-        collectionView.showsVerticalScrollIndicator = false
-        collectionView.dataSource = self
+        collectionView.configure(withCells: [TagCell.self, RateCell.self], dataSource: self)
         collectionView.setCollectionViewLayout(UICollectionViewCompositionalLayout(section: AppLayout.tagHorizontalSection()), animated: true)
     }
     

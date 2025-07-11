@@ -8,11 +8,6 @@ protocol SeeAllCellDelegate: NSObjectProtocol {
 }
 
 class SeeAllCell: UICollectionViewCell {
-
-    static func nib() -> UINib {
-        return UINib(nibName: Self.className, bundle: nil)
-    }
-    
     // MARK: - IBOutlets
     @IBOutlet private weak var containerView: UIView!
     @IBOutlet private weak var titleLabel: UILabel!

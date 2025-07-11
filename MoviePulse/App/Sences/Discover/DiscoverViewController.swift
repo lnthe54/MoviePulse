@@ -133,18 +133,13 @@ class DiscoverViewController: BaseViewController {
         // Default
         didToMoviesTab()
         
-        collectionView.register(TitleHeaderSection.nib(),
-                                forSupplementaryViewOfKind: "Header",
-                                withReuseIdentifier: TitleHeaderSection.className)
-        collectionView.register(ItemHorizontalCell.nib(), forCellWithReuseIdentifier: ItemHorizontalCell.className)
-        collectionView.register(CategoryHorizontalCell.nib(), forCellWithReuseIdentifier: CategoryHorizontalCell.className)
-        collectionView.register(SeeAllCell.nib(), forCellWithReuseIdentifier: SeeAllCell.className)
-        collectionView.backgroundColor = .clear
-        collectionView.showsVerticalScrollIndicator = false
-        collectionView.showsHorizontalScrollIndicator = false
-        collectionView.delegate = self
-        collectionView.dataSource = self
-        collectionView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: Constants.BOTTOM_TABBAR, right: 0)
+        collectionView.configure(
+            withCells: [ItemHorizontalCell.self, CategoryHorizontalCell.self, SeeAllCell.self],
+            headers: [TitleHeaderSection.self],
+            delegate: self,
+            dataSource: self,
+            contentInset: UIEdgeInsets(top: 0, left: 0, bottom: Constants.BOTTOM_TABBAR, right: 0)
+        )
         configureCompositionalLayout()
     }
 }

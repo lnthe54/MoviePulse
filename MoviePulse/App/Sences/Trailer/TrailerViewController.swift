@@ -46,12 +46,11 @@ class TrailerViewController: BaseViewController {
         topConstraint.constant = Constants.HEIGHT_NAV
         setupHeader(withType: .detail(title: "Trailers"))
         
-        collectionView.register(TrailerCell.nib(), forCellWithReuseIdentifier: TrailerCell.className)
-        collectionView.backgroundColor = .clear
-        collectionView.showsHorizontalScrollIndicator = false
-        collectionView.showsVerticalScrollIndicator = false
-        collectionView.delegate = self
-        collectionView.dataSource = self
+        collectionView.configure(
+            withCells: [TrailerCell.self],
+            delegate: self,
+            dataSource: self
+        )
         configureCompositionalLayout()
     }
     

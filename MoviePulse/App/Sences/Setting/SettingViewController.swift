@@ -57,14 +57,12 @@ class SettingViewController: BaseViewController {
         setupHeader(withType: .single(title: "Setting"))
         topConstraint.constant = Constants.HEIGHT_NAV
         
-        collectionView.register(AppNameCell.nib(), forCellWithReuseIdentifier: AppNameCell.className)
-        collectionView.register(SettingCell.nib(), forCellWithReuseIdentifier: SettingCell.className)
-        collectionView.backgroundColor = .clear
-        collectionView.showsHorizontalScrollIndicator = false
-        collectionView.showsVerticalScrollIndicator = false
-        collectionView.dataSource = self
-        collectionView.delegate = self
-        collectionView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: Constants.BOTTOM_TABBAR, right: 0)
+        collectionView.configure(
+            withCells: [AppNameCell.self, SettingCell.self],
+            delegate: self,
+            dataSource: self,
+            contentInset: UIEdgeInsets(top: 0, left: 0, bottom: Constants.BOTTOM_TABBAR, right: 0)
+        )
         configureCompositionalLayout()
     }
 }

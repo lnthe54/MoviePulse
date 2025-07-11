@@ -1,11 +1,6 @@
 import UIKit
 
 class RateCell: UICollectionViewCell {
-
-    static func nib() -> UINib {
-        return UINib(nibName: Self.className, bundle: nil)
-    }
-    
     // MARK: - IBOutlets
     @IBOutlet private weak var rateView: UIView!
     @IBOutlet private weak var rateLabel: UILabel!

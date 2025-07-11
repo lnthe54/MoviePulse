@@ -1,11 +1,6 @@
 import UIKit
 
 class FeelCell: UICollectionViewCell {
-
-    static func nib() -> UINib {
-        return UINib(nibName: Self.className, bundle: nil)
-    }
-    
     // MARK: - IBOutlets
     @IBOutlet private weak var containerView: UIView!
     @IBOutlet private weak var titleLabel: UILabel!
@@ -32,12 +27,11 @@ class FeelCell: UICollectionViewCell {
         contentLabel.font = .outfitFont(ofSize: 12)
         contentLabel.numberOfLines = 0
         
-        collectionView.register(CategoryCell.nib(), forCellWithReuseIdentifier: CategoryCell.className)
-        collectionView.backgroundColor = .clear
-        collectionView.showsHorizontalScrollIndicator = false
-        collectionView.showsVerticalScrollIndicator = false
-        collectionView.delegate = self
-        collectionView.dataSource = self
+        collectionView.configure(
+            withCells: [CategoryCell.self],
+            delegate: self,
+            dataSource: self
+        )
         collectionView.setCollectionViewLayout(UICollectionViewCompositionalLayout(section: AppLayout.categorySection(isShowHeader: false)), animated: true)
     }
 }

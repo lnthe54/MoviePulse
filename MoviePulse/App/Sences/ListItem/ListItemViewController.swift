@@ -100,12 +100,7 @@ class ListItemViewController: BaseViewController {
         setupHeader(withType: .detail(title: sectionType.title))
         topConstraint.constant = Constants.HEIGHT_NAV
         
-        collectionView.register(ItemHorizontalCell.nib(), forCellWithReuseIdentifier: ItemHorizontalCell.className)
-        collectionView.backgroundColor = .clear
-        collectionView.showsVerticalScrollIndicator = false
-        collectionView.showsHorizontalScrollIndicator = false
-        collectionView.delegate = self
-        collectionView.dataSource = self
+        collectionView.configure(withCells: [ItemHorizontalCell.self], delegate: self, dataSource: self)
         configureCompositionalLayout()
     }
     

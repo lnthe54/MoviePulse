@@ -44,12 +44,7 @@ class CategoryViewController: BaseViewController {
         setupHeader(withType: .detail(title: "All genres"))
         topConstraint.constant = Constants.HEIGHT_NAV
         
-        collectionView.register(CategoryCell.nib(), forCellWithReuseIdentifier: CategoryCell.className)
-        collectionView.backgroundColor = .clear
-        collectionView.showsHorizontalScrollIndicator = false
-        collectionView.showsVerticalScrollIndicator = false
-        collectionView.delegate = self
-        collectionView.dataSource = self
+        collectionView.configure(withCells: [CategoryCell.self], delegate: self, dataSource: self)
         collectionView.setCollectionViewLayout(
             UICollectionViewCompositionalLayout(section: AppLayout.categorySection(isShowHeader: false)),
             animated: true

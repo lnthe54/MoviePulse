@@ -25,11 +25,8 @@ class ImagesViewController: BaseViewController {
     }
 
     override func setupViews() {
-        collectionView.register(ImageDetailCell.nib(), forCellWithReuseIdentifier: ImageDetailCell.className)
-        collectionView.dataSource = self
-        collectionView.delegate = self
+        collectionView.configure(withCells: [ImageDetailCell.self], delegate: self, dataSource: self)
         collectionView.isPagingEnabled = true
-        collectionView.backgroundColor = .clear
         let selectedIndexPath = IndexPath(row: self.selectedIndex, section: 0)
         collectionView.scrollToItem(
             at: selectedIndexPath,

@@ -176,6 +176,7 @@
 		B6BBBD152E20AD68006D1D6F /* PulseTestViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6BBBD142E20AD61006D1D6F /* PulseTestViewModel.swift */; };
 		B6BBBD182E20ADA0006D1D6F /* PulseTestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6BBBD162E20ADA0006D1D6F /* PulseTestViewController.swift */; };
 		B6BBBD192E20ADA0006D1D6F /* PulseTestViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B6BBBD172E20ADA0006D1D6F /* PulseTestViewController.xib */; };
+		B6BBBD1B2E20F9EC006D1D6F /* UICollectionView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6BBBD1A2E20F9E6006D1D6F /* UICollectionView+Extension.swift */; };
 		D9632ADD155F4F54C1D8CF29 /* Pods_MoviePulse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 82CD434E65B60866758DB3F7 /* Pods_MoviePulse.framework */; };
 /* End PBXBuildFile section */
 
@@ -354,6 +355,7 @@
 		B6BBBD142E20AD61006D1D6F /* PulseTestViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PulseTestViewModel.swift; sourceTree = "<group>"; };
 		B6BBBD162E20ADA0006D1D6F /* PulseTestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PulseTestViewController.swift; sourceTree = "<group>"; };
 		B6BBBD172E20ADA0006D1D6F /* PulseTestViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PulseTestViewController.xib; sourceTree = "<group>"; };
+		B6BBBD1A2E20F9E6006D1D6F /* UICollectionView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionView+Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -563,6 +565,7 @@
 		9989FF112E0FDB4D007B667C /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				B6BBBD1A2E20F9E6006D1D6F /* UICollectionView+Extension.swift */,
 				9989FF122E0FDB53007B667C /* Notification+Extension.swift */,
 			);
 			path = Extensions;
@@ -1111,6 +1114,7 @@
 				9989FF172E112499007B667C /* PulseCell.swift in Sources */,
 				99A5FBC22E0AF3C200AA8D59 /* HomeNavigator.swift in Sources */,
 				B6BBBCF22E1F5DF4006D1D6F /* AppInfo.swift in Sources */,
+				B6BBBD1B2E20F9EC006D1D6F /* UICollectionView+Extension.swift in Sources */,
 				99169CD72E1A3499005B8947 /* SeeAllCell.swift in Sources */,
 				9989FF132E0FDB58007B667C /* Notification+Extension.swift in Sources */,
 				994215862E09A76100DAA702 /* APIClient.swift in Sources */,
