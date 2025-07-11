@@ -170,6 +170,8 @@
 		B6BBBD072E1F98F3006D1D6F /* SeasonDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6BBBD042E1F98F3006D1D6F /* SeasonDetailViewController.swift */; };
 		B6BBBD0B2E1FABD9006D1D6F /* SearchCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B6BBBD0A2E1FABD9006D1D6F /* SearchCell.xib */; };
 		B6BBBD0C2E1FABD9006D1D6F /* SearchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6BBBD092E1FABD9006D1D6F /* SearchCell.swift */; };
+		B6BBBD0F2E20A360006D1D6F /* InfoSeasonDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6BBBD0D2E20A360006D1D6F /* InfoSeasonDetailCell.swift */; };
+		B6BBBD102E20A360006D1D6F /* InfoSeasonDetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B6BBBD0E2E20A360006D1D6F /* InfoSeasonDetailCell.xib */; };
 		D9632ADD155F4F54C1D8CF29 /* Pods_MoviePulse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 82CD434E65B60866758DB3F7 /* Pods_MoviePulse.framework */; };
 /* End PBXBuildFile section */
 
@@ -342,6 +344,8 @@
 		B6BBBD052E1F98F3006D1D6F /* SeasonDetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SeasonDetailViewController.xib; sourceTree = "<group>"; };
 		B6BBBD092E1FABD9006D1D6F /* SearchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCell.swift; sourceTree = "<group>"; };
 		B6BBBD0A2E1FABD9006D1D6F /* SearchCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchCell.xib; sourceTree = "<group>"; };
+		B6BBBD0D2E20A360006D1D6F /* InfoSeasonDetailCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoSeasonDetailCell.swift; sourceTree = "<group>"; };
+		B6BBBD0E2E20A360006D1D6F /* InfoSeasonDetailCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = InfoSeasonDetailCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -853,6 +857,8 @@
 			children = (
 				B6BBBD092E1FABD9006D1D6F /* SearchCell.swift */,
 				B6BBBD0A2E1FABD9006D1D6F /* SearchCell.xib */,
+				B6BBBD0D2E20A360006D1D6F /* InfoSeasonDetailCell.swift */,
+				B6BBBD0E2E20A360006D1D6F /* InfoSeasonDetailCell.xib */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -980,6 +986,7 @@
 				994215A42E09AB3700DAA702 /* OnboardingViewController.xib in Resources */,
 				B6BBBCA72E1CB8A8006D1D6F /* RecentCell.xib in Resources */,
 				B6BBBCB02E1CC4E0006D1D6F /* ResultSearchViewController.xib in Resources */,
+				B6BBBD102E20A360006D1D6F /* InfoSeasonDetailCell.xib in Resources */,
 				9994AC2C2E12EDEA0084901B /* FeelCell.xib in Resources */,
 				9994AC282E12DA810084901B /* GenresCell.xib in Resources */,
 				99A5FBC82E0B0B5400AA8D59 /* HomeViewController.xib in Resources */,
@@ -1086,6 +1093,7 @@
 				99169CD72E1A3499005B8947 /* SeeAllCell.swift in Sources */,
 				9989FF132E0FDB58007B667C /* Notification+Extension.swift in Sources */,
 				994215862E09A76100DAA702 /* APIClient.swift in Sources */,
+				B6BBBD0F2E20A360006D1D6F /* InfoSeasonDetailCell.swift in Sources */,
 				99A5FBDB2E0C54C000AA8D59 /* MovieModel.swift in Sources */,
 				B64976BB2E13B6B600B5A738 /* CodableManager.swift in Sources */,
 				B6BBBCB92E1CD14A006D1D6F /* RecentHeaderCell.swift in Sources */,

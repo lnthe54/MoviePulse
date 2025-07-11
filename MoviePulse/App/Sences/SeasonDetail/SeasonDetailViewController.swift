@@ -2,6 +2,7 @@ import UIKit
 import Kingfisher
 
 enum SeasonDetailSectionType {
+    case info
     case search
     case episode
 }
@@ -70,6 +71,7 @@ class SeasonDetailViewController: BaseViewController {
         
         filters = seasonInfo.episodes
         
+        collectionView.register(InfoSeasonDetailCell.nib(), forCellWithReuseIdentifier: InfoSeasonDetailCell.className)
         collectionView.register(SeasonCell.nib(), forCellWithReuseIdentifier: SeasonCell.className)
         collectionView.register(SearchCell.nib(), forCellWithReuseIdentifier: SearchCell.className)
         collectionView.backgroundColor = .clear
@@ -89,6 +91,8 @@ extension SeasonDetailViewController {
             let section = self.getSections()[sectionIndex]
             
             switch section {
+            case .info:
+                return AppLayout.fixedSection(height: 100)
             case .search:
                 return AppLayout.fixedSection(height: 40)
             case .episode:
@@ -101,6 +105,8 @@ extension SeasonDetailViewController {
     
     private func getSections() -> [SeasonDetailSectionType] {
         var sections: [SeasonDetailSectionType] = []
+        
+        sections.append(.info)
         
         sections.append(.search)
         
@@ -131,7 +137,7 @@ extension SeasonDetailViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         switch getSections()[section] {
-        case .search:
+        case .info, .search:
             return 1
         case .episode:
             return filters.count
@@ -140,11 +146,19 @@ extension SeasonDetailViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         switch getSections()[indexPath.section] {
+        case .info:
+            return infoCell(collectionView, cellForItemAt: indexPath)
         case .search:
             return searchCell(collectionView, cellForItemAt: indexPath)
         case .episode:
             return episodeCell(collectionView, cellForItemAt: indexPath)
         }
+    }
+    
+    private func infoCell(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> InfoSeasonDetailCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: InfoSeasonDetailCell.className, for: indexPath) as! InfoSeasonDetailCell
+        cell.bindData(seasonInfo)
+        return cell
     }
     
     private func searchCell(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> SearchCell {
@@ -169,7 +183,13 @@ extension SeasonDetailViewController: UICollectionViewDataSource {
 }
 
 extension SeasonDetailViewController: UICollectionViewDelegate {
-    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        switch getSections()[indexPath.section] {
+        case .episode:
+            break
+        default: break
+        }
+    }
 }
 
 extension SeasonDetailViewController {

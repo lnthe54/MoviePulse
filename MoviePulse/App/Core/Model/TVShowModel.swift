@@ -185,6 +185,10 @@ struct SeasonInfo: Codable {
             .toString(formatter: .dayMonthYear)
         ?? ""
     }
+    
+    func releaseYear() -> String {
+        String(self.airDate?.prefix(4) ?? "")
+    }
 }
 
 // MARK: - Episode
