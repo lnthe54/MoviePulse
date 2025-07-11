@@ -17,7 +17,7 @@ class HomeViewModel: ViewModelType {
         let popularMoviesTrigger = input.getDataTrigger
             .flatMapLatest(weak: self) { (self, _) in
                 self.movieService
-                    .getMoviePopular(at: 1, categoryId: 0)
+                    .getTrending(at: 1)
                     .trackError(error)
                     .trackActivity(loading)
             }

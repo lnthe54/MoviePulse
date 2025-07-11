@@ -2,6 +2,7 @@ import RxSwift
 import RxCocoa
 
 enum ListSectionType {
+    case heart(isPulse: Bool = false)
     case popular
     case topRate(objectType: ObjectType)
     case category(category: CategoryObject, objectType: ObjectType)
@@ -9,6 +10,8 @@ enum ListSectionType {
     
     var title: String {
         switch self {
+        case .heart:
+            return "Movies that raise your heart"
         case .popular:
             return ""
         case .topRate:
@@ -78,6 +81,12 @@ extension ListItemViewModel {
             page: Int = 1
         ) -> Observable<[InfoObject]> {
             switch sectionType {
+            case .heart:
+                return movieServices
+                    .getTrending(at: page)
+                    .trackError(error)
+                    .trackActivity(loading)
+                    .map { Utils.transformToInfoObject(movies: $0.results) }
             case .popular:
                 return movieServices
                     .getMoviePopular(at: page, categoryId: 0)
@@ -131,6 +140,12 @@ extension ListItemViewModel {
         case .movie:
             return movieServices
                 .getMovieDetail(infoObject.id)
+                .trackError(error)
+                .trackActivity(loading)
+                .map { $0.transformToInfoDetailObject() }
+        case .tv:
+            return tvShowServices
+                .getTVShowDetail(id: infoObject.id)
                 .trackError(error)
                 .trackActivity(loading)
                 .map { $0.transformToInfoDetailObject() }

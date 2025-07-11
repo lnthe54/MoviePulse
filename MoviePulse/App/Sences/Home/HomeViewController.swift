@@ -201,6 +201,9 @@ extension HomeViewController {
     
     private func startPulseCell(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> PulseCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PulseCell.className, for: indexPath) as! PulseCell
+        cell.onTapStart = { [weak self] in
+            self?.navigator.gotoListItemViewController(sectionType: .heart(isPulse: true))
+        }
         return cell
     }
     
@@ -229,7 +232,6 @@ extension HomeViewController {
     
     private func feelCell(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> FeelCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FeelCell.className, for: indexPath) as! FeelCell
-        
         return cell
     }
 }
@@ -298,7 +300,7 @@ extension HomeViewController: UICollectionViewDelegate {
         
         switch sectionType {
         case .populars:
-            navigator.gotoListItemViewController(sectionType: .popular)
+            navigator.gotoListItemViewController(sectionType: .heart())
         case .category:
             navigator.gotoCategoryViewController(categories: homeDataObject.categories)
         default:

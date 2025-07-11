@@ -12,6 +12,8 @@ class PulseCell: UICollectionViewCell {
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var contentLabel: UILabel!
     
+    var onTapStart: (() -> Void)?
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         
@@ -38,5 +40,9 @@ class PulseCell: UICollectionViewCell {
         startButton.setTitle("Start Now", for: .normal)
         startButton.setTitleColor(.white, for: .normal)
         startButton.titleLabel?.font = .outfitFont(ofSize: 14, weight: .semiBold)
+    }
+    
+    @IBAction private func didToStart() {
+        onTapStart?()
     }
 }

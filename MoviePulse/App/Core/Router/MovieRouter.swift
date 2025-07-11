@@ -55,7 +55,7 @@ enum MovieRouter: APIConfiguration {
             return "/discover/movie"
             
         case .trending:
-            return "trending/movie/day"
+            return "/trending/movie/day"
         }
     }
     

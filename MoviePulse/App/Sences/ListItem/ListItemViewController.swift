@@ -177,7 +177,16 @@ extension ListItemViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         switch getSections()[indexPath.section] {
         case .list:
-            gotoDetailItemTrigger.onNext(items[indexPath.row])
+            switch sectionType {
+            case .heart(let isPulse):
+                if isPulse {
+                    navigator.gotoPulseTestViewController()
+                } else {
+                    gotoDetailItemTrigger.onNext(items[indexPath.row])
+                }
+            default:
+                gotoDetailItemTrigger.onNext(items[indexPath.row])
+            }
         }
     }
 }
