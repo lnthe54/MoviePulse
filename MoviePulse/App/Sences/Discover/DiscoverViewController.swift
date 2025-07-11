@@ -98,6 +98,10 @@ class DiscoverViewController: BaseViewController {
                 }
                 
                 self.collectionView.reloadData()
+                
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.03, execute: {
+                    self.collectionView.scrollToItem(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
+                })
             }
             .disposed(by: disposeBag)
         
