@@ -78,7 +78,9 @@ class InfoDetailItemCell: UICollectionViewCell {
         categories.removeAll()
         categories.append(.release(date: data.releaseDate))
         categories.append(.rate(rate: Int(data.vote ?? 0.0)))
-        categories.append(.time(time: data.runtime ?? 0))
+        if let time = data.runtime, time != 0 {
+            categories.append(.time(time: time))
+        }
         categories.append(contentsOf: data.genres.map { .tag(content: $0.name) })
         collectionView.reloadData()
     }
