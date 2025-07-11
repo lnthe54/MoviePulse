@@ -5,9 +5,14 @@ class HomeViewModel: ViewModelType {
     
     // MARK: - Properties
     private var movieService: MovieServices
+    private var tvShowServices: TVShowServices
     
-    init(movieService: MovieServices) {
+    init(
+        movieService: MovieServices = MovieClient(),
+        tvShowServices: TVShowServices = TVShowClient()
+    ) {
         self.movieService = movieService
+        self.tvShowServices = tvShowServices
     }
     
     func transform(input: Input) -> Output {
@@ -30,12 +35,21 @@ class HomeViewModel: ViewModelType {
                     .trackActivity(loading)
             }
         
-        let getAllDataEvent = Observable.zip(popularMoviesTrigger, categoriesTrigger)
-            .doOnNext { (_, category) in
-                CodableManager.shared.saveMovieCategories(category.genres)
+        let tvShowCategoriesTrigger = input.getDataTrigger
+            .flatMapLatest(weak: self) { (self, _) in
+                self.tvShowServices
+                    .getTVShowCategories()
+                    .trackError(error)
+                    .trackActivity(loading)
             }
-            .map {
-                HomeDataObject(movies: Utils.transformToInfoObject(movies: $0.results), categories: $1.genres)
+        
+        let getAllDataEvent = Observable.zip(popularMoviesTrigger, categoriesTrigger, tvShowCategoriesTrigger)
+            .doOnNext { (_, movieCategory, tvShowCategory) in
+                CodableManager.shared.saveMovieCategories(movieCategory.genres)
+                CodableManager.shared.saveTVCategories(tvShowCategory.genres)
+            }
+            .map { (movieInfo, movieCategoryInfo, _) in
+                HomeDataObject(movies: Utils.transformToInfoObject(movies: movieInfo.results), categories: movieCategoryInfo.genres)
             }
         
         let gotoDetailItemEvent = input.gotoDetailItemTrigger
