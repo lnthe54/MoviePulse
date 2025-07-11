@@ -7,7 +7,7 @@ protocol DetailItemNavigator: BaseNavigator {
     func gotoSeasonViewController(tvShowId: Int, seasons: [SeasonObject])
     func gotoTrailerViewController(trailers: [VideoInfo])
     func gotoSeasonDetailViewController(seasonInfo: SeasonInfo)
-    func gotoPulseTestViewController()
+    func gotoPulseTestViewController(posterPath: String, name: String)
 }
 
 class DefaultDetailItemNavigator: DetailItemNavigator {
@@ -78,10 +78,15 @@ class DefaultDetailItemNavigator: DetailItemNavigator {
         navigationController.pushViewController(viewController, animated: true)
     }
     
-    func gotoPulseTestViewController() {
+    func gotoPulseTestViewController(posterPath: String, name: String) {
         let navigator = DefaultPulseTestNavigator(navigationController: navigationController)
         let viewModel = PulseTestViewModel()
-        let viewController = PulseTestViewController(navigator: navigator, viewModel: viewModel)
+        let viewController = PulseTestViewController(
+            navigator: navigator,
+            viewModel: viewModel,
+            posterPath: posterPath,
+            name: name
+        )
         navigationController.pushViewController(viewController, animated: true)
     }
 }
