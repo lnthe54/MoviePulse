@@ -10,8 +10,6 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PulseTestViewController" customModule="MoviePulse" customModuleProvider="target">
             <connections>
-                <outlet property="collectionView" destination="gj5-lj-xi6" id="Djo-7p-Tx8"/>
-                <outlet property="topConstraint" destination="ESx-gP-1ug" id="sYs-HQ-V8A"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -19,26 +17,8 @@
         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
             <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-            <subviews>
-                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="gj5-lj-xi6">
-                    <rect key="frame" x="0.0" y="59" width="393" height="793"/>
-                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                    <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="qnu-pT-g55">
-                        <size key="itemSize" width="128" height="128"/>
-                        <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                        <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                        <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                    </collectionViewFlowLayout>
-                </collectionView>
-            </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-            <constraints>
-                <constraint firstItem="gj5-lj-xi6" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="ESx-gP-1ug"/>
-                <constraint firstItem="gj5-lj-xi6" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="ZU8-cR-OZz"/>
-                <constraint firstAttribute="bottom" secondItem="gj5-lj-xi6" secondAttribute="bottom" id="gz2-Wk-rDp"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="gj5-lj-xi6" secondAttribute="trailing" id="tqO-SD-ODy"/>
-            </constraints>
             <point key="canvasLocation" x="132" y="-11"/>
         </view>
     </objects>

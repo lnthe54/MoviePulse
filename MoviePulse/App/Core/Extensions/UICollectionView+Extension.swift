@@ -6,7 +6,7 @@ extension UICollectionView {
         headers: [UICollectionReusableView.Type] = [],
         headerKind: String = "Header",
         delegate: UICollectionViewDelegate? = nil,
-        dataSource: UICollectionViewDataSource? = nil,
+        dataSource: UICollectionViewDataSource,
         contentInset: UIEdgeInsets = .zero
     ) {
         // Register cells
