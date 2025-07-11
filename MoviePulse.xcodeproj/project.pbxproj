@@ -172,6 +172,10 @@
 		B6BBBD0C2E1FABD9006D1D6F /* SearchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6BBBD092E1FABD9006D1D6F /* SearchCell.swift */; };
 		B6BBBD0F2E20A360006D1D6F /* InfoSeasonDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6BBBD0D2E20A360006D1D6F /* InfoSeasonDetailCell.swift */; };
 		B6BBBD102E20A360006D1D6F /* InfoSeasonDetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B6BBBD0E2E20A360006D1D6F /* InfoSeasonDetailCell.xib */; };
+		B6BBBD132E20AD3A006D1D6F /* PulseTestNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6BBBD122E20AD34006D1D6F /* PulseTestNavigator.swift */; };
+		B6BBBD152E20AD68006D1D6F /* PulseTestViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6BBBD142E20AD61006D1D6F /* PulseTestViewModel.swift */; };
+		B6BBBD182E20ADA0006D1D6F /* PulseTestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6BBBD162E20ADA0006D1D6F /* PulseTestViewController.swift */; };
+		B6BBBD192E20ADA0006D1D6F /* PulseTestViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B6BBBD172E20ADA0006D1D6F /* PulseTestViewController.xib */; };
 		D9632ADD155F4F54C1D8CF29 /* Pods_MoviePulse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 82CD434E65B60866758DB3F7 /* Pods_MoviePulse.framework */; };
 /* End PBXBuildFile section */
 
@@ -346,6 +350,10 @@
 		B6BBBD0A2E1FABD9006D1D6F /* SearchCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchCell.xib; sourceTree = "<group>"; };
 		B6BBBD0D2E20A360006D1D6F /* InfoSeasonDetailCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoSeasonDetailCell.swift; sourceTree = "<group>"; };
 		B6BBBD0E2E20A360006D1D6F /* InfoSeasonDetailCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = InfoSeasonDetailCell.xib; sourceTree = "<group>"; };
+		B6BBBD122E20AD34006D1D6F /* PulseTestNavigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PulseTestNavigator.swift; sourceTree = "<group>"; };
+		B6BBBD142E20AD61006D1D6F /* PulseTestViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PulseTestViewModel.swift; sourceTree = "<group>"; };
+		B6BBBD162E20ADA0006D1D6F /* PulseTestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PulseTestViewController.swift; sourceTree = "<group>"; };
+		B6BBBD172E20ADA0006D1D6F /* PulseTestViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PulseTestViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -402,6 +410,7 @@
 		9942159B2E09AA5300DAA702 /* Sences */ = {
 			isa = PBXGroup;
 			children = (
+				B6BBBD112E20AD2C006D1D6F /* PulseTest */,
 				B6BBBCFF2E1F984A006D1D6F /* SeasonDetail */,
 				B6BBBCFB2E1F6DCC006D1D6F /* Webview */,
 				B6BBBCE32E1F5023006D1D6F /* Setting */,
@@ -863,6 +872,17 @@
 			path = Cell;
 			sourceTree = "<group>";
 		};
+		B6BBBD112E20AD2C006D1D6F /* PulseTest */ = {
+			isa = PBXGroup;
+			children = (
+				B6BBBD142E20AD61006D1D6F /* PulseTestViewModel.swift */,
+				B6BBBD122E20AD34006D1D6F /* PulseTestNavigator.swift */,
+				B6BBBD162E20ADA0006D1D6F /* PulseTestViewController.swift */,
+				B6BBBD172E20ADA0006D1D6F /* PulseTestViewController.xib */,
+			);
+			path = PulseTest;
+			sourceTree = "<group>";
+		};
 		E4B917826BD6211015042518 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -946,6 +966,7 @@
 				B64976642E0A485D00B5A738 /* Outfit-Light.ttf in Resources */,
 				B649769F2E12608300B5A738 /* InfoDetailItemCell.xib in Resources */,
 				B64976652E0A485D00B5A738 /* Outfit-Medium.ttf in Resources */,
+				B6BBBD192E20ADA0006D1D6F /* PulseTestViewController.xib in Resources */,
 				9994AC252E12D7FB0084901B /* CommunityCell.xib in Resources */,
 				9989FF092E0FD830007B667C /* BaseHeaderView.xib in Resources */,
 				B6BBBCBD2E1CEBDC006D1D6F /* SeasonCell.xib in Resources */,
@@ -1093,6 +1114,7 @@
 				99169CD72E1A3499005B8947 /* SeeAllCell.swift in Sources */,
 				9989FF132E0FDB58007B667C /* Notification+Extension.swift in Sources */,
 				994215862E09A76100DAA702 /* APIClient.swift in Sources */,
+				B6BBBD182E20ADA0006D1D6F /* PulseTestViewController.swift in Sources */,
 				B6BBBD0F2E20A360006D1D6F /* InfoSeasonDetailCell.swift in Sources */,
 				99A5FBDB2E0C54C000AA8D59 /* MovieModel.swift in Sources */,
 				B64976BB2E13B6B600B5A738 /* CodableManager.swift in Sources */,
@@ -1110,6 +1132,7 @@
 				B64976A22E12636E00B5A738 /* OverviewDetailItemCell.swift in Sources */,
 				9942159E2E09AAAF00DAA702 /* OnboardingNavigator.swift in Sources */,
 				99A5FBED2E0C579800AA8D59 /* String+Extension.swift in Sources */,
+				B6BBBD132E20AD3A006D1D6F /* PulseTestNavigator.swift in Sources */,
 				B64976732E0A82D300B5A738 /* UserDataDefault.swift in Sources */,
 				99A5FBE12E0C555100AA8D59 /* ActorModel.swift in Sources */,
 				994215932E09A8EB00DAA702 /* UIViewController+Extension.swift in Sources */,
@@ -1122,6 +1145,7 @@
 				B6BBBCFC2E1F6DCC006D1D6F /* WebViewViewController.swift in Sources */,
 				B649769A2E1247DB00B5A738 /* TVShowClient.swift in Sources */,
 				B64976B52E13880C00B5A738 /* ReviewCell.swift in Sources */,
+				B6BBBD152E20AD68006D1D6F /* PulseTestViewModel.swift in Sources */,
 				B649768B2E122B1B00B5A738 /* LoadingView.swift in Sources */,
 				994215952E09A8EB00DAA702 /* NSObject+Extension.swift in Sources */,
 				99A5FBDD2E0C54FA00AA8D59 /* Utils.swift in Sources */,

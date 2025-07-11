@@ -11,6 +11,8 @@ class PulseTestCell: UICollectionViewCell {
     @IBOutlet private weak var startButton: UIButton!
     @IBOutlet private weak var contentLabel: UILabel!
     
+    var onStartTest: (() -> Void)?
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         
@@ -31,5 +33,9 @@ class PulseTestCell: UICollectionViewCell {
         startButton.setTitle("Start Pulse Test", for: .normal)
         startButton.setTitleColor(.white, for: .normal)
         startButton.titleLabel?.font = .outfitFont(ofSize: 14, weight: .semiBold)
+    }
+    
+    @IBAction private func startTest() {
+        onStartTest?()
     }
 }

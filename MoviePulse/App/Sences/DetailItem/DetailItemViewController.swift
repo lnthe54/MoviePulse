@@ -371,6 +371,9 @@ extension DetailItemViewController: UICollectionViewDataSource {
     
     private func pulseTestCell(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> PulseTestCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PulseTestCell.className, for: indexPath) as! PulseTestCell
+        cell.onStartTest = { [weak self] in
+            self?.navigator.gotoPulseTestViewController()
+        }
         return cell
     }
     
