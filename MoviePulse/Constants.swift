@@ -40,6 +40,19 @@ struct Constants {
     struct ADS {
         static let HEIGHT_LARGE_ADS: CGFloat = 260
         static let HEIGHT_SMALL_ADS: CGFloat = 100
+        static let WAIT_TIME_SHOW_INTERSTITIAL_AD = 6.0
+        static let WAIT_TIME_SHOW_OPEN_AD = 4
+        static let LOADING_ADS: String = "Loading ads"
+        static let DEFAULT_OPEN_ADS = "01/01/2026"
+        static let DEFAULT_JSON: String = "[]"
+        
+        enum AdUnit: String, CaseIterable {
+            case openApp = "1"
+            case interstitial = "2"
+            case splashInterstitial = "3"
+            case nativeAd = "4"
+            case banner = "5"
+        }
     }
     
     struct Config {
@@ -53,12 +66,6 @@ struct Constants {
         static let COPY_RIGHT: String = ""
         
         // MARK: - Ads
-        static let WAIT_TIME_SHOW_INTERSTITIAL_AD = 6.0
-        static let WAIT_TIME_SHOW_OPEN_AD = 4
-        static let LOADING_ADS: String = "Loading ads"
-        static let DEFAULT_OPEN_ADS = "01/01/2026"
-        static let DEFAULT_JSON: String = "[]"
-        
         enum RemoteConfigKey: String {
             case adsOpenTime = "ADS_OPEN_TIME"
             case isShowFM = "isShowFM"
@@ -66,14 +73,6 @@ struct Constants {
             case movieDiscover = "movie_discover"
             case tvDiscover = "tv_discover"
             case buttonDetail = "button_detail"
-        }
-        
-        enum AdUnit: String, CaseIterable {
-            case openApp = "1"
-            case interstitial = "2"
-            case splashInterstitial = "3"
-            case nativeAd = "4"
-            case banner = "5"
         }
     }
 }
