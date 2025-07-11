@@ -354,6 +354,22 @@ extension DiscoverViewController: UICollectionViewDelegate, CategoryHorizontalCe
         }
     }
     
+    override func didToSeeMore(sectionType: Any) {
+        guard let type = sectionType as? DiscoverSectionType else {
+            return
+        }
+        
+        switch type {
+        case .popular:
+            navigator.gotoListItemViewController(sectionType: .popular(title: "Most popular movies"))
+        case .trending:
+            navigator.gotoListItemViewController(sectionType: .trending(title: "Trending TV shows", objectType: tabType))
+        case .onAir:
+            navigator.gotoListItemViewController(sectionType: .onAir(title: "Shows On The Air"))
+        default: break
+        }
+    }
+    
     func didSeeAllCategories() {
         navigator.gotoCategoryViewController(categories: discoverData.categories, objectType: tabType)
     }
