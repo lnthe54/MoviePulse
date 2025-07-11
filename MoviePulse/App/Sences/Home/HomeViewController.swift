@@ -170,33 +170,33 @@ extension HomeViewController {
     func collectionView(_ collectionView: UICollectionView,
                         viewForSupplementaryElementOfKind kind: String,
                         at indexPath: IndexPath) -> UICollectionReusableView {
-        if kind == "Header" {
-            let sectionType = getSections()[indexPath.section]
-            switch sectionType {
-            case .populars:
-                return titleHeaderSection(
-                    collectionView,
-                    viewForSupplementaryElementOfKind: kind,
-                    indexPath: indexPath,
-                    title: "Movies that raise your heart",
-                    isShowSeeMore: homeDataObject.movies.count > Constant.maxDisplayItems,
-                    sectionType: sectionType
-                )
-            case .category:
-                return titleHeaderSection(
-                    collectionView,
-                    viewForSupplementaryElementOfKind: kind,
-                    indexPath: indexPath,
-                    title: "Explore moives by genres",
-                    isShowSeeMore: homeDataObject.categories.count > Constant.maxDisplayItems,
-                    sectionType: sectionType
-                )
-            default:
-                return UICollectionReusableView()
-            }
-        } else {
+        guard kind == "Header" else {
             return UICollectionReusableView()
         }
+
+        let sectionType = getSections()[indexPath.section]
+        
+        let (title, items): (String, [Any]) = {
+            switch sectionType {
+            case .populars:
+                return ("Movies that raise your heart", homeDataObject.movies)
+            case .category:
+                return ("Explore moives by genres", homeDataObject.categories)
+            default:
+                return ("", [])
+            }
+        }()
+        
+        guard !title.isEmpty else { return UICollectionReusableView() }
+
+        return titleHeaderSection(
+            collectionView,
+            viewForSupplementaryElementOfKind: kind,
+            indexPath: indexPath,
+            title: title,
+            isShowSeeMore: items.count > Constant.maxDisplayItems,
+            sectionType: sectionType
+        )
     }
     
     private func startPulseCell(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> PulseCell {
