@@ -36,6 +36,9 @@ class DefaultHomeNavigator: HomeNavigator {
             sectionType: sectionType
         )
         navigationController.pushViewController(viewController, animated: true)
+        
+//        let viewController = PulseViewController()
+//        navigationController.pushViewController(viewController, animated: true)
     }
     
     func gotoDetailItemViewController(infoDetailObject: InfoDetailObject) {

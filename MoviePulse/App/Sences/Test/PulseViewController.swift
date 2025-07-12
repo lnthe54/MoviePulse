@@ -1,16 +1,21 @@
+//
+//  PulseViewController.swift
+//  Pulse
+//
+//  Created by Athanasios Papazoglou on 18/7/20.
+//  Copyright © 2020 Athanasios Papazoglou. All rights reserved.
+//
+
 import UIKit
-import Kingfisher
 import AVFoundation
 
-class PulseTestViewController: BaseViewController {
-
-    // MARK: - Properties
-    private var navigator: PulseTestNavigator
-    private var viewModel: PulseTestViewModel
-    private var posterPath: String
-    private var name: String
+class PulseViewController: UIViewController {
     
-    // Heart
+    @IBOutlet weak var previewLayerShadowView: UIView!
+    @IBOutlet weak var previewLayer: UIView!
+    @IBOutlet weak var pulseLabel: UILabel!
+    @IBOutlet weak var thresholdLabel: UILabel!
+    
     private var validFrameCounter = 0
     private var heartRateManager: HeartRateManager!
     private var hueFilter = Filter()
@@ -19,53 +24,28 @@ class PulseTestViewController: BaseViewController {
     private var measurementStartedFlag = false
     private var timer = Timer()
     
-    init(
-        navigator: PulseTestNavigator,
-        viewModel: PulseTestViewModel,
-        posterPath: String,
-        name: String
-    ) {
-        self.navigator = navigator
-        self.viewModel = viewModel
-        self.posterPath = posterPath
-        self.name = name
-        super.init(nibName: Self.className, bundle: nil)
+    init() {
+        super.init(nibName: "PulseViewController", bundle: nil)
     }
     
-    @MainActor required init?(coder: NSCoder) {
+    required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    // MARK: - IBOutlets
-    @IBOutlet private weak var topConstraint: NSLayoutConstraint!
-    @IBOutlet private weak var infoView: UIView!
-    @IBOutlet private weak var posterImageView: UIImageView!
-    @IBOutlet private weak var noteLabel: UILabel!
-    @IBOutlet private weak var nameLabel: UILabel!
-    @IBOutlet private weak var previewView: UIView!
-    @IBOutlet private weak var warningLabel: UILabel!
-    @IBOutlet private weak var introView: UIView!
-    @IBOutlet private weak var introLabel: UILabel!
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-
         initVideoCapture()
+        
+        thresholdLabel.text = "Cover the back camera until the image turns red 🟥"
     }
-    
+
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
-        
-        previewView.backgroundColor = .clear
-        previewView.setBorder(withColor: UIColor(hexString: "#E7D9FB") ?? .clear, width: 20)
-        previewView.layer.cornerRadius = previewView.frame.height / 2
-        previewView.layer.masksToBounds = true
+        setupPreviewView()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
-        NotificationCenter.default.post(name: .hideTabBar, object: true)
         initCaptureSession()
     }
     
@@ -73,63 +53,24 @@ class PulseTestViewController: BaseViewController {
         super.viewWillDisappear(animated)
         deinitCaptureSession()
     }
-
-    override func actionBack() {
-        navigator.popToViewController()
+    
+    // MARK: - Setup Views
+    private func setupPreviewView() {
+        previewLayer.layer.cornerRadius = 12.0
+        previewLayer.layer.masksToBounds = true
+        
+        previewLayerShadowView.backgroundColor = .clear
+        previewLayerShadowView.layer.shadowColor = UIColor.black.cgColor
+        previewLayerShadowView.layer.shadowOpacity = 0.25
+        previewLayerShadowView.layer.shadowOffset = CGSize(width: 0, height: 3)
+        previewLayerShadowView.layer.shadowRadius = 3
+        previewLayerShadowView.clipsToBounds = false
     }
     
-    override func setupViews() {
-        setupHeader(withType: .detail(title: "Pulse Test"))
-        
-        topConstraint.constant = Constants.HEIGHT_NAV
-        
-        infoView.backgroundColor = .white
-        infoView.corner(8)
-        
-        posterImageView.contentMode = .scaleAspectFill
-        posterImageView.corner(8)
-        posterImageView.kf.setImage(
-            with: URL(string: Utils.getPosterPath(posterPath, size: .w342)),
-            placeholder: UIImage(named: "ic_loading"),
-            options: [.transition(ImageTransition.fade(1))]
-        )
-        
-        noteLabel.text = "You're measuring your heartbeat with"
-        noteLabel.textColor = UIColor(hexString: "#252934")
-        noteLabel.font = .outfitFont(ofSize: 14)
-        noteLabel.numberOfLines = 0
-        noteLabel.textAlignment = .center
-        
-        nameLabel.text = name
-        nameLabel.textColor = .blackColor
-        nameLabel.font = .outfitFont(ofSize: 20, weight: .semiBold)
-        nameLabel.numberOfLines = 0
-        nameLabel.textAlignment = .center
-        
-        warningLabel.textColor = .blackColor
-        warningLabel.font = .outfitFont(ofSize: 14, weight: .light)
-        warningLabel.numberOfLines = 0
-        warningLabel.textAlignment = .center
-        
-        introView.backgroundColor = UIColor(hexString: "#E7D9FB")
-        introView.corner(8)
-        
-        introLabel.text = """
-        • Place your fingertip gently over the rear camera and flash
-        • Make sure your finger fully covers the lens and flash
-        • Stay still and avoid moving
-        """
-        introLabel.textColor = .blackColor
-        introLabel.font = .outfitFont(ofSize: 16, weight: .medium)
-        introLabel.numberOfLines = 0
-    }
-}
-
-extension PulseTestViewController {
     // MARK: - Frames Capture Methods
     private func initVideoCapture() {
         let specs = VideoSpec(fps: 30, size: CGSize(width: 300, height: 300))
-        heartRateManager = HeartRateManager(cameraType: .back, preferredSpec: specs, previewContainer: previewView.layer)
+        heartRateManager = HeartRateManager(cameraType: .back, preferredSpec: specs, previewContainer: previewLayer.layer)
         heartRateManager.imageBufferHandler = { [unowned self] (imageBuffer) in
             self.handle(buffer: imageBuffer)
         }
@@ -150,6 +91,7 @@ extension PulseTestViewController {
         device.toggleTorch(on: status)
     }
     
+    // MARK: - Measurement
     private func startMeasurement() {
         DispatchQueue.main.async {
             self.toggleTorch(status: true)
@@ -159,17 +101,16 @@ extension PulseTestViewController {
                 let pulse = 60.0/average
                 if pulse == -60 {
                     UIView.animate(withDuration: 0.2, animations: {
-//                        self.pulseLabel.alpha = 0
+                        self.pulseLabel.alpha = 0
                     }) { (finished) in
-//                        self.pulseLabel.isHidden = finished
+                        self.pulseLabel.isHidden = finished
                     }
                 } else {
                     UIView.animate(withDuration: 0.2, animations: {
-//                        self.pulseLabel.alpha = 1.0
+                        self.pulseLabel.alpha = 1.0
                     }) { (_) in
-//                        self.pulseLabel.isHidden = false
-//                        self.pulseLabel.text = "\(lroundf(pulse)) BPM"
-                        print("\(lroundf(pulse)) BPM")
+                        self.pulseLabel.isHidden = false
+                        self.pulseLabel.text = "\(lroundf(pulse)) BPM"
                     }
                 }
             })
@@ -178,7 +119,7 @@ extension PulseTestViewController {
 }
 
 //MARK: - Handle Image Buffer
-extension PulseTestViewController {
+extension PulseViewController {
     fileprivate func handle(buffer: CMSampleBuffer) {
         var redmean:CGFloat = 0.0;
         var greenmean:CGFloat = 0.0;
@@ -220,7 +161,7 @@ extension PulseTestViewController {
         // Do a sanity check to see if a finger is placed over the camera
         if (hsv.1 > 0.5 && hsv.2 > 0.5) {
             DispatchQueue.main.async {
-                self.warningLabel.text = "Hold your index finger ☝️ still."
+                self.thresholdLabel.text = "Hold your index finger ☝️ still."
                 self.toggleTorch(status: true)
                 if !self.measurementStartedFlag {
                     self.startMeasurement()
@@ -239,7 +180,7 @@ extension PulseTestViewController {
             measurementStartedFlag = false
             pulseDetector.reset()
             DispatchQueue.main.async {
-                self.warningLabel.text = "Cover the back camera until the image turns red 🟥"
+                self.thresholdLabel.text = "Cover the back camera until the image turns red 🟥"
             }
         }
     }

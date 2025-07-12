@@ -9,6 +9,12 @@
 /* Begin PBXBuildFile section */
 		99169CD62E1A3499005B8947 /* SeeAllCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 99169CD52E1A3499005B8947 /* SeeAllCell.xib */; };
 		99169CD72E1A3499005B8947 /* SeeAllCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99169CD42E1A3499005B8947 /* SeeAllCell.swift */; };
+		99169CD92E222603005B8947 /* HeartRateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99169CD82E2225FF005B8947 /* HeartRateManager.swift */; };
+		99169CDB2E222643005B8947 /* AVCaptureDevice+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99169CDA2E222641005B8947 /* AVCaptureDevice+Extensions.swift */; };
+		99169CDD2E2226F6005B8947 /* Filter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99169CDC2E2226F3005B8947 /* Filter.swift */; };
+		99169CDF2E22271F005B8947 /* PulseDetector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99169CDE2E22271E005B8947 /* PulseDetector.swift */; };
+		99169CE32E223118005B8947 /* PulseViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 99169CE22E223118005B8947 /* PulseViewController.xib */; };
+		99169CE42E223118005B8947 /* PulseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99169CE12E223118005B8947 /* PulseViewController.swift */; };
 		994215832E09A76100DAA702 /* APIResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9942157E2E09A76100DAA702 /* APIResponse.swift */; };
 		994215842E09A76100DAA702 /* APIConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9942157D2E09A76100DAA702 /* APIConfiguration.swift */; };
 		994215862E09A76100DAA702 /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9942157C2E09A76100DAA702 /* APIClient.swift */; };
@@ -186,6 +192,12 @@
 		82CD434E65B60866758DB3F7 /* Pods_MoviePulse.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MoviePulse.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		99169CD42E1A3499005B8947 /* SeeAllCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeeAllCell.swift; sourceTree = "<group>"; };
 		99169CD52E1A3499005B8947 /* SeeAllCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SeeAllCell.xib; sourceTree = "<group>"; };
+		99169CD82E2225FF005B8947 /* HeartRateManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeartRateManager.swift; sourceTree = "<group>"; };
+		99169CDA2E222641005B8947 /* AVCaptureDevice+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AVCaptureDevice+Extensions.swift"; sourceTree = "<group>"; };
+		99169CDC2E2226F3005B8947 /* Filter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Filter.swift; sourceTree = "<group>"; };
+		99169CDE2E22271E005B8947 /* PulseDetector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PulseDetector.swift; sourceTree = "<group>"; };
+		99169CE12E223118005B8947 /* PulseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PulseViewController.swift; sourceTree = "<group>"; };
+		99169CE22E223118005B8947 /* PulseViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PulseViewController.xib; sourceTree = "<group>"; };
 		9942157C2E09A76100DAA702 /* APIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
 		9942157D2E09A76100DAA702 /* APIConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIConfiguration.swift; sourceTree = "<group>"; };
 		9942157E2E09A76100DAA702 /* APIResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIResponse.swift; sourceTree = "<group>"; };
@@ -370,6 +382,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		99169CE02E22310F005B8947 /* Test */ = {
+			isa = PBXGroup;
+			children = (
+				99169CE12E223118005B8947 /* PulseViewController.swift */,
+				99169CE22E223118005B8947 /* PulseViewController.xib */,
+			);
+			path = Test;
+			sourceTree = "<group>";
+		};
 		994215822E09A76100DAA702 /* Networking */ = {
 			isa = PBXGroup;
 			children = (
@@ -412,6 +433,7 @@
 		9942159B2E09AA5300DAA702 /* Sences */ = {
 			isa = PBXGroup;
 			children = (
+				99169CE02E22310F005B8947 /* Test */,
 				B6BBBD112E20AD2C006D1D6F /* PulseTest */,
 				B6BBBCFF2E1F984A006D1D6F /* SeasonDetail */,
 				B6BBBCFB2E1F6DCC006D1D6F /* Webview */,
@@ -447,6 +469,7 @@
 		994215A52E09ABC100DAA702 /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				99169CD82E2225FF005B8947 /* HeartRateManager.swift */,
 				B6BBBCF72E1F60BE006D1D6F /* NotificationManager.swift */,
 				B64976BA2E13B6B500B5A738 /* CodableManager.swift */,
 				B649768A2E122B1900B5A738 /* LoadingView.swift */,
@@ -565,6 +588,9 @@
 		9989FF112E0FDB4D007B667C /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				99169CDE2E22271E005B8947 /* PulseDetector.swift */,
+				99169CDC2E2226F3005B8947 /* Filter.swift */,
+				99169CDA2E222641005B8947 /* AVCaptureDevice+Extensions.swift */,
 				B6BBBD1A2E20F9E6006D1D6F /* UICollectionView+Extension.swift */,
 				9989FF122E0FDB53007B667C /* Notification+Extension.swift */,
 			);
@@ -988,6 +1014,7 @@
 				B64976BE2E13C31500B5A738 /* RateCell.xib in Resources */,
 				B64976B42E13880C00B5A738 /* ReviewCell.xib in Resources */,
 				B6BBBCA22E1CAD28006D1D6F /* SearchViewController.xib in Resources */,
+				99169CE32E223118005B8947 /* PulseViewController.xib in Resources */,
 				B64976672E0A485D00B5A738 /* Outfit-SemiBold.ttf in Resources */,
 				9989FF102E0FDA31007B667C /* CategoryViewController.xib in Resources */,
 				9994AC212E12D5050084901B /* PulseTestCell.xib in Resources */,
@@ -1117,6 +1144,7 @@
 				B6BBBD1B2E20F9EC006D1D6F /* UICollectionView+Extension.swift in Sources */,
 				99169CD72E1A3499005B8947 /* SeeAllCell.swift in Sources */,
 				9989FF132E0FDB58007B667C /* Notification+Extension.swift in Sources */,
+				99169CD92E222603005B8947 /* HeartRateManager.swift in Sources */,
 				994215862E09A76100DAA702 /* APIClient.swift in Sources */,
 				B6BBBD182E20ADA0006D1D6F /* PulseTestViewController.swift in Sources */,
 				B6BBBD0F2E20A360006D1D6F /* InfoSeasonDetailCell.swift in Sources */,
@@ -1129,10 +1157,12 @@
 				B64976BF2E13C31500B5A738 /* RateCell.swift in Sources */,
 				99A5FBD82E0C549000AA8D59 /* MovieClient.swift in Sources */,
 				9994AC202E12D5050084901B /* PulseTestCell.swift in Sources */,
+				99169CDD2E2226F6005B8947 /* Filter.swift in Sources */,
 				9994AC362E1435C30084901B /* FavoriteViewModel.swift in Sources */,
 				9994AC342E14357B0084901B /* FavoriteNavigator.swift in Sources */,
 				994215922E09A8EB00DAA702 /* UIColor+Extension.swift in Sources */,
 				99A5FBEB2E0C574000AA8D59 /* Date+Extension.swift in Sources */,
+				99169CE42E223118005B8947 /* PulseViewController.swift in Sources */,
 				B64976A22E12636E00B5A738 /* OverviewDetailItemCell.swift in Sources */,
 				9942159E2E09AAAF00DAA702 /* OnboardingNavigator.swift in Sources */,
 				99A5FBED2E0C579800AA8D59 /* String+Extension.swift in Sources */,
@@ -1155,12 +1185,14 @@
 				99A5FBDD2E0C54FA00AA8D59 /* Utils.swift in Sources */,
 				B6BBBCC12E1CF355006D1D6F /* SeasonNavigator.swift in Sources */,
 				9989FEFA2E0F9B40007B667C /* CategoryCell.swift in Sources */,
+				99169CDB2E222643005B8947 /* AVCaptureDevice+Extensions.swift in Sources */,
 				B649767F2E0E418600B5A738 /* TitleHeaderSection.swift in Sources */,
 				B6BBBCB32E1CCB81006D1D6F /* SearchRouter.swift in Sources */,
 				994215972E09A8EB00DAA702 /* Rx+Extension.swift in Sources */,
 				B64976712E0A78F000B5A738 /* MainViewPager.swift in Sources */,
 				B649767C2E0E35AA00B5A738 /* AppLayout.swift in Sources */,
 				B6BBBCEB2E1F50D5006D1D6F /* SettingViewController.swift in Sources */,
+				99169CDF2E22271F005B8947 /* PulseDetector.swift in Sources */,
 				994215982E09A8EB00DAA702 /* ViewModelType.swift in Sources */,
 				99A5FBE32E0C557E00AA8D59 /* ImageModel.swift in Sources */,
 				B64976982E12473800B5A738 /* TVShowRouter.swift in Sources */,
@@ -1215,6 +1247,7 @@
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = MoviePulse/SupportFiles/Info.plist;
+				INFOPLIST_KEY_NSCameraUsageDescription = "Allow us uses the camera to measure your heart rate.";
 				INFOPLIST_KEY_NSUserTrackingUsageDescription = "This identifier will be used to deliver personalized ads to you.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
@@ -1249,6 +1282,7 @@
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = MoviePulse/SupportFiles/Info.plist;
+				INFOPLIST_KEY_NSCameraUsageDescription = "Allow us uses the camera to measure your heart rate.";
 				INFOPLIST_KEY_NSUserTrackingUsageDescription = "This identifier will be used to deliver personalized ads to you.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
