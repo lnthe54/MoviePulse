@@ -32,6 +32,9 @@ class PulseTestViewController: BaseViewController {
     @IBOutlet private weak var posterImageView: UIImageView!
     @IBOutlet private weak var noteLabel: UILabel!
     @IBOutlet private weak var nameLabel: UILabel!
+    @IBOutlet private weak var testView: UIView!
+    @IBOutlet private weak var introView: UIView!
+    @IBOutlet private weak var introLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -75,5 +78,21 @@ class PulseTestViewController: BaseViewController {
         nameLabel.font = .outfitFont(ofSize: 20, weight: .semiBold)
         nameLabel.numberOfLines = 0
         nameLabel.textAlignment = .center
+        
+        testView.backgroundColor = .clear
+        testView.setBorder(withColor: UIColor(hexString: "#E7D9FB") ?? .clear, width: 20)
+        testView.corner(testView.frame.height / 2)
+        
+        introView.backgroundColor = UIColor(hexString: "#E7D9FB")
+        introView.corner(8)
+        
+        introLabel.text = """
+        • Place your fingertip gently over the rear camera and flash
+        • Make sure your finger fully covers the lens and flash
+        • Stay still and avoid moving
+        """
+        introLabel.textColor = .blackColor
+        introLabel.font = .outfitFont(ofSize: 16, weight: .medium)
+        introLabel.numberOfLines = 0
     }
 }
