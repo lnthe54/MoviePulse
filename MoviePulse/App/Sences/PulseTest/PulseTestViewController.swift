@@ -9,6 +9,7 @@ class PulseTestViewController: BaseViewController {
     private var viewModel: PulseTestViewModel
     private var posterPath: String
     private var name: String
+    private var bpmValue: Int = 0
     
     // Heart
     private var validFrameCounter = 0
@@ -46,6 +47,9 @@ class PulseTestViewController: BaseViewController {
     @IBOutlet private weak var warningLabel: UILabel!
     @IBOutlet private weak var introView: UIView!
     @IBOutlet private weak var introLabel: UILabel!
+    @IBOutlet private weak var resultView: UIView!
+    @IBOutlet private weak var bpmValueLabel: UILabel!
+    @IBOutlet private weak var bpmTitleLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -66,7 +70,10 @@ class PulseTestViewController: BaseViewController {
         super.viewWillAppear(animated)
         
         NotificationCenter.default.post(name: .hideTabBar, object: true)
-        initCaptureSession()
+        
+        DispatchQueue.global(qos: .userInitiated).async { [weak self] in
+            self?.initCaptureSession()
+        }
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -107,9 +114,10 @@ class PulseTestViewController: BaseViewController {
         nameLabel.textAlignment = .center
         
         warningLabel.textColor = .blackColor
-        warningLabel.font = .outfitFont(ofSize: 14, weight: .light)
+        warningLabel.font = .outfitFont(ofSize: 14, weight: .medium)
         warningLabel.numberOfLines = 0
         warningLabel.textAlignment = .center
+        warningLabel.text = "Cover the back camera until the image turns red 🟥"
         
         introView.backgroundColor = UIColor(hexString: "#E7D9FB")
         introView.corner(8)
@@ -122,6 +130,19 @@ class PulseTestViewController: BaseViewController {
         introLabel.textColor = .blackColor
         introLabel.font = .outfitFont(ofSize: 16, weight: .medium)
         introLabel.numberOfLines = 0
+        
+        resultView.isHidden = true
+        resultView.backgroundColor = .pimaryColor
+        resultView.setBorder(withColor: UIColor(hexString: "#E7D9FB") ?? .clear, width: 20)
+        resultView.layer.cornerRadius = previewView.frame.height / 2
+        resultView.layer.masksToBounds = true
+        
+        bpmValueLabel.font = .outfitFont(ofSize: 44, weight: .semiBold)
+        bpmValueLabel.textColor = .white
+        
+        bpmTitleLabel.font = .outfitFont(ofSize: 24, weight: .medium)
+        bpmTitleLabel.textColor = .white
+        bpmTitleLabel.text = "BPM"
     }
 }
 
@@ -157,19 +178,15 @@ extension PulseTestViewController {
                 guard let self = self else { return }
                 let average = self.pulseDetector.getAverage()
                 let pulse = 60.0/average
-                if pulse == -60 {
+                if pulse != -60 {
                     UIView.animate(withDuration: 0.2, animations: {
-//                        self.pulseLabel.alpha = 0
-                    }) { (finished) in
-//                        self.pulseLabel.isHidden = finished
-                    }
-                } else {
-                    UIView.animate(withDuration: 0.2, animations: {
-//                        self.pulseLabel.alpha = 1.0
+                        self.resultView.alpha = 1.0
                     }) { (_) in
-//                        self.pulseLabel.isHidden = false
-//                        self.pulseLabel.text = "\(lroundf(pulse)) BPM"
-                        print("\(lroundf(pulse)) BPM")
+                        self.resultView.isHidden = false
+                        self.warningLabel.isHidden = true
+                        self.deinitCaptureSession()
+                        self.bpmValue = lroundf(pulse)
+                        self.bpmValueLabel.text = "\(lroundf(pulse))"
                     }
                 }
             })
