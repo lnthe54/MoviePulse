@@ -13,6 +13,10 @@
 		99169CDB2E222643005B8947 /* AVCaptureDevice+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99169CDA2E222641005B8947 /* AVCaptureDevice+Extensions.swift */; };
 		99169CDD2E2226F6005B8947 /* Filter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99169CDC2E2226F3005B8947 /* Filter.swift */; };
 		99169CDF2E22271F005B8947 /* PulseDetector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99169CDE2E22271E005B8947 /* PulseDetector.swift */; };
+		99169CE92E237E75005B8947 /* PulseResultNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99169CE82E237E6E005B8947 /* PulseResultNavigator.swift */; };
+		99169CEB2E237EAC005B8947 /* PulseResultViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99169CEA2E237EA7005B8947 /* PulseResultViewModel.swift */; };
+		99169CEE2E237EE7005B8947 /* PulseResultViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 99169CED2E237EE7005B8947 /* PulseResultViewController.xib */; };
+		99169CEF2E237EE7005B8947 /* PulseResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99169CEC2E237EE7005B8947 /* PulseResultViewController.swift */; };
 		994215832E09A76100DAA702 /* APIResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9942157E2E09A76100DAA702 /* APIResponse.swift */; };
 		994215842E09A76100DAA702 /* APIConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9942157D2E09A76100DAA702 /* APIConfiguration.swift */; };
 		994215862E09A76100DAA702 /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9942157C2E09A76100DAA702 /* APIClient.swift */; };
@@ -194,6 +198,10 @@
 		99169CDA2E222641005B8947 /* AVCaptureDevice+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AVCaptureDevice+Extensions.swift"; sourceTree = "<group>"; };
 		99169CDC2E2226F3005B8947 /* Filter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Filter.swift; sourceTree = "<group>"; };
 		99169CDE2E22271E005B8947 /* PulseDetector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PulseDetector.swift; sourceTree = "<group>"; };
+		99169CE82E237E6E005B8947 /* PulseResultNavigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PulseResultNavigator.swift; sourceTree = "<group>"; };
+		99169CEA2E237EA7005B8947 /* PulseResultViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PulseResultViewModel.swift; sourceTree = "<group>"; };
+		99169CEC2E237EE7005B8947 /* PulseResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PulseResultViewController.swift; sourceTree = "<group>"; };
+		99169CED2E237EE7005B8947 /* PulseResultViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PulseResultViewController.xib; sourceTree = "<group>"; };
 		9942157C2E09A76100DAA702 /* APIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
 		9942157D2E09A76100DAA702 /* APIConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIConfiguration.swift; sourceTree = "<group>"; };
 		9942157E2E09A76100DAA702 /* APIResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIResponse.swift; sourceTree = "<group>"; };
@@ -378,6 +386,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		99169CE72E237E68005B8947 /* PulseResult */ = {
+			isa = PBXGroup;
+			children = (
+				99169CEA2E237EA7005B8947 /* PulseResultViewModel.swift */,
+				99169CE82E237E6E005B8947 /* PulseResultNavigator.swift */,
+				99169CEC2E237EE7005B8947 /* PulseResultViewController.swift */,
+				99169CED2E237EE7005B8947 /* PulseResultViewController.xib */,
+			);
+			path = PulseResult;
+			sourceTree = "<group>";
+		};
 		994215822E09A76100DAA702 /* Networking */ = {
 			isa = PBXGroup;
 			children = (
@@ -420,6 +439,7 @@
 		9942159B2E09AA5300DAA702 /* Sences */ = {
 			isa = PBXGroup;
 			children = (
+				99169CE72E237E68005B8947 /* PulseResult */,
 				B6BBBD112E20AD2C006D1D6F /* PulseTest */,
 				B6BBBCFF2E1F984A006D1D6F /* SeasonDetail */,
 				B6BBBCFB2E1F6DCC006D1D6F /* Webview */,
@@ -993,6 +1013,7 @@
 				B649766F2E0A78E300B5A738 /* MainViewController.xib in Resources */,
 				9994AC3A2E14363F0084901B /* FavoriteViewController.xib in Resources */,
 				B64976962E1231C900B5A738 /* DetailItemViewController.xib in Resources */,
+				99169CEE2E237EE7005B8947 /* PulseResultViewController.xib in Resources */,
 				9989FF182E112499007B667C /* PulseCell.xib in Resources */,
 				B6BBBCE22E1E4175006D1D6F /* ComponentPopup.xib in Resources */,
 				B649768D2E122BA400B5A738 /* loading.json in Resources */,
@@ -1175,6 +1196,7 @@
 				994215972E09A8EB00DAA702 /* Rx+Extension.swift in Sources */,
 				B64976712E0A78F000B5A738 /* MainViewPager.swift in Sources */,
 				B649767C2E0E35AA00B5A738 /* AppLayout.swift in Sources */,
+				99169CEB2E237EAC005B8947 /* PulseResultViewModel.swift in Sources */,
 				B6BBBCEB2E1F50D5006D1D6F /* SettingViewController.swift in Sources */,
 				99169CDF2E22271F005B8947 /* PulseDetector.swift in Sources */,
 				994215982E09A8EB00DAA702 /* ViewModelType.swift in Sources */,
@@ -1185,10 +1207,12 @@
 				994215992E09A8EB00DAA702 /* UIView+Extension.swift in Sources */,
 				B64976952E1231C900B5A738 /* DetailItemViewController.swift in Sources */,
 				B60B7B4C2E15071F00C69C17 /* DiscoverViewController.swift in Sources */,
+				99169CEF2E237EE7005B8947 /* PulseResultViewController.swift in Sources */,
 				B6BBBCF62E1F6065006D1D6F /* SettingCell.swift in Sources */,
 				99A5FBE52E0C558F00AA8D59 /* ProjectModel.swift in Sources */,
 				99A5FBE92E0C565900AA8D59 /* CategoryModel.swift in Sources */,
 				994215872E09A76100DAA702 /* NetworkLogger.swift in Sources */,
+				99169CE92E237E75005B8947 /* PulseResultNavigator.swift in Sources */,
 				9994AC242E12D7FB0084901B /* CommunityCell.swift in Sources */,
 				B6BBBCE72E1F50A2006D1D6F /* SettingViewModel.swift in Sources */,
 				B6BBBCE52E1F502C006D1D6F /* SettingNavigator.swift in Sources */,
