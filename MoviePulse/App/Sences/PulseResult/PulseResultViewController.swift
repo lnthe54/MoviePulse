@@ -35,6 +35,16 @@ class PulseResultViewController: BaseViewController {
     @IBOutlet private weak var bottomView: UIView!
     @IBOutlet private weak var tryAgainButton: UIButton!
     @IBOutlet private weak var discoverButton: UIButton!
+    @IBOutlet private weak var analysisView: UIView!
+    @IBOutlet private weak var analysisLabel: UILabel!
+    @IBOutlet private weak var emotionView: UIView!
+    @IBOutlet private weak var emotionLabel: UILabel!
+    @IBOutlet private weak var energyView: UIView!
+    @IBOutlet private weak var energyLabel: UILabel!
+    @IBOutlet private weak var tenseView: UIView!
+    @IBOutlet private weak var tenseLabel: UILabel!
+    @IBOutlet private weak var calmView: UIView!
+    @IBOutlet private weak var calmLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -54,7 +64,7 @@ class PulseResultViewController: BaseViewController {
     }
     
     override func setupViews() {
-        setupHeader(withType: .detail(title: "Pulse Test"))
+        setupHeader(withType: .detail(title: "Pulse Test", rightContents: [.share]))
         
         topConstraint.constant = Constants.HEIGHT_NAV
         
@@ -102,6 +112,24 @@ class PulseResultViewController: BaseViewController {
         discoverButton.setTitle("Discover more", for: .normal)
         discoverButton.setTitleColor(.pimaryColor, for: .normal)
         discoverButton.titleLabel?.font = .outfitFont(ofSize: 14, weight: .semiBold)
+        
+        analysisView.corner(8)
+        analysisLabel.text = "Emotion Analysis"
+        analysisLabel.textColor = .blackColor
+        analysisLabel.font = .outfitFont(ofSize: 16, weight: .semiBold)
+        
+        // Config subview
+        emotionView.configSubView()
+        emotionLabel.configSubLabel("Emotion")
+        
+        energyView.configSubView()
+        energyLabel.configSubLabel("Energy")
+        
+        tenseView.configSubView()
+        tenseLabel.configSubLabel("Tension")
+        
+        calmView.configSubView()
+        calmLabel.configSubLabel("Calm")
     }
     
     override func bindViewModel() {
@@ -110,5 +138,20 @@ class PulseResultViewController: BaseViewController {
     
     override func actionBack() {
         navigator.popToRootViewController()
+    }
+}
+
+extension UIView {
+    func configSubView() {
+        backgroundColor = UIColor(hexString: "#FAF7FE")
+        corner(4)
+    }
+}
+
+extension UILabel {
+    func configSubLabel(_ value: String) {
+        text = value
+        textColor = UIColor(hexString: "#7017E8")
+        font = .outfitFont(ofSize: 12, weight: .light)
     }
 }
