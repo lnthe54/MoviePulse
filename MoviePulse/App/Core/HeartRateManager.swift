@@ -33,7 +33,8 @@ class HeartRateManager: NSObject {
     private var videoConnection: AVCaptureConnection!
     private var audioConnection: AVCaptureConnection!
     private var previewLayer: AVCaptureVideoPreviewLayer?
-    
+    private(set) var isCapturing: Bool = false
+
     var imageBufferHandler: ImageBufferHandler?
     
     init(cameraType: CameraType, preferredSpec: VideoSpec?, previewContainer: CALayer?) {
@@ -83,29 +84,33 @@ class HeartRateManager: NSObject {
     }
     
     func startCapture() {
-        #if DEBUG
+#if DEBUG
         print(#function + "\(self.classForCoder)/")
-        #endif
-        if captureSession.isRunning {
-            #if DEBUG
-            print("Capture Session is already running 🏃‍♂️.")
-            #endif
+#endif
+        guard !isCapturing else {
+            print("Already capturing")
             return
         }
-        captureSession.startRunning()
+        
+        if !captureSession.isRunning {
+            captureSession.startRunning()
+        }
+        isCapturing = true
     }
     
     func stopCapture() {
-        #if DEBUG
+#if DEBUG
         print(#function + "\(self.classForCoder)/")
-        #endif
-        if !captureSession.isRunning {
-            #if DEBUG
+#endif
+        guard isCapturing else {
             print("Capture Session has already stopped 🛑.")
-            #endif
             return
         }
-        captureSession.stopRunning()
+        
+        if captureSession.isRunning {
+            captureSession.stopRunning()
+        }
+        isCapturing = false
     }
 }
 

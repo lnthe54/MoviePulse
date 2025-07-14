@@ -1,7 +1,7 @@
 import UIKit
 
 protocol PulseResultNavigator: BaseNavigator {
-    
+    func popToRootViewController()
 }
 
 class DefaultPulseResultNavigator: PulseResultNavigator {
@@ -9,6 +9,10 @@ class DefaultPulseResultNavigator: PulseResultNavigator {
     
     init(navigationController: UINavigationController) {
         self.navigationController = navigationController
+    }
+    
+    func popToRootViewController() {
+        navigationController.popToRootViewController(animated: true)
     }
     
     func popToViewController() {

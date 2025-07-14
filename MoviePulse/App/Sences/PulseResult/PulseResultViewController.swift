@@ -75,6 +75,6 @@ class PulseResultViewController: BaseViewController {
     }
     
     override func actionBack() {
-        navigator.popToViewController()
+        navigator.popToRootViewController()
     }
 }

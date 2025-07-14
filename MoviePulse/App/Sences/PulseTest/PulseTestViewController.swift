@@ -18,7 +18,8 @@ class PulseTestViewController: BaseViewController {
     private var pulseDetector = PulseDetector()
     private var inputs: [CGFloat] = []
     private var measurementStartedFlag = false
-    private var timer = Timer()
+    private var timer: Timer?
+    private var isOpenPulseResult: Bool = false
     
     init(
         navigator: PulseTestNavigator,
@@ -117,7 +118,7 @@ class PulseTestViewController: BaseViewController {
         warningLabel.font = .outfitFont(ofSize: 14, weight: .medium)
         warningLabel.numberOfLines = 0
         warningLabel.textAlignment = .center
-        warningLabel.text = "Cover the back camera until the image turns red 🟥"
+        warningLabel.text = "Hold your index finger ☝️ still."
         
         introView.backgroundColor = UIColor(hexString: "#E7D9FB")
         introView.corner(8)
@@ -162,6 +163,8 @@ extension PulseTestViewController {
     }
     
     private func deinitCaptureSession() {
+        timer?.invalidate()
+        timer = nil
         heartRateManager.stopCapture()
         toggleTorch(status: false)
     }
@@ -174,21 +177,35 @@ extension PulseTestViewController {
     private func startMeasurement() {
         DispatchQueue.main.async {
             self.toggleTorch(status: true)
-            self.timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true, block: { [weak self] (timer) in
-                guard let self = self else { return }
-                let average = self.pulseDetector.getAverage()
-                let pulse = 60.0/average
-                if pulse != -60 {
-                    UIView.animate(withDuration: 0.2, animations: {
-                        self.resultView.alpha = 1.0
-                    }) { (_) in
-                        self.resultView.isHidden = false
-                        self.warningLabel.isHidden = true
-                        self.deinitCaptureSession()
-                        self.bpmValue = lroundf(pulse)
-                        self.bpmValueLabel.text = "\(lroundf(pulse))"
+            
+            if self.timer == nil {
+                self.timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { [weak self] _ in
+                    guard let self = self else { return }
+                    
+                    let average = self.pulseDetector.getAverage()
+                    let pulse = 60.0 / average
+                    
+                    guard pulse != -60, pulse.isFinite else {
+                        return
                     }
+                    
+                    showMeasurementResult(bpm: lroundf(pulse))
                 }
+            }
+        }
+    }
+    
+    private func showMeasurementResult(bpm: Int) {
+        UIView.animate(withDuration: 0.2) {
+            self.resultView.alpha = 1.0
+        } completion: { _ in
+            self.deinitCaptureSession()
+            self.resultView.isHidden = false
+            self.warningLabel.isHidden = true
+            self.bpmValue = bpm
+            self.bpmValueLabel.text = "\(bpm)"
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.3, execute: {
+                self.navigator.gotoPulseResultViewController(result: PulseResultModel(path: self.posterPath, name: self.name, bpm: self.bpmValue))
             })
         }
     }
@@ -237,7 +254,7 @@ extension PulseTestViewController {
         // Do a sanity check to see if a finger is placed over the camera
         if (hsv.1 > 0.5 && hsv.2 > 0.5) {
             DispatchQueue.main.async {
-                self.warningLabel.text = "Hold your index finger ☝️ still."
+                self.warningLabel.text = "Measuring..."
                 self.toggleTorch(status: true)
                 if !self.measurementStartedFlag {
                     self.startMeasurement()
@@ -256,7 +273,7 @@ extension PulseTestViewController {
             measurementStartedFlag = false
             pulseDetector.reset()
             DispatchQueue.main.async {
-                self.warningLabel.text = "Cover the back camera until the image turns red 🟥"
+                self.warningLabel.text = "Hold your index finger ☝️ still."
             }
         }
     }
