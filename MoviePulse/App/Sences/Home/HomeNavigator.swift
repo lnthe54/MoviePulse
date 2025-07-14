@@ -6,6 +6,7 @@ protocol HomeNavigator {
     func gotoDetailItemViewController(infoDetailObject: InfoDetailObject)
     func gotoFavoriteViewController()
     func gotoSearchViewController()
+    func gotoSavePulseViewController()
 }
 
 class DefaultHomeNavigator: HomeNavigator {
@@ -36,9 +37,6 @@ class DefaultHomeNavigator: HomeNavigator {
             sectionType: sectionType
         )
         navigationController.pushViewController(viewController, animated: true)
-        
-//        let viewController = PulseViewController()
-//        navigationController.pushViewController(viewController, animated: true)
     }
     
     func gotoDetailItemViewController(infoDetailObject: InfoDetailObject) {
@@ -63,6 +61,13 @@ class DefaultHomeNavigator: HomeNavigator {
         let navigator = DefaultSearchNavigator(navigationController: navigationController)
         let viewModel = SearchViewModel()
         let viewController = SearchViewController(navigator: navigator, viewModel: viewModel)
+        navigationController.pushViewController(viewController, animated: true)
+    }
+    
+    func gotoSavePulseViewController() {
+        let navigator = DefaultSavePulseNavigator(navigationController: navigationController)
+        let viewModel = SavePulseViewModel()
+        let viewController = SavePulseViewController(navigator: navigator, viewModel: viewModel)
         navigationController.pushViewController(viewController, animated: true)
     }
 }

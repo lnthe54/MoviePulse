@@ -66,7 +66,7 @@ class TrailerViewController: BaseViewController {
             
             switch section {
             case .list:
-                return AppLayout.trailerListSection()
+                return AppLayout.tableSection(height: 124)
             }
         }
         

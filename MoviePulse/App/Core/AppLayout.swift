@@ -253,17 +253,18 @@ class AppLayout {
         return section
     }
     
-    static func trailerListSection() -> NSCollectionLayoutSection {
+    static func tableSection(height: CGFloat) -> NSCollectionLayoutSection {
+        let newHeight = height + 6 + 6 // origin + (top + bottom)
         let itemSize = NSCollectionLayoutSize(
             widthDimension: .fractionalWidth(1.0),
-            heightDimension: .absolute(136) // origin + (top + bottom)
+            heightDimension: .absolute(newHeight)
         )
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
         item.contentInsets = NSDirectionalEdgeInsets(top: 6, leading: 0, bottom: 6, trailing: 0)
         
         let groupSize = NSCollectionLayoutSize(
             widthDimension: .fractionalWidth(1.0),
-            heightDimension: .estimated(136)
+            heightDimension: .estimated(newHeight)
         )
         let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item, item])
         

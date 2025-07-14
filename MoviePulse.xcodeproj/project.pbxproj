@@ -185,6 +185,12 @@
 		B6BBBD182E20ADA0006D1D6F /* PulseTestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6BBBD162E20ADA0006D1D6F /* PulseTestViewController.swift */; };
 		B6BBBD192E20ADA0006D1D6F /* PulseTestViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B6BBBD172E20ADA0006D1D6F /* PulseTestViewController.xib */; };
 		B6BBBD1B2E20F9EC006D1D6F /* UICollectionView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6BBBD1A2E20F9E6006D1D6F /* UICollectionView+Extension.swift */; };
+		B6C052A82E24D62E002D6500 /* SavePulseNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6C052A72E24D62A002D6500 /* SavePulseNavigator.swift */; };
+		B6C052AA2E24D65B002D6500 /* SavePulseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6C052A92E24D657002D6500 /* SavePulseViewModel.swift */; };
+		B6C052AD2E24D694002D6500 /* SavePulseViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B6C052AC2E24D694002D6500 /* SavePulseViewController.xib */; };
+		B6C052AE2E24D694002D6500 /* SavePulseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6C052AB2E24D694002D6500 /* SavePulseViewController.swift */; };
+		B6C052B22E24D8BF002D6500 /* SavePulseCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B6C052B12E24D8BF002D6500 /* SavePulseCell.xib */; };
+		B6C052B32E24D8BF002D6500 /* SavePulseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6C052B02E24D8BF002D6500 /* SavePulseCell.swift */; };
 		D9632ADD155F4F54C1D8CF29 /* Pods_MoviePulse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 82CD434E65B60866758DB3F7 /* Pods_MoviePulse.framework */; };
 /* End PBXBuildFile section */
 
@@ -372,6 +378,12 @@
 		B6BBBD162E20ADA0006D1D6F /* PulseTestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PulseTestViewController.swift; sourceTree = "<group>"; };
 		B6BBBD172E20ADA0006D1D6F /* PulseTestViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PulseTestViewController.xib; sourceTree = "<group>"; };
 		B6BBBD1A2E20F9E6006D1D6F /* UICollectionView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionView+Extension.swift"; sourceTree = "<group>"; };
+		B6C052A72E24D62A002D6500 /* SavePulseNavigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavePulseNavigator.swift; sourceTree = "<group>"; };
+		B6C052A92E24D657002D6500 /* SavePulseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavePulseViewModel.swift; sourceTree = "<group>"; };
+		B6C052AB2E24D694002D6500 /* SavePulseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavePulseViewController.swift; sourceTree = "<group>"; };
+		B6C052AC2E24D694002D6500 /* SavePulseViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SavePulseViewController.xib; sourceTree = "<group>"; };
+		B6C052B02E24D8BF002D6500 /* SavePulseCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavePulseCell.swift; sourceTree = "<group>"; };
+		B6C052B12E24D8BF002D6500 /* SavePulseCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SavePulseCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -439,6 +451,7 @@
 		9942159B2E09AA5300DAA702 /* Sences */ = {
 			isa = PBXGroup;
 			children = (
+				B6C052A62E24D624002D6500 /* SavePulse */,
 				99169CE72E237E68005B8947 /* PulseResult */,
 				B6BBBD112E20AD2C006D1D6F /* PulseTest */,
 				B6BBBCFF2E1F984A006D1D6F /* SeasonDetail */,
@@ -918,6 +931,27 @@
 			path = PulseTest;
 			sourceTree = "<group>";
 		};
+		B6C052A62E24D624002D6500 /* SavePulse */ = {
+			isa = PBXGroup;
+			children = (
+				B6C052AF2E24D8A1002D6500 /* Cell */,
+				B6C052A92E24D657002D6500 /* SavePulseViewModel.swift */,
+				B6C052A72E24D62A002D6500 /* SavePulseNavigator.swift */,
+				B6C052AB2E24D694002D6500 /* SavePulseViewController.swift */,
+				B6C052AC2E24D694002D6500 /* SavePulseViewController.xib */,
+			);
+			path = SavePulse;
+			sourceTree = "<group>";
+		};
+		B6C052AF2E24D8A1002D6500 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				B6C052B02E24D8BF002D6500 /* SavePulseCell.swift */,
+				B6C052B12E24D8BF002D6500 /* SavePulseCell.xib */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
 		E4B917826BD6211015042518 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -1014,6 +1048,7 @@
 				9994AC3A2E14363F0084901B /* FavoriteViewController.xib in Resources */,
 				B64976962E1231C900B5A738 /* DetailItemViewController.xib in Resources */,
 				99169CEE2E237EE7005B8947 /* PulseResultViewController.xib in Resources */,
+				B6C052B22E24D8BF002D6500 /* SavePulseCell.xib in Resources */,
 				9989FF182E112499007B667C /* PulseCell.xib in Resources */,
 				B6BBBCE22E1E4175006D1D6F /* ComponentPopup.xib in Resources */,
 				B649768D2E122BA400B5A738 /* loading.json in Resources */,
@@ -1029,6 +1064,7 @@
 				997FBC922E09A05D0065979E /* Assets.xcassets in Resources */,
 				B6BBBCFD2E1F6DCC006D1D6F /* WebViewViewController.xib in Resources */,
 				9989FEFB2E0F9B40007B667C /* CategoryCell.xib in Resources */,
+				B6C052AD2E24D694002D6500 /* SavePulseViewController.xib in Resources */,
 				B64976A32E12636E00B5A738 /* OverviewDetailItemCell.xib in Resources */,
 				B64976A72E127C6700B5A738 /* ImageCell.xib in Resources */,
 				B64976B02E12807700B5A738 /* ImageDetailCell.xib in Resources */,
@@ -1108,6 +1144,7 @@
 				9994AC312E1430A10084901B /* SuccessAlertView.swift in Sources */,
 				9989FEFE2E0F9E3B007B667C /* SingleCell.swift in Sources */,
 				997FBC8F2E09A05D0065979E /* AppDelegate.swift in Sources */,
+				B6C052B32E24D8BF002D6500 /* SavePulseCell.swift in Sources */,
 				B6BBBD012E1F9861006D1D6F /* SeasonDetailNavigator.swift in Sources */,
 				9994AC2D2E12EDEA0084901B /* FeelCell.swift in Sources */,
 				B6BBBCBE2E1CEBDC006D1D6F /* SeasonCell.swift in Sources */,
@@ -1164,11 +1201,13 @@
 				99A5FBD82E0C549000AA8D59 /* MovieClient.swift in Sources */,
 				9994AC202E12D5050084901B /* PulseTestCell.swift in Sources */,
 				99169CDD2E2226F6005B8947 /* Filter.swift in Sources */,
+				B6C052AE2E24D694002D6500 /* SavePulseViewController.swift in Sources */,
 				9994AC362E1435C30084901B /* FavoriteViewModel.swift in Sources */,
 				9994AC342E14357B0084901B /* FavoriteNavigator.swift in Sources */,
 				994215922E09A8EB00DAA702 /* UIColor+Extension.swift in Sources */,
 				99A5FBEB2E0C574000AA8D59 /* Date+Extension.swift in Sources */,
 				B64976A22E12636E00B5A738 /* OverviewDetailItemCell.swift in Sources */,
+				B6C052AA2E24D65B002D6500 /* SavePulseViewModel.swift in Sources */,
 				9942159E2E09AAAF00DAA702 /* OnboardingNavigator.swift in Sources */,
 				99A5FBED2E0C579800AA8D59 /* String+Extension.swift in Sources */,
 				B6BBBD132E20AD3A006D1D6F /* PulseTestNavigator.swift in Sources */,
@@ -1222,6 +1261,7 @@
 				B64976AF2E12807700B5A738 /* ImageDetailCell.swift in Sources */,
 				B649769E2E12608300B5A738 /* InfoDetailItemCell.swift in Sources */,
 				B6BBBCB52E1CCBFF006D1D6F /* SearchClient.swift in Sources */,
+				B6C052A82E24D62E002D6500 /* SavePulseNavigator.swift in Sources */,
 				B6BBBCAB2E1CC43E006D1D6F /* ResultSearchNavigator.swift in Sources */,
 				B649766E2E0A78E300B5A738 /* MainViewController.swift in Sources */,
 				99A5FBCD2E0B0E8D00AA8D59 /* Constants.swift in Sources */,

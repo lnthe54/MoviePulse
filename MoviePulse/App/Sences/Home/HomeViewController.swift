@@ -288,6 +288,8 @@ extension HomeViewController: UICollectionViewDelegate {
             gotoDetailItemTrigger.onNext(homeDataObject.movies[indexPath.row])
         case .category:
             navigator.gotoListItemViewController(sectionType: .category(category: homeDataObject.categories[indexPath.row], objectType: .movie))
+        case .pulse:
+            navigator.gotoSavePulseViewController()
         default: break
         }
     }
