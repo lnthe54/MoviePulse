@@ -1,10 +1,16 @@
 import UIKit
 
+enum PulseGallerySectionType {
+    case list
+    case empty
+}
+
 class SavePulseViewController: BaseViewController {
 
     // MARK: - Properties
     private var navigator: SavePulseNavigator
     private var viewModel: SavePulseViewModel
+    private var items: [Any] = []
     
     init(navigator: SavePulseNavigator, viewModel: SavePulseViewModel) {
         self.navigator = navigator
@@ -38,8 +44,8 @@ class SavePulseViewController: BaseViewController {
     override func setupViews() {
         setupHeader(withType: .detail(title: "Pulse Gallery"))
         topConstraint.constant = Constants.HEIGHT_NAV
-        collectionView.configure(withCells: [SavePulseCell.self], dataSource: self)
-        collectionView.setCollectionViewLayout(UICollectionViewCompositionalLayout(section: AppLayout.tableSection(height: 144)), animated: true)
+        collectionView.configure(withCells: [SavePulseCell.self, EmptyCell.self], dataSource: self)
+        configureCompositionalLayout()
     }
     
     override func actionBack() {
@@ -47,18 +53,70 @@ class SavePulseViewController: BaseViewController {
     }
 }
 
+extension SavePulseViewController {
+    private func configureCompositionalLayout() {
+        let layout = UICollectionViewCompositionalLayout { [weak self] (sectionIndex, _) in
+            guard let self = self else { return AppLayout.defaultSection() }
+            let section = self.getSections()[sectionIndex]
+            
+            switch section {
+            case .list:
+                return AppLayout.episodeSection(height: 144)
+            case .empty:
+                return AppLayout.fixedSection(height: 300)
+            }
+        }
+        
+        collectionView.setCollectionViewLayout(layout, animated: true)
+    }
+    
+    private func getSections() -> [PulseGallerySectionType] {
+        var sections: [PulseGallerySectionType] = []
+        
+        if items.isEmpty {
+            sections.append(.empty)
+        } else {
+            sections.append(.list)
+        }
+        
+        return sections
+    }
+}
+
 extension SavePulseViewController: UICollectionViewDataSource {
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 1
+        return getSections().count
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
+        switch getSections()[section] {
+        case .list:
+            return items.count
+        case .empty:
+            return 1
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        switch getSections()[indexPath.section] {
+        case .list:
+            return pulseCell(collectionView, cellForItemAt: indexPath)
+        case .empty:
+            return emptyCell(collectionView, cellForItemAt: indexPath)
+        }
+    }
+    
+    func pulseCell(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> SavePulseCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SavePulseCell.className, for: indexPath) as! SavePulseCell
-        
+        return cell
+    }
+    
+    private func emptyCell(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> EmptyCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: EmptyCell.className, for: indexPath) as! EmptyCell
+        cell.onTapDiscover = {
+            NotificationCenter.default.post(name: .switchToDiscoverTab, object: nil)
+        }
+        cell.bindData(title: "Nothing here", message: "Discover exciting movies and\nstart measuring your reactions!")
         return cell
     }
 }
