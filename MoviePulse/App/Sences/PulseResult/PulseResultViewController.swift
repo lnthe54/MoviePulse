@@ -93,8 +93,8 @@ class PulseResultViewController: BaseViewController {
         tryAgainButton.titleLabel?.font = .outfitFont(ofSize: 14, weight: .semiBold)
         
         discoverButton.rx.tapGesture().when(.recognized)
-            .subscribe(onNext: { [weak self] _ in
-                
+            .subscribe(onNext: { _ in
+                NotificationCenter.default.post(name: .switchToDiscoverTab, object: nil)
             })
             .disposed(by: disposeBag)
         discoverButton.backgroundColor = UIColor(hexString: "#E7D9FB")

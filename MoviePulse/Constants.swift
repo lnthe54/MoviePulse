@@ -57,8 +57,8 @@ struct Constants {
     
     struct Config {
         static let MY_APP_ID: String = ""
-        static let URL_POLICY: String = ""
-        static let ABOUT_POLICY: String = ""
+        static let URL_POLICY: String = "https://www.google.com/"
+        static let ABOUT_POLICY: String = "https://www.google.com/"
         static let EMAIL_FEEDBACK: String = ""
         static let SUBJECT_CONTENT: String = ""
         static let BODY_CONTENT: String = ""
