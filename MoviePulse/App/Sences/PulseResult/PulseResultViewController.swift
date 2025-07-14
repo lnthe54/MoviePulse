@@ -1,5 +1,8 @@
 import UIKit
 import Kingfisher
+import RxSwift
+import RxCocoa
+import RxGesture
 
 class PulseResultViewController: BaseViewController {
 
@@ -29,6 +32,9 @@ class PulseResultViewController: BaseViewController {
     @IBOutlet private weak var posterImageView: UIImageView!
     @IBOutlet private weak var noteLabel: UILabel!
     @IBOutlet private weak var nameLabel: UILabel!
+    @IBOutlet private weak var bottomView: UIView!
+    @IBOutlet private weak var tryAgainButton: UIButton!
+    @IBOutlet private weak var discoverButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,6 +45,12 @@ class PulseResultViewController: BaseViewController {
         super.viewWillAppear(animated)
         
         NotificationCenter.default.post(name: .hideTabBar, object: true)
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
+        bottomView.round(corners: [.topLeft, .topRight], radius: 8)
     }
     
     override func setupViews() {
@@ -68,6 +80,28 @@ class PulseResultViewController: BaseViewController {
         nameLabel.font = .outfitFont(ofSize: 20, weight: .semiBold)
         nameLabel.numberOfLines = 0
         nameLabel.textAlignment = .center
+        
+        tryAgainButton.rx.tapGesture().when(.recognized)
+            .subscribe(onNext: { [weak self] _ in
+                
+            })
+            .disposed(by: disposeBag)
+        tryAgainButton.backgroundColor = .pimaryColor
+        tryAgainButton.corner(tryAgainButton.frame.height / 2)
+        tryAgainButton.setTitle("Try again", for: .normal)
+        tryAgainButton.setTitleColor(.white, for: .normal)
+        tryAgainButton.titleLabel?.font = .outfitFont(ofSize: 14, weight: .semiBold)
+        
+        discoverButton.rx.tapGesture().when(.recognized)
+            .subscribe(onNext: { [weak self] _ in
+                
+            })
+            .disposed(by: disposeBag)
+        discoverButton.backgroundColor = UIColor(hexString: "#E7D9FB")
+        discoverButton.corner(discoverButton.frame.height / 2)
+        discoverButton.setTitle("Discover more", for: .normal)
+        discoverButton.setTitleColor(.pimaryColor, for: .normal)
+        discoverButton.titleLabel?.font = .outfitFont(ofSize: 14, weight: .semiBold)
     }
     
     override func bindViewModel() {
