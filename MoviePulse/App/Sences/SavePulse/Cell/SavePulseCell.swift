@@ -13,6 +13,8 @@ class SavePulseCell: UICollectionViewCell {
     @IBOutlet private weak var tensionView: UIView!
     @IBOutlet private weak var tensionLabel: UILabel!
     
+    var onTapMoreAction: (() -> Void)?
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         
@@ -36,5 +38,9 @@ class SavePulseCell: UICollectionViewCell {
         
         tensionView.configSubView()
         tensionLabel.configSubLabel("Tension rate")
+    }
+    
+    @IBAction private func tapToMoreButton() {
+        onTapMoreAction?()
     }
 }

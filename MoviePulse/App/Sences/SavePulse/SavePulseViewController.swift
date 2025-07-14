@@ -81,6 +81,28 @@ extension SavePulseViewController {
         
         return sections
     }
+    
+    private func showActionSheet() {
+        let actionSheetVC = ActionSheetViewController()
+        actionSheetVC.onDelete = {
+            print("🗑 Delete tapped")
+        }
+        actionSheetVC.onShare = {
+            print("🔗 Share tapped")
+        }
+
+        if let sheet = actionSheetVC.sheetPresentationController {
+            sheet.detents = [.custom { context in
+                let padding: CGFloat = 24 + 24 // top + bottom
+                let titleHeight: CGFloat = 20
+                let buttonHeight: CGFloat = 40 * 2 + 16 // 2 buttons + spacing
+                return titleHeight + buttonHeight + padding
+            }]
+            sheet.prefersGrabberVisible = true
+            sheet.preferredCornerRadius = 16
+        }
+        present(actionSheetVC, animated: true)
+    }
 }
 
 extension SavePulseViewController: UICollectionViewDataSource {
@@ -108,6 +130,9 @@ extension SavePulseViewController: UICollectionViewDataSource {
     
     func pulseCell(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> SavePulseCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SavePulseCell.className, for: indexPath) as! SavePulseCell
+        cell.onTapMoreAction = { [weak self] in
+            self?.showActionSheet()
+        }
         return cell
     }
     

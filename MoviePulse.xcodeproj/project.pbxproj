@@ -191,6 +191,7 @@
 		B6C052AE2E24D694002D6500 /* SavePulseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6C052AB2E24D694002D6500 /* SavePulseViewController.swift */; };
 		B6C052B22E24D8BF002D6500 /* SavePulseCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B6C052B12E24D8BF002D6500 /* SavePulseCell.xib */; };
 		B6C052B32E24D8BF002D6500 /* SavePulseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6C052B02E24D8BF002D6500 /* SavePulseCell.swift */; };
+		B6C052B52E24E9D2002D6500 /* ActionSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6C052B42E24E9D1002D6500 /* ActionSheetViewController.swift */; };
 		D9632ADD155F4F54C1D8CF29 /* Pods_MoviePulse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 82CD434E65B60866758DB3F7 /* Pods_MoviePulse.framework */; };
 /* End PBXBuildFile section */
 
@@ -384,6 +385,7 @@
 		B6C052AC2E24D694002D6500 /* SavePulseViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SavePulseViewController.xib; sourceTree = "<group>"; };
 		B6C052B02E24D8BF002D6500 /* SavePulseCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavePulseCell.swift; sourceTree = "<group>"; };
 		B6C052B12E24D8BF002D6500 /* SavePulseCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SavePulseCell.xib; sourceTree = "<group>"; };
+		B6C052B42E24E9D1002D6500 /* ActionSheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionSheetViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -720,6 +722,7 @@
 		B64976742E0E31A000B5A738 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				B6C052B42E24E9D1002D6500 /* ActionSheetViewController.swift */,
 				B6BBBCDE2E1E4156006D1D6F /* Popup */,
 				9994AC302E14309F0084901B /* SuccessAlertView.swift */,
 				9989FF0C2E0FD981007B667C /* Cell */,
@@ -1198,6 +1201,7 @@
 				B6BBBCAD2E1CC463006D1D6F /* ResultSearchViewModel.swift in Sources */,
 				B6BBBCB12E1CC4E0006D1D6F /* ResultSearchViewController.swift in Sources */,
 				B64976BF2E13C31500B5A738 /* RateCell.swift in Sources */,
+				B6C052B52E24E9D2002D6500 /* ActionSheetViewController.swift in Sources */,
 				99A5FBD82E0C549000AA8D59 /* MovieClient.swift in Sources */,
 				9994AC202E12D5050084901B /* PulseTestCell.swift in Sources */,
 				99169CDD2E2226F6005B8947 /* Filter.swift in Sources */,

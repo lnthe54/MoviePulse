@@ -47,6 +47,9 @@
                                 </constraints>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                 <state key="normal" image="ic_more"/>
+                                <connections>
+                                    <action selector="tapToMoreButton" destination="gTV-IL-0wX" eventType="touchUpInside" id="z1q-3K-vWz"/>
+                                </connections>
                             </button>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="rNi-m2-UVN">
                                 <rect key="frame" x="102" y="66" width="301" height="64"/>
