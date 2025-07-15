@@ -28,21 +28,13 @@ class DefaultListItemNavigator: ListItemNavigator {
     }
     
     func gotoPulseTestViewController(posterPath: String, name: String) {
-//        let navigator = DefaultPulseTestNavigator(navigationController: navigationController)
-//        let viewModel = PulseTestViewModel()
-//        let viewController = PulseTestViewController(
-//            navigator: navigator,
-//            viewModel: viewModel,
-//            posterPath: posterPath,
-//            name: name
-//        )
-//        navigationController.pushViewController(viewController, animated: true)
-        let navigator = DefaultPulseResultNavigator(navigationController: navigationController)
-        let viewModel = PulseResultViewModel()
-        let viewController = PulseResultViewController(
+        let navigator = DefaultPulseTestNavigator(navigationController: navigationController)
+        let viewModel = PulseTestViewModel()
+        let viewController = PulseTestViewController(
             navigator: navigator,
             viewModel: viewModel,
-            pulseResult: PulseResultModel(path: posterPath, name: name, bpm: 100)
+            posterPath: posterPath,
+            name: name
         )
         navigationController.pushViewController(viewController, animated: true)
     }

@@ -16,11 +16,14 @@
                 <outlet property="bpmIndicatorView" destination="M02-w7-hMg" id="dXJ-fX-c7i"/>
                 <outlet property="bpmValueLabel" destination="1sF-FR-Vgg" id="2mq-Y6-iX7"/>
                 <outlet property="calmLabel" destination="dop-Mz-tIR" id="R7J-bx-ytf"/>
+                <outlet property="calmValueLabel" destination="hV4-7Q-hJq" id="dlm-DE-s1y"/>
                 <outlet property="calmView" destination="kPI-Dk-RwD" id="5bv-49-uHi"/>
                 <outlet property="discoverButton" destination="cim-CE-wgo" id="1vi-Vo-sp7"/>
                 <outlet property="emotionLabel" destination="vBQ-pp-rzh" id="Zsh-N8-Cga"/>
+                <outlet property="emotionValueLabel" destination="KGv-iN-Tc5" id="CX2-4S-X2r"/>
                 <outlet property="emotionView" destination="F84-iC-unM" id="mCC-V9-uex"/>
                 <outlet property="energyLabel" destination="yj7-IZ-UtB" id="GVk-tM-3Ic"/>
+                <outlet property="energyValueLabel" destination="zzI-5d-iym" id="q6G-ay-jFA"/>
                 <outlet property="energyView" destination="a5k-Yb-eEt" id="swR-MO-gsa"/>
                 <outlet property="heartView" destination="rgi-Ge-3on" id="iQE-In-wlB"/>
                 <outlet property="infoLabel" destination="wzP-Qr-ioK" id="6qG-L9-RBa"/>
@@ -29,6 +32,7 @@
                 <outlet property="noteLabel" destination="CTe-04-1gN" id="YKL-ow-jop"/>
                 <outlet property="posterImageView" destination="e9t-4h-v8N" id="0Nq-BQ-rhG"/>
                 <outlet property="tenseLabel" destination="94y-pC-pYh" id="TjL-71-6bQ"/>
+                <outlet property="tenseValueLabel" destination="NVh-RF-ZFr" id="og6-MG-DLC"/>
                 <outlet property="tenseView" destination="WQt-va-0vr" id="Hyp-zk-oaL"/>
                 <outlet property="topConstraint" destination="BOZ-p3-hEU" id="XhZ-sz-x2a"/>
                 <outlet property="tryAgainButton" destination="Txc-Gf-PeB" id="tjz-Ly-baX"/>

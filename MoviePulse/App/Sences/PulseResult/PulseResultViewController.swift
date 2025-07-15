@@ -39,12 +39,16 @@ class PulseResultViewController: BaseViewController {
     @IBOutlet private weak var analysisLabel: UILabel!
     @IBOutlet private weak var emotionView: UIView!
     @IBOutlet private weak var emotionLabel: UILabel!
+    @IBOutlet private weak var emotionValueLabel: UILabel!
     @IBOutlet private weak var energyView: UIView!
     @IBOutlet private weak var energyLabel: UILabel!
+    @IBOutlet private weak var energyValueLabel: UILabel!
     @IBOutlet private weak var tenseView: UIView!
     @IBOutlet private weak var tenseLabel: UILabel!
+    @IBOutlet private weak var tenseValueLabel: UILabel!
     @IBOutlet private weak var calmView: UIView!
     @IBOutlet private weak var calmLabel: UILabel!
+    @IBOutlet private weak var calmValueLabel: UILabel!
     @IBOutlet private weak var heartView: UIView!
     @IBOutlet private weak var bpmValueLabel: UILabel!
     @IBOutlet private weak var bpmIndicatorView: BPMIndicatorView!
@@ -140,15 +144,23 @@ class PulseResultViewController: BaseViewController {
         // Config subview
         emotionView.configSubView()
         emotionLabel.configSubLabel("Emotion")
+        emotionValueLabel.configValueLabel(Utils.detectEmotion(from: pulseResult.bpm))
         
         energyView.configSubView()
         energyLabel.configSubLabel("Energy")
+        energyValueLabel.configValueLabel(Utils.calculateEnergy(from: pulseResult.bpm))
+        
+        let emotions = Utils.emotionPercentages(for: pulseResult.bpm)
+        let tense = emotions["Tense"] ?? 0
+        let calm = emotions["Calm"] ?? 0
         
         tenseView.configSubView()
         tenseLabel.configSubLabel("Tension")
+        tenseValueLabel.configValueLabel("\(tense)%")
         
         calmView.configSubView()
         calmLabel.configSubLabel("Calm")
+        calmValueLabel.configValueLabel("\(calm)%")
         
         // Chart - Heart view
         heartView.backgroundColor = .white
@@ -167,7 +179,7 @@ class PulseResultViewController: BaseViewController {
         bpmValueLabel.attributedText = bmpValue
         bpmIndicatorView.bpm = CGFloat(pulseResult.bpm)
         
-        infoLabel.text = getInfoMessage()
+        infoLabel.text = Utils.getInfoMessage(from: pulseResult.bpm)
         infoLabel.textColor = .blackColor
         infoLabel.font = .outfitFont(ofSize: 14)
     }
@@ -178,17 +190,6 @@ class PulseResultViewController: BaseViewController {
     
     override func actionBack() {
         navigator.popToRootViewController()
-    }
-    
-    private func getInfoMessage() -> String {
-        switch pulseResult.bpm {
-        case ..<69:
-            return "Slightly low. Stay relaxed."
-        case 69..<99:
-            return "Normal range. Nothing to worry about!"
-        default:
-            return "High. Consider slowing down."
-        }
     }
 }
 
@@ -204,5 +205,11 @@ extension UILabel {
         text = value
         textColor = UIColor(hexString: "#7017E8")
         font = .outfitFont(ofSize: 12, weight: .light)
+    }
+    
+    func configValueLabel(_ value: String) {
+        text = value
+        textColor = UIColor(hexString: "#2D095D")
+        font = .outfitFont(ofSize: 20, weight: .semiBold)
     }
 }

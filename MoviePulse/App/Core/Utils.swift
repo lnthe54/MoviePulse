@@ -182,4 +182,53 @@ struct Utils {
             return ["Neutral": 100]
         }
     }
+    
+    // MARK: - Energy Calculation
+    /// Calculates energy level based on BPM.
+    /// - Parameter bpm: Beats per minute.
+    /// - Returns: A string representing the energy level.
+    static func calculateEnergy(from bpm: Int) -> String {
+        switch bpm {
+        case ..<65: return "Low"
+        case 65..<75: return "Moderate"
+        case 75..<90: return "High"
+        default: return "Very High"
+        }
+    }
+
+    // MARK: - Emotion Detection
+    /// Detects emotion based on BPM.
+    /// - Parameter bpm: Beats per minute.
+    /// - Returns: A string representing the detected emotion.
+    static func detectEmotion(from bpm: Int) -> String {
+        let rng = Int.random(in: 0..<100)
+
+        switch bpm {
+        case ..<65:
+            return rng < 60 ? "Calm" : "Melancholic"
+        case 65..<75:
+            return rng < 50 ? "Nostalgic" : "Emotional"
+        case 75..<85:
+            return rng < 60 ? "Excited" : "Tense"
+        case 85...:
+            return rng < 70 ? "Tense" : "Scared"
+        default:
+            return "Neutral"
+        }
+    }
+    
+    // MARK: - Tension Detection
+    /// Detects tension level based on BPM.
+    /// - Parameter bpm: Beats per minute.
+    /// - Returns: A string representing the detected tension level.
+    static func getInfoMessage(from bpm: Int) -> String {
+        switch bpm {
+        case ..<69:
+            return "Slightly low. Stay relaxed."
+        case 69..<99:
+            return "Normal range. Nothing to worry about!"
+        default:
+            return "High. Consider slowing down."
+        }
+    }
 }
