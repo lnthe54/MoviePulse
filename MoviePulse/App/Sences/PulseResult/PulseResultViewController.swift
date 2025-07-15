@@ -45,6 +45,8 @@ class PulseResultViewController: BaseViewController {
     @IBOutlet private weak var tenseLabel: UILabel!
     @IBOutlet private weak var calmView: UIView!
     @IBOutlet private weak var calmLabel: UILabel!
+    @IBOutlet private weak var heartView: UIView!
+    @IBOutlet private weak var chartView: UIView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -130,6 +132,12 @@ class PulseResultViewController: BaseViewController {
         
         calmView.configSubView()
         calmLabel.configSubLabel("Calm")
+        
+        // Chart - Heart view
+        heartView.backgroundColor = .white
+        heartView.corner(8)
+        chartView.clipsToBounds = true
+        chartView.corner(chartView.frame.height / 2)
     }
     
     override func bindViewModel() {

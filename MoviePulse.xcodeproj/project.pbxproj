@@ -192,6 +192,7 @@
 		B6C052B22E24D8BF002D6500 /* SavePulseCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B6C052B12E24D8BF002D6500 /* SavePulseCell.xib */; };
 		B6C052B32E24D8BF002D6500 /* SavePulseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6C052B02E24D8BF002D6500 /* SavePulseCell.swift */; };
 		B6C052B52E24E9D2002D6500 /* ActionSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6C052B42E24E9D1002D6500 /* ActionSheetViewController.swift */; };
+		B6C052B72E25F597002D6500 /* BPMIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6C052B62E25F595002D6500 /* BPMIndicatorView.swift */; };
 		D9632ADD155F4F54C1D8CF29 /* Pods_MoviePulse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 82CD434E65B60866758DB3F7 /* Pods_MoviePulse.framework */; };
 /* End PBXBuildFile section */
 
@@ -386,6 +387,7 @@
 		B6C052B02E24D8BF002D6500 /* SavePulseCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavePulseCell.swift; sourceTree = "<group>"; };
 		B6C052B12E24D8BF002D6500 /* SavePulseCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SavePulseCell.xib; sourceTree = "<group>"; };
 		B6C052B42E24E9D1002D6500 /* ActionSheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionSheetViewController.swift; sourceTree = "<group>"; };
+		B6C052B62E25F595002D6500 /* BPMIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BPMIndicatorView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -722,6 +724,7 @@
 		B64976742E0E31A000B5A738 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				B6C052B62E25F595002D6500 /* BPMIndicatorView.swift */,
 				B6C052B42E24E9D1002D6500 /* ActionSheetViewController.swift */,
 				B6BBBCDE2E1E4156006D1D6F /* Popup */,
 				9994AC302E14309F0084901B /* SuccessAlertView.swift */,
@@ -1161,6 +1164,7 @@
 				994215832E09A76100DAA702 /* APIResponse.swift in Sources */,
 				B6BBBD0C2E1FABD9006D1D6F /* SearchCell.swift in Sources */,
 				9989FF042E0FD7BB007B667C /* CategoryViewModel.swift in Sources */,
+				B6C052B72E25F597002D6500 /* BPMIndicatorView.swift in Sources */,
 				994215842E09A76100DAA702 /* APIConfiguration.swift in Sources */,
 				99A5FBCB2E0B0DFF00AA8D59 /* MovieRouter.swift in Sources */,
 				9994AC392E14363F0084901B /* FavoriteViewController.swift in Sources */,
