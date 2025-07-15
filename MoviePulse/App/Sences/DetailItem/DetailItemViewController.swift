@@ -362,7 +362,7 @@ extension DetailItemViewController: UICollectionViewDataSource {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PulseTestCell.className, for: indexPath) as! PulseTestCell
         cell.onStartTest = { [weak self] in
             guard let self else { return }
-            navigator.gotoPulseTestViewController(posterPath: infoDetailObject.posterPath ?? "", name: infoDetailObject.name)
+            navigator.gotoPulseTestViewController(id: infoDetailObject.id, posterPath: infoDetailObject.posterPath ?? "", name: infoDetailObject.name)
         }
         return cell
     }

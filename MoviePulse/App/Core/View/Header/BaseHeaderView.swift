@@ -173,8 +173,10 @@ extension BaseHeaderView {
         let tapToShare = UITapGestureRecognizer(target: self, action: #selector(didToShare))
         shareView.isUserInteractionEnabled = true
         shareView.addGestureRecognizer(tapToShare)
+        shareView.corner(4)
         
         delView.backgroundColor = UIColor(hexString: "#E7D9FB")
+        delView.corner(4)
         let tapToDelete = UITapGestureRecognizer(target: self, action: #selector(didToDelete))
         delView.isUserInteractionEnabled = true
         delView.addGestureRecognizer(tapToDelete)

@@ -2,7 +2,7 @@ import UIKit
 
 protocol ListItemNavigator: BaseNavigator {
     func gotoDetailItemViewController(infoDetailObject: InfoDetailObject)
-    func gotoPulseTestViewController(posterPath: String, name: String)
+    func gotoPulseTestViewController(id: Int, posterPath: String, name: String)
 }
 
 class DefaultListItemNavigator: ListItemNavigator {
@@ -27,12 +27,13 @@ class DefaultListItemNavigator: ListItemNavigator {
         navigationController.pushViewController(viewController, animated: true)
     }
     
-    func gotoPulseTestViewController(posterPath: String, name: String) {
+    func gotoPulseTestViewController(id: Int, posterPath: String, name: String) {
         let navigator = DefaultPulseTestNavigator(navigationController: navigationController)
         let viewModel = PulseTestViewModel()
         let viewController = PulseTestViewController(
             navigator: navigator,
             viewModel: viewModel,
+            id: id,
             posterPath: posterPath,
             name: name
         )

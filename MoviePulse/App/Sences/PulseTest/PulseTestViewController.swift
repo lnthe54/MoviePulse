@@ -7,6 +7,7 @@ class PulseTestViewController: BaseViewController {
     // MARK: - Properties
     private var navigator: PulseTestNavigator
     private var viewModel: PulseTestViewModel
+    private var id: Int
     private var posterPath: String
     private var name: String
     private var bpmValue: Int = 0
@@ -24,11 +25,13 @@ class PulseTestViewController: BaseViewController {
     init(
         navigator: PulseTestNavigator,
         viewModel: PulseTestViewModel,
+        id: Int,
         posterPath: String,
         name: String
     ) {
         self.navigator = navigator
         self.viewModel = viewModel
+        self.id = id
         self.posterPath = posterPath
         self.name = name
         super.init(nibName: Self.className, bundle: nil)
@@ -205,7 +208,14 @@ extension PulseTestViewController {
             self.bpmValue = bpm
             self.bpmValueLabel.text = "\(bpm)"
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.3, execute: {
-                self.navigator.gotoPulseResultViewController(result: PulseResultModel(path: self.posterPath, name: self.name, bpm: self.bpmValue))
+                self.navigator.gotoPulseResultViewController(result: PulseResultInfo(
+                    id: self.id,
+                    date: Date(),
+                    bpm: self.bpmValue,
+                    name: self.name,
+                    path: self.posterPath,
+                    tension: 0)
+                )
             })
         }
     }

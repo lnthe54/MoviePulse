@@ -1,4 +1,6 @@
 import UIKit
+import RxSwift
+import RxCocoa
 
 enum PulseGallerySectionType {
     case list
@@ -10,7 +12,9 @@ class SavePulseViewController: BaseViewController {
     // MARK: - Properties
     private var navigator: SavePulseNavigator
     private var viewModel: SavePulseViewModel
-    private var items: [Any] = []
+    private var items: [PulseResultInfo] = []
+    
+    private let getDataTrigger = PublishSubject<Void>()
     
     init(navigator: SavePulseNavigator, viewModel: SavePulseViewModel) {
         self.navigator = navigator
@@ -29,6 +33,7 @@ class SavePulseViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        getDataTrigger.onNext(())
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -38,7 +43,18 @@ class SavePulseViewController: BaseViewController {
     }
     
     override func bindViewModel() {
+        let input = SavePulseViewModel.Input(
+            getDataTrigger: getDataTrigger.asObservable()
+        )
+        let output = viewModel.transform(input: input)
         
+        output.getDataEvent
+            .driveNext { [weak self] items in
+                guard let self else { return }
+                self.items = items
+                self.collectionView.reloadData()
+            }
+            .disposed(by: disposeBag)
     }
     
     override func setupViews() {
@@ -133,6 +149,7 @@ extension SavePulseViewController: UICollectionViewDataSource {
         cell.onTapMoreAction = { [weak self] in
             self?.showActionSheet()
         }
+        cell.bindData(items[indexPath.row])
         return cell
     }
     

@@ -10,8 +10,10 @@ class SavePulseCell: UICollectionViewCell {
     @IBOutlet private weak var timeLabel: UILabel!
     @IBOutlet private weak var heartView: UIView!
     @IBOutlet private weak var heartLabel: UILabel!
+    @IBOutlet private weak var heartValueLabel: UILabel!
     @IBOutlet private weak var tensionView: UIView!
     @IBOutlet private weak var tensionLabel: UILabel!
+    @IBOutlet private weak var tensionValueLabel: UILabel!
     
     var onTapMoreAction: (() -> Void)?
     
@@ -35,9 +37,26 @@ class SavePulseCell: UICollectionViewCell {
         
         heartView.configSubView()
         heartLabel.configSubLabel("Heart rate")
+        heartValueLabel.textColor = UIColor(hexString: "#2D095D")
+        heartValueLabel.font = .outfitFont(ofSize: 20, weight: .semiBold)
         
         tensionView.configSubView()
         tensionLabel.configSubLabel("Tension rate")
+        tensionValueLabel.textColor = UIColor(hexString: "#2D095D")
+        tensionValueLabel.font = .outfitFont(ofSize: 20, weight: .semiBold)
+    }
+    
+    func bindData(_ data: PulseResultInfo) {
+        posterImageView.kf.setImage(
+            with: URL(string: Utils.getPosterPath(data.path, size: .w342)),
+            placeholder: UIImage(named: "ic_loading"),
+            options: [.transition(ImageTransition.fade(1))]
+        )
+        nameLabel.text = data.name
+        let timeValue = data.date.toString(formatter: .dayMonthYear) ?? "Unknown date"
+        timeLabel.text = "Recorded at \(timeValue)"
+        heartValueLabel.text = "\(data.bpm) BPM"
+        tensionValueLabel.text = "\(data.tension)%"
     }
     
     @IBAction private func tapToMoreButton() {

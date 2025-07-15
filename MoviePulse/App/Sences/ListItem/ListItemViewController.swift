@@ -176,7 +176,7 @@ extension ListItemViewController: UICollectionViewDelegate {
             case .heart(let isPulse):
                 if isPulse {
                     let item = items[indexPath.row]
-                    navigator.gotoPulseTestViewController(posterPath: item.path ?? "", name: item.name ?? "")
+                    navigator.gotoPulseTestViewController(id: item.id, posterPath: item.path ?? "", name: item.name ?? "")
                 } else {
                     gotoDetailItemTrigger.onNext(items[indexPath.row])
                 }

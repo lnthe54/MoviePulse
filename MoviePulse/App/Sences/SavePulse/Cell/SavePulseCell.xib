@@ -138,10 +138,12 @@
             <connections>
                 <outlet property="containerView" destination="9qg-54-Isy" id="Rwg-ih-zql"/>
                 <outlet property="heartLabel" destination="x9y-Hs-1GK" id="0zZ-4Z-TJR"/>
+                <outlet property="heartValueLabel" destination="Z5o-6I-VLk" id="6Nz-CI-IPV"/>
                 <outlet property="heartView" destination="Ens-OW-czd" id="8qr-4O-WFp"/>
                 <outlet property="nameLabel" destination="yWX-cD-Zym" id="EVU-zI-P6C"/>
                 <outlet property="posterImageView" destination="U5S-4U-5dc" id="d8Q-aa-SdL"/>
                 <outlet property="tensionLabel" destination="rDT-ii-dRb" id="tdi-kP-HtE"/>
+                <outlet property="tensionValueLabel" destination="8CB-VQ-0nK" id="0Vk-C4-SEU"/>
                 <outlet property="tensionView" destination="ALl-kl-td4" id="QkT-VU-TXi"/>
                 <outlet property="timeLabel" destination="sZW-vf-3tZ" id="HkE-Wc-Tgs"/>
             </connections>

@@ -133,6 +133,7 @@
 		B64976BF2E13C31500B5A738 /* RateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B64976BC2E13C31500B5A738 /* RateCell.swift */; };
 		B64976C22E14D0C800B5A738 /* EmptyCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B64976C12E14D0C800B5A738 /* EmptyCell.xib */; };
 		B64976C32E14D0C800B5A738 /* EmptyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B64976C02E14D0C800B5A738 /* EmptyCell.swift */; };
+		B66D66792E263F8300510A13 /* PulseResultInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = B66D66782E263F7F00510A13 /* PulseResultInfo.swift */; };
 		B6BBBC9D2E1CACB7006D1D6F /* SearchNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6BBBC9C2E1CACB4006D1D6F /* SearchNavigator.swift */; };
 		B6BBBC9F2E1CACE8006D1D6F /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6BBBC9E2E1CACE4006D1D6F /* SearchViewModel.swift */; };
 		B6BBBCA22E1CAD28006D1D6F /* SearchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B6BBBCA12E1CAD28006D1D6F /* SearchViewController.xib */; };
@@ -328,6 +329,7 @@
 		B64976BD2E13C31500B5A738 /* RateCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RateCell.xib; sourceTree = "<group>"; };
 		B64976C02E14D0C800B5A738 /* EmptyCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyCell.swift; sourceTree = "<group>"; };
 		B64976C12E14D0C800B5A738 /* EmptyCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EmptyCell.xib; sourceTree = "<group>"; };
+		B66D66782E263F7F00510A13 /* PulseResultInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PulseResultInfo.swift; sourceTree = "<group>"; };
 		B6BBBC9C2E1CACB4006D1D6F /* SearchNavigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchNavigator.swift; sourceTree = "<group>"; };
 		B6BBBC9E2E1CACE4006D1D6F /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
 		B6BBBCA02E1CAD28006D1D6F /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
@@ -677,6 +679,7 @@
 		99A5FBD92E0C54A500AA8D59 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				B66D66782E263F7F00510A13 /* PulseResultInfo.swift */,
 				B6BBBCF12E1F5DF2006D1D6F /* AppInfo.swift */,
 				99A5FBE82E0C564D00AA8D59 /* CategoryModel.swift */,
 				99A5FBE62E0C55EC00AA8D59 /* LinkModel.swift */,
@@ -1169,6 +1172,7 @@
 				99A5FBCB2E0B0DFF00AA8D59 /* MovieRouter.swift in Sources */,
 				9994AC392E14363F0084901B /* FavoriteViewController.swift in Sources */,
 				994215A32E09AB3700DAA702 /* OnboardingViewController.swift in Sources */,
+				B66D66792E263F8300510A13 /* PulseResultInfo.swift in Sources */,
 				B60B7B522E17ADE700C69C17 /* CategoryHorizontalCell.swift in Sources */,
 				B6BBBCF02E1F5AF1006D1D6F /* AppNameCell.swift in Sources */,
 				B6BBBCA32E1CAD28006D1D6F /* SearchViewController.swift in Sources */,

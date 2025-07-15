@@ -31,6 +31,8 @@
                 <outlet property="nameLabel" destination="JAv-qS-t0N" id="vmu-AO-PCa"/>
                 <outlet property="noteLabel" destination="CTe-04-1gN" id="YKL-ow-jop"/>
                 <outlet property="posterImageView" destination="e9t-4h-v8N" id="0Nq-BQ-rhG"/>
+                <outlet property="saveImageView" destination="0iZ-Lp-g3I" id="9Kc-dx-AFK"/>
+                <outlet property="saveView" destination="NzA-vO-AAD" id="IuY-wm-qLm"/>
                 <outlet property="tenseLabel" destination="94y-pC-pYh" id="TjL-71-6bQ"/>
                 <outlet property="tenseValueLabel" destination="NVh-RF-ZFr" id="og6-MG-DLC"/>
                 <outlet property="tenseView" destination="WQt-va-0vr" id="Hyp-zk-oaL"/>
@@ -283,6 +285,25 @@
                         <constraint firstAttribute="trailing" secondItem="Kae-EG-PuM" secondAttribute="trailing" id="xO8-9S-r21"/>
                     </constraints>
                 </scrollView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NzA-vO-AAD">
+                    <rect key="frame" x="279" y="64" width="46" height="46"/>
+                    <subviews>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_fav_inactive" translatesAutoresizingMaskIntoConstraints="NO" id="0iZ-Lp-g3I">
+                            <rect key="frame" x="11" y="11" width="24" height="24"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="24" id="4zD-Ki-T5D"/>
+                                <constraint firstAttribute="width" constant="24" id="8lz-ce-Gxu"/>
+                            </constraints>
+                        </imageView>
+                    </subviews>
+                    <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="NzA-vO-AAD" secondAttribute="height" multiplier="1:1" id="JWr-l0-MLn"/>
+                        <constraint firstItem="0iZ-Lp-g3I" firstAttribute="centerY" secondItem="NzA-vO-AAD" secondAttribute="centerY" id="MyS-is-xdH"/>
+                        <constraint firstAttribute="width" constant="46" id="lvi-af-w7Z"/>
+                        <constraint firstItem="0iZ-Lp-g3I" firstAttribute="centerX" secondItem="NzA-vO-AAD" secondAttribute="centerX" id="stE-wA-lx8"/>
+                    </constraints>
+                </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="t2a-Ts-moF">
                     <rect key="frame" x="0.0" y="710" width="393" height="142"/>
                     <subviews>
@@ -325,6 +346,8 @@
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="wXN-xO-3Tm" secondAttribute="trailing" id="CPz-Ks-w5f"/>
                 <constraint firstItem="wXN-xO-3Tm" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="FkJ-Qr-seA"/>
                 <constraint firstItem="t2a-Ts-moF" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="Ilc-V5-Emn"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="NzA-vO-AAD" secondAttribute="trailing" constant="68" id="VJ3-G1-eR9"/>
+                <constraint firstItem="NzA-vO-AAD" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="64" id="gok-UT-yoG"/>
                 <constraint firstAttribute="bottom" secondItem="wXN-xO-3Tm" secondAttribute="bottom" id="kjI-oV-XoJ"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="t2a-Ts-moF" secondAttribute="trailing" id="rml-SZ-za2"/>
             </constraints>
@@ -332,6 +355,7 @@
         </view>
     </objects>
     <resources>
+        <image name="ic_fav_inactive" width="20" height="20"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

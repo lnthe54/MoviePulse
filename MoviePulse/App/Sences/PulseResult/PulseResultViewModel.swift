@@ -12,11 +12,3 @@ class PulseResultViewModel: ViewModelType {
         return Output()
     }
 }
-
-struct PulseResultModel {
-    let path: String
-    
-    let name: String
-    
-    let bpm: Int
-}

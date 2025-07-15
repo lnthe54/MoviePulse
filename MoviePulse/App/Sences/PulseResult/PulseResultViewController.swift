@@ -9,12 +9,13 @@ class PulseResultViewController: BaseViewController {
     // MARK: - Properties
     private var navigator: PulseResultNavigator
     private var viewModel: PulseResultViewModel
-    private var pulseResult: PulseResultModel
+    private var pulseResult: PulseResultInfo
+    private var isFavorite: Bool = false
     
     init(
         navigator: PulseResultNavigator,
         viewModel: PulseResultViewModel,
-        pulseResult: PulseResultModel
+        pulseResult: PulseResultInfo
     ) {
         self.navigator = navigator
         self.viewModel = viewModel
@@ -53,6 +54,8 @@ class PulseResultViewController: BaseViewController {
     @IBOutlet private weak var bpmValueLabel: UILabel!
     @IBOutlet private weak var bpmIndicatorView: BPMIndicatorView!
     @IBOutlet private weak var infoLabel: UILabel!
+    @IBOutlet private weak var saveView: UIView!
+    @IBOutlet private weak var saveImageView: UIImageView!
     
     lazy var defaultAttr: [NSAttributedString.Key: Any] = {
         return [
@@ -90,6 +93,17 @@ class PulseResultViewController: BaseViewController {
         setupHeader(withType: .detail(title: "Pulse Result", rightContents: [.share]))
         
         topConstraint.constant = Constants.HEIGHT_NAV
+        
+        saveView.corner(4)
+        saveView.backgroundColor = UIColor(hexString: "#E7D9FB")
+        view.bringSubviewToFront(saveView)
+        saveView.rx.tapGesture().when(.recognized)
+            .subscribe(onNext: { [weak self] _ in
+                guard let self else { return }
+                
+                self.handleFavorite()
+            })
+            .disposed(by: disposeBag)
         
         infoView.backgroundColor = .white
         infoView.corner(8)
@@ -182,6 +196,8 @@ class PulseResultViewController: BaseViewController {
         infoLabel.text = Utils.getInfoMessage(from: pulseResult.bpm)
         infoLabel.textColor = .blackColor
         infoLabel.font = .outfitFont(ofSize: 14)
+        
+        updatePulseResultInfo()
     }
     
     override func bindViewModel() {
@@ -190,6 +206,47 @@ class PulseResultViewController: BaseViewController {
     
     override func actionBack() {
         navigator.popToRootViewController()
+    }
+}
+
+extension PulseResultViewController {
+    private func updatePulseResultInfo() {
+        let emotions = Utils.emotionPercentages(for: pulseResult.bpm)
+        let tense = emotions["Tense"] ?? 0
+        pulseResult = PulseResultInfo(
+            id: pulseResult.id,
+            date: pulseResult.date,
+            bpm: pulseResult.bpm,
+            name: pulseResult.name,
+            path: pulseResult.path,
+            tension: tense
+        )
+    }
+    
+    private func handleFavorite() {
+        isFavorite = !isFavorite
+        
+        if isFavorite {
+            saveImageView.image = UIImage(named: "ic_fav_active")
+            addToFavorites()
+        } else {
+            saveImageView.image = UIImage(named: "ic_fav_inactive")
+            removeToFavorites()
+        }
+    }
+    
+    private func addToFavorites() {
+        var results = CodableManager.shared.getPulseResults()
+        results.append(pulseResult)
+        CodableManager.shared.savePulseResults(results)
+    }
+    
+    private func removeToFavorites() {
+        var results = CodableManager.shared.getPulseResults()
+        let filters = results.filter { $0.id != pulseResult.id }
+        results = filters
+
+        CodableManager.shared.savePulseResults(results)
     }
 }
 

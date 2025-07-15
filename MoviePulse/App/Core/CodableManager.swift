@@ -13,6 +13,7 @@ class CodableManager {
         static let KEY_FAVORITE: String = "LIST_FAVORITE"
         static let KEY_MOVIE_CATEGORIES: String = "movieCategories"
         static let KEY_TV_CATEGORIES: String = "tvCategories"
+        static let KEY_PULSE_RESULT: String = "KEY_PULSE_RESULT"
     }
     
     func saveMovieCategories(_ categories: [CategoryObject]) {
@@ -65,6 +66,18 @@ class CodableManager {
     func getListKeySearch() -> [String] {
         if let keys = UserDefaults.standard.value(forKey: Constants.KEY_SEARCH) as? [String] {
             return keys
+        } else {
+            return []
+        }
+    }
+    
+    func savePulseResults(_ results: [PulseResultInfo]) {
+        _ = try? codableFiles.saveAsArray(objects: results, withFilename: Constants.KEY_PULSE_RESULT)
+    }
+    
+    func getPulseResults() -> [PulseResultInfo] {
+        if let results = try? codableFiles.loadAsArray(objectType: PulseResultInfo.self, withFilename: Constants.KEY_PULSE_RESULT) {
+            return results
         } else {
             return []
         }

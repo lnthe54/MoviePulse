@@ -1,7 +1,7 @@
 import UIKit
 
 protocol PulseTestNavigator: BaseNavigator {
-    func gotoPulseResultViewController(result: PulseResultModel)
+    func gotoPulseResultViewController(result: PulseResultInfo)
 }
 
 class DefaultPulseTestNavigator: PulseTestNavigator {
@@ -15,7 +15,7 @@ class DefaultPulseTestNavigator: PulseTestNavigator {
         navigationController.popViewController(animated: true)
     }
     
-    func gotoPulseResultViewController(result: PulseResultModel) {
+    func gotoPulseResultViewController(result: PulseResultInfo) {
         let navigator = DefaultPulseResultNavigator(navigationController: navigationController)
         let viewModel = PulseResultViewModel()
         let viewController = PulseResultViewController(
