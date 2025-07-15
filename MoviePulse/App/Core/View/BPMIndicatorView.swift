@@ -1,118 +1,119 @@
 import UIKit
 
 class BPMIndicatorView: UIView {
-
-    private let bpmLabel = UILabel()
-    private let progressView = UIProgressView(progressViewStyle: .default)
-    private let markerView = UIView()
-    private let scaleStack = UIStackView()
-    private let descriptionLabel = UILabel()
-
-    private let minBPM: Float = 30
-    private let maxBPM: Float = 130
-
+    
+    private let yellowBar = UIView()
+    private let greenBar = UIView()
+    private let redBar = UIView()
+    private let marker = UIView()
+    
+    private let label30 = UILabel()
+    private let label69 = UILabel()
+    private let label99 = UILabel()
+    private let label130 = UILabel()
+    
+    var bpm: CGFloat = 100 {
+        didSet {
+            layoutBars()
+        }
+    }
+    
+    private let rangeMin: CGFloat = 30
+    private let rangeMax: CGFloat = 130
+    
+    private let barHeight: CGFloat = 12
+    private let markerWidth: CGFloat = 2
+    private let labelTopPadding: CGFloat = 8
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
-        setupViews()
-        setupLayout()
-        updateBPM(89)
+        setup()
     }
-
+    
     required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        super.init(coder: coder)
+        setup()
     }
-
-    private func setupViews() {
-        bpmLabel.font = .boldSystemFont(ofSize: 32)
-        bpmLabel.textAlignment = .center
-
-        // Progress bar
-        progressView.trackTintColor = .clear
-        progressView.progressTintColor = .systemGreen
-        progressView.layer.cornerRadius = 4
-        progressView.clipsToBounds = true
-        progressView.translatesAutoresizingMaskIntoConstraints = false
-
-        // Marker line
-        markerView.backgroundColor = .black
-        markerView.layer.cornerRadius = 1
-        markerView.translatesAutoresizingMaskIntoConstraints = false
-
-        // BPM scale labels
-        scaleStack.axis = .horizontal
-        scaleStack.distribution = .equalSpacing
-        [30, 69, 99, 130].forEach {
-            let label = UILabel()
-            label.text = "\($0)"
-            label.font = .systemFont(ofSize: 12)
-            scaleStack.addArrangedSubview(label)
-        }
-
-        // Description
-        descriptionLabel.font = .systemFont(ofSize: 14)
-        descriptionLabel.textAlignment = .center
-        descriptionLabel.textColor = .darkGray
-
-        [bpmLabel, progressView, markerView, scaleStack, descriptionLabel].forEach {
-            addSubview($0)
+    
+    private func setup() {
+        [yellowBar, greenBar, redBar, marker].forEach {
             $0.translatesAutoresizingMaskIntoConstraints = false
+            addSubview($0)
         }
-    }
-
-    private func setupLayout() {
-        NSLayoutConstraint.activate([
-            bpmLabel.topAnchor.constraint(equalTo: topAnchor, constant: 8),
-            bpmLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
-
-            progressView.topAnchor.constraint(equalTo: bpmLabel.bottomAnchor, constant: 16),
-            progressView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 24),
-            progressView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -24),
-            progressView.heightAnchor.constraint(equalToConstant: 8),
-
-            markerView.centerYAnchor.constraint(equalTo: progressView.centerYAnchor),
-            markerView.widthAnchor.constraint(equalToConstant: 2),
-            markerView.heightAnchor.constraint(equalToConstant: 16),
-
-            scaleStack.topAnchor.constraint(equalTo: progressView.bottomAnchor, constant: 8),
-            scaleStack.leadingAnchor.constraint(equalTo: progressView.leadingAnchor),
-            scaleStack.trailingAnchor.constraint(equalTo: progressView.trailingAnchor),
-
-            descriptionLabel.topAnchor.constraint(equalTo: scaleStack.bottomAnchor, constant: 12),
-            descriptionLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 12),
-            descriptionLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -12),
-            descriptionLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -8)
-        ])
-    }
-
-    func updateBPM(_ bpm: Int) {
-        bpmLabel.text = "\(bpm) BPM"
-
-        let progress = Float(bpm - Int(minBPM)) / (maxBPM - minBPM)
-        progressView.setProgress(progress, animated: true)
-
-        // Move marker view
-        let barWidth = progressView.bounds.width
-        let markerX = progressView.frame.origin.x + CGFloat(progress) * barWidth
-        markerView.center.x = markerX
-
-        // Change color based on zone
-        switch bpm {
-        case ..<69:
-            progressView.progressTintColor = .systemYellow
-            descriptionLabel.text = "Slightly low. Stay relaxed."
-        case 69..<99:
-            progressView.progressTintColor = .systemGreen
-            descriptionLabel.text = "Normal range. Nothing to worry about!"
-        default:
-            progressView.progressTintColor = .systemRed
-            descriptionLabel.text = "High. Consider slowing down."
+        
+        yellowBar.backgroundColor = .systemYellow
+        greenBar.backgroundColor = .systemGreen
+        redBar.backgroundColor = .systemRed
+        
+        marker.backgroundColor = .black
+        marker.layer.cornerRadius = 1
+        
+        // Setup labels
+        [label30, label69, label99, label130].forEach {
+            $0.font = .systemFont(ofSize: 12)
+            $0.textColor = .darkGray
+            $0.sizeToFit()
+            addSubview($0)
         }
+        
+        label30.text = "30"
+        label69.text = "69"
+        label99.text = "99"
+        label130.text = "130"
     }
-
+    
     override func layoutSubviews() {
         super.layoutSubviews()
-        // Recalculate marker position on layout
-        let bpm = Int((progressView.progress * (maxBPM - minBPM)) + minBPM)
-        updateBPM(bpm)
+        layoutBars()
+        layoutMarker()
+        layoutLabels()
+    }
+    
+    private func layoutBars() {
+        let totalWidth = bounds.width
+        let yellowMax: CGFloat = 69
+        let greenMax: CGFloat = 99
+        
+        let yellowWidth = totalWidth * ((yellowMax - rangeMin) / (rangeMax - rangeMin))
+        let greenWidth = totalWidth * ((greenMax - yellowMax) / (rangeMax - rangeMin))
+        let redWidth = totalWidth - yellowWidth - greenWidth
+        
+        yellowBar.frame = CGRect(x: 0, y: 0, width: yellowWidth, height: barHeight)
+        yellowBar.round(corners: [.topLeft, .bottomLeft], radius: barHeight / 2)
+        greenBar.frame = CGRect(x: yellowWidth, y: 0, width: greenWidth, height: barHeight)
+        redBar.frame = CGRect(x: yellowWidth + greenWidth, y: 0, width: redWidth, height: barHeight)
+        redBar.round(corners: [.topRight, .bottomRight], radius: barHeight / 2)
+    }
+    
+    private func layoutMarker() {
+        let totalWidth = bounds.width
+        let progressRatio = (bpm - rangeMin) / (rangeMax - rangeMin)
+        let markerX = min(max(progressRatio, 0), 1) * totalWidth - markerWidth / 2
+        marker.frame = CGRect(x: markerX, y: -4, width: markerWidth, height: barHeight + 8)
+    }
+    
+    private func layoutLabels() {
+        let totalWidth = bounds.width
+        let labelY = barHeight + labelTopPadding
+        
+        let percent30: CGFloat = 0.0
+        let percent69: CGFloat = (69 - rangeMin) / (rangeMax - rangeMin)
+        let percent99: CGFloat = (99 - rangeMin) / (rangeMax - rangeMin)
+        let percent130: CGFloat = 1.0
+        
+        let labels = [(label30, percent30), (label69, percent69), (label99, percent99), (label130, percent130)]
+        
+        for (label, percent) in labels {
+            label.sizeToFit()
+            let x = percent * totalWidth - label.frame.width / 2
+            label.frame = CGRect(x: x,
+                                 y: labelY,
+                                 width: label.frame.width,
+                                 height: label.frame.height)
+        }
+    }
+
+    override var intrinsicContentSize: CGSize {
+        return CGSize(width: UIView.noIntrinsicMetric, height: barHeight + labelTopPadding + 16)
     }
 }

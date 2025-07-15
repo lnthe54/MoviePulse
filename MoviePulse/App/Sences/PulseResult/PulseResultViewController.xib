@@ -13,9 +13,9 @@
                 <outlet property="analysisLabel" destination="dvR-U8-pSz" id="kmn-Q5-iWF"/>
                 <outlet property="analysisView" destination="L36-ZO-ov8" id="ll9-pJ-9o6"/>
                 <outlet property="bottomView" destination="t2a-Ts-moF" id="YHB-Wg-64Y"/>
+                <outlet property="bpmIndicatorView" destination="M02-w7-hMg" id="dXJ-fX-c7i"/>
                 <outlet property="calmLabel" destination="dop-Mz-tIR" id="R7J-bx-ytf"/>
                 <outlet property="calmView" destination="kPI-Dk-RwD" id="5bv-49-uHi"/>
-                <outlet property="chartView" destination="88X-wT-WUv" id="Xmm-TO-alJ"/>
                 <outlet property="discoverButton" destination="cim-CE-wgo" id="1vi-Vo-sp7"/>
                 <outlet property="emotionLabel" destination="vBQ-pp-rzh" id="Zsh-N8-Cga"/>
                 <outlet property="emotionView" destination="F84-iC-unM" id="mCC-V9-uex"/>
@@ -218,34 +218,21 @@
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rgi-Ge-3on">
                                     <rect key="frame" x="20" y="283.66666666666669" width="353" height="148"/>
                                     <subviews>
-                                        <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="88X-wT-WUv">
-                                            <rect key="frame" x="16" y="68" width="321" height="12"/>
-                                            <subviews>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ghu-LV-rga">
-                                                    <rect key="frame" x="0.0" y="0.0" width="107" height="12"/>
-                                                    <color key="backgroundColor" systemColor="systemYellowColor"/>
-                                                </view>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4V3-I2-Zfi">
-                                                    <rect key="frame" x="107" y="0.0" width="107" height="12"/>
-                                                    <color key="backgroundColor" systemColor="systemGreenColor"/>
-                                                </view>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lS2-We-LTq">
-                                                    <rect key="frame" x="214" y="0.0" width="107" height="12"/>
-                                                    <color key="backgroundColor" systemColor="systemRedColor"/>
-                                                </view>
-                                            </subviews>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="M02-w7-hMg" customClass="BPMIndicatorView" customModule="MoviePulse" customModuleProvider="target">
+                                            <rect key="frame" x="16" y="60" width="321" height="28"/>
+                                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                             <constraints>
-                                                <constraint firstAttribute="height" constant="12" id="u7H-N5-80Q"/>
+                                                <constraint firstAttribute="height" constant="28" id="XDn-gW-n2H"/>
                                             </constraints>
-                                        </stackView>
+                                        </view>
                                     </subviews>
                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                     <constraints>
-                                        <constraint firstItem="88X-wT-WUv" firstAttribute="centerY" secondItem="rgi-Ge-3on" secondAttribute="centerY" id="2hd-JQ-eqz"/>
-                                        <constraint firstAttribute="trailing" secondItem="88X-wT-WUv" secondAttribute="trailing" constant="16" id="G8Q-Sf-ITK"/>
+                                        <constraint firstAttribute="trailing" secondItem="M02-w7-hMg" secondAttribute="trailing" constant="16" id="5Jz-0L-BDc"/>
+                                        <constraint firstItem="M02-w7-hMg" firstAttribute="centerY" secondItem="rgi-Ge-3on" secondAttribute="centerY" id="5NB-sv-QKg"/>
+                                        <constraint firstItem="M02-w7-hMg" firstAttribute="leading" secondItem="rgi-Ge-3on" secondAttribute="leading" constant="16" id="IDW-Dj-lfI"/>
                                         <constraint firstAttribute="height" constant="148" id="cwi-Y9-dBf"/>
-                                        <constraint firstItem="88X-wT-WUv" firstAttribute="centerX" secondItem="rgi-Ge-3on" secondAttribute="centerX" id="pYh-5v-ZcT"/>
-                                        <constraint firstItem="88X-wT-WUv" firstAttribute="leading" secondItem="rgi-Ge-3on" secondAttribute="leading" constant="16" id="vYb-6T-1AH"/>
+                                        <constraint firstItem="M02-w7-hMg" firstAttribute="centerX" secondItem="rgi-Ge-3on" secondAttribute="centerX" id="nXs-Gy-eHl"/>
                                     </constraints>
                                 </view>
                             </subviews>
@@ -324,15 +311,6 @@
     <resources>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-        <systemColor name="systemGreenColor">
-            <color red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
-        <systemColor name="systemRedColor">
-            <color red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
-        <systemColor name="systemYellowColor">
-            <color red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
