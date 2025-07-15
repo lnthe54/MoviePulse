@@ -46,7 +46,24 @@ class PulseResultViewController: BaseViewController {
     @IBOutlet private weak var calmView: UIView!
     @IBOutlet private weak var calmLabel: UILabel!
     @IBOutlet private weak var heartView: UIView!
+    @IBOutlet private weak var bpmValueLabel: UILabel!
     @IBOutlet private weak var bpmIndicatorView: BPMIndicatorView!
+    @IBOutlet private weak var infoLabel: UILabel!
+    
+    lazy var defaultAttr: [NSAttributedString.Key: Any] = {
+        return [
+            .foregroundColor: UIColor.blackColor,
+            .font: UIFont.outfitFont(ofSize: 44, weight: .semiBold)
+        ]
+    }()
+    
+    lazy var customAttr: [NSAttributedString.Key: Any] = {
+        return [
+            .foregroundColor: UIColor.blackColor,
+            .font: UIFont.outfitFont(ofSize: 14, weight: .semiBold),
+            .baselineOffset: 25
+        ]
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -66,7 +83,7 @@ class PulseResultViewController: BaseViewController {
     }
     
     override func setupViews() {
-        setupHeader(withType: .detail(title: "Pulse Test", rightContents: [.share]))
+        setupHeader(withType: .detail(title: "Pulse Result", rightContents: [.share]))
         
         topConstraint.constant = Constants.HEIGHT_NAV
         
@@ -137,7 +154,22 @@ class PulseResultViewController: BaseViewController {
         heartView.backgroundColor = .white
         heartView.corner(8)
         
+        let bmpValue = NSMutableAttributedString(
+            string: "\(pulseResult.bpm)",
+            attributes: defaultAttr
+        )
+        
+        let bpmUnit = NSAttributedString(
+            string: " BPM",
+            attributes: customAttr
+        )
+        bmpValue.append(bpmUnit)
+        bpmValueLabel.attributedText = bmpValue
         bpmIndicatorView.bpm = CGFloat(pulseResult.bpm)
+        
+        infoLabel.text = getInfoMessage()
+        infoLabel.textColor = .blackColor
+        infoLabel.font = .outfitFont(ofSize: 14)
     }
     
     override func bindViewModel() {
@@ -146,6 +178,17 @@ class PulseResultViewController: BaseViewController {
     
     override func actionBack() {
         navigator.popToRootViewController()
+    }
+    
+    private func getInfoMessage() -> String {
+        switch pulseResult.bpm {
+        case ..<69:
+            return "Slightly low. Stay relaxed."
+        case 69..<99:
+            return "Normal range. Nothing to worry about!"
+        default:
+            return "High. Consider slowing down."
+        }
     }
 }
 

@@ -14,6 +14,7 @@
                 <outlet property="analysisView" destination="L36-ZO-ov8" id="ll9-pJ-9o6"/>
                 <outlet property="bottomView" destination="t2a-Ts-moF" id="YHB-Wg-64Y"/>
                 <outlet property="bpmIndicatorView" destination="M02-w7-hMg" id="dXJ-fX-c7i"/>
+                <outlet property="bpmValueLabel" destination="1sF-FR-Vgg" id="2mq-Y6-iX7"/>
                 <outlet property="calmLabel" destination="dop-Mz-tIR" id="R7J-bx-ytf"/>
                 <outlet property="calmView" destination="kPI-Dk-RwD" id="5bv-49-uHi"/>
                 <outlet property="discoverButton" destination="cim-CE-wgo" id="1vi-Vo-sp7"/>
@@ -22,6 +23,7 @@
                 <outlet property="energyLabel" destination="yj7-IZ-UtB" id="GVk-tM-3Ic"/>
                 <outlet property="energyView" destination="a5k-Yb-eEt" id="swR-MO-gsa"/>
                 <outlet property="heartView" destination="rgi-Ge-3on" id="iQE-In-wlB"/>
+                <outlet property="infoLabel" destination="wzP-Qr-ioK" id="6qG-L9-RBa"/>
                 <outlet property="infoView" destination="3af-e5-gfY" id="juX-6G-0LK"/>
                 <outlet property="nameLabel" destination="JAv-qS-t0N" id="vmu-AO-PCa"/>
                 <outlet property="noteLabel" destination="CTe-04-1gN" id="YKL-ow-jop"/>
@@ -218,6 +220,12 @@
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rgi-Ge-3on">
                                     <rect key="frame" x="20" y="283.66666666666669" width="353" height="148"/>
                                     <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1sF-FR-Vgg">
+                                            <rect key="frame" x="156" y="39.666666666666629" width="41.333333333333343" height="20.333333333333329"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="M02-w7-hMg" customClass="BPMIndicatorView" customModule="MoviePulse" customModuleProvider="target">
                                             <rect key="frame" x="16" y="60" width="321" height="28"/>
                                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -225,14 +233,25 @@
                                                 <constraint firstAttribute="height" constant="28" id="XDn-gW-n2H"/>
                                             </constraints>
                                         </view>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wzP-Qr-ioK">
+                                            <rect key="frame" x="16" y="112" width="321" height="20.333333333333343"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
                                     </subviews>
                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                     <constraints>
+                                        <constraint firstItem="M02-w7-hMg" firstAttribute="top" secondItem="1sF-FR-Vgg" secondAttribute="bottom" id="4uR-RH-evz"/>
                                         <constraint firstAttribute="trailing" secondItem="M02-w7-hMg" secondAttribute="trailing" constant="16" id="5Jz-0L-BDc"/>
                                         <constraint firstItem="M02-w7-hMg" firstAttribute="centerY" secondItem="rgi-Ge-3on" secondAttribute="centerY" id="5NB-sv-QKg"/>
+                                        <constraint firstItem="wzP-Qr-ioK" firstAttribute="leading" secondItem="M02-w7-hMg" secondAttribute="leading" id="7bK-Ty-VEc"/>
                                         <constraint firstItem="M02-w7-hMg" firstAttribute="leading" secondItem="rgi-Ge-3on" secondAttribute="leading" constant="16" id="IDW-Dj-lfI"/>
+                                        <constraint firstItem="1sF-FR-Vgg" firstAttribute="centerX" secondItem="rgi-Ge-3on" secondAttribute="centerX" id="OVv-VR-zcr"/>
+                                        <constraint firstAttribute="trailing" secondItem="wzP-Qr-ioK" secondAttribute="trailing" constant="16" id="Ypl-Qa-jd0"/>
                                         <constraint firstAttribute="height" constant="148" id="cwi-Y9-dBf"/>
                                         <constraint firstItem="M02-w7-hMg" firstAttribute="centerX" secondItem="rgi-Ge-3on" secondAttribute="centerX" id="nXs-Gy-eHl"/>
+                                        <constraint firstItem="wzP-Qr-ioK" firstAttribute="top" secondItem="M02-w7-hMg" secondAttribute="bottom" constant="24" id="oCJ-bt-p0b"/>
                                     </constraints>
                                 </view>
                             </subviews>

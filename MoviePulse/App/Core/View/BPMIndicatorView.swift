@@ -50,8 +50,8 @@ class BPMIndicatorView: UIView {
         
         // Setup labels
         [label30, label69, label99, label130].forEach {
-            $0.font = .systemFont(ofSize: 12)
-            $0.textColor = .darkGray
+            $0.font = .outfitFont(ofSize: 12)
+            $0.textColor = .blackColor
             $0.sizeToFit()
             addSubview($0)
         }
