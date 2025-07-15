@@ -13,6 +13,7 @@ class SavePulseViewController: BaseViewController {
     private var navigator: SavePulseNavigator
     private var viewModel: SavePulseViewModel
     private var items: [PulseResultInfo] = []
+    private var filters: [PulseResultInfo] = []
     
     private let getDataTrigger = PublishSubject<Void>()
     
@@ -28,6 +29,8 @@ class SavePulseViewController: BaseViewController {
     
     // MARK: - IBOutlets
     @IBOutlet private weak var topConstraint: NSLayoutConstraint!
+    @IBOutlet private weak var searchView: UIView!
+    @IBOutlet private weak var searchTf: UITextField!
     @IBOutlet private weak var collectionView: UICollectionView!
     
     override func viewDidLoad() {
@@ -52,6 +55,7 @@ class SavePulseViewController: BaseViewController {
             .driveNext { [weak self] items in
                 guard let self else { return }
                 self.items = items
+                self.filters = items
                 self.collectionView.reloadData()
             }
             .disposed(by: disposeBag)
@@ -60,6 +64,29 @@ class SavePulseViewController: BaseViewController {
     override func setupViews() {
         setupHeader(withType: .detail(title: "Pulse Gallery"))
         topConstraint.constant = Constants.HEIGHT_NAV
+        
+        searchView.backgroundColor = .white
+        searchView.corner(8)
+        
+        searchTf.attributedPlaceholder = NSAttributedString(
+            string: "Search...",
+            attributes: [
+                .foregroundColor: UIColor(hexString: "#697081") ?? .clear
+            ]
+        )
+        
+        searchTf.rx.text.orEmpty
+            .debounce(.milliseconds(500), scheduler: MainScheduler.instance)
+            .distinctUntilChanged()
+            .bind(onNext: { [weak self] text in
+                self?.handleSearch(text: text)
+            })
+            .disposed(by: disposeBag)
+        
+        searchTf.textColor = .blackColor
+        searchTf.tintColor = .pimaryColor
+        searchTf.returnKeyType = .search
+        
         collectionView.configure(withCells: [SavePulseCell.self, EmptyCell.self], dataSource: self)
         configureCompositionalLayout()
     }
@@ -89,7 +116,7 @@ extension SavePulseViewController {
     private func getSections() -> [PulseGallerySectionType] {
         var sections: [PulseGallerySectionType] = []
         
-        if items.isEmpty {
+        if filters.isEmpty {
             sections.append(.empty)
         } else {
             sections.append(.list)
@@ -119,6 +146,17 @@ extension SavePulseViewController {
         }
         present(actionSheetVC, animated: true)
     }
+    
+    private func handleSearch(text: String) {
+        let trimmed = text.trimmingCharacters(in: .whitespacesAndNewlines)
+        if trimmed.isEmpty {
+            filters = items
+        } else {
+            filters = items.filter { $0.name.lowercased().contains(text.lowercased()) }
+        }
+        
+        collectionView.reloadData()
+    }
 }
 
 extension SavePulseViewController: UICollectionViewDataSource {
@@ -129,7 +167,7 @@ extension SavePulseViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         switch getSections()[section] {
         case .list:
-            return items.count
+            return filters.count
         case .empty:
             return 1
         }
@@ -149,7 +187,7 @@ extension SavePulseViewController: UICollectionViewDataSource {
         cell.onTapMoreAction = { [weak self] in
             self?.showActionSheet()
         }
-        cell.bindData(items[indexPath.row])
+        cell.bindData(filters[indexPath.row])
         return cell
     }
     
