@@ -48,7 +48,7 @@
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hnO-rd-mft">
-                    <rect key="frame" x="32" y="465.00000000000006" width="329" height="244.66666666666669"/>
+                    <rect key="frame" x="32" y="557.33333333333337" width="329" height="244.66666666666663"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Q2g-Lc-lLQ">
                             <rect key="frame" x="114.66666666666666" y="128.66666666666663" width="100" height="44"/>
@@ -75,7 +75,7 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Wv-tn-6Fk">
-                            <rect key="frame" x="8" y="76.333333333333371" width="313" height="20.333333333333329"/>
+                            <rect key="frame" x="8" y="76.333333333333258" width="313" height="20.333333333333329"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
@@ -125,8 +125,8 @@
             <constraints>
                 <constraint firstItem="Q0R-O6-I0N" firstAttribute="width" secondItem="i5M-Pr-FkT" secondAttribute="width" id="0nc-vX-Q7g"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="hnO-rd-mft" secondAttribute="trailing" constant="32" id="1mU-YM-ppe"/>
-                <constraint firstItem="hnO-rd-mft" firstAttribute="bottom" secondItem="Q0R-O6-I0N" secondAttribute="bottom" constant="120" id="78h-8K-fzv"/>
                 <constraint firstItem="hnO-rd-mft" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="32" id="CS3-PE-nZe"/>
+                <constraint firstAttribute="bottom" secondItem="hnO-rd-mft" secondAttribute="bottom" constant="50" id="HUf-rA-xwJ"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="Q0R-O6-I0N" secondAttribute="trailing" id="QXf-W1-Q8m"/>
                 <constraint firstItem="hnO-rd-mft" firstAttribute="centerX" secondItem="fnl-2z-Ty3" secondAttribute="centerX" id="Wwh-NT-hQx"/>
                 <constraint firstItem="Q0R-O6-I0N" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="bG2-dr-TKb"/>
@@ -141,10 +141,10 @@
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemGray5Color">
-            <color red="0.89803921568627454" green="0.89803921568627454" blue="0.91764705882352937" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.8980392157" green="0.8980392157" blue="0.91764705879999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemPurpleColor">
-            <color red="0.68627450980392157" green="0.32156862745098042" blue="0.87058823529411766" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.68627450980000004" green="0.32156862749999998" blue="0.87058823529999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
