@@ -4,7 +4,7 @@ import RxCocoa
 import RxGesture
 
 protocol CategoryHorizontalCellDelegate: NSObjectProtocol {
-    func didSeeAllCategories()
+    func reloadCategories()
     func didSelectedCategory(_ category: CategoryObject)
 }
 
@@ -13,17 +13,12 @@ class CategoryHorizontalCell: UICollectionViewCell {
     @IBOutlet private weak var containerView: UIView!
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var collectionView: UICollectionView!
-    @IBOutlet private weak var seeMoreView: UIView!
-    @IBOutlet private weak var seeMoreLabel: UILabel!
-    
-    private enum Constant {
-        static let maxDisplayItems: Int = 12
-    }
+    @IBOutlet private weak var collectionViewHeightConstraint: NSLayoutConstraint!
     
     // MARK: - Properties
     private let disposeBag = DisposeBag()
     private var categories: [CategoryObject] = []
-    
+
     weak var delegate: CategoryHorizontalCellDelegate?
     
     override func awakeFromNib() {
@@ -40,30 +35,31 @@ class CategoryHorizontalCell: UICollectionViewCell {
         titleLabel.font = .outfitFont(ofSize: 16, weight: .semiBold)
         
         collectionView.configure(withCells: [CategoryCell.self], delegate: self, dataSource: self)
+        collectionView.isScrollEnabled = false
         collectionView.setCollectionViewLayout(UICollectionViewCompositionalLayout(section: AppLayout.categorySection(padding: 0, height: 44, isShowHeader: false)), animated: true)
-        
-        seeMoreView.rx.tapGesture().when(.recognized)
-            .subscribe(onNext: { [weak self] _ in
-                self?.delegate?.didSeeAllCategories()
-            })
-            .disposed(by: disposeBag)
-        seeMoreView.backgroundColor = .clear
-        seeMoreLabel.textColor = .white
-        seeMoreLabel.text = "See more"
-        seeMoreLabel.font = .outfitFont(ofSize: 14, weight: .regular)
     }
     
     func bindCategories(_ categories: [CategoryObject], withBackgroundColor bgColor: UIColor) {
         containerView.backgroundColor = bgColor
         self.categories = categories
-        seeMoreView.isHidden = categories.count < Constant.maxDisplayItems
         collectionView.reloadData()
+        
+        collectionView.performBatchUpdates(nil) { [weak self] _ in
+            guard let self = self else { return }
+
+            let newHeight = self.collectionView.collectionViewLayout.collectionViewContentSize.height
+            if self.collectionViewHeightConstraint.constant != newHeight {
+                self.collectionViewHeightConstraint.constant = newHeight
+                self.layoutIfNeeded()
+                self.delegate?.reloadCategories()
+            }
+        }
     }
 }
 
 extension CategoryHorizontalCell: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return categories.count > Constant.maxDisplayItems ? Constant.maxDisplayItems : categories.count
+        return categories.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {

@@ -184,7 +184,7 @@ extension DiscoverViewController {
             case .topRate:
                 return AppLayout.horizontalSection(isShowHeader: false)
             case .category:
-                return AppLayout.fixedSection(height: 208)
+                return AppLayout.fixedSection(height: 180)
             }
         }
         
@@ -374,8 +374,8 @@ extension DiscoverViewController: UICollectionViewDelegate, CategoryHorizontalCe
         }
     }
     
-    func didSeeAllCategories() {
-        navigator.gotoCategoryViewController(categories: discoverData.categories, objectType: tabType)
+    func reloadCategories() {
+        collectionView.reloadData()
     }
     
     func didSelectedCategory(_ category: CategoryObject) {
