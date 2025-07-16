@@ -205,7 +205,7 @@ class PulseResultViewController: BaseViewController {
 
 extension PulseResultViewController {
     private func updatePulseResultInfo(result: PulseResultInfo) -> PulseResultInfo {
-        let emotions = Utils.emotionPercentages(for: pulseResult.bpm)
+        let emotions = Utils.emotionPercentages(for: result.bpm)
         let tense = emotions["Tense"] ?? 0
         return PulseResultInfo(
             id: result.id,

@@ -8,8 +8,9 @@ class ActionSheetViewController: UIViewController {
     private let titleLabel: UILabel = {
         let label = UILabel()
         label.text = "Actions"
-        label.font = UIFont.boldSystemFont(ofSize: 16)
+        label.font = .outfitFont(ofSize: 14, weight: .semiBold)
         label.textAlignment = .center
+        label.textColor = .blackColor
         return label
     }()
     
@@ -117,9 +118,10 @@ class ActionSheetButton: UIButton {
         setImage(icon, for: .normal)
         setTitle(title, for: .normal)
         
-        tintColor = .black
-        setTitleColor(.black, for: .normal)
+        tintColor = .blackColor
+        setTitleColor(.blackColor, for: .normal)
         contentHorizontalAlignment = .left
+        titleLabel?.font = .outfitFont(ofSize: 14, weight: .semiBold)
         spacingBetweenIconAndText()
         heightAnchor.constraint(equalToConstant: 40).isActive = true
     }
