@@ -71,6 +71,8 @@ class PulseResultViewController: BaseViewController {
     @IBOutlet private weak var infoLabel: UILabel!
     @IBOutlet private weak var saveView: UIView!
     @IBOutlet private weak var saveImageView: UIImageView!
+    @IBOutlet private weak var delView: UIView!
+    @IBOutlet private weak var componentStackView: UIStackView!
     
     lazy var defaultAttr: [NSAttributedString.Key: Any] = {
         return [
@@ -109,9 +111,9 @@ class PulseResultViewController: BaseViewController {
         
         topConstraint.constant = Constants.HEIGHT_NAV
         
+        view.bringSubviewToFront(componentStackView)
         saveView.corner(4)
         saveView.backgroundColor = UIColor(hexString: "#E7D9FB")
-        view.bringSubviewToFront(saveView)
         saveView.rx.tapGesture().when(.recognized)
             .subscribe(onNext: { [weak self] _ in
                 guard let self else { return }
@@ -120,6 +122,14 @@ class PulseResultViewController: BaseViewController {
             })
             .disposed(by: disposeBag)
         
+        delView.corner(4)
+        delView.backgroundColor = UIColor(hexString: "#E7D9FB")
+        delView.rx.tapGesture().when(.recognized)
+            .subscribe(onNext: { [weak self] _ in
+                self?.showDelPopup()
+            })
+            .disposed(by: disposeBag)
+            
         infoView.backgroundColor = .white
         infoView.corner(8)
         
@@ -187,7 +197,11 @@ class PulseResultViewController: BaseViewController {
         switch screenType {
         case .detail(let result):
             pulseResult = result
+            delView.isHidden = false
+            saveView.isHidden = true
         case .result(let result):
+            delView.isHidden = true
+            saveView.isHidden = false
             pulseResult = updatePulseResultInfo(result: result)
         }
         
@@ -199,7 +213,12 @@ class PulseResultViewController: BaseViewController {
     }
     
     override func actionBack() {
-        navigator.popToRootViewController()
+        switch screenType {
+        case .detail:
+            navigator.popToViewController()
+        case .result:
+            navigator.popToRootViewController()
+        }
     }
 }
 
@@ -274,6 +293,23 @@ extension PulseResultViewController {
         results = filters
 
         CodableManager.shared.savePulseResults(results)
+        NotificationCenter.default.post(name: .reloadPulseResults, object: nil)
+    }
+    
+    private func showDelPopup() {
+        let popupView = ComponentPopup(
+            titleHeader: "Are you sure you want to delete all these item?",
+            content: "Careful — once done, this can’t be changed.",
+            leftValue: "No, cancel",
+            rightValue: "Confirm"
+        )
+        
+        popupView.onTapRightButton = { [weak self] in
+            self?.removeToFavorites()
+        }
+        
+        popupView.modalPresentationStyle = .overFullScreen
+        present(popupView, animated: false)
     }
 }
 

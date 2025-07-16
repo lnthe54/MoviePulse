@@ -36,6 +36,13 @@ class SavePulseViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(reloadData),
+            name: .reloadPulseResults,
+            object: nil
+        )
+        
         getDataTrigger.onNext(())
     }
     
@@ -181,6 +188,11 @@ extension SavePulseViewController {
 
         CodableManager.shared.savePulseResults(results)
         
+        getDataTrigger.onNext(())
+    }
+    
+    @objc
+    private func reloadData() {
         getDataTrigger.onNext(())
     }
 }

@@ -7,4 +7,5 @@ extension Notification.Name {
     static let switchToDiscoverTab = Notification.Name("switch_to_discover_tab")
     static let requestGDPR = Notification.Name("request_gdpr")
     static let permisstionNotificationChange = Notification.Name("permission_notification_change")
+    static let reloadPulseResults = Notification.Name("reload_pulse_results")
 }
