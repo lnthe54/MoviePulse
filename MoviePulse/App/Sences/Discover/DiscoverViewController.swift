@@ -3,6 +3,7 @@ import RxSwift
 import RxCocoa
 
 enum DiscoverSectionType {
+    case emotion
     case popular
     case trending
     case onAir
@@ -138,7 +139,7 @@ class DiscoverViewController: BaseViewController {
         didToMoviesTab()
         
         collectionView.configure(
-            withCells: [ItemHorizontalCell.self, CategoryHorizontalCell.self, SeeAllCell.self],
+            withCells: [ItemHorizontalCell.self, CategoryHorizontalCell.self, SeeAllCell.self, FeelCell.self],
             headers: [TitleHeaderSection.self],
             delegate: self,
             dataSource: self,
@@ -179,6 +180,8 @@ extension DiscoverViewController {
             let section = self.getSections()[sectionIndex]
             
             switch section {
+            case .emotion:
+                return AppLayout.fixedSection(height: 188)
             case .popular, .trending, .onAir:
                 return AppLayout.horizontalSection()
             case .topRate:
@@ -193,6 +196,10 @@ extension DiscoverViewController {
     
     private func getSections() -> [DiscoverSectionType] {
         var sections: [DiscoverSectionType] = []
+        
+        if tabType == .movie {
+            sections.append(.emotion)
+        }
         
         if tabType == .tv && discoverData.categories.isNotEmpty {
             sections.append(.category)
@@ -290,6 +297,12 @@ extension DiscoverViewController {
         cell.bindData(data)
         return cell
     }
+    
+    private func emotionCell(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> FeelCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FeelCell.className, for: indexPath) as! FeelCell
+        cell.delegate = self
+        return cell
+    }
 }
 
 extension DiscoverViewController: UICollectionViewDataSource {
@@ -307,7 +320,7 @@ extension DiscoverViewController: UICollectionViewDataSource {
             return discoverData.onAirs.count > Constant.numberOfDisplay ? Constant.numberOfDisplay : discoverData.onAirs.count
         case .topRate:
             return topRates.count > Constant.numberOfDisplay ? Constant.numberOfDisplay : topRates.count
-        case .category:
+        case .category, .emotion:
             return 1
         }
     }
@@ -330,11 +343,13 @@ extension DiscoverViewController: UICollectionViewDataSource {
             }
         case .category:
             return categoryHorizontalCell(collectionView, cellForItemAt: indexPath)
+        case .emotion:
+            return emotionCell(collectionView, cellForItemAt: indexPath)
         }
     }
 }
 
-extension DiscoverViewController: UICollectionViewDelegate, CategoryHorizontalCellDelegate, SeeAllCellDelegate {
+extension DiscoverViewController: UICollectionViewDelegate, CategoryHorizontalCellDelegate, SeeAllCellDelegate, FeelCellDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         var infoObject: InfoObject?
         
@@ -384,5 +399,9 @@ extension DiscoverViewController: UICollectionViewDelegate, CategoryHorizontalCe
     
     func didSeeAll() {
         navigator.gotoListItemViewController(sectionType: .topRate(objectType: tabType))
+    }
+    
+    func didSelectFeelType(_ feelType: EmotionType) {
+        navigator.gotoListItemViewController(sectionType: .feel(type: feelType))
     }
 }
