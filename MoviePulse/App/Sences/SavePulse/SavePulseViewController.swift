@@ -87,7 +87,7 @@ class SavePulseViewController: BaseViewController {
         searchTf.tintColor = .pimaryColor
         searchTf.returnKeyType = .search
         
-        collectionView.configure(withCells: [SavePulseCell.self, EmptyCell.self], dataSource: self)
+        collectionView.configure(withCells: [SavePulseCell.self, EmptyCell.self], delegate: self, dataSource: self)
         configureCompositionalLayout()
     }
     
@@ -232,7 +232,7 @@ extension SavePulseViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         switch getSections()[indexPath.section] {
         case .list:
-            break
+            navigator.gotoPulseResultViewController(result: filters[indexPath.row])
         default: break
         }
     }

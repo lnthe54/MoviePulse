@@ -4,22 +4,37 @@ import RxSwift
 import RxCocoa
 import RxGesture
 
+enum PulseResultScreenType {
+    case detail(result: PulseResultInfo)
+    case result(result: PulseResultInfo)
+    
+    var title: String {
+        switch self {
+        case .detail:
+            return "Pulse Detail"
+        case .result:
+            return "Pulse Result"
+        }
+    }
+}
+
 class PulseResultViewController: BaseViewController {
 
     // MARK: - Properties
     private var navigator: PulseResultNavigator
     private var viewModel: PulseResultViewModel
-    private var pulseResult: PulseResultInfo
+    private var screenType: PulseResultScreenType
+    private var pulseResult: PulseResultInfo!
     private var isFavorite: Bool = false
     
     init(
         navigator: PulseResultNavigator,
         viewModel: PulseResultViewModel,
-        pulseResult: PulseResultInfo
+        screenType: PulseResultScreenType
     ) {
         self.navigator = navigator
         self.viewModel = viewModel
-        self.pulseResult = pulseResult
+        self.screenType = screenType
         super.init(nibName: Self.className, bundle: nil)
     }
     
@@ -90,7 +105,7 @@ class PulseResultViewController: BaseViewController {
     }
     
     override func setupViews() {
-        setupHeader(withType: .detail(title: "Pulse Result", rightContents: [.share]))
+        setupHeader(withType: .detail(title: screenType.title, rightContents: [.share]))
         
         topConstraint.constant = Constants.HEIGHT_NAV
         
@@ -110,11 +125,6 @@ class PulseResultViewController: BaseViewController {
         
         posterImageView.contentMode = .scaleAspectFill
         posterImageView.corner(8)
-        posterImageView.kf.setImage(
-            with: URL(string: Utils.getPosterPath(pulseResult.path, size: .w342)),
-            placeholder: UIImage(named: "ic_loading"),
-            options: [.transition(ImageTransition.fade(1))]
-        )
         
         noteLabel.text = "You're measuring your heartbeat with"
         noteLabel.textColor = UIColor(hexString: "#252934")
@@ -122,7 +132,6 @@ class PulseResultViewController: BaseViewController {
         noteLabel.numberOfLines = 0
         noteLabel.textAlignment = .center
         
-        nameLabel.text = pulseResult.name
         nameLabel.textColor = .blackColor
         nameLabel.font = .outfitFont(ofSize: 20, weight: .semiBold)
         nameLabel.numberOfLines = 0
@@ -158,27 +167,71 @@ class PulseResultViewController: BaseViewController {
         // Config subview
         emotionView.configSubView()
         emotionLabel.configSubLabel("Emotion")
-        emotionValueLabel.configValueLabel(Utils.detectEmotion(from: pulseResult.bpm))
         
         energyView.configSubView()
         energyLabel.configSubLabel("Energy")
+        
+        tenseView.configSubView()
+        tenseLabel.configSubLabel("Tension")
+        
+        calmView.configSubView()
+        calmLabel.configSubLabel("Calm")
+        
+        // Chart - Heart view
+        heartView.backgroundColor = .white
+        heartView.corner(8)
+        
+        infoLabel.textColor = .blackColor
+        infoLabel.font = .outfitFont(ofSize: 14)
+        
+        switch screenType {
+        case .detail(let result):
+            pulseResult = result
+        case .result(let result):
+            pulseResult = updatePulseResultInfo(result: result)
+        }
+        
+        bindData()
+    }
+    
+    override func bindViewModel() {
+        
+    }
+    
+    override func actionBack() {
+        navigator.popToRootViewController()
+    }
+}
+
+extension PulseResultViewController {
+    private func updatePulseResultInfo(result: PulseResultInfo) -> PulseResultInfo {
+        let emotions = Utils.emotionPercentages(for: pulseResult.bpm)
+        let tense = emotions["Tense"] ?? 0
+        return PulseResultInfo(
+            id: result.id,
+            date: result.date,
+            bpm: result.bpm,
+            name: result.name,
+            path: result.path,
+            tension: tense
+        )
+    }
+    
+    private func bindData() {
+        posterImageView.kf.setImage(
+            with: URL(string: Utils.getPosterPath(pulseResult.path, size: .w342)),
+            placeholder: UIImage(named: "ic_loading"),
+            options: [.transition(ImageTransition.fade(1))]
+        )
+        nameLabel.text = pulseResult.name
+        emotionValueLabel.configValueLabel(Utils.detectEmotion(from: pulseResult.bpm))
         energyValueLabel.configValueLabel(Utils.calculateEnergy(from: pulseResult.bpm))
         
         let emotions = Utils.emotionPercentages(for: pulseResult.bpm)
         let tense = emotions["Tense"] ?? 0
         let calm = emotions["Calm"] ?? 0
-        
-        tenseView.configSubView()
-        tenseLabel.configSubLabel("Tension")
         tenseValueLabel.configValueLabel("\(tense)%")
-        
-        calmView.configSubView()
-        calmLabel.configSubLabel("Calm")
         calmValueLabel.configValueLabel("\(calm)%")
-        
-        // Chart - Heart view
-        heartView.backgroundColor = .white
-        heartView.corner(8)
         
         let bmpValue = NSMutableAttributedString(
             string: "\(pulseResult.bpm)",
@@ -194,33 +247,6 @@ class PulseResultViewController: BaseViewController {
         bpmIndicatorView.bpm = CGFloat(pulseResult.bpm)
         
         infoLabel.text = Utils.getInfoMessage(from: pulseResult.bpm)
-        infoLabel.textColor = .blackColor
-        infoLabel.font = .outfitFont(ofSize: 14)
-        
-        updatePulseResultInfo()
-    }
-    
-    override func bindViewModel() {
-        
-    }
-    
-    override func actionBack() {
-        navigator.popToRootViewController()
-    }
-}
-
-extension PulseResultViewController {
-    private func updatePulseResultInfo() {
-        let emotions = Utils.emotionPercentages(for: pulseResult.bpm)
-        let tense = emotions["Tense"] ?? 0
-        pulseResult = PulseResultInfo(
-            id: pulseResult.id,
-            date: pulseResult.date,
-            bpm: pulseResult.bpm,
-            name: pulseResult.name,
-            path: pulseResult.path,
-            tension: tense
-        )
     }
     
     private func handleFavorite() {

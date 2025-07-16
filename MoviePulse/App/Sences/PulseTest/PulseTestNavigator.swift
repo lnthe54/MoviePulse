@@ -21,7 +21,7 @@ class DefaultPulseTestNavigator: PulseTestNavigator {
         let viewController = PulseResultViewController(
             navigator: navigator,
             viewModel: viewModel,
-            pulseResult: result
+            screenType: .result(result: result)
         )
         navigationController.pushViewController(viewController, animated: true)
     }
