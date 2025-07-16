@@ -227,6 +227,7 @@ extension PulseResultViewController {
         isFavorite = !isFavorite
         
         if isFavorite {
+            showSuccessAlert(title: "Successful", message: "It’s now in your pulse gallery")
             saveImageView.image = UIImage(named: "ic_fav_active")
             addToFavorites()
         } else {

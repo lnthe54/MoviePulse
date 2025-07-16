@@ -114,4 +114,29 @@ extension BaseViewController {
             self.present(activityVC, animated: true, completion: nil)
         }
     }
+    
+    func showSuccessAlert(title: String, message: String) {
+        let alert = SuccessAlertView(title: title, message: message)
+        alert.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(alert)
+        
+        NSLayoutConstraint.activate([
+            alert.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 100),
+            alert.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            alert.widthAnchor.constraint(equalToConstant: 179)
+        ])
+        
+        alert.alpha = 0
+        UIView.animate(withDuration: 0.3, animations: {
+            alert.alpha = 1
+        }) { _ in
+            DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                UIView.animate(withDuration: 0.3, animations: {
+                    alert.alpha = 0
+                }) { _ in
+                    alert.removeFromSuperview()
+                }
+            }
+        }
+    }
 }

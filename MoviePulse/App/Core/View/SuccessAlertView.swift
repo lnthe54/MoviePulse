@@ -6,7 +6,13 @@ class SuccessAlertView: UIView {
         super.init(frame: .zero)
         backgroundColor = .white
         layer.cornerRadius = 8
-        clipsToBounds = true
+        
+        // Add shadow
+        layer.shadowColor = UIColor.black.cgColor
+        layer.shadowOpacity = 0.1
+        layer.shadowOffset = CGSize(width: 0, height: 4)
+        layer.shadowRadius = 8
+        layer.masksToBounds = false
         
         // Icon image
         let imageView = UIImageView(image: UIImage(named: "ic_fav_active"))
@@ -44,7 +50,7 @@ class SuccessAlertView: UIView {
         messageLabel.textColor = .blackColor
         messageLabel.font = .outfitFont(ofSize: 14, weight: .semiBold)
         messageLabel.numberOfLines = 0
-        titleLabel.textAlignment = .center
+        messageLabel.textAlignment = .center
         
         addSubview(favoriteView)
         addSubview(titleLabel)
