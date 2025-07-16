@@ -125,13 +125,13 @@ extension SavePulseViewController {
         return sections
     }
     
-    private func showActionSheet() {
+    private func showActionSheet(id: Int) {
         let actionSheetVC = ActionSheetViewController()
         actionSheetVC.onDelete = {
-            print("🗑 Delete tapped")
+            self.showDelPopup(id: id)
         }
         actionSheetVC.onShare = {
-            print("🔗 Share tapped")
+            self.showPopupShareApp()
         }
 
         if let sheet = actionSheetVC.sheetPresentationController {
@@ -156,6 +156,32 @@ extension SavePulseViewController {
         }
         
         collectionView.reloadData()
+    }
+    
+    private func showDelPopup(id: Int) {
+        let popupView = ComponentPopup(
+            titleHeader: "Are you sure you want to delete all these item?",
+            content: "Careful — once done, this can’t be changed.",
+            leftValue: "No, cancel",
+            rightValue: "Confirm"
+        )
+        
+        popupView.onTapRightButton = { [weak self] in
+            self?.handleRemoveItem(id: id)
+        }
+        
+        popupView.modalPresentationStyle = .overFullScreen
+        present(popupView, animated: false)
+    }
+    
+    private func handleRemoveItem(id: Int) {
+        var results = CodableManager.shared.getPulseResults()
+        let filters = results.filter { $0.id != id }
+        results = filters
+
+        CodableManager.shared.savePulseResults(results)
+        
+        getDataTrigger.onNext(())
     }
 }
 
@@ -185,7 +211,8 @@ extension SavePulseViewController: UICollectionViewDataSource {
     func pulseCell(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> SavePulseCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SavePulseCell.className, for: indexPath) as! SavePulseCell
         cell.onTapMoreAction = { [weak self] in
-            self?.showActionSheet()
+            guard let self else { return }
+            self.showActionSheet(id: self.filters[indexPath.row].id)
         }
         cell.bindData(filters[indexPath.row])
         return cell
@@ -198,5 +225,15 @@ extension SavePulseViewController: UICollectionViewDataSource {
         }
         cell.bindData(title: "Nothing here", message: "Discover exciting movies and\nstart measuring your reactions!")
         return cell
+    }
+}
+
+extension SavePulseViewController: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        switch getSections()[indexPath.section] {
+        case .list:
+            break
+        default: break
+        }
     }
 }
