@@ -9,6 +9,7 @@ enum ListSectionType {
     case onAir(title: String)
     case category(category: CategoryObject, objectType: ObjectType)
     case others(title: String, items: [InfoObject])
+    case feel(type: EmotionType)
     
     var title: String {
         switch self {
@@ -26,6 +27,8 @@ enum ListSectionType {
             return category.name
         case .others(let title, _):
             return title
+        case .feel(let type):
+            return type.title
         }
     }
 }
@@ -143,6 +146,17 @@ extension ListItemViewModel {
             
         case .others(_, let items):
             return Observable.just(items)
+            
+        case .feel(let type):
+            guard let request = DiscoverMovieRequest.from(emotion: type, page: page) else {
+                return Observable.just([])
+            }
+
+            return movieServices
+                .getDiscover(request: request)
+                .trackError(error)
+                .trackActivity(loading)
+                .map { Utils.transformToInfoObject(movies: $0.results) }
         }
     }
     

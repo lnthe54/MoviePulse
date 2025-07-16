@@ -239,6 +239,7 @@ extension HomeViewController {
     
     private func feelCell(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> FeelCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FeelCell.className, for: indexPath) as! FeelCell
+        cell.delegate = self
         return cell
     }
     
@@ -297,7 +298,7 @@ extension HomeViewController: UICollectionViewDataSource {
     }
 }
 
-extension HomeViewController: UICollectionViewDelegate {
+extension HomeViewController: UICollectionViewDelegate, FeelCellDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         switch getSections()[indexPath.section] {
         case .favorite:
@@ -329,5 +330,9 @@ extension HomeViewController: UICollectionViewDelegate {
         default:
             break
         }
+    }
+    
+    func didSelectFeelType(_ feelType: EmotionType) {
+        navigator.gotoListItemViewController(sectionType: .feel(type: feelType))
     }
 }

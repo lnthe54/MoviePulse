@@ -12,6 +12,7 @@ protocol MovieServices {
     func getFM(name: String) -> Observable<LinkContainer>
     func getDiscover(query: String, page: Int) -> Observable<MovieContainerInfo>
     func getTrending(at page: Int) -> Observable<MovieContainerInfo>
+    func getDiscover(request: DiscoverMovieRequest) -> Observable<MovieContainerInfo>
 }
 
 class MovieClient: MovieServices {
@@ -54,6 +55,10 @@ class MovieClient: MovieServices {
     
     func getTrending(at page: Int) -> Observable<MovieContainerInfo> {
         movieRequest(router: .trending(page: page))
+    }
+    
+    func getDiscover(request: DiscoverMovieRequest) -> Observable<MovieContainerInfo> {
+        movieRequest(router: .discover(request: request))
     }
     
     private func movieRequest<T: Codable>(router: MovieRouter) -> Observable<T> {

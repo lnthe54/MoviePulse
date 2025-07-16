@@ -1,11 +1,17 @@
 import UIKit
 
+protocol FeelCellDelegate: AnyObject {
+    func didSelectFeelType(_ feelType: EmotionType)
+}
+
 class FeelCell: UICollectionViewCell {
     // MARK: - IBOutlets
     @IBOutlet private weak var containerView: UIView!
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var contentLabel: UILabel!
     @IBOutlet private weak var collectionView: UICollectionView!
+    
+    weak var delegate: FeelCellDelegate?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -38,17 +44,19 @@ class FeelCell: UICollectionViewCell {
 
 extension FeelCell: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return Constants.feels.count
+        return EmotionType.allCases.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CategoryCell.className, for: indexPath) as! CategoryCell
-        cell.bindText(Constants.feels[indexPath.row])
+        cell.bindText(EmotionType.allCases[indexPath.row].title)
         return cell
     }
 }
 
 extension FeelCell: UICollectionViewDelegate {
-    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        delegate?.didSelectFeelType(EmotionType.allCases[indexPath.row])
+    }
 }
 

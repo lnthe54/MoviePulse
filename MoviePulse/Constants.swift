@@ -4,7 +4,6 @@ struct Constants {
     
     static let HEIGHT_NAV: CGFloat = 56
     static let BOTTOM_TABBAR: CGFloat = 100
-    static let feels: [String] = ["Excited", "Nostagic", "Tense", "Scared", "Calm", "Emotional", "Melancholic", "Neutral"]
     static let genreBaseBPM: [String: Int] = [
         // Movie genres
         "Action": 78, "Adventure": 75, "Animation": 70, "Comedy": 72,
@@ -73,6 +72,30 @@ struct Constants {
             case movieDiscover = "movie_discover"
             case tvDiscover = "tv_discover"
             case buttonDetail = "button_detail"
+        }
+    }
+}
+
+enum EmotionType: CaseIterable {
+    case excited
+    case nostalgic
+    case tense
+    case scared
+    case calm
+    case emotional
+    case melancholic
+    case neutral
+    
+    var title: String {
+        switch self {
+        case .excited: return "Excited"
+        case .nostalgic: return "Nostalgic"
+        case .tense: return "Tense"
+        case .scared: return "Scared"
+        case .calm: return "Calm"
+        case .emotional: return "Emotional"
+        case .melancholic: return "Melancholic"
+        case .neutral: return "Neutral"
         }
     }
 }
