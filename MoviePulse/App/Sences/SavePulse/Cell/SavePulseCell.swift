@@ -14,6 +14,7 @@ class SavePulseCell: UICollectionViewCell {
     @IBOutlet private weak var tensionView: UIView!
     @IBOutlet private weak var tensionLabel: UILabel!
     @IBOutlet private weak var tensionValueLabel: UILabel!
+    @IBOutlet private weak var moreButton: UIButton!
     
     var onTapMoreAction: (() -> Void)?
     
@@ -46,7 +47,7 @@ class SavePulseCell: UICollectionViewCell {
         tensionValueLabel.font = .outfitFont(ofSize: 20, weight: .semiBold)
     }
     
-    func bindData(_ data: PulseResultInfo) {
+    func bindData(_ data: PulseResultInfo, isHideMore: Bool = false) {
         posterImageView.kf.setImage(
             with: URL(string: Utils.getPosterPath(data.path, size: .w342)),
             placeholder: UIImage(named: "ic_loading"),
@@ -57,6 +58,7 @@ class SavePulseCell: UICollectionViewCell {
         timeLabel.text = "Recorded at \(timeValue)"
         heartValueLabel.text = "\(data.bpm) BPM"
         tensionValueLabel.text = "\(data.tension)%"
+        moreButton.isHidden = isHideMore
     }
     
     @IBAction private func tapToMoreButton() {

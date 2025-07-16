@@ -140,6 +140,7 @@
                 <outlet property="heartLabel" destination="x9y-Hs-1GK" id="0zZ-4Z-TJR"/>
                 <outlet property="heartValueLabel" destination="Z5o-6I-VLk" id="6Nz-CI-IPV"/>
                 <outlet property="heartView" destination="Ens-OW-czd" id="8qr-4O-WFp"/>
+                <outlet property="moreButton" destination="Cyq-cg-VPA" id="gO6-Ia-F5A"/>
                 <outlet property="nameLabel" destination="yWX-cD-Zym" id="EVU-zI-P6C"/>
                 <outlet property="posterImageView" destination="U5S-4U-5dc" id="d8Q-aa-SdL"/>
                 <outlet property="tensionLabel" destination="rDT-ii-dRb" id="tdi-kP-HtE"/>

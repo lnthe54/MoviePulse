@@ -5,6 +5,7 @@ import RxCocoa
 enum HomeSectionType {
     case feel
     case start
+    case result
     case pulse
     case favorite
     case populars
@@ -105,7 +106,8 @@ class HomeViewController: BaseViewController {
                 ItemHorizontalCell.self,
                 CategoryCell.self,
                 PulseCell.self,
-                FeelCell.self
+                FeelCell.self,
+                SavePulseCell.self
             ],
             headers: [TitleHeaderSection.self],
             delegate: self,
@@ -133,6 +135,8 @@ extension HomeViewController {
                 return AppLayout.horizontalSection()
             case .category:
                 return AppLayout.categorySection()
+            case .result:
+                return AppLayout.fixedSection(height: 144)
             }
         }
         
@@ -144,7 +148,11 @@ extension HomeViewController {
         
         sections.append(.feel)
         
-        sections.append(.start)
+        if CodableManager.shared.getPulseResults().isEmpty {
+            sections.append(.start)
+        } else {
+            sections.append(.result)
+        }
         
         sections.append(.pulse)
         
@@ -233,6 +241,14 @@ extension HomeViewController {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FeelCell.className, for: indexPath) as! FeelCell
         return cell
     }
+    
+    private func resultCell(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> SavePulseCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SavePulseCell.className, for: indexPath) as! SavePulseCell
+        if let firstItem = CodableManager.shared.getPulseResults().first {
+            cell.bindData(firstItem, isHideMore: true)
+        }
+        return cell
+    }
 }
 
 extension HomeViewController: UICollectionViewDataSource {
@@ -242,7 +258,7 @@ extension HomeViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         switch getSections()[section] {
-        case .feel, .start, .pulse, .favorite:
+        case .feel, .start, .pulse, .favorite, .result:
             return 1
         case .populars:
             return getNumberOfRows(list: homeDataObject.movies)
@@ -275,6 +291,8 @@ extension HomeViewController: UICollectionViewDataSource {
             return itemHorizontalCell(collectionView, cellForItemAt: indexPath)
         case .category:
             return categoryCell(collectionView, cellForItemAt: indexPath)
+        case .result:
+            return resultCell(collectionView, cellForItemAt: indexPath)
         }
     }
 }
@@ -290,6 +308,10 @@ extension HomeViewController: UICollectionViewDelegate {
             navigator.gotoListItemViewController(sectionType: .category(category: homeDataObject.categories[indexPath.row], objectType: .movie))
         case .pulse:
             navigator.gotoSavePulseViewController()
+        case .result:
+            if let firstItem = CodableManager.shared.getPulseResults().first {
+                navigator.gotoPulseResultViewController(result: firstItem)
+            }
         default: break
         }
     }
