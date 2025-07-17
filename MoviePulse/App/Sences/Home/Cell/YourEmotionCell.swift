@@ -23,6 +23,7 @@ class YourEmotionCell: UICollectionViewCell {
         super.awakeFromNib()
         
         setupViews()
+        bindData()
     }
 
     private func setupViews() {
@@ -53,5 +54,16 @@ class YourEmotionCell: UICollectionViewCell {
         // Emotion
         emotionView.configSubView()
         emotionLabel.configSubLabel("Emotion")
+    }
+    
+    func bindData() {
+        let results = CodableManager.shared.getPulseResults()
+        let avgBPM = results.map { $0.bpm }.reduce(0, +) / max(results.count, 1)
+        let avgTension = results.map { $0.tension }.reduce(0, +) / max(results.count, 1)
+        let emotionValue = Utils.detectEmotion(from: avgBPM)
+        bpmValueLabel.configValueLabel("\(avgBPM) BPM")
+        tensionValueLabel.configValueLabel("\(avgTension)%")
+        timesValueLabel.configValueLabel("\(results.count)")
+        emotionValueLabel.configValueLabel(emotionValue)
     }
 }
