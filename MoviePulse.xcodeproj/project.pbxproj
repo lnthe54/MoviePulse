@@ -134,6 +134,8 @@
 		B64976C22E14D0C800B5A738 /* EmptyCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B64976C12E14D0C800B5A738 /* EmptyCell.xib */; };
 		B64976C32E14D0C800B5A738 /* EmptyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B64976C02E14D0C800B5A738 /* EmptyCell.swift */; };
 		B66D66792E263F8300510A13 /* PulseResultInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = B66D66782E263F7F00510A13 /* PulseResultInfo.swift */; };
+		B66D667C2E28CCCE00510A13 /* YourEmotionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B66D667A2E28CCCE00510A13 /* YourEmotionCell.swift */; };
+		B66D667D2E28CCCE00510A13 /* YourEmotionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B66D667B2E28CCCE00510A13 /* YourEmotionCell.xib */; };
 		B6BBBC9D2E1CACB7006D1D6F /* SearchNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6BBBC9C2E1CACB4006D1D6F /* SearchNavigator.swift */; };
 		B6BBBC9F2E1CACE8006D1D6F /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6BBBC9E2E1CACE4006D1D6F /* SearchViewModel.swift */; };
 		B6BBBCA22E1CAD28006D1D6F /* SearchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B6BBBCA12E1CAD28006D1D6F /* SearchViewController.xib */; };
@@ -330,6 +332,8 @@
 		B64976C02E14D0C800B5A738 /* EmptyCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyCell.swift; sourceTree = "<group>"; };
 		B64976C12E14D0C800B5A738 /* EmptyCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EmptyCell.xib; sourceTree = "<group>"; };
 		B66D66782E263F7F00510A13 /* PulseResultInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PulseResultInfo.swift; sourceTree = "<group>"; };
+		B66D667A2E28CCCE00510A13 /* YourEmotionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YourEmotionCell.swift; sourceTree = "<group>"; };
+		B66D667B2E28CCCE00510A13 /* YourEmotionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = YourEmotionCell.xib; sourceTree = "<group>"; };
 		B6BBBC9C2E1CACB4006D1D6F /* SearchNavigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchNavigator.swift; sourceTree = "<group>"; };
 		B6BBBC9E2E1CACE4006D1D6F /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
 		B6BBBCA02E1CAD28006D1D6F /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
@@ -629,6 +633,8 @@
 				9989FF162E112499007B667C /* PulseCell.xib */,
 				9994AC2A2E12EDEA0084901B /* FeelCell.swift */,
 				9994AC2B2E12EDEA0084901B /* FeelCell.xib */,
+				B66D667A2E28CCCE00510A13 /* YourEmotionCell.swift */,
+				B66D667B2E28CCCE00510A13 /* YourEmotionCell.xib */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -1093,6 +1099,7 @@
 				9994AC282E12DA810084901B /* GenresCell.xib in Resources */,
 				99A5FBC82E0B0B5400AA8D59 /* HomeViewController.xib in Resources */,
 				B64976C22E14D0C800B5A738 /* EmptyCell.xib in Resources */,
+				B66D667D2E28CCCE00510A13 /* YourEmotionCell.xib in Resources */,
 				B6BBBCF52E1F6065006D1D6F /* SettingCell.xib in Resources */,
 				B60B7B4D2E15071F00C69C17 /* DiscoverViewController.xib in Resources */,
 			);
@@ -1197,6 +1204,7 @@
 				B6BBBCF22E1F5DF4006D1D6F /* AppInfo.swift in Sources */,
 				B6BBBD1B2E20F9EC006D1D6F /* UICollectionView+Extension.swift in Sources */,
 				99169CD72E1A3499005B8947 /* SeeAllCell.swift in Sources */,
+				B66D667C2E28CCCE00510A13 /* YourEmotionCell.swift in Sources */,
 				9989FF132E0FDB58007B667C /* Notification+Extension.swift in Sources */,
 				99169CD92E222603005B8947 /* HeartRateManager.swift in Sources */,
 				994215862E09A76100DAA702 /* APIClient.swift in Sources */,

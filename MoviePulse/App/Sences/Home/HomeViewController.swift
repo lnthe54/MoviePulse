@@ -10,6 +10,7 @@ enum HomeSectionType {
     case favorite
     case populars
     case category
+    case yourEmotion
 }
 
 class HomeViewController: BaseViewController {
@@ -107,7 +108,8 @@ class HomeViewController: BaseViewController {
                 CategoryCell.self,
                 PulseCell.self,
                 FeelCell.self,
-                SavePulseCell.self
+                SavePulseCell.self,
+                YourEmotionCell.self
             ],
             headers: [TitleHeaderSection.self],
             delegate: self,
@@ -137,6 +139,8 @@ extension HomeViewController {
                 return AppLayout.categorySection()
             case .result:
                 return AppLayout.fixedSection(height: 144)
+            case .yourEmotion:
+                return AppLayout.fixedSection(height: 196)
             }
         }
         
@@ -152,6 +156,7 @@ extension HomeViewController {
             sections.append(.start)
         } else {
             sections.append(.result)
+            sections.append(.yourEmotion)
         }
         
         sections.append(.pulse)
@@ -250,6 +255,11 @@ extension HomeViewController {
         }
         return cell
     }
+    
+    private func yourEmotionCell(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> YourEmotionCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: YourEmotionCell.className, for: indexPath) as! YourEmotionCell
+        return cell
+    }
 }
 
 extension HomeViewController: UICollectionViewDataSource {
@@ -259,7 +269,7 @@ extension HomeViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         switch getSections()[section] {
-        case .feel, .start, .pulse, .favorite, .result:
+        case .feel, .start, .pulse, .favorite, .result, .yourEmotion:
             return 1
         case .populars:
             return getNumberOfRows(list: homeDataObject.movies)
@@ -294,6 +304,8 @@ extension HomeViewController: UICollectionViewDataSource {
             return categoryCell(collectionView, cellForItemAt: indexPath)
         case .result:
             return resultCell(collectionView, cellForItemAt: indexPath)
+        case .yourEmotion:
+            return yourEmotionCell(collectionView, cellForItemAt: indexPath)
         }
     }
 }
