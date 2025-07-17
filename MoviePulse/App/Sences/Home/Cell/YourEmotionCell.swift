@@ -19,6 +19,9 @@ class YourEmotionCell: UICollectionViewCell {
     @IBOutlet private weak var emotionLabel: UILabel!
     @IBOutlet private weak var emotionValueLabel: UILabel!
     
+    // MARK: - Properties
+    let calendar = Calendar.current
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         
@@ -58,12 +61,21 @@ class YourEmotionCell: UICollectionViewCell {
     
     func bindData() {
         let results = CodableManager.shared.getPulseResults()
-        let avgBPM = results.map { $0.bpm }.reduce(0, +) / max(results.count, 1)
-        let avgTension = results.map { $0.tension }.reduce(0, +) / max(results.count, 1)
+        let now = Date()
+        let currentWeek = calendar.component(.weekOfYear, from: now)
+        let currentYear = calendar.component(.yearForWeekOfYear, from: now)
+
+        let thisWeekResults = results.filter {
+            let comp = calendar.dateComponents([.yearForWeekOfYear, .weekOfYear], from: $0.date)
+            return comp.weekOfYear == currentWeek && comp.yearForWeekOfYear == currentYear
+        }
+        
+        let avgBPM = thisWeekResults.map { $0.bpm }.reduce(0, +) / max(results.count, 1)
+        let avgTension = thisWeekResults.map { $0.tension }.reduce(0, +) / max(thisWeekResults.count, 1)
         let emotionValue = Utils.detectEmotion(from: avgBPM)
         bpmValueLabel.configValueLabel("\(avgBPM) BPM")
         tensionValueLabel.configValueLabel("\(avgTension)%")
-        timesValueLabel.configValueLabel("\(results.count)")
+        timesValueLabel.configValueLabel("\(thisWeekResults.count)")
         emotionValueLabel.configValueLabel(emotionValue)
     }
 }
