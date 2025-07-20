@@ -279,11 +279,12 @@ extension PulseResultViewController {
             saveImageView.image = UIImage(named: "ic_fav_inactive")
             removeToFavorites()
         }
+        NotificationCenter.default.post(name: .reloadPulseResults, object: nil)
     }
     
     private func addToFavorites() {
         var results = CodableManager.shared.getPulseResults()
-        results.append(pulseResult)
+        results.insert(pulseResult, at: 0)
         CodableManager.shared.savePulseResults(results)
     }
     
@@ -293,7 +294,6 @@ extension PulseResultViewController {
         results = filters
 
         CodableManager.shared.savePulseResults(results)
-        NotificationCenter.default.post(name: .reloadPulseResults, object: nil)
     }
     
     private func showDelPopup() {

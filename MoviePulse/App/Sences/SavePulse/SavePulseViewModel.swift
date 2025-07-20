@@ -18,7 +18,7 @@ class SavePulseViewModel: ViewModelType {
         
         let getDataEvent = input.getDataTrigger
             .flatMapLatest(weak: self) { (self, _) in
-                let results = CodableManager.shared.getPulseResults()
+                let results = CodableManager.shared.getPulseResults().sorted { $0.date > $1.date }
                 return Observable.just(results)
             }
         

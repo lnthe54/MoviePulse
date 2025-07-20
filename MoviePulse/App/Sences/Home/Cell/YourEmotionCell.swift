@@ -26,7 +26,6 @@ class YourEmotionCell: UICollectionViewCell {
         super.awakeFromNib()
         
         setupViews()
-        bindData()
     }
 
     private func setupViews() {
@@ -59,8 +58,7 @@ class YourEmotionCell: UICollectionViewCell {
         emotionLabel.configSubLabel("Emotion")
     }
     
-    func bindData() {
-        let results = CodableManager.shared.getPulseResults()
+    func bindData(_ results: [PulseResultInfo]) {
         let now = Date()
         let currentWeek = calendar.component(.weekOfYear, from: now)
         let currentYear = calendar.component(.yearForWeekOfYear, from: now)

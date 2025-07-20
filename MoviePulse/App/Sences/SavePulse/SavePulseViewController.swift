@@ -187,8 +187,7 @@ extension SavePulseViewController {
         results = filters
 
         CodableManager.shared.savePulseResults(results)
-        
-        getDataTrigger.onNext(())
+        NotificationCenter.default.post(name: .reloadPulseResults, object: nil)
     }
     
     @objc

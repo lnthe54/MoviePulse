@@ -19,6 +19,7 @@ class HomeViewController: BaseViewController {
     private var navigator: HomeNavigator
     private var viewModel: HomeViewModel
     private var homeDataObject: HomeDataObject = HomeDataObject(movies: [], categories: [])
+    private var results: [PulseResultInfo] = []
     
     private let getDataTrigger = PublishSubject<Void>()
     private let gotoDetailItemTrigger = PublishSubject<InfoObject>()
@@ -44,6 +45,12 @@ class HomeViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(reloadData),
+            name: .reloadPulseResults,
+            object: nil
+        )
         getDataTrigger.onNext(())
     }
     
@@ -85,6 +92,7 @@ class HomeViewController: BaseViewController {
                 guard let self else { return }
                 
                 self.homeDataObject = homeDataObject
+                self.results = CodableManager.shared.getPulseResults()
                 collectionView.reloadData()
             }
             .disposed(by: disposeBag)
@@ -152,7 +160,7 @@ extension HomeViewController {
         
         sections.append(.feel)
         
-        if CodableManager.shared.getPulseResults().isEmpty {
+        if results.isEmpty {
             sections.append(.start)
         } else {
             sections.append(.result)
@@ -176,6 +184,11 @@ extension HomeViewController {
     
     private func getNumberOfRows<T>(list: [T]) -> Int {
         return min(list.count, Constant.maxDisplayItems)
+    }
+    
+    @objc
+    private func reloadData() {
+        getDataTrigger.onNext(())
     }
     
     // MARK: - Bind Cell
@@ -250,7 +263,7 @@ extension HomeViewController {
     
     private func resultCell(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> SavePulseCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SavePulseCell.className, for: indexPath) as! SavePulseCell
-        if let firstItem = CodableManager.shared.getPulseResults().first {
+        if let firstItem = results.first {
             cell.bindData(firstItem, isHideMore: true)
         }
         return cell
@@ -258,6 +271,7 @@ extension HomeViewController {
     
     private func yourEmotionCell(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> YourEmotionCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: YourEmotionCell.className, for: indexPath) as! YourEmotionCell
+        cell.bindData(results)
         return cell
     }
 }
@@ -322,7 +336,7 @@ extension HomeViewController: UICollectionViewDelegate, FeelCellDelegate {
         case .pulse:
             navigator.gotoSavePulseViewController()
         case .result:
-            if let firstItem = CodableManager.shared.getPulseResults().first {
+            if let firstItem = results.first {
                 navigator.gotoPulseResultViewController(result: firstItem)
             }
         default: break
