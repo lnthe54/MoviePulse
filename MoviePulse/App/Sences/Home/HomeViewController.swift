@@ -163,8 +163,12 @@ extension HomeViewController {
         if results.isEmpty {
             sections.append(.start)
         } else {
-            sections.append(.result)
-            sections.append(.yourEmotion)
+            if let firstResult = results.first, Utils.isSameDay(from: firstResult.date) {
+                sections.append(.result)
+                sections.append(.yourEmotion)
+            } else {
+                sections.append(.start)
+            }
         }
         
         sections.append(.pulse)

@@ -231,4 +231,9 @@ struct Utils {
             return "High. Consider slowing down."
         }
     }
+    
+    // MARK: - Date Comparison
+    static func isSameDay(from date: Date) -> Bool {
+        return Calendar.current.isDate(date, inSameDayAs: Date())
+    }
 }
