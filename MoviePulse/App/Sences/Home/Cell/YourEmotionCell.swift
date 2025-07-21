@@ -68,7 +68,7 @@ class YourEmotionCell: UICollectionViewCell {
             return comp.weekOfYear == currentWeek && comp.yearForWeekOfYear == currentYear
         }
         
-        let avgBPM = thisWeekResults.map { $0.bpm }.reduce(0, +) / max(results.count, 1)
+        let avgBPM = thisWeekResults.map { $0.avgBPM() }.reduce(0, +) / max(results.count, 1)
         let avgTension = thisWeekResults.map { $0.tension }.reduce(0, +) / max(thisWeekResults.count, 1)
         let emotionValue = Utils.detectEmotion(from: avgBPM)
         bpmValueLabel.configValueLabel("\(avgBPM) BPM")

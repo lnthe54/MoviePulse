@@ -56,7 +56,7 @@ class SavePulseCell: UICollectionViewCell {
         nameLabel.text = data.name
         let timeValue = data.date.toString(formatter: .dayMonthYear) ?? "Unknown date"
         timeLabel.text = "Recorded at \(timeValue)"
-        heartValueLabel.text = "\(data.bpm) BPM"
+        heartValueLabel.text = "\(data.avgBPM()) BPM"
         tensionValueLabel.text = "\(data.tension)%"
         moreButton.isHidden = isHideMore
     }

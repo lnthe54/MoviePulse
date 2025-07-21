@@ -10,7 +10,7 @@ class PulseTestViewController: BaseViewController {
     private var id: Int
     private var posterPath: String
     private var name: String
-    private var bpmValue: Int = 0
+    private var bpmValues: [Int] = []
     
     // Heart
     private var validFrameCounter = 0
@@ -187,46 +187,52 @@ extension PulseTestViewController {
     }
     
     private func startMeasurement() {
+        isOpenPulseResult = false
+        bpmValues.removeAll()
         DispatchQueue.main.async {
             self.toggleTorch(status: true)
-            
+                        
             if self.timer == nil {
-                self.timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { [weak self] _ in
+                self.timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true, block: { [weak self] (timer) in
                     guard let self = self else { return }
-                    
                     let average = self.pulseDetector.getAverage()
-                    let pulse = 60.0 / average
-                    
-                    guard pulse != -60, pulse.isFinite else {
-                        return
+                    let pulse = 60.0/average
+                    if pulse != -60 {
+                        UIView.animate(withDuration: 0.2, animations: {
+                            self.resultView.alpha = 1.0
+                        }) { (_) in
+                            self.bpmValues.append(lroundf(pulse))
+                            self.resultView.isHidden = false
+                            self.bpmValueLabel.text = "\(lroundf(pulse))"
+                            self.showMeasurementResult()
+                        }
+                    } else {
+                        self.resultView.isHidden = true
                     }
-                    
-                    showMeasurementResult(bpm: lroundf(pulse))
-                }
+                })
+            } else {
+                self.resultView.isHidden = true
             }
         }
     }
     
-    private func showMeasurementResult(bpm: Int) {
-        UIView.animate(withDuration: 0.2) {
-            self.resultView.alpha = 1.0
-        } completion: { _ in
-            self.deinitCaptureSession()
-            self.resultView.isHidden = false
-            self.warningLabel.isHidden = true
-            self.bpmValue = bpm
-            self.bpmValueLabel.text = "\(bpm)"
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.3, execute: {
-                self.navigator.gotoPulseResultViewController(result: PulseResultInfo(
-                    id: self.id,
-                    date: Date(),
-                    bpm: self.bpmValue,
-                    name: self.name,
-                    path: self.posterPath,
-                    tension: 0)
-                )
-            })
-        }
+    private func showMeasurementResult() {
+        guard !isOpenPulseResult else { return }
+        guard bpmValues.count >= 10 else { return }
+
+        isOpenPulseResult = true
+
+        deinitCaptureSession()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2, execute: {
+            self.navigator.gotoPulseResultViewController(result: PulseResultInfo(
+                id: self.id,
+                date: Date(),
+                bpmValues: self.bpmValues,
+                name: self.name,
+                path: self.posterPath,
+                tension: 0)
+            )
+        })
     }
 }
 

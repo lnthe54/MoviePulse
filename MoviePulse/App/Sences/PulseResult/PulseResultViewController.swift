@@ -224,12 +224,12 @@ class PulseResultViewController: BaseViewController {
 
 extension PulseResultViewController {
     private func updatePulseResultInfo(result: PulseResultInfo) -> PulseResultInfo {
-        let emotions = Utils.emotionPercentages(for: result.bpm)
+        let emotions = Utils.emotionPercentages(for: result.avgBPM())
         let tense = emotions["Tense"] ?? 0
         return PulseResultInfo(
             id: result.id,
             date: result.date,
-            bpm: result.bpm,
+            bpmValues: result.bpmValues,
             name: result.name,
             path: result.path,
             tension: tense
@@ -243,17 +243,17 @@ extension PulseResultViewController {
             options: [.transition(ImageTransition.fade(1))]
         )
         nameLabel.text = pulseResult.name
-        emotionValueLabel.configValueLabel(Utils.detectEmotion(from: pulseResult.bpm))
-        energyValueLabel.configValueLabel(Utils.calculateEnergy(from: pulseResult.bpm))
+        emotionValueLabel.configValueLabel(Utils.detectEmotion(from: pulseResult.avgBPM()))
+        energyValueLabel.configValueLabel(Utils.calculateEnergy(from: pulseResult.avgBPM()))
         
-        let emotions = Utils.emotionPercentages(for: pulseResult.bpm)
+        let emotions = Utils.emotionPercentages(for: pulseResult.avgBPM())
         let tense = emotions["Tense"] ?? 0
         let calm = emotions["Calm"] ?? 0
         tenseValueLabel.configValueLabel("\(tense)%")
         calmValueLabel.configValueLabel("\(calm)%")
         
         let bmpValue = NSMutableAttributedString(
-            string: "\(pulseResult.bpm)",
+            string: "\(pulseResult.avgBPM())",
             attributes: defaultAttr
         )
         
@@ -263,9 +263,9 @@ extension PulseResultViewController {
         )
         bmpValue.append(bpmUnit)
         bpmValueLabel.attributedText = bmpValue
-        bpmIndicatorView.bpm = CGFloat(pulseResult.bpm)
+        bpmIndicatorView.bpm = CGFloat(pulseResult.avgBPM())
         
-        infoLabel.text = Utils.getInfoMessage(from: pulseResult.bpm)
+        infoLabel.text = Utils.getInfoMessage(from: pulseResult.avgBPM())
     }
     
     private func handleFavorite() {
