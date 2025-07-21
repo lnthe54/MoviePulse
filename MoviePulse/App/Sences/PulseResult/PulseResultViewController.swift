@@ -73,6 +73,7 @@ class PulseResultViewController: BaseViewController {
     @IBOutlet private weak var saveImageView: UIImageView!
     @IBOutlet private weak var delView: UIView!
     @IBOutlet private weak var componentStackView: UIStackView!
+    @IBOutlet private weak var waveFormView: WaveformChartView!
     
     lazy var defaultAttr: [NSAttributedString.Key: Any] = {
         return [
@@ -205,6 +206,10 @@ class PulseResultViewController: BaseViewController {
             pulseResult = updatePulseResultInfo(result: result)
         }
         
+        waveFormView.corner(8)
+        waveFormView.clipsToBounds = true
+        waveFormView.backgroundColor = UIColor.pimaryColor.withAlphaComponent(0.1)
+        
         bindData()
     }
     
@@ -266,6 +271,15 @@ extension PulseResultViewController {
         bpmIndicatorView.bpm = CGFloat(pulseResult.avgBPM())
         
         infoLabel.text = Utils.getInfoMessage(from: pulseResult.avgBPM())
+        waveFormView.data = normalizeData(pulseResult.bpmValues.map { Double($0)})
+    }
+    
+    func normalizeData(_ raw: [Double]) -> [CGFloat] {
+        guard let min = raw.min(), let max = raw.max(), max > min else {
+            return raw.map { _ in 0.5 } // fallback
+        }
+        
+        return raw.map { CGFloat(($0 - min) / (max - min)) }
     }
     
     private func handleFavorite() {
