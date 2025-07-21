@@ -20,6 +20,7 @@ class HomeViewController: BaseViewController {
     private var viewModel: HomeViewModel
     private var homeDataObject: HomeDataObject = HomeDataObject(movies: [], categories: [])
     private var results: [PulseResultInfo] = []
+    private var filtersThisWeek: [PulseResultInfo] = []
     
     private let getDataTrigger = PublishSubject<Void>()
     private let gotoDetailItemTrigger = PublishSubject<InfoObject>()
@@ -93,6 +94,7 @@ class HomeViewController: BaseViewController {
                 
                 self.homeDataObject = homeDataObject
                 self.results = CodableManager.shared.getPulseResults()
+                self.filtersThisWeek = Utils.filterThisWeek(from: results)
                 collectionView.reloadData()
             }
             .disposed(by: disposeBag)
@@ -165,10 +167,13 @@ extension HomeViewController {
         } else {
             if let firstResult = results.first, Utils.isSameDay(from: firstResult.date) {
                 sections.append(.result)
-                sections.append(.yourEmotion)
             } else {
                 sections.append(.start)
             }
+        }
+        
+        if filtersThisWeek.isNotEmpty {
+            sections.append(.yourEmotion)
         }
         
         sections.append(.pulse)
@@ -275,7 +280,7 @@ extension HomeViewController {
     
     private func yourEmotionCell(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> YourEmotionCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: YourEmotionCell.className, for: indexPath) as! YourEmotionCell
-        cell.bindData(results)
+        cell.bindData(filtersThisWeek)
         return cell
     }
 }

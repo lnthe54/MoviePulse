@@ -236,4 +236,17 @@ struct Utils {
     static func isSameDay(from date: Date) -> Bool {
         return Calendar.current.isDate(date, inSameDayAs: Date())
     }
+    
+    static func filterThisWeek(from results: [PulseResultInfo]) -> [PulseResultInfo] {
+        let calendar = Calendar.current
+        let now = Date()
+        let currentYear = calendar.component(.yearForWeekOfYear, from: now)
+        let currentWeek = calendar.component(.weekOfYear, from: now)
+
+        return results.filter {
+            let year = calendar.component(.yearForWeekOfYear, from: $0.date)
+            let week = calendar.component(.weekOfYear, from: $0.date)
+            return year == currentYear && week == currentWeek
+        }
+    }
 }
