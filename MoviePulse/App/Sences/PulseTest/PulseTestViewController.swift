@@ -75,8 +75,12 @@ class PulseTestViewController: BaseViewController {
         
         NotificationCenter.default.post(name: .hideTabBar, object: true)
         
-        DispatchQueue.global(qos: .userInitiated).async { [weak self] in
-            self?.initCaptureSession()
+        DispatchQueue.main.async { [weak self] in
+            self?.resetView()
+
+            DispatchQueue.global(qos: .userInitiated).async {
+                self?.initCaptureSession()
+            }
         }
     }
     
@@ -151,6 +155,11 @@ class PulseTestViewController: BaseViewController {
 }
 
 extension PulseTestViewController {
+    private func resetView() {
+        resultView.isHidden = true
+        warningLabel.isHidden = false
+    }
+    
     // MARK: - Frames Capture Methods
     private func initVideoCapture() {
         let specs = VideoSpec(fps: 30, size: CGSize(width: 300, height: 300))

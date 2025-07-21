@@ -149,7 +149,7 @@ class PulseResultViewController: BaseViewController {
         
         tryAgainButton.rx.tapGesture().when(.recognized)
             .subscribe(onNext: { [weak self] _ in
-                
+                self?.handleTryAgain()
             })
             .disposed(by: disposeBag)
         tryAgainButton.backgroundColor = .pimaryColor
@@ -310,6 +310,15 @@ extension PulseResultViewController {
         
         popupView.modalPresentationStyle = .overFullScreen
         present(popupView, animated: false)
+    }
+    
+    private func handleTryAgain() {
+        switch screenType {
+        case .detail:
+            navigator.gotoPulseTestViewController(result: pulseResult)
+        case .result:
+            navigator.popToViewController()
+        }
     }
 }
 
